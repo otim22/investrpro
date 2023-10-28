@@ -15,9 +15,19 @@
                 <li><a href="#" class="nav-link px-2">About</a></li>
             </ul>
 
-            <div class="col-md-3 text-end">
-                <a href="login" type="button" class="btn btn-outline-primary me-2">Login</a>
-                <a href="register" type="button" class="btn btn-primary">Register</a>
+                @if (Route::has('login'))
+                    <div class="col-md-3 text-end">
+                        @auth
+                            <a href="{{ url('/home') }}" type="button" class="btn btn-outline-primary me-2">Home</a>
+                        @else
+                            <a href="{{ route('login') }}" type="button" class="btn btn-outline-primary me-2">Login</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" type="button" class="btn btn-primary">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
             </div>
         </div>
     </div> 
