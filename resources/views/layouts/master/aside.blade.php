@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="{{ route('dashboard') }}" class="app-brand-link">
             {{-- <span class="app-brand-logo demo">
                 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -48,327 +48,148 @@
             <h3 class="fw-bolder ms-2">InvestrPro</h3>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+        {{-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
-        </a>
+        </a> --}}
     </div>
 
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item">
-            <a href="index.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}" class="menu-link">
+                <i class='menu-icon bx bx-tachometer'></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-
-        <!-- Layouts -->
-        <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Layouts</div>
+        <li class="menu-item {{ Request::is('member-savings') ? 'active' : '' }}">
+            <a href="{{ route('member-savings') }}" class="menu-link">
+                <i class='menu-icon bx bxs-bank'></i>
+                <div data-i18n="Analytics">Member savings</div>
             </a>
+        </li>
 
+        <!-- start activities -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Activities</span>
+        </li>
+        <li class="menu-item {{ Request::is('expenses') ? 'active' : '' }}">
+            <a href="{{ route('expenses') }}" class="menu-link">
+                <i class='menu-icon bx bx-money'></i>
+                <div data-i18n="Basic">Expenses</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('charges') ? 'active' : '' }}">
+            <a href="{{ route('charges') }}" class="menu-link">
+                <i class='menu-icon bx bx-credit-card'></i>
+                <div data-i18n="Basic">Charges</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
+            <a href="{{ route('investments') }}" class="menu-link">
+                <i class='menu-icon bx bx-line-chart'></i>
+                <div data-i18n="Basic">Investments</div>
+            </a>
+        </li>
+        <!-- end activities -->
+
+        <!-- Documents -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Documents</span></li>
+
+        <!-- User interface -->
+        <li class="menu-item" onclick="addActiveClass(this)">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class='menu-icon bx bxs-report'></i>
+                <div data-i18n="User interface">Reports</div>
+            </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
-                        <div data-i18n="Without menu">Without menu</div>
+                <li class="menu-item {{ Request::is('general-report') ? 'active' : '' }}">
+                    <a href="{{ route('general-report') }}" class="menu-link">
+                        <div data-i18n="Accordion">General</div>
                     </a>
                 </li>
-                <li class="menu-item active">
-                    <a href="layouts-without-navbar.html" class="menu-link">
-                        <div data-i18n="Without navbar">Without navbar</div>
+                <li class="menu-item {{ Request::is('financial-report') ? 'active' : '' }}">
+                    <a href="{{ route('financial-report') }}" class="menu-link">
+                        <div data-i18n="Alerts">Financial</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="layouts-container.html" class="menu-link">
-                        <div data-i18n="Container">Container</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="layouts-fluid.html" class="menu-link">
-                        <div data-i18n="Fluid">Fluid</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="layouts-blank.html" class="menu-link">
-                        <div data-i18n="Blank">Blank</div>
+                <li class="menu-item {{ Request::is('audit-report') ? 'active' : '' }}">
+                    <a href="{{ route('audit-report') }}" class="menu-link">
+                        <div data-i18n="Badges">Audit</div>
                     </a>
                 </li>
             </ul>
         </li>
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages</span>
+        <li class="menu-item {{ Request::is('sop') ? 'active' : '' }}">
+            <a href="{{ route('sop') }}" class="menu-link">
+                <i class='menu-icon bx bx-menu'></i>
+                <div data-i18n="Boxicons">SOP</div>
+            </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('constitution') ? 'active' : '' }}">
+            <a href="{{ route('constitution') }}" class="menu-link">
+                <i class='menu-icon bx bx-book-content'></i>
+                <div data-i18n="Boxicons">Constitution</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('saved-emails') ? 'active' : '' }}">
+            <a href="{{ route('saved-emails') }}" class="menu-link">
+                <i class='menu-icon bx bx-envelope'></i>
+                <div data-i18n="Boxicons">Saved Emails</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('recordings') ? 'active' : '' }}">
+            <a href="{{ route('recordings') }}" class="menu-link">
+                <i class='menu-icon bx bxs-videos'></i>
+                <div data-i18n="Boxicons">Recordings</div>
+            </a>
+        </li>
+
+        <!-- start settings -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">settings</span>
+        </li>
+        <li class="menu-item" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class='menu-icon bx bx-user'></i>
                 <div data-i18n="Account Settings">Account Settings</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                <li class="menu-item {{ Request::is('account') ? 'active' : '' }}">
+                    <a href="{{ route('account') }}" class="menu-link">
                         <div data-i18n="Account">Account</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
-                        <div data-i18n="Notifications">Notifications</div>
+                <li class="menu-item {{ Request::is('profile') ? 'active' : '' }}">
+                    <a href="{{ route('profile') }}" class="menu-link">
+                        <div data-i18n="Notifications">Profile</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                        <div data-i18n="Connections">Connections</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Authentications</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Login</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Register</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Forgot Password</div>
+                <li class="menu-item {{ Request::is('billing') ? 'active' : '' }}">
+                    <a href="{{ route('billing') }}" class="menu-link">
+                        <div data-i18n="Notifications">Billing</div>
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Misc</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="pages-misc-error.html" class="menu-link">
-                        <div data-i18n="Error">Error</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-misc-under-maintenance.html" class="menu-link">
-                        <div data-i18n="Under Maintenance">Under Maintenance</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- Components -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
-        <!-- Cards -->
-        <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Cards</div>
-            </a>
-        </li>
-        <!-- User interface -->
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div data-i18n="User interface">User interface</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="ui-accordion.html" class="menu-link">
-                        <div data-i18n="Accordion">Accordion</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-alerts.html" class="menu-link">
-                        <div data-i18n="Alerts">Alerts</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-badges.html" class="menu-link">
-                        <div data-i18n="Badges">Badges</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-buttons.html" class="menu-link">
-                        <div data-i18n="Buttons">Buttons</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-carousel.html" class="menu-link">
-                        <div data-i18n="Carousel">Carousel</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-collapse.html" class="menu-link">
-                        <div data-i18n="Collapse">Collapse</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-dropdowns.html" class="menu-link">
-                        <div data-i18n="Dropdowns">Dropdowns</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-footer.html" class="menu-link">
-                        <div data-i18n="Footer">Footer</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-list-groups.html" class="menu-link">
-                        <div data-i18n="List Groups">List groups</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-modals.html" class="menu-link">
-                        <div data-i18n="Modals">Modals</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-navbar.html" class="menu-link">
-                        <div data-i18n="Navbar">Navbar</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-offcanvas.html" class="menu-link">
-                        <div data-i18n="Offcanvas">Offcanvas</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-pagination-breadcrumbs.html" class="menu-link">
-                        <div data-i18n="Pagination &amp; Breadcrumbs">Pagination &amp; Breadcrumbs</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-progress.html" class="menu-link">
-                        <div data-i18n="Progress">Progress</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-spinners.html" class="menu-link">
-                        <div data-i18n="Spinners">Spinners</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-tabs-pills.html" class="menu-link">
-                        <div data-i18n="Tabs &amp; Pills">Tabs &amp; Pills</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-toasts.html" class="menu-link">
-                        <div data-i18n="Toasts">Toasts</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-tooltips-popovers.html" class="menu-link">
-                        <div data-i18n="Tooltips & Popovers">Tooltips &amp; popovers</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="ui-typography.html" class="menu-link">
-                        <div data-i18n="Typography">Typography</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- Extended components -->
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-copy"></i>
-                <div data-i18n="Extended UI">Extended UI</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
-                        <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="extended-ui-text-divider.html" class="menu-link">
-                        <div data-i18n="Text Divider">Text Divider</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu-item">
-            <a href="icons-boxicons.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div data-i18n="Boxicons">Boxicons</div>
-            </a>
-        </li>
-
-        <!-- Forms & Tables -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
-        <!-- Forms -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Form Elements</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="forms-basic-inputs.html" class="menu-link">
-                        <div data-i18n="Basic Inputs">Basic Inputs</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="forms-input-groups.html" class="menu-link">
-                        <div data-i18n="Input groups">Input groups</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">Form Layouts</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="form-layouts-vertical.html" class="menu-link">
-                        <div data-i18n="Vertical Form">Vertical Form</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="form-layouts-horizontal.html" class="menu-link">
-                        <div data-i18n="Horizontal Form">Horizontal Form</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- Tables -->
-        <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Tables</div>
-            </a>
-        </li>
-        <!-- Misc -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-        <li class="menu-item">
-            <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
-                class="menu-link">
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Support</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                target="_blank" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
-            </a>
-        </li>
+        <!-- end settings -->
     </ul>
 </aside>
+
+@push('scripts')
+    <script>
+        function addActiveClass(elem) {
+            var a = document.getElementsByTagName('a');
+            var menuItems = document.getElementsByTagName('menu-item');
+            for (i = 0; i < a.length; i++) {
+                a[i].classList.remove('active')
+            }
+            for (i = 0; i < menuItems.length; i++) {
+                menuItems[i].classList.remove('active')
+            }
+            elem.classList.add('active');
+        }
+    </script>
+@endpush
