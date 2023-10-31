@@ -16,13 +16,13 @@ class MemberSavingsController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         return view('member_savings.index');
+    }
+
+    public function create()
+    {
+        return view('member_savings.create');
     }
 }

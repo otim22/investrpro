@@ -64,9 +64,15 @@
             </a>
         </li>
         <li class="menu-item {{ Request::is('member-savings') ? 'active' : '' }}">
-            <a href="{{ route('member-savings') }}" class="menu-link">
+            <a href="{{ route('member-savings.index') }}" class="menu-link">
                 <i class='menu-icon bx bxs-bank'></i>
-                <div data-i18n="Analytics">Member savings</div>
+                <div data-i18n="Analytics text-capitalize">Member savings</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('membership-fee') ? 'active' : '' }}">
+            <a href="{{ route('membership-fee') }}" class="menu-link">
+                <i class='menu-icon bx bxs-bank'></i>
+                <div data-i18n="Analytics text-capitalize">Membership fee</div>
             </a>
         </li>
 
@@ -77,102 +83,107 @@
         <li class="menu-item {{ Request::is('expenses') ? 'active' : '' }}">
             <a href="{{ route('expenses') }}" class="menu-link">
                 <i class='menu-icon bx bx-money'></i>
-                <div data-i18n="Basic">Expenses</div>
+                <div data-i18n="Basi text-capitalizec">Expenses</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('charges') ? 'active' : '' }}">
             <a href="{{ route('charges') }}" class="menu-link">
                 <i class='menu-icon bx bx-credit-card'></i>
-                <div data-i18n="Basic">Charges</div>
+                <div data-i18n="Basic text-capitalize">Late charges</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('charges') ? 'active' : '' }}">
+            <a href="{{ route('charges') }}" class="menu-link">
+                <i class='menu-icon bx bx-credit-card'></i>
+                <div data-i18n="Basic text-capitalize">Missed meeting fee</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
             <a href="{{ route('investments') }}" class="menu-link">
                 <i class='menu-icon bx bx-line-chart'></i>
-                <div data-i18n="Basic">Investments</div>
+                <div data-i18n="Basic text-capitalize">Profit & Loss</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
+            <a href="{{ route('investments') }}" class="menu-link">
+                <i class='menu-icon bx bx-line-chart'></i>
+                <div data-i18n="Basic text-capitalize">Investments</div>
             </a>
         </li>
         <!-- end activities -->
 
-        <!-- Documents -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Documents</span></li>
+        <!-- File -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text text-capitalize">Reports</span></li>
 
-        <!-- User interface -->
-        <li class="menu-item" onclick="addActiveClass(this)">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class='menu-icon bx bxs-report'></i>
-                <div data-i18n="User interface">Reports</div>
+        <li class="menu-item {{ Request::is('general-report') ? 'active' : '' }}">
+            <a href="{{ route('general-report') }}" class="menu-link">
+                <i class='menu-icon bx bxs-file-pdf'></i>
+                <div data-i18n="Accordion text-capitalize">General</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('general-report') ? 'active' : '' }}">
-                    <a href="{{ route('general-report') }}" class="menu-link">
-                        <div data-i18n="Accordion">General</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('financial-report') ? 'active' : '' }}">
-                    <a href="{{ route('financial-report') }}" class="menu-link">
-                        <div data-i18n="Alerts">Financial</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('audit-report') ? 'active' : '' }}">
-                    <a href="{{ route('audit-report') }}" class="menu-link">
-                        <div data-i18n="Badges">Audit</div>
-                    </a>
-                </li>
-            </ul>
+        </li>
+        <li class="menu-item {{ Request::is('financial-report') ? 'active' : '' }}">
+            <a href="{{ route('financial-report') }}" class="menu-link">
+                <i class='menu-icon bx bxs-file'></i>
+                <div data-i18n="Alerts text-capitalize">Financial</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('audit-report') ? 'active' : '' }}">
+            <a href="{{ route('audit-report') }}" class="menu-link">
+                <i class='menu-icon bx bxs-file-find'></i>
+                <div data-i18n="Badges text-capitalize">Audit</div>
+            </a>
         </li>
 
-        <li class="menu-item {{ Request::is('sop') ? 'active' : '' }}">
-            <a href="{{ route('sop') }}" class="menu-link">
-                <i class='menu-icon bx bx-menu'></i>
-                <div data-i18n="Boxicons">SOP</div>
-            </a>
-        </li>
-        <li class="menu-item {{ Request::is('constitution') ? 'active' : '' }}">
-            <a href="{{ route('constitution') }}" class="menu-link">
-                <i class='menu-icon bx bx-book-content'></i>
-                <div data-i18n="Boxicons">Constitution</div>
-            </a>
-        </li>
-        <li class="menu-item {{ Request::is('saved-emails') ? 'active' : '' }}">
-            <a href="{{ route('saved-emails') }}" class="menu-link">
-                <i class='menu-icon bx bx-envelope'></i>
-                <div data-i18n="Boxicons">Saved Emails</div>
+        <!-- Members -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text text-capitalize">Members</span></li>
+        
+        <li class="menu-item {{ Request::is('recordings') ? 'active' : '' }}">
+            <a href="{{ route('recordings') }}" class="menu-link">
+                <i class='menu-icon bx bx-group'></i>
+                <div data-i18n="Boxicons text-capitalize">All members</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('recordings') ? 'active' : '' }}">
             <a href="{{ route('recordings') }}" class="menu-link">
-                <i class='menu-icon bx bxs-videos'></i>
-                <div data-i18n="Boxicons">Recordings</div>
+                <i class='menu-icon bx bx-user'></i>
+                <div data-i18n="Boxicons text-capitalize">Executive members</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('member-registration') ? 'active' : '' }}">
+            <a href="{{ route('member-registration.index') }}" class="menu-link">
+                <i class='menu-icon bx bx-user-plus'></i>
+                <div data-i18n="Registration text-capitalize">Member registration</div>
             </a>
         </li>
 
         <!-- start settings -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">settings</span>
+            <span class="menu-header-text text-capitalize">settings</span>
         </li>
         <li class="menu-item" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-user'></i>
-                <div data-i18n="Account Settings">Account Settings</div>
+                <i class='menu-icon bx bxs-cog'></i>
+                <div data-i18n="Account Settings text-capitalize">Account settings</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('account') ? 'active' : '' }}">
-                    <a href="{{ route('account') }}" class="menu-link">
-                        <div data-i18n="Account">Account</div>
-                    </a>
-                </li>
                 <li class="menu-item {{ Request::is('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}" class="menu-link">
-                        <div data-i18n="Notifications">Profile</div>
+                        <div data-i18n="Profile text-capitalize">Profile</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('billing') ? 'active' : '' }}">
                     <a href="{{ route('billing') }}" class="menu-link">
-                        <div data-i18n="Notifications">Billing</div>
+                        <div data-i18n="Billing text-capitalize">Billing</div>
                     </a>
                 </li>
             </ul>
+        </li>
+
+        <li class="menu-item {{ Request::is('economic-calendar-year.index') ? 'active' : '' }}">
+            <a href="{{ route('economic-calendar-year.index') }}" class="menu-link">
+                <i class='menu-icon bx bx-calendar'></i>
+                <div data-i18n="Boxicons text-capitalize">Economic calendar</div>
+            </a>
         </li>
         <!-- end settings -->
     </ul>

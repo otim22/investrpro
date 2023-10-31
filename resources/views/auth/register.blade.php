@@ -9,14 +9,15 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
-                    <div class="d-flex justify-content-center pb-3">
-                        <h4 class="fw-bold">Register account</h4>
+                    <div class="text-center pb-4">
+                        <h4 class="fw-bold text-capitalize">Register account</h4>
+                        <p class="text-muted">Fill the form to create an account.</p>
                     </div>
 
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="first_name" class="text-capitalize">First name</label>
-                            <input type="text" name="first_name" class="form-control mt-1 @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" placeholder="first name" id="first_name">
+                            <input type="text" name="first_name" class="form-control mt-1 @error('first_name') is-invalid @enderror" autofocus value="{{ old('first_name') }}" placeholder="Maynard" id="first_name">
                             @error('first_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -25,7 +26,7 @@
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="last_name" class="text-capitalize">Last name</label>
-                            <input type="text" name="last_name" class="form-control mt-1 @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" placeholder="last name" id="last_name">
+                            <input type="text" name="last_name" class="form-control mt-1 @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" placeholder="Zane" id="last_name">
                             @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -35,9 +36,9 @@
                     </div>
             
                     <div class="mb-3">
-                        <label for="phone_number" class="text-capitalize">Phone number</label>
-                        <input name="phone_number" class="form-control mt-1 @error('phone_number') is-invalid @enderror" value="{{ old('phone_number') }}" placeholder="070-000-0000" id="phone_number">
-                        @error('phone_number')
+                        <label for="company_name" class="text-capitalize">Company name</label>
+                        <input name="company_name" class="form-control mt-1 @error('company_name') is-invalid @enderror" value="{{ old('company_name') }}" placeholder="Bogan savings" id="company_name">
+                        @error('company_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

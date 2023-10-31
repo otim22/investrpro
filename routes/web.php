@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberSavingsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\MemberRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +26,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::get('/member-savings', [App\Http\Controllers\MemberSavingsController::class, 'index'])->name('member-savings');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+Route::name('admin.')
+    ->prefix('admin')
+    ->middleware(['web', 'auth', 'role:admin|super-admin'])
+    ->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('roles', RoleController::class);
+        Route::resource('permissions', PermissionController::class);
+});
+
+Route::resource('users', UsersController::class);
+Route::resource('member-registration', MemberRegistrationController::class);
+
+Route::resource('/member-savings', MemberSavingsController::class);
+Route::resource('/economic-calendar-year', MemberSavingsController::class);
+Route::get('/membership-fee', [App\Http\Controllers\MembershipFeeController::class, 'index'])->name('membership-fee');
 Route::get('/expenses', [App\Http\Controllers\ExpensesController::class, 'index'])->name('expenses');
 Route::get('/charges', [App\Http\Controllers\ChargesController::class, 'index'])->name('charges');
 Route::get('/investments', [App\Http\Controllers\InvestmentsController::class, 'index'])->name('investments');

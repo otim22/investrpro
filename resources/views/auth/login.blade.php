@@ -10,7 +10,7 @@
                     @csrf
     
                     <div class="d-flex justify-content-center">
-                        <h4 class="fw-bold mb-3">Welcome back!</h4>
+                        <h4 class="fw-bold text-capitalize mb-3">Welcome back!</h4>
                     </div>
     
                     <div class="mb-3">
