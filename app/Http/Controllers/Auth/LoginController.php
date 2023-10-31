@@ -33,10 +33,10 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if ($this->guard()->user()->hasRole('customer')) {
+        if ($this->guard()->user()->hasRole('admin')) {
             return '/dashboard';
         }
-        if ($this->guard()->user()->hasRole('admin') || $this->guard()->user()->hasRole('super-admin')) {
+        if ($this->guard()->user()->hasRole('super-admin')) {
             return '/admin/dashboard';
         }
     }

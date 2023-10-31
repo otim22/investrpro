@@ -26,7 +26,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {   
         $roles = Role::all();
         return view('admin.user_management.roles.index', compact('roles'));

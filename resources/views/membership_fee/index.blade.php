@@ -8,9 +8,9 @@
                 <h4 class="fw-bold py-1"><span class="text-muted fw-light">Member savings</span></h4>
             </div>
         </div>
-        <div class="row mb-2">
+        <div class="row mb-4">
             <div class="col-lg-12 col-md-12 col-12">
-                <div class="d-flex justify-content-between pb-2">
+                <div class="d-flex justify-content-between">
                     <div>
                         <h5>List of members</h5>
                     </div>

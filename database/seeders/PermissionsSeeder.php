@@ -28,7 +28,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'approve']);
 
         // create roles and assign existing permissions
-        $role1 = Role::create(['name' => 'customer']);
+        $role1 = Role::create(['name' => 'executive']);
         $role1->givePermissionTo('edit');
         $role1->givePermissionTo('view');
         $role1->givePermissionTo('delete');

@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberSavingsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AllMembersController;
+use App\Http\Controllers\ExecutiveMembersController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MemberSavingsController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\MemberRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,18 +30,11 @@ Auth::routes();
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
-Route::name('admin.')
-    ->prefix('admin')
-    ->middleware(['web', 'auth', 'role:admin|super-admin'])
-    ->group(function () {
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('roles', RoleController::class);
-        Route::resource('permissions', PermissionController::class);
-});
-
 Route::resource('users', UsersController::class);
-Route::resource('member-registration', MemberRegistrationController::class);
 
+Route::get('all-members', [AllMembersController::class, 'index'])->name('all-members');
+Route::get('executive-members', [ExecutiveMembersController::class, 'index'])->name('executive-members');
+Route::resource('members', MemberController::class);
 Route::resource('/member-savings', MemberSavingsController::class);
 Route::resource('/economic-calendar-year', MemberSavingsController::class);
 Route::get('/membership-fee', [App\Http\Controllers\MembershipFeeController::class, 'index'])->name('membership-fee');
@@ -56,3 +51,13 @@ Route::get('/recordings', [App\Http\Controllers\RecordingsController::class, 'in
 Route::get('/account', [App\Http\Controllers\AccountController::class, 'index'])->name('account');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::get('/billing', [App\Http\Controllers\BillingController::class, 'index'])->name('billing');
+
+// Admin
+Route::name('admin.')
+    ->prefix('admin')
+    ->middleware(['web', 'auth', 'role:super-admin'])
+    ->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('roles', RoleController::class);
+        Route::resource('permissions', PermissionController::class);
+});
