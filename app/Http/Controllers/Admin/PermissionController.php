@@ -73,7 +73,7 @@ class PermissionController extends Controller
             'name' => 'required|unique:permissions,name,'.$permission->id
         ]);
         $permission->update($request->only('name'));
-        return redirect()->route('permissions.index')->withSuccess(__('Permission updated successfully.'));
+        return redirect()->route('admin.permissions.index')->withSuccess(__('Permission updated successfully.'));
     }
 
     /**
@@ -85,6 +85,6 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        return redirect()->route('permissions.index')->withSuccess(__('Permission deleted successfully.'));
+        return redirect()->route('admin.permissions.index')->withSuccess(__('Permission deleted successfully.'));
     }
 }
