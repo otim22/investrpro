@@ -31,7 +31,8 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                <th>Name</th>
+                                <th scope="col" width="40%">Name</th>
+                                <th>Guard name</th>
                                 <th>Actions</th>
                                 </tr>
                             </thead>
@@ -39,6 +40,7 @@
                                 @foreach($permissions as $permission)
                                     <tr>
                                         <td>{{ $permission->name }}</td>
+                                        <td>{{ $permission->guard_name }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

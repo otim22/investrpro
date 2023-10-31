@@ -4,7 +4,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <h4 class="fw-bold"><span class="text-muted text-capitalize fw-light">User management / <a href="{{ route('admin.permissions.index') }}">Permissions</a> / </span>Create</h4>
+                <h4 class="fw-bold"><span class="text-muted text-capitalize fw-light">User management / <a href="{{ route('admin.permissions.index') }}">Permissions</a> / {{ $permission->name }} / </span>Update</h4>
             </div>
         </div>
         <div class="row mb-4">

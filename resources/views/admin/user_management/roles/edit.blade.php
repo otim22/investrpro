@@ -4,7 +4,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <h4 class="fw-bold"><span class="text-muted text-capitalize fw-light">User management / <a href="{{ route('admin.roles.index') }}">Roles</a> / </span>Create</h4>
+                <h4 class="fw-bold"><span class="text-muted text-capitalize fw-light">User management / <a href="{{ route('admin.roles.index') }}">Roles</a> / {{ $role->name }} / </span>Edit</h4>
             </div>
         </div>
         <div class="row mb-4">
@@ -24,8 +24,9 @@
                     <h5 class="mb-0 text-capitalize">Roles form</h5>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.roles.store') }}">
+                    <form method="POST" action="{{ route('admin.roles.update', $role) }}">
                         @csrf
+                        @method('patch')
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="name">Name</label>
@@ -35,7 +36,8 @@
                                     id="name" 
                                     class="form-control @error('name') is-invalid @enderror" 
                                     name="name"
-                                    value="{{ old('name') }}"
+                                    value="{{ old('name', $role->name) }}"
+                                    required
                                 />
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -63,7 +65,10 @@
                                                 <input type="checkbox" 
                                                     name="permission[{{ $permission->name }}]"
                                                     value="{{ $permission->name }}"
-                                                    class='permission'>
+                                                    class='permission'
+                                                    {{ in_array($permission->name, $rolePermissions) 
+                                                    ? 'checked'
+                                                    : '' }}>
                                             </td>
                                             <td>{{ $permission->name }}</td>
                                             <td>{{ $permission->guard_name }}</td>
@@ -74,7 +79,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary text-capitalize">Create role</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Update role</button>
                             </div>
                         </div>
                     </form>
@@ -91,11 +96,11 @@
             $('[name="all_permissions"]').on('click', function() {
                 if($(this).is(':checked')) {
                     $.each($('.permission'), function() {
-                        $(this).prop('checked', true);
+                        $(this).prop('checked',true);
                     });
                 } else {
                     $.each($('.permission'), function() {
-                        $(this).prop('checked', false);
+                        $(this).prop('checked',false);
                     });
                 }
             });

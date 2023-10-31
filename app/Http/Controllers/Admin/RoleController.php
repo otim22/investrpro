@@ -28,9 +28,8 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {   
-        $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('admin.user_management.roles.index',compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $roles = Role::all();
+        return view('admin.user_management.roles.index', compact('roles'));
     }
     
     /**
@@ -60,8 +59,7 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->get('name')]);
         $role->syncPermissions($request->get('permission'));
     
-        return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+        return redirect()->route('admin.roles.index')->with('success','Role created successfully');
     }
 
     /**
@@ -86,7 +84,6 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $role = $role;
         $rolePermissions = $role->permissions->pluck('name')->toArray();
         $permissions = Permission::get();
     
@@ -108,11 +105,9 @@ class RoleController extends Controller
         ]);
         
         $role->update($request->only('name'));
-    
         $role->syncPermissions($request->get('permission'));
     
-        return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+        return redirect()->route('admin.roles.index')->with('success','Role updated successfully');
     }
 
     /**
@@ -124,8 +119,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-
-        return redirect()->route('roles.index')
-                        ->with('success','Role deleted successfully');
+        return redirect()->route('admin.roles.index')->with('success','Role deleted successfully');
     }
 }
