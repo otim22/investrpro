@@ -81,8 +81,7 @@
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         <div class="col mb-0">
-                                                            Are you sure wanna delete, "{{ $permission->name }}"
-                                                            permission?
+                                                            Are you sure  want to delete, "{{ $permission->name }}" permission?
                                                         </div>
                                                     </div>
                                                 </div>

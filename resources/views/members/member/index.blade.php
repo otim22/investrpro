@@ -43,13 +43,13 @@
                                             </a>
                                         </td>
                                         <td>
-                                            {{ $member->date_of_birth }}<br/>
+                                            {{ $member->address }}<br/>
                                             {{ $member->email }}<br/>
                                             {{ $member->telephone_number }}
                                         </td>
                                         <td>
-                                            {{ $member->address }}<br/>
-                                            {{ $member->occupation }}
+                                            {{ $member->occupation }}<br/>
+                                            {{ $member->date_of_birth }}
                                         </td>
                                         <td>
                                             {{ $member->nin }}<br/>
@@ -94,8 +94,7 @@
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         <div class="col mb-0">
-                                                            Are you sure wanna delete, "{{ $member->name }}"
-                                                            member?
+                                                            Are you sure to delete, "{{ $member->name }}" member?
                                                         </div>
                                                     </div>
                                                 </div>

@@ -78,7 +78,7 @@
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         <div class="col mb-0">
-                                                            Are you sure wanna delete, "{{ $role->name }}" role?
+                                                            Are you sure want to delete, "{{ $role->name }}" role?
                                                         </div>
                                                     </div>
                                                 </div>

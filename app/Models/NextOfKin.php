@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Spatie\MediaLibrary\HasMedia;
+use Spatie\Sluggable\SlugOptions;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Member extends Model implements HasMedia
+class NextOfKin extends Model implements HasMedia
 {
     use HasFactory, HasSlug, InteractsWithMedia, HasRoles;
     
@@ -23,13 +23,10 @@ class Member extends Model implements HasMedia
         'telephone_number',
         'email',
         'address',
-        'occupation',
         'nin',
         'passport_number',
-        'company_id',
+        'member_id',
     ];
-
-    protected $guard_name = 'web';
 
     /**
      * Get the options for generating the slug.
@@ -53,8 +50,8 @@ class Member extends Model implements HasMedia
         return 'slug';
     }
 
-    public function nextOfKin(): HasOne
+    public function member(): BelongsTo
     {
-        return $this->hasOne(NextOfKin::class);
+        return $this->belongsTo(Member::class);
     }
 }

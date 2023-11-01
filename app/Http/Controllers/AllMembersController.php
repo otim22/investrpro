@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class AllMembersController extends Controller
@@ -16,14 +17,9 @@ class AllMembersController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        
-        return view('all_members.index');
+        $ordinaryMembers = Member::role('ordinary-member')->paginate(25);
+        return view('members.all_members.index', compact('ordinaryMembers'));
     }
 }

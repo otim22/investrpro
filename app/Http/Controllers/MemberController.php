@@ -16,20 +16,10 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-
-    }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {   
         $members = Member::orderBy('id', 'desc')->paginate(5);
-        return view('members.index', compact('members'));
+        return view('members.member.index', compact('members'));
     }
     
     /**
@@ -40,7 +30,7 @@ class MemberController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('members.create', compact('roles'));
+        return view('members.member.create', compact('roles'));
     }
     
     /**
@@ -67,13 +57,13 @@ class MemberController extends Controller
         $member->company_id = Auth::user()->company->id;
         $member->save();
 
-        $user->assignRole('member');
+        $member->assignRole('ordinary-member');
         
         if($request->hasFile('relevant_document')) {
             $member->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
-        }
+        } 
     
-        return redirect()->route('members.index')->with('success', 'Member created successfully');
+        return redirect()->route('next-of-kin.create', $member)->with('success', 'Member created successfully');
     }
 
     /**
@@ -84,7 +74,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        return view('members.show', compact('member'));
+        return view('members.member.show', compact('member'));
     }
     
     /**
@@ -95,7 +85,7 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        return view('members.edit', compact('member'));
+        return view('members.member.edit', compact('member'));
     }
     
     /**
@@ -109,7 +99,7 @@ class MemberController extends Controller
     {
         $request->validated();
         $member->update($request->except('relevant_document'));
-        
+
         if($request->hasFile('relevant_document')) {
             foreach ($member->media as $media) {
                 $media->delete();

@@ -68,7 +68,7 @@
                 
                         <div class="col-12 col-md-6 mb-3">
                             <label for="password-confirm" class="text-capitalize">Confirm password</label>
-                            <input name="password_confirmation" class="form-control mt-1"  required autocomplete="new-password" id="password-confirm">
+                            <input type="password" name="password_confirmation" class="form-control mt-1" required autocomplete="new-password" id="password-confirm">
                         </div>
                     </div>
 

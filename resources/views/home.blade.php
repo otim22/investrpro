@@ -4,18 +4,18 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
     <style>
-    table tr td, table tr th {
-        max-width: 14vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    table {
-        width: 100%;
-    }
-    div.dataTables_wrapper div.dataTables_length select {
-        width: 70px !important;
-    }
+        table tr td, table tr th {
+            max-width: 14vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        table {
+            width: 100%;
+        }
+        div.dataTables_wrapper div.dataTables_length select {
+            width: 70px !important;
+        }
     </style>
 @endpush
 
@@ -121,48 +121,71 @@
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
-    const dataSet = [
-        ["1", "Byaruhanga Violet",  "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["2", "Gimbo Fatuma", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["3", "Kilama Emmanuel", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["4", "Obua Isaac", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["5",  "Okwakol Simon Fabian", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["6", "Olowo David", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["7", "Otim Fredrick", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["8", "Ssemakula Julius", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
-        ["9",  "Wanichan Franco", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"]
-        ["10",  "Class 2003", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"]
-    ];
-    $(document).ready( function () {
-        $('#summaryTable').DataTable({
-            columns: [
-                { title: 'SNO' },
-                { title: 'Name' },
-                { title: 'Contributions' },
-                { title: 'Aug' },
-                { title: 'Sept' },
-                { title: 'Oct' },
-                { title: 'Nov' },
-                { title: 'Dec' },
-                { title: 'Jan' },
-                { title: 'Feb' },
-                { title: 'Mar' },
-                { title: 'Apr' },
-                { title: 'May' },
-                { title: 'Jun' },
-                { title: 'Jul' }
-            ],
-            data: dataSet,
-            scrollCollapse: true,
-            scrollY: '60vh'
-        });
-
-        let table = new DataTable('#summaryTable');
-        table.on('click', 'tbody tr', function () {
-            let data = table.row(this).data();
-        
-            alert('You clicked on ' + data[0] + "'s row");
-        });
+    function Employee (name, position, salary, office) {
+        this.name = name;
+        this.position = position;
+        this.salary = salary;
+        this._office = office;
+    
+        this.office = function () {
+            return this._office;
+        }
+    };
+    
+    $('#summaryTable').DataTable({
+        data: [
+            new Employee( "Tiger Nixon", "System Architect", "$3,120", "Edinburgh" ),
+            new Employee( "Garrett Winters", "Director", "$5,300", "Edinburgh" )
+        ],
+        columns: [
+            { data: 'name' },
+            { data: 'salary' },
+            { data: 'office' },
+            { data: 'position' }
+        ]
     });
+    // const dataSet = [
+    //     ["1", "Byaruhanga Violet",  "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["2", "Gimbo Fatuma", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["3", "Kilama Emmanuel", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["4", "Obua Isaac", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["5", "Okwakol Simon Fabian", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["6", "Olowo David", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["7", "Otim Fredrick", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["8", "Ssemakula Julius", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"],
+    //     ["9", "Wanichan Franco", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"]
+    //     ["10", "Class 2003", "200,000", "100,000", "-", "-", "100,000", "-", "-", "-", "-", "-",  "-", "-", "-"]
+    // ];
+    // $(document).ready(function () {
+    //     $('#summaryTable').DataTable({
+    //         columns: [
+    //             { title: 'SNO' },
+    //             { title: 'Name' },
+    //             { title: 'Contributions' },
+    //             { title: 'Aug' },
+    //             { title: 'Sept' },
+    //             { title: 'Oct' },
+    //             { title: 'Nov' },
+    //             { title: 'Dec' },
+    //             { title: 'Jan' },
+    //             { title: 'Feb' },
+    //             { title: 'Mar' },
+    //             { title: 'Apr' },
+    //             { title: 'May' },
+    //             { title: 'Jun' },
+    //             { title: 'Jul' }
+    //         ],
+    //         data: dataSet,
+    //         scrollCollapse: true,
+    //         scrollY: '60vh'
+    //     });
+
+    //     let table = new DataTable('#summaryTable');
+    //     table.on('click', 'tbody tr', function () {
+    //         let data = table.row(this).data();
+        
+    //         alert('You clicked on ' + data[0] + "'s row");
+    //     });
+    // });
 </script>
 @endpush
