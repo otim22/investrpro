@@ -24,7 +24,7 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -57,7 +57,7 @@
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#confirmmemberDeletion{{ $economicCalendarMonth->id }}">
+                                                        data-bs-target="#confirmMemberDeletion{{ $economicCalendarMonth->id }}">
                                                         <i class="bx bx-trash me-1"></i> Delete
                                                     </a>
                                                 </div>
@@ -69,13 +69,13 @@
                                         @csrf
                                         @method('delete')
                                     </form>
-                                    <div class="modal fade" id="confirmmemberDeletion{{ $economicCalendarMonth->id }}"
+                                    <div class="modal fade" id="confirmMemberDeletion{{ $economicCalendarMonth->id }}"
                                         tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title"
-                                                        id="confirmmemberDeletion{{ $economicCalendarMonth->id }}">
+                                                        id="confirmMemberDeletion{{ $economicCalendarMonth->id }}">
                                                         {{ $economicCalendarMonth->title }} month</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>

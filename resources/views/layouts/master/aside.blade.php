@@ -59,8 +59,14 @@
         <!-- Dashboard -->
         <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-tachometer'></i>
+                <i class='menu-icon bx bxs-dashboard'></i>
                 <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+         <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
+            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-line-chart'></i>
+                <div data-i18n="Basic">Investments</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('member-savings') ? 'active' : '' }}">
@@ -100,17 +106,11 @@
         </li>
         <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
             <a href="{{ route('investments') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-line-chart'></i>
+                <i class='menu-icon bx bx-book-content'></i>
                 <div data-i18n="Basic">Profit & Loss</div>
             </a>
         </li>
-        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-line-chart'></i>
-                <div data-i18n="Basic">Investments</div>
-            </a>
-        </li>
-
+ 
         <!-- File -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text text-capitalize">Reports</span></li>
 

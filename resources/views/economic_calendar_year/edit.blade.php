@@ -21,8 +21,8 @@
             <div class="card p-3">
                 <div class="card-body">
                     <form method="POST" action="{{ route('economic-calendar-year.update', $economicCalendarYear) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('patch')
+                        @csrf
+                        @method('patch')
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="title">Title</label>

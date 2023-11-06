@@ -31,7 +31,7 @@
                                 <tr>
                                     <th scope="col" width="40%">Name</th>
                                     <th>Guard name</th>
-                                    <th>Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">

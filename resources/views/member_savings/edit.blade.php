@@ -20,8 +20,9 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('member-savings.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('member-savings.update', $memberSaving) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('patch')
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Member</label>
@@ -34,7 +35,7 @@
                                     autofocus
                                 >
                                     @if($members)
-                                        <option selected>Select member</option>
+                                        <option value="{{ $memberSaving->member->id }}" selected>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach
@@ -55,7 +56,7 @@
                                     id="premium" 
                                     class="form-control @error('premium') is-invalid @enderror" 
                                     name="premium"
-                                    value="{{ old('premium') }}"
+                                    value="{{ old('premium', $memberSaving->premium) }}"
                                     placeholder="100000" 
                                 />
                                 @error('premium')
@@ -75,7 +76,7 @@
                                     aria-label="Default select month"
                                 >
                                     @if($months)
-                                        <option selected>Select month</option>
+                                        <option value="{{ $memberSaving->month }}" selected>{{ $memberSaving->month }}</option>
                                         @foreach($months as $months)
                                             <option value="{{ $months->title }}">{{ $months->title }}</option>
                                         @endforeach
@@ -96,6 +97,7 @@
                                         type="date"
                                         id="date_paid"
                                         name="date_paid"
+                                        value="{{ old('date_paid', date('Y-m-d')) }}"
                                         class="form-control @error('date_paid') is-invalid @enderror"
                                         placeholder="12/03/2029"
                                         aria-label="12/03/2029"
@@ -111,7 +113,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </form>

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Member extends Model implements HasMedia
 {
@@ -56,5 +57,10 @@ class Member extends Model implements HasMedia
     public function nextOfKin(): HasOne
     {
         return $this->hasOne(NextOfKin::class);
+    }
+    
+    public function memberSaving(): HasOne
+    {
+        return $this->hasOne(MemberSaving::class);
     }
 }

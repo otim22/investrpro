@@ -27,7 +27,7 @@
                                     <th>Address</th>
                                     <th>Occupation</th>
                                     <th>Identification</th>
-                                    <th>Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
