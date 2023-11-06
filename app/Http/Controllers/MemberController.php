@@ -18,7 +18,10 @@ class MemberController extends Controller
      */
     public function index()
     {   
-        $members = Member::orderBy('id', 'desc')->paginate(5);
+        $members = [];
+        if(Auth::user()->company) {
+            $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->paginate(5);
+        }
         return view('members.member.index', compact('members'));
     }
     
@@ -56,8 +59,7 @@ class MemberController extends Controller
         $member->passport_number = $request->passport_number;
         $member->company_id = Auth::user()->company->id;
         $member->save();
-
-        $member->assignRole('ordinary-member');
+        $member->assignRole($request->member_role);
         
         if($request->hasFile('relevant_document')) {
             $member->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
@@ -85,7 +87,8 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        return view('members.member.edit', compact('member'));
+        $roles = Role::all();
+        return view('members.member.edit', compact(['member', 'roles']));
     }
     
     /**

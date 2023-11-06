@@ -24,9 +24,8 @@ class EconomicCalendarYearUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|date',
-            'description' => 'required|string',
-            'organisation_id' => 'required',
+            'title' => 'required|string',
+            'description' => 'nullable|string',
         ];
     }
 }

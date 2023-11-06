@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EconomicCalendarYear;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\EconomicCalendarYear;
+use App\Http\Requests\EconomicCalendarYearRequest;
+use App\Http\Requests\EconomicCalendarYearUpdateRequest;
 
 class EconomicCalendarYearController extends Controller
 {
     public function index()
     {
-        $cconomicCalendarYear = EconomicCalendarYear::all();
-        return view('cconomic_calendar_year.index', compact(['cconomicCalendarYear']));
+        $economicCalendarMonths = EconomicCalendarYear::all();
+        return view('economic_calendar_year.index', compact('economicCalendarMonths'));
     }
 
     /**
@@ -18,7 +21,8 @@ class EconomicCalendarYearController extends Controller
      */
     public function create()
     {
-        return view('cconomic_calendar_year.create');
+        
+        return view('economic_calendar_year.create');
     }
 
     /**
@@ -27,9 +31,13 @@ class EconomicCalendarYearController extends Controller
     public function store(EconomicCalendarYearRequest $request)
     {
         $request->validated();
-        $economicCalendarYear = EconomicCalendarYear::create($request->all());
- 
-        return redirect()->route('cconomic_calendar_year.index')->with("success", $economicCalendarYear->title . " created successfully!");
+        $economicCalendarYear = new EconomicCalendarYear();
+        $economicCalendarYear->title = $request->title;
+        $economicCalendarYear->description = $request->description;
+        $economicCalendarYear->company_id = Auth::user()->company->id;
+        $economicCalendarYear->save();
+
+        return redirect()->route('economic-calendar-year.index')->with("success", $economicCalendarYear->title . " created successfully!");
     }
 
     /**
@@ -37,7 +45,7 @@ class EconomicCalendarYearController extends Controller
      */
     public function show(EconomicCalendarYear $economicCalendarYear)
     {
-        return view('cconomic_calendar_year.show', compact(['economicCalendarYear']));
+        return view('economic_calendar_year.show', compact('economicCalendarYear'));
     }
 
     /**
@@ -45,27 +53,17 @@ class EconomicCalendarYearController extends Controller
      */
     public function edit(EconomicCalendarYear $economicCalendarYear)
     {
-        return view('cconomic_calendar_year.edit', compact(['economicCalendarYear']));
+        return view('economic_calendar_year.edit', compact('economicCalendarYear'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EconomicCalendarYear $economicCalendarYear)
+    public function update(EconomicCalendarYearUpdateRequest $request, EconomicCalendarYear $economicCalendarYear)
     {
-        $data = $this->validateData($request);
-        $economicCalendarYear->update($data);
-        return redirect()->route('cconomic_calendar_year.show', [$economicCalendarYear])->with('success', $economicCalendarYear->title . ' updated successfully.');
-    }
-
-    public function validateData($request) 
-    {
-        return $request->validate([
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'director_register' => 'nullable|array',
-            'shareholder_register' => 'nullable|array',
-        ]);
+        $request->validated();
+        $economicCalendarYear->update($request->all());
+        return redirect()->route('economic-calendar-year.index', $economicCalendarYear)->with('success', $economicCalendarYear->title . ' updated successfully.');
     }
 
     /**
@@ -74,6 +72,6 @@ class EconomicCalendarYearController extends Controller
     public function destroy(EconomicCalendarYear $economicCalendarYear)
     {
         $economicCalendarYear->delete();
-        return redirect()->route('cconomic_calendar_year.index')->with('success', 'EconomicCalendarYear deleted successfully');
+        return redirect()->route('economic-calendar-year.index')->with('success', 'EconomicCalendarYear deleted successfully');
     }
 }

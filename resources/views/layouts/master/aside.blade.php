@@ -71,7 +71,7 @@
         </li>
         <li class="menu-item {{ Request::is('membership-fee') ? 'active' : '' }}">
             <a href="{{ route('membership-fee') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bxs-bank'></i>
+                <i class='menu-icon bx bx-wallet-alt'></i>
                 <div data-i18n="Analytics">Membership fee</div>
             </a>
         </li>
@@ -88,7 +88,7 @@
         </li>
         <li class="menu-item {{ Request::is('charges') ? 'active' : '' }}">
             <a href="{{ route('charges') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-credit-card'></i>
+                <i class='menu-icon bx bx-dollar'></i>
                 <div data-i18n="Basic">Late charges</div>
             </a>
         </li>
@@ -178,7 +178,7 @@
             </ul>
         </li>
 
-        <li class="menu-item {{ Request::is('economic-calendar-year.index') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
             <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-calendar'></i>
                 <div data-i18n="Boxicons">Economic calendar</div>

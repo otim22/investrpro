@@ -23,18 +23,11 @@
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <h4 class="fw-bold py-1"><span class="text-muted fw-light">Dashboard / </span>Overview</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
-                <div class="d-flex justify-content-between pb-2">
-                    <div>
-                        <h5>August</h5>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <div class="pt-1 me-2">
+            <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
+                <div class="d-flex justify-content-between">
+                    <h4 class="fw-bold py-1"><span class="text-muted fw-light">Dashboard / Overview / </span>August</h4>
+                    <div class="d-flex justify-content-between">
+                        <div class="mt-1 me-2">
                             <h5>Filter</h5>
                         </div>
                         <div class="dropdown">

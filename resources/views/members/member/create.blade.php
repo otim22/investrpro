@@ -1,5 +1,10 @@
 @extends('layouts.master.app')
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+@endpush
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
@@ -26,8 +31,8 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="surname">Surname</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="surname">Surname</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="surname"
@@ -43,8 +48,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="given_name">Given name</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="given_name">Given name</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="given_name"
@@ -60,8 +65,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="other_name">Other name</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="other_name">Other name</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="other_name"
@@ -76,8 +81,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="date_of_birth">Date of birth</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="date_of_birth">Date of birth</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="date" 
                                         id="date_of_birth"
@@ -93,8 +98,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="telephone_number">Telephone number</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="telephone_number">Telephone number</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="telephone_number"
@@ -110,8 +115,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="email">email</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="email">email</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="email" 
                                         id="email"
@@ -127,8 +132,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="address">Address</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="address">Address</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="address"
@@ -144,8 +149,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="occupation">Occupation</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="occupation">Occupation</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="occupation"
@@ -161,8 +166,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="nin">National Identification Number (NIN)</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="nin">National Identification Number (NIN)</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="nin"
@@ -177,8 +182,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="passport_number">Passport number</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="passport_number">Passport number</label>
+                                <div class="col-sm-8">
                                     <input 
                                         type="text" 
                                         id="passport_number"
@@ -193,8 +198,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="relevant_document">Attach NIN or Passport</label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-4 col-form-label" for="relevant_document">Attach NIN or Passport</label>
+                                <div class="col-sm-8">
                                     <div class="input-group">
                                         <input type="file" 
                                             class="form-control" 
@@ -213,18 +218,13 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="member_role">Role</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group">
-                                        <select id="member_role" class="form-select text-capitalize" name="member_role">
-                                            <option>Default select</option>
-                                            <option value="ordinary-member">Ordinary member</option>
-                                            <option value="executive-member">Executive member</option>
-                                            <option value="chairman">Chairperson</option>
-                                            <option value="treasurer">Treasurer</option>
-                                            <option value="secretary">Secretary</option>
-                                            <option value="finance">Finance</option>
-                                            <option value="auditor">Auditor</option>
+                                <label class="col-sm-4 col-form-label" for="member_role">Member Role(s)</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group"> 
+                                        <select class="form-select" data-placeholder="Choose role" name="member_role[]" multiple id="multiple_member_role">
+                                            @foreach($roles as $role)
+                                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     @error('member_role')
@@ -235,7 +235,7 @@
                                 </div>
                             </div>
                             <div class="row justify-content-end">
-                                <div class="col-sm-9 mt-2">
+                                <div class="col-sm-8 mt-2">
                                     <button type="submit" class="btn btn-primary text-capitalize">Create member</button>
                                 </div>
                             </div>
@@ -246,3 +246,20 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <script>
+        $('#multiple_member_role').select2({
+            theme: "bootstrap-5",
+            selectionCssClass: "select2--small",
+            dropdownCssClass: "select2--small",
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            placeholder: $( this ).data( 'placeholder' ),
+            closeOnSelect: false,
+            allowClear: true,
+        });
+    </script>
+@endpush

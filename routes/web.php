@@ -5,9 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AllMembersController;
 use App\Http\Controllers\ExecutiveMembersController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\EconomicCalendarYearController;
 use App\Http\Controllers\NextOfKinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemberSavingsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -44,12 +46,13 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/members/{member}/next-of-kins/{nextOfKin}/update', [NextOfKinController::class, 'update'])->name('next-of-kin.update');
     Route::delete('/members/{member}/next-of-kins/{nextOfKin}/destroy', [NextOfKinController::class, 'destroy'])->name('next-of-kin.delete');
     
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::patch('/update-name', [UserController::class, 'updateName'])->name('update.name');
     Route::patch('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
 
     Route::resource('/member-savings', MemberSavingsController::class);
-    Route::resource('/economic-calendar-year', MemberSavingsController::class);
+    Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
+    
     Route::get('/membership-fee', [App\Http\Controllers\MembershipFeeController::class, 'index'])->name('membership-fee');
     Route::get('/expenses', [App\Http\Controllers\ExpensesController::class, 'index'])->name('expenses');
     Route::get('/charges', [App\Http\Controllers\ChargesController::class, 'index'])->name('charges');

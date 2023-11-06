@@ -31,7 +31,7 @@
                                 Edit member
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmmemberDeletion{{ $member->id }}">
+                                data-bs-target="#confirmMemberDeletion{{ $member->id }}">
                                 <i class='me-2 bx bx-trash'></i>
                                 Delete member
                             </a>
@@ -47,11 +47,11 @@
                     @csrf
                     @method('delete')
                 </form>
-                <div class="modal fade" id="confirmmemberDeletion{{ $member->id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" id="confirmMemberDeletion{{ $member->id }}" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="confirmmemberDeletion{{ $member->id }}">
+                                <h5 class="modal-title" id="confirmMemberDeletion{{ $member->id }}">
                                     {{ $member->surname }} {{ $member->given_name }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
