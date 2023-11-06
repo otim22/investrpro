@@ -23,6 +23,6 @@ class BillingController extends Controller
      */
     public function index()
     {
-        return view('account_settings.billing.index');
+        return view('account.billing.index');
     }
 }

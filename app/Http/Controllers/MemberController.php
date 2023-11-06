@@ -63,7 +63,7 @@ class MemberController extends Controller
             $member->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
         } 
     
-        return redirect()->route('next-of-kin.create', $member)->with('success', 'Member created successfully');
+        return redirect()->route('members.show', $member)->with('success', 'Member created successfully');
     }
 
     /**

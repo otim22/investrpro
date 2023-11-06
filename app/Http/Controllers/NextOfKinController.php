@@ -81,7 +81,6 @@ class NextOfKinController extends Controller
     public function update(NextOfKinUpdateRequest $request, Member $member, NextOfKin $nextOfKin)
     {
         $request->validated();
-        dd($nextOfKin);
         $nextOfKin->update($request->except('relevant_document'));
 
         if($request->hasFile('relevant_document')) {
@@ -91,7 +90,7 @@ class NextOfKinController extends Controller
             $nextOfKin->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
         }
 
-        return redirect()->route('members.show', [$member, $nextOfKin])->with('success','Kin updated successfully');
+        return redirect()->route('next-of-kin.show', $member)->with('success','Kin updated successfully');
     }
 
     /**

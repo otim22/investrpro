@@ -6,112 +6,43 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display all users
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function index() 
+    public function updateName(Request $request)
     {
-        $users = User::latest()->paginate(10);
-
-        return view('users.index', compact('users'));
-    }
-
-    /**
-     * Show form for creating user
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function create() 
-    {
-        return view('users.create');
-    }
-
-    /**
-     * Store a newly created user
-     * 
-     * @param User $user
-     * @param StoreUserRequest $request
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function store(User $user, StoreUserRequest $request) 
-    {
-        //For demo purposes only. When creating user or inviting a user
-        // you should create a generated random password and email it to the user
-        $user->create(array_merge($request->validated(), [
-            'password' => 'test' 
-        ]));
-
-        return redirect()->route('users.index')
-            ->withSuccess(__('User created successfully.'));
-    }
-
-    /**
-     * Show user data
-     * 
-     * @param User $user
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user) 
-    {
-        return view('users.show', [
-            'user' => $user
+        $user = Auth::user();
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
         ]);
+        $user->fill([
+            'first_name' => $request->first_name, 
+            'last_name' => $request->last_name,
+        ])->save();
+        return redirect()->route('profile')->with("success", "$user->first_name updated successfully!");
     }
 
-    /**
-     * Edit user data
-     * 
-     * @param User $user
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user) 
+    public function updatePassword(Request $request)
     {
-        return view('users.edit', [
-            'user' => $user,
-            'userRole' => $user->roles->pluck('name')->toArray(),
-            'roles' => Role::latest()->get()
+        $request->validate([
+            'password' => 'required',
+            'new_password' => ['required', 'confirmed', 'string', 'min:8', 'different:password'],
         ]);
-    }
+        $user = Auth::user();
+        if (Hash::check($request->password, $user->password)) { 
+            $user->fill([
+                'password' => Hash::make($request->new_password)
+            ])->save();
 
-    /**
-     * Update user data
-     * 
-     * @param User $user
-     * @param UpdateUserRequest $request
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function update(User $user, UpdateUserRequest $request) 
-    {
-        $user->update($request->validated());
-
-        $user->syncRoles($request->get('role'));
-
-        return redirect()->route('users.index')
-            ->withSuccess(__('User updated successfully.'));
-    }
-
-    /**
-     * Delete user data
-     * 
-     * @param User $user
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user) 
-    {
-        $user->delete();
-
-        return redirect()->route('users.index')
-            ->withSuccess(__('User deleted successfully.'));
+            $request->session()->flash('success', 'Password changed');
+            return redirect()->route('profile');
+        } else {
+            $request->session()->flash('error', 'Password does not match');
+            return redirect()->route('profile');
+        }
     }
 }

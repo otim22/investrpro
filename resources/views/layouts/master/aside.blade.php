@@ -162,7 +162,7 @@
         <li class="menu-item" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-cog'></i>
-                <div data-i18n="Account Settings">Account settings</div>
+                <div data-i18n="Account">Account</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('profile') ? 'active' : '' }}">

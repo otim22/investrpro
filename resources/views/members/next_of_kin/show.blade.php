@@ -4,6 +4,11 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+                @include('messages.flash')
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <h4 class="fw-bold py-1 text-capitalize">
                     <span class="text-muted fw-light">Members / <a
                             href="{{ route('members.show', $member) }}">{{ $member->surname }} {{ $member->given_name }}</a>
@@ -77,7 +82,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <div class="card mb-4">
+                <div class="card p-3">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h5 class="mb-0 text-capitalize">Form details of {{ $member->nextOfKin->surname }} {{ $member->nextOfKin->given_name }}</h5>
                     </div>
@@ -151,7 +156,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="row mb-3">
+                        <div class="row">
                             <label class="col-sm-3 col-form-label" for="passport_number">Attached document</label>
                             <div class="col-sm-9">
                                 @if ($member->nextOfKin->getFirstMediaUrl('relevant_document'))
