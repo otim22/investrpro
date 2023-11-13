@@ -22,7 +22,7 @@ class AllMembersController extends Controller
     {
         $ordinaryMembers = [];
         if(Auth::user()->company) {
-            $ordinaryMembers = Member::where('company_id', Auth::user()->company->id)->role('ordinary-member')->paginate(25);
+            $ordinaryMembers = Member::where('company_id', Auth::user()->company->id)->role('Ordinary Member')->paginate(25);
         }
         return view('members.all_members.index', compact('ordinaryMembers'));
     }

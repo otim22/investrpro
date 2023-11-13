@@ -46,7 +46,7 @@ class NextOfKinController extends Controller
             $nextOfKin->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
         } 
     
-        return redirect()->route('next-of-kin.show', [$member, $nextOfKin])->with('success', 'Kin created successfully');
+        return redirect()->route('next-of-kin.show', [$member, $nextOfKin])->with('success', 'Next of kin created successfully');
     }
 
     /**
@@ -90,7 +90,7 @@ class NextOfKinController extends Controller
             $nextOfKin->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
         }
 
-        return redirect()->route('next-of-kin.show', $member)->with('success','Kin updated successfully');
+        return redirect()->route('next-of-kin.show', $member)->with('success','Next of kin updated successfully');
     }
 
     /**
@@ -102,6 +102,6 @@ class NextOfKinController extends Controller
     public function destroy(Member $member, NextOfKin $nextOfKin)
     {
         $nextOfKin->delete();
-        return redirect()->route('members.show', $member)->with('success','Kin deleted successfully');
+        return redirect()->route('members.show', $member)->with('success','Next of kin deleted successfully');
     }
 }

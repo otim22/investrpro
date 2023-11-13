@@ -64,6 +64,10 @@ class MemberController extends Controller
         if($request->hasFile('relevant_document')) {
             $member->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
         } 
+
+        if($request->hasFile('conscent_form')) {
+            $member->addMedia($request->conscent_form)->toMediaCollection('conscent_form');
+        } 
     
         return redirect()->route('members.show', $member)->with('success', 'Member created successfully');
     }
@@ -108,6 +112,13 @@ class MemberController extends Controller
                 $media->delete();
             }
             $member->addMedia($request->relevant_document)->toMediaCollection('relevant_document');
+        }
+        
+        if($request->hasFile('conscent_form')) {
+            foreach ($member->media as $media) {
+                $media->delete();
+            }
+            $member->addMedia($request->conscent_form)->toMediaCollection('conscent_form');
         }
 
         return redirect()->route('members.show', $member)->with('success','Member updated successfully');

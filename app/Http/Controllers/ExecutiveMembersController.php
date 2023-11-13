@@ -27,7 +27,7 @@ class ExecutiveMembersController extends Controller
     {
         $executiveMembers = [];
         if(Auth::user()->company) {
-            $executiveMembers = Member::where('company_id', Auth::user()->company->id)->role('executive-member')->paginate(25);
+            $executiveMembers = Member::where('company_id', Auth::user()->company->id)->role('Executive Member')->paginate(25);
         }
         return view('members.executive_members.index', compact('executiveMembers'));
     }

@@ -8,55 +8,44 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 mb-2 order-lg-2">
+            <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member registration / </span>List of current members</h4>
+                    <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Account / </span>List of application Users</h4>
                     <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('org.user.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
-                            Add member
+                            Add user
                         </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+            <div class="col-lg-12 col-md-12 col-12">
                 <div class="card p-3">
-                    @if (count($members))
+                    @if (count($users))
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Full Names</th>
-                                    <th>Address</th>
-                                    <th>Occupation</th>
-                                    <th>Identification</th>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Email address</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                @foreach ($members as $member)
+                                @foreach ($users as $user)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('members.show', $member)}}">
-                                                {{ $member->surname }}<br/>
-                                                {{ $member->given_name }}<br/>
-                                                {{ $member->other_name }}
+                                            <a href="{{ route('org.user.show', $user) }}">
+                                                {{ $user->first_name }} 
                                             </a>
                                         </td>
                                         <td>
-                                            {{ $member->address }}<br/>
-                                            {{ $member->email }}<br/>
-                                            {{ $member->telephone_number }}
+                                            {{ $user->last_name }}
                                         </td>
                                         <td>
-                                            {{ $member->occupation }}<br/>
-                                            {{ $member->date_of_birth }}
-                                        </td>
-                                        <td>
-                                            {{ $member->nin }}<br/>
-                                            {{ $member->passport_number }}
+                                            {{ $user->email }}
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -66,42 +55,42 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('members.show', $member) }}">
+                                                        href="{{ route('org.user.show', $user) }}">
                                                         <i class='bx bx-list-check me-1'></i> Show
                                                     </a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('members.edit', $member) }}">
+                                                        href="{{ route('org.user.edit', $user) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#confirmmemberDeletion{{ $member->id }}">
+                                                        data-bs-target="#confirmMemberDeletion{{ $user->id }}">
                                                         <i class="bx bx-trash me-1"></i> Delete
                                                     </a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('members.destroy', $member) }}" class="hidden"
-                                        id="delete-member-{{ $member->id }}" method="POST">
+                                    <form action="{{ route('org.user.destroy', $user) }}" class="hidden"
+                                        id="delete-mmember-{{ $user->id }}" method="POST">
                                         @csrf
                                         @method('delete')
                                     </form>
-                                    <div class="modal fade" id="confirmmemberDeletion{{ $member->id }}"
+                                    <div class="modal fade" id="confirmMemberDeletion{{ $user->id }}"
                                         tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title"
-                                                        id="confirmmemberDeletion{{ $member->id }}">
-                                                        {{ $member->name }} member</h5>
+                                                        id="confirmMemberDeletion{{ $user->id }}">
+                                                        {{ $user->first_name }} {{ $user->last_name }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         <div class="col mb-0">
-                                                            Are you sure to delete, "{{ $member->name }}" member?
+                                                            Are you sure deleting {{ $user->first_name }}s?
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,7 +100,7 @@
                                                         Close
                                                     </button>
                                                     <button type="button" class="btn btn-primary"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-member-{{ $member->id }}').submit();">Delete</button>
+                                                        onclick="event.preventDefault(); document.getElementById('delete-mmember-{{ $user->id }}').submit();">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +109,7 @@
                             </tbody>
                         </table>
                     @else
-                        <p class="mb-0 text-center text-capitalize">No member found</p>
+                        <p class="mb-0 text-center text-capitalize">No users found</p>
                     @endif
                 </div>
             </div>

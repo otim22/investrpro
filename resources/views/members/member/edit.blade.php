@@ -193,7 +193,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row mb-4">
                                 <label class="col-sm-3 col-form-label" for="relevant_document">Attach copy of NIN or Passport</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
@@ -206,9 +206,14 @@
                                         <label class="input-group-text" for="relevant_document">Upload</label>
                                     </div>
                                     <div class="mt-2">
-                                        <label for="relevant_document"><small class="text-muted">Current document (* Uploading document overrides current one)</small> </label>
+                                        <label for="relevant_document"><small class="text-warning">Current document (* Uploading document overrides current one)</small> </label><br />
                                         @if($member->getFirstMediaUrl("relevant_document"))
-                                            <div>{{ $member->getFirstMedia("relevant_document")->name }}</div>
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-short pb-1" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg> 
+                                                {{ $member->getFirstMedia("relevant_document")->name }}
+                                            </div>
                                         @endif
                                     </div>
                                     @error('relevant_document')
@@ -218,6 +223,37 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-3 col-form-label" for="conscent_form">Attach conscent form</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="file" 
+                                            class="form-control" 
+                                            name="conscent_form" 
+                                            accept=".doc,.docx,.pdf" 
+                                            id="conscent_form" 
+                                        />
+                                        <label class="input-group-text" for="conscent_form">Upload</label>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label for="conscent_form"><small class="text-warning">Current form (* Uploading a form overrides current one)</small> </label><br />
+                                        @if($member->getFirstMediaUrl("conscent_form"))
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-short pb-1" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>                                         
+                                                {{ $member->getFirstMedia("conscent_form")->name }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                    @error('conscent_form')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
                             <div class="row justify-content-end">
                                 <div class="col-sm-9 mt-2">
                                     <button type="submit" class="btn btn-primary text-capitalize">Update member</button>

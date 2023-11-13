@@ -3,6 +3,11 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+                @include('messages.flash')
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Economic calendar year / </span>List of months</h4>
@@ -51,6 +56,10 @@
                                                     <i class="bx bx-dots-vertical-rounded"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('economic-calendar-year.show', $economicCalendarMonth) }}">
+                                                        <i class='bx bx-list-check me-1'></i> Show
+                                                    </a>
                                                     <a class="dropdown-item"
                                                         href="{{ route('economic-calendar-year.edit', $economicCalendarMonth) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit

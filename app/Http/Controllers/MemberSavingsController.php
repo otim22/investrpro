@@ -53,6 +53,7 @@ class MemberSavingsController extends Controller
         $memberSaving->month = $request->month;
         $memberSaving->date_paid = $request->date_paid;
         $memberSaving->member_id = $request->member_id;
+        $memberSaving->comment = $request->comment;
         $memberSaving->company_id = Auth::user()->company->id;
         $memberSaving->save();
 
@@ -102,7 +103,6 @@ class MemberSavingsController extends Controller
     */
     public function destroy(MemberSaving $memberSaving)
     {
-        dd($memberSaving);
         $memberSaving->delete();
         return redirect()->route('member-savings.index')->with('success', 'Member Savings deleted successfully');
     }

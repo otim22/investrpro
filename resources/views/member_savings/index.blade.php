@@ -4,6 +4,11 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
+        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+            @include('messages.flash')
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
                 <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Member savings / </span>Monthly premiums</h4>
@@ -24,9 +29,9 @@
                         <thead>
                             <tr>
                                 <th>Member names</th>
-                                <th>Premium(UGX)</th>
-                                <th>Month</th>
-                                <th>Date Paid</th>
+                                <th>Premium amount (UGX)</th>
+                                <th>Month being paid </th>
+                                <th>Date of payment</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -54,6 +59,10 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('member-savings.show', $memberSaving) }}">
+                                                    <i class='bx bx-list-check me-1'></i> Show
+                                                </a>
                                                 <a class="dropdown-item"
                                                     href="{{ route('member-savings.edit', $memberSaving) }}">
                                                     <i class="bx bx-edit-alt me-1"></i> Edit

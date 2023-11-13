@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="premium">Premium</label>
+                            <label class="col-sm-2 col-form-label" for="premium">Premium amount</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month</label>
+                            <label class="col-sm-2 col-form-label" for="month">Month being paid for</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="month" 
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_paid">Date</label>
+                            <label class="col-sm-2 col-form-label" for="date_paid">Date of payment</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -111,9 +111,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="comment">Comment</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <textarea
+                                        type="text"
+                                        id="comment"
+                                        name="comment"
+                                        rows="3"
+                                        class="form-control @error('comment') is-invalid @enderror"
+                                        aria-describedby="comment"
+                                    >{{ old('comment', $memberSaving->comment) }}</textarea>
+                                    @error('comment')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Update premium</button>
                             </div>
                         </div>
                     </form>

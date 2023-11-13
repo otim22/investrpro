@@ -28,6 +28,7 @@ class MemberSavingsRequest extends FormRequest
             'month' => ['required', 'string'],
             'date_paid' => ['nullable', 'date'],
             'member_id' => ['required'],
+            'comment' => ['nullable'],
         ];
     }
 }

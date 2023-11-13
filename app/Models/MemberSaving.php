@@ -19,6 +19,7 @@ class MemberSaving extends Model
         'date_paid',
         'member_id',
         'company_id',
+        'comment',
     ];
 
     protected $casts = [

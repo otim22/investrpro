@@ -170,6 +170,11 @@
                         <div data-i18n="Profile">Profile</div>
                     </a>
                 </li>
+                <li class="menu-item {{ Request::is('add-user') ? 'active' : '' }}">
+                    <a href="{{ route('org.user.index') }}" class="menu-link text-capitalize">
+                        <div data-i18n="Profile">Add user</div>
+                    </a>
+                </li>
                 <li class="menu-item {{ Request::is('billing') ? 'active' : '' }}">
                     <a href="{{ route('billing') }}" class="menu-link text-capitalize">
                         <div data-i18n="Billing">Billing</div>

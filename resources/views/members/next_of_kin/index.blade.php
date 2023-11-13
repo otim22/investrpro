@@ -32,7 +32,7 @@
                                     <th>Address</th>
                                     <th>Relationship</th>
                                     <th>Identification</th>
-                                    <th>Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -63,6 +63,10 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('next-of-kin.show', [$member, $member->nextOfKin]) }}">
+                                                    <i class='bx bx-list-check me-1'></i> Show
+                                                </a>
                                                 <a class="dropdown-item"
                                                     href="{{ route('next-of-kin.edit', [$member, $member->nextOfKin]) }}">
                                                     <i class="bx bx-edit-alt me-1"></i> Edit

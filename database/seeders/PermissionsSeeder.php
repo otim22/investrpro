@@ -28,42 +28,42 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'approve']);
 
         // create roles and assign existing permissions
-        $ordinaryMemberRole = Role::create(['name' => 'ordinary-member']);
+        $ordinaryMemberRole = Role::create(['name' => 'Ordinary Member']);
         $ordinaryMemberRole->givePermissionTo('view');
         
         // create roles and assign existing permissions
-        $executiveMemberRole = Role::create(['name' => 'executive-member']);
+        $executiveMemberRole = Role::create(['name' => 'Executive Member']);
         $executiveMemberRole->givePermissionTo('view');
         
         // create roles and assign existing permissions
-        $chairpersonRole = Role::create(['name' => 'chairperson']);
+        $chairpersonRole = Role::create(['name' => 'Chairperson']);
         $chairpersonRole->givePermissionTo('view');
         $chairpersonRole->givePermissionTo('edit');
         $chairpersonRole->givePermissionTo('approve');
         
         // create roles and assign existing permissions
-        $treasurerRole = Role::create(['name' => 'treasurer']);
+        $secretaryGeneralRole = Role::create(['name' => 'Secretary General']);
+        $secretaryGeneralRole->givePermissionTo('view');
+        $secretaryGeneralRole->givePermissionTo('edit');
+
+        // create roles and assign existing permissions
+        $treasurerRole = Role::create(['name' => 'Treasurer']);
         $treasurerRole->givePermissionTo('view');
         $treasurerRole->givePermissionTo('edit');
         
         // create roles and assign existing permissions
-        $financeRole = Role::create(['name' => 'finance']);
-        $financeRole->givePermissionTo('view');
-        $financeRole->givePermissionTo('edit');
-        
-        // create roles and assign existing permissions
-        $auditorRole = Role::create(['name' => 'auditor']);
+        $auditorRole = Role::create(['name' => 'Auditor']);
         $auditorRole->givePermissionTo('view');
         $auditorRole->givePermissionTo('approve');
 
         // create roles and assign existing permissions
-        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole = Role::create(['name' => 'Admin']);
         $adminRole->givePermissionTo('view');
         $adminRole->givePermissionTo('edit');
         $adminRole->givePermissionTo('delete');
         $adminRole->givePermissionTo('approve');
 
-        $superAdminRole = Role::create(['name' => 'super-admin']);
+        $superAdminRole = Role::create(['name' => 'Super admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
 
         // create demo users
@@ -99,13 +99,13 @@ class PermissionsSeeder extends Seeder
         ]);
         $treasurer->assignRole($treasurerRole);
 
-        $finance = User::factory()->create([
-            'first_name' => 'Finance',
+        $secretaryGeneral = User::factory()->create([
+            'first_name' => 'Secretary',
             'last_name' => 'Alexis',
             'company_name' => 'Xero llc',
-            'email' => 'finance@gmail.com',
+            'email' => 'secretary@gmail.com',
         ]);
-        $finance->assignRole($financeRole);
+        $secretaryGeneral->assignRole($secretaryGeneralRole);
 
         $auditor = User::factory()->create([
             'first_name' => 'Auditor',
@@ -124,7 +124,7 @@ class PermissionsSeeder extends Seeder
         $admin->assignRole($adminRole);
 
         $superAdmin = User::factory()->create([
-            'first_name' => 'Super-admin',
+            'first_name' => 'Super admin',
             'last_name' => 'Deere',
             'company_name' => 'Morgan ltd',
             'email' => 'super@gmail.com',

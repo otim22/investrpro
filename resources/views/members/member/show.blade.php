@@ -4,6 +4,11 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+                @include('messages.flash')
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <h4 class="fw-bold py-1 text-capitalize">
                     <span class="text-muted fw-light">Member registration / <a href="{{ route('members.index') }}">Members</a>
                         / </span>{{ $member->surname }} {{ $member->given_name }}
@@ -115,14 +120,14 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="email">email</label>
+                            <label class="col-sm-3 col-form-label" for="email">email address</label>
                             <div class="col-sm-9">
                                 <input type="email" id="email" class="form-control" name="email"
                                     value="{{ $member->email }}" disabled />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="address">Address</label>
+                            <label class="col-sm-3 col-form-label" for="address">Physical Address</label>
                             <div class="col-sm-9">
                                 <input type="text" id="address" class="form-control" name="address"
                                     value="{{ $member->address }}" disabled />
@@ -155,10 +160,18 @@
                             </div>
                         @endif
                         <div class="row">
-                            <label class="col-sm-3 col-form-label" for="passport_number">Attached document</label>
+                            <label class="col-sm-3 col-form-label" for="passport_number">Attachment document</label>
                             <div class="col-sm-9">
                                 @if ($member->getFirstMediaUrl('relevant_document'))
                                     <div>{{ $member->getFirstMedia('relevant_document')->name }}</div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label" for="conscent_form">Conscent form</label>
+                            <div class="col-sm-9">
+                                @if ($member->getFirstMediaUrl('conscent_form'))
+                                    <div>{{ $member->getFirstMedia('conscent_form')->name }}</div>
                                 @endif
                             </div>
                         </div>

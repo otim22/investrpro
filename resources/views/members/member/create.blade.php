@@ -234,6 +234,26 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-4 col-form-label" for="conscent_form">Attach conscent form</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <input type="file" 
+                                            class="form-control" 
+                                            id="conscent_form"
+                                            name="conscent_form" 
+                                            accept=".doc,.docx,.pdf" 
+                                            required
+                                         />
+                                        <label class="input-group-text" for="conscent_form">Upload</label>
+                                    </div>
+                                    @error('conscent_form')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="row justify-content-end">
                                 <div class="col-sm-8 mt-2">
                                     <button type="submit" class="btn btn-primary text-capitalize">Create member</button>

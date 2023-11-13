@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between">
                 <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member savings / <a href="{{ route('member-savings.index') }}">Monthly premiums</a> / </span>Collection form</h4>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('member-savings.create') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('member-savings.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
                         Back to premiums
                     </a>
@@ -24,7 +24,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member names</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="member_id" 
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="premium">Premium</label>
+                            <label class="col-sm-2 col-form-label" for="premium">Premium amount</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month</label>
+                            <label class="col-sm-2 col-form-label" for="month">Month being paid for</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="month" 
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_paid">Date</label>
+                            <label class="col-sm-2 col-form-label" for="date_paid">Date of payment</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -109,9 +109,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="comment">Comment</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <textarea
+                                        type="text"
+                                        id="comment"
+                                        name="comment"
+                                        rows="3"
+                                        class="form-control @error('comment') is-invalid @enderror"
+                                        aria-describedby="comment"
+                                    >{{ old('comment')}}</textarea>
+                                    @error('comment')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Save premium</button>
                             </div>
                         </div>
                     </form>

@@ -4,6 +4,11 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
+        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+            @include('messages.flash')
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
                 <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member savings / <a href="{{ route('member-savings.index') }}">Monthly premiums</a> / </span>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}</h4>
@@ -80,7 +85,7 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member names</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="member_id" 
@@ -97,15 +102,10 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('member_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="premium">Premium</label>
+                            <label class="col-sm-2 col-form-label" for="premium">Premium amount</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -116,15 +116,10 @@
                                     placeholder="100000" 
                                     disabled
                                 />
-                                @error('premium')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month</label>
+                            <label class="col-sm-2 col-form-label" for="month">Month being paid for</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="month" 
@@ -140,15 +135,10 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('month')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_paid">Date</label>
+                            <label class="col-sm-2 col-form-label" for="date_paid">Date of payment</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -162,17 +152,22 @@
                                         aria-describedby="date_paid"
                                         disabled
                                     />
-                                    @error('date_paid')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-end">
-                            <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label" for="comment">Comment</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <textarea
+                                        type="text"
+                                        id="comment"
+                                        name="comment"
+                                        class="form-control @error('comment') is-invalid @enderror"
+                                        aria-describedby="comment"
+                                        disabled
+                                    >{{ old('comment', $memberSaving->comment) }}</textarea>
+                                </div>
                             </div>
                         </div>
                     </form>
