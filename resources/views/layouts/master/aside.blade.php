@@ -63,32 +63,49 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-         <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-line-chart'></i>
-                <div data-i18n="Basic">Investments</div>
-            </a>
-        </li>
         <li class="menu-item {{ Request::is('member-savings') ? 'active' : '' }}">
             <a href="{{ route('member-savings.index') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bxs-bank'></i>
+                <i class='menu-icon bx bx-money'></i>
                 <div data-i18n="Analytics">Member savings</div>
             </a>
         </li>
-        <li class="menu-item {{ Request::is('membership-fee') ? 'active' : '' }}">
-            <a href="{{ route('membership-fee') }}" class="menu-link text-capitalize">
+        <li class="menu-item {{ Request::is('membership-fees') ? 'active' : '' }}">
+            <a href="{{ route('membership-fees.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-wallet-alt'></i>
                 <div data-i18n="Analytics">Membership fee</div>
             </a>
         </li>
 
         <!-- start activities -->
-        <li class="menu-header small text-uppercase">
+        <li class="menu-header small">
+            <span class="menu-header-text">Fund</span>
+        </li>
+        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
+            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-line-chart'></i>
+                <div data-i18n="Basic">Investments</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('charges') ? 'active' : '' }}">
+            <a href="{{ route('charges') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-dollar'></i>
+                <div data-i18n="Basic">Assets</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('charges') ? 'active' : '' }}">
+            <a href="{{ route('charges') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-dollar'></i>
+                <div data-i18n="Basic">Liabilities</div>
+            </a>
+        </li>
+
+        <!-- start activities -->
+        <li class="menu-header small">
             <span class="menu-header-text">Activities</span>
         </li>
         <li class="menu-item {{ Request::is('expenses') ? 'active' : '' }}">
             <a href="{{ route('expenses') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-money'></i>
+                <i class='menu-icon bx bx-credit-card-alt'></i>
                 <div data-i18n="Basi">Expenses</div>
             </a>
         </li>
@@ -159,6 +176,24 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text text-capitalize">settings</span>
         </li>
+        <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
+            <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-calendar'></i>
+                <div data-i18n="Boxicons">Late charges</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
+            <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-calendar'></i>
+                <div data-i18n="Boxicons">Missed meeting fee</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
+            <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-calendar'></i>
+                <div data-i18n="Boxicons">Economic calendar</div>
+            </a>
+        </li>
         <li class="menu-item" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-cog'></i>
@@ -181,13 +216,6 @@
                     </a>
                 </li>
             </ul>
-        </li>
-
-        <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
-            <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-calendar'></i>
-                <div data-i18n="Boxicons">Economic calendar</div>
-            </a>
         </li>
     </ul>
 </aside>

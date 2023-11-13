@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Member savings / </span>Monthly premiums</h4>
+                <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Member savings / </span>List of member's Monthly premiums</h4>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('member-savings.create') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-plus'></i>
@@ -30,7 +30,7 @@
                             <tr>
                                 <th>Member names</th>
                                 <th>Premium amount (UGX)</th>
-                                <th>Month being paid </th>
+                                <th>Month paid for</th>
                                 <th>Date of payment</th>
                                 <th></th>
                             </tr>

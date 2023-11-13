@@ -10,6 +10,7 @@ use App\Http\Controllers\NextOfKinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrgUserController;
 use App\Http\Controllers\MemberSavingsController;
+use App\Http\Controllers\MembershipFeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
@@ -62,7 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/member-savings', MemberSavingsController::class);
     Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
     
-    Route::get('/membership-fee', [App\Http\Controllers\MembershipFeeController::class, 'index'])->name('membership-fee');
+    Route::resource('/membership-fees', MembershipFeeController::class);
+
     Route::get('/expenses', [App\Http\Controllers\ExpensesController::class, 'index'])->name('expenses');
     Route::get('/charges', [App\Http\Controllers\ChargesController::class, 'index'])->name('charges');
     Route::get('/investments', [App\Http\Controllers\InvestmentsController::class, 'index'])->name('investments');
