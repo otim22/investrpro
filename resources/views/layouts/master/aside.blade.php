@@ -63,6 +63,29 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
+            <a href="{{ route('investments.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-line-chart'></i>
+                <div data-i18n="Basic">Investments</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('assets') ? 'active' : '' }}">
+            <a href="{{ route('assets.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-dollar'></i>
+                <div data-i18n="Basic">Assets</div>
+            </a>
+        </li>
+        <li class="menu-item {{ Request::is('liabilities') ? 'active' : '' }}">
+            <a href="{{ route('liabilities.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bxs-bank' ></i>
+                <div data-i18n="Basic">Liabilities</div>
+            </a>
+        </li>
+
+        <!-- start activities -->
+        <li class="menu-header small">
+            <span class="menu-header-text">Fund</span>
+        </li>
         <li class="menu-item {{ Request::is('member-savings') ? 'active' : '' }}">
             <a href="{{ route('member-savings.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-money'></i>
@@ -78,29 +101,6 @@
 
         <!-- start activities -->
         <li class="menu-header small">
-            <span class="menu-header-text">Fund</span>
-        </li>
-        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-line-chart'></i>
-                <div data-i18n="Basic">Investments</div>
-            </a>
-        </li>
-        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-dollar'></i>
-                <div data-i18n="Basic">Assets</div>
-            </a>
-        </li>
-        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-dollar'></i>
-                <div data-i18n="Basic">Liabilities</div>
-            </a>
-        </li>
-
-        <!-- start activities -->
-        <li class="menu-header small">
             <span class="menu-header-text">Activities</span>
         </li>
         <li class="menu-item {{ Request::is('expenses') ? 'active' : '' }}">
@@ -111,20 +111,14 @@
         </li>
         <li class="menu-item {{ Request::is('late-remissions') ? 'active' : '' }}">
             <a href="{{ route('late-remissions.index') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-dollar'></i>
+                <i class='menu-icon bx bx-wallet'></i>
                 <div data-i18n="Basic">Late remission</div>
             </a>
         </li>
-        {{-- <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
+        <li class="menu-item {{ Request::is('missed-meetings') ? 'active' : '' }}">
+            <a href="{{ route('missed-meetings.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-credit-card'></i>
                 <div data-i18n="Basic">Missed meetings</div>
-            </a>
-        </li> --}}
-        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-book-content'></i>
-                <div data-i18n="Basic">Profit & Loss</div>
             </a>
         </li>
  

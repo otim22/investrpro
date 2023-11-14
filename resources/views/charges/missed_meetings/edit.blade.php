@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Late remissions / <a href="{{ route('late-remissions.index') }}">List of late remissions</a> / </span>Late remissions form</h4>
+                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Missed meetings / <a href="{{ route('missed-meetings.index') }}">List of Missed meetings</a> / </span>Missed meeting form</h4>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('late-remissions.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('missed-meetings.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to late remissions
+                        Back to missed meetings
                     </a>
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('late-remissions.update', $lateRemission) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('missed-meetings.update', $missedMeeting) }}" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
 
@@ -35,7 +35,7 @@
                                     autofocus
                                 >
                                     @if($members)
-                                        <option value="{{ $lateRemission->member->id }}" selected>{{ $lateRemission->member->surname }} {{ $lateRemission->member->given_name }}</option>
+                                        <option value="{{ $missedMeeting->member->id }}" selected>{{ $missedMeeting->member->surname }} {{ $missedMeeting->member->given_name }}</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach
@@ -59,7 +59,7 @@
                                     autofocus
                                 >
                                     @if($chargeSettings)
-                                        <option value="{{ $lateRemission->charge_paid_for}}" selected>{{ $lateRemission->charge_paid_for}}</option>
+                                        <option value="{{ $missedMeeting->charge_paid_for}}" selected>{{ $missedMeeting->charge_paid_for}}</option>
                                         @foreach($chargeSettings as $chargeSetting)
                                             <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
                                         @endforeach
@@ -83,7 +83,7 @@
                                     autofocus
                                 >
                                     @if($chargeSettings)
-                                        <option value="{{ $lateRemission->charge_amount}}" selected>{{ number_format($lateRemission->charge_amount) }}</option>
+                                        <option value="{{ $missedMeeting->charge_amount}}" selected>{{ number_format($missedMeeting->charge_amount) }}</option>
                                         @foreach($chargeSettings as $chargeSetting)
                                             <option value="{{ $chargeSetting->amount }}">{{ number_format($chargeSetting->amount) }}</option>
                                         @endforeach
@@ -107,7 +107,7 @@
                                     autofocus
                                 >
                                     @if($months)
-                                        <option value="{{ $lateRemission->month_paid_for}}" selected>{{ $lateRemission->month_paid_for }}</option>
+                                        <option value="{{ $missedMeeting->month_paid_for}}" selected>{{ $missedMeeting->month_paid_for }}</option>
                                         @foreach($months as $month)
                                             <option value="{{ $month->title }}">{{ $month->title }}</option>
                                         @endforeach
@@ -151,7 +151,7 @@
                                         rows="3"
                                         class="form-control @error('comment') is-invalid @enderror"
                                         aria-describedby="comment"
-                                    >{{ old('comment', $lateRemission->comment) }}</textarea>
+                                    >{{ old('comment', $missedMeeting->comment) }}</textarea>
                                     @error('comment')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

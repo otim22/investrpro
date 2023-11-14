@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Late remissions / <a href="{{ route('late-remissions.index') }}">List of late remissions</a> / </span>{{ $lateRemission->charge_paid_for }}</h4>
+                <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Missed meetings / <a href="{{ route('missed-meetings.index') }}">List of Missed meetings</a> / </span>{{ $missedMeeting->charge_paid_for }}</h4>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
             <div class="d-flex justify-content-between">
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                        href="{{ route('late-remissions.index') }}" aria-haspopup="true" aria-expanded="false">
+                        href="{{ route('missed-meetings.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
                         Back to charges
                     </a>
@@ -31,36 +31,36 @@
                         Actions
                     </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item btn-sm" href="{{ route('late-remissions.edit', $lateRemission) }}">
+                        <a class="dropdown-item btn-sm" href="{{ route('missed-meetings.edit', $missedMeeting) }}">
                             <i class='me-2 bx bxs-edit-alt'></i>
                             Edit charge
                         </a>
                         <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                            data-bs-target="#confirmChargeDeletion{{ $lateRemission->id }}">
+                            data-bs-target="#confirmChargeDeletion{{ $missedMeeting->id }}">
                             <i class='me-2 bx bx-trash'></i>
                             Delete charge
                         </a>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('late-remissions.destroy', $lateRemission) }}" class="hidden" id="delete-charge-{{ $lateRemission->id }}"
+            <form action="{{ route('missed-meetings.destroy', $missedMeeting) }}" class="hidden" id="delete-charge-{{ $missedMeeting->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
             </form>
-            <div class="modal fade" id="confirmChargeDeletion{{ $lateRemission->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="confirmChargeDeletion{{ $missedMeeting->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmChargeDeletion{{ $lateRemission->id }}">
-                                Charge for {{ $lateRemission->charge_paid_for }}</h5>
+                            <h5 class="modal-title" id="confirmChargeDeletion{{ $missedMeeting->id }}">
+                                Charge for {{ $missedMeeting->charge_paid_for }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row g-2">
                                 <div class="col mb-0">
-                                    Are you sure to delete, {{ $lateRemission->charge_paid_for }}?
+                                    Are you sure to delete, {{ $missedMeeting->charge_paid_for }} charge?
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $lateRemission->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $missedMeeting->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('late-remissions.update', $lateRemission) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('missed-meetings.update', $missedMeeting) }}" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
 
@@ -92,7 +92,7 @@
                                     id="member_id" 
                                     class="form-control @error('member_id') is-invalid @enderror" 
                                     name="member_id"
-                                    value="{{ old('member_id', $lateRemission->member->surname . ' ' . $lateRemission->member->given_name) }}"
+                                    value="{{ old('member_id', $missedMeeting->member->surname . ' ' . $missedMeeting->member->given_name) }}"
                                     disabled
                                 />
                             </div>
@@ -106,7 +106,7 @@
                                         id="charge_paid_for" 
                                         class="form-control @error('charge_paid_for') is-invalid @enderror" 
                                         name="charge_paid_for"
-                                        value="{{ old('charge_paid_for', $lateRemission->charge_paid_for) }}"
+                                        value="{{ old('charge_paid_for', $missedMeeting->charge_paid_for) }}"
                                         disabled
                                     />
                                 </div>
@@ -120,7 +120,7 @@
                                     id="charge_amount" 
                                     class="form-control @error('charge_amount') is-invalid @enderror" 
                                     name="charge_amount"
-                                    value="{{ old('charge_amount', number_format($lateRemission->charge_amount, 2)) }}"
+                                    value="{{ old('charge_amount', number_format($missedMeeting->charge_amount, 2)) }}"
                                     disabled
                                 />
                             </div>
@@ -133,7 +133,7 @@
                                     id="month_paid_for" 
                                     class="form-control @error('month_paid_for') is-invalid @enderror" 
                                     name="month_paid_for"
-                                    value="{{ old('month_paid_for', $lateRemission->month_paid_for) }}"
+                                    value="{{ old('month_paid_for', $missedMeeting->month_paid_for) }}"
                                     disabled
                                 />
                             </div>
@@ -146,7 +146,7 @@
                                     id="date_of_payment" 
                                     class="form-control @error('date_of_payment') is-invalid @enderror" 
                                     name="date_of_payment"
-                                    value="{{ old('date_of_payment', $lateRemission->formatDate($lateRemission->date_of_payment)) }}"
+                                    value="{{ old('date_of_payment', $missedMeeting->formatDate($missedMeeting->date_of_payment)) }}"
                                     disabled
                                 />
                             </div>
@@ -161,7 +161,7 @@
                                     class="form-control @error('comment') is-invalid @enderror" 
                                     name="comment"
                                     disabled
-                                >{{ old('comment', $lateRemission->comment) }}</textarea>
+                                >{{ old('comment', $missedMeeting->comment) }}</textarea>
                             </div>
                         </div>
                     </form>

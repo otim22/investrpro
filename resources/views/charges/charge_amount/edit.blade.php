@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Charges / <a href="{{ route('charge-settings.index') }}">All Charges</a> / </span>Charges form</h4>
+                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Charges / <a href="{{ route('charge-settings.index') }}">List of Charges</a> / </span>Charges form</h4>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('charge-settings.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>

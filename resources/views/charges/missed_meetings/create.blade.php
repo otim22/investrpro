@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Late remissions / <a href="{{ route('late-remissions.index') }}">List of late remissions</a> / </span>Late remissions form</h4>
+                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Missed meeting / <a href="{{ route('missed-meetings.index') }}">List of missed meetings</a> / </span>missed meeting form</h4>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('late-remissions.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('missed-meetings.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to late remissions
+                        Back to missed meeting
                     </a>
                 </div>
             </div>
@@ -20,9 +20,8 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('late-remissions.update', $lateRemission) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('missed-meetings.store') }}" enctype="multipart/form-data">
                         @csrf
-                        @method('patch')
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="member_id">Member names</label>
@@ -33,9 +32,9 @@
                                     name="member_id"
                                     aria-label="Default select member"
                                     autofocus
+                                    required
                                 >
                                     @if($members)
-                                        <option value="{{ $lateRemission->member->id }}" selected>{{ $lateRemission->member->surname }} {{ $lateRemission->member->given_name }}</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach
@@ -56,10 +55,9 @@
                                     class="form-select @error('charge_paid_for') is-invalid @enderror" 
                                     name="charge_paid_for"
                                     aria-label="Default select charge"
-                                    autofocus
+                                    required
                                 >
                                     @if($chargeSettings)
-                                        <option value="{{ $lateRemission->charge_paid_for}}" selected>{{ $lateRemission->charge_paid_for}}</option>
                                         @foreach($chargeSettings as $chargeSetting)
                                             <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
                                         @endforeach
@@ -80,10 +78,9 @@
                                     class="form-select @error('charge_amount') is-invalid @enderror" 
                                     name="charge_amount"
                                     aria-label="Default select amount"
-                                    autofocus
+                                    required
                                 >
                                     @if($chargeSettings)
-                                        <option value="{{ $lateRemission->charge_amount}}" selected>{{ number_format($lateRemission->charge_amount) }}</option>
                                         @foreach($chargeSettings as $chargeSetting)
                                             <option value="{{ $chargeSetting->amount }}">{{ number_format($chargeSetting->amount) }}</option>
                                         @endforeach
@@ -104,10 +101,9 @@
                                     class="form-select @error('month_paid_for') is-invalid @enderror" 
                                     name="month_paid_for"
                                     aria-label="Default select month"
-                                    autofocus
+                                    required
                                 >
                                     @if($months)
-                                        <option value="{{ $lateRemission->month_paid_for}}" selected>{{ $lateRemission->month_paid_for }}</option>
                                         @foreach($months as $month)
                                             <option value="{{ $month->title }}">{{ $month->title }}</option>
                                         @endforeach
@@ -129,7 +125,8 @@
                                         id="date_of_payment"
                                         name="date_of_payment"
                                         class="form-control @error('date_of_payment') is-invalid @enderror"
-                                        value="{{ old('date_of_payment', date('Y-m-d')) }}"
+                                        placeholder="12/03/2029"
+                                        aria-label="12/03/2029"
                                         aria-describedby="date_of_payment"
                                     />
                                     @error('date_of_payment')
@@ -151,7 +148,7 @@
                                         rows="3"
                                         class="form-control @error('comment') is-invalid @enderror"
                                         aria-describedby="comment"
-                                    >{{ old('comment', $lateRemission->comment) }}</textarea>
+                                    >{{ old('comment')}}</textarea>
                                     @error('comment')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -162,7 +159,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Update late remission</button>
+                                <button type="submit" class="btn btn-primary">Create missed meeting</button>
                             </div>
                         </div>
                     </form>

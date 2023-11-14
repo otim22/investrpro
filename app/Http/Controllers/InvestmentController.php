@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Investment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InvestmentController extends Controller
 {
@@ -23,6 +25,10 @@ class InvestmentController extends Controller
      */
     public function index()
     {
-        return view('investments.index');
+        $investments = [];
+        if(Auth::user()->company) {
+            $investments = Investment::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('investments.index', compact('investments'));
     }
 }

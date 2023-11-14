@@ -13,9 +13,11 @@ use App\Http\Controllers\MemberSavingController;
 use App\Http\Controllers\MembershipFeeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\LateRemissionController;
-// use App\Http\Controllers\ChargeController;
+use App\Http\Controllers\MissedMeetingController;
 use App\Http\Controllers\ChargeSettingController;
-// use App\Http\Controllers\LateChargeAmountController;
+use App\Http\Controllers\InvestmentController;
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\LiabilityController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -72,9 +74,11 @@ Route::middleware(['auth'])->group(function () {
     
     Route::resource('/charge-settings', ChargeSettingController::class);
     Route::resource('/late-remissions', LateRemissionController::class);
-    // Route::resource('/late-charge-amount', LateChargeAmountController::class);
+    Route::resource('/missed-meetings', MissedMeetingController::class);
+    Route::resource('/investments', InvestmentController::class);
+    Route::resource('/assets', AssetController::class);
+    Route::resource('/liabilities', LiabilityController::class);
 
-    Route::get('/investments', [App\Http\Controllers\InvestmentController::class, 'index'])->name('investments');
     Route::get('/general-report', [App\Http\Controllers\GeneralReportController::class, 'index'])->name('general-report');
     Route::get('/financial-report', [App\Http\Controllers\FinancialReportController::class, 'index'])->name('financial-report');
     Route::get('/audit-report', [App\Http\Controllers\AuditReportController::class, 'index'])->name('audit-report');
