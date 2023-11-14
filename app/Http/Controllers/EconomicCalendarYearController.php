@@ -31,11 +31,12 @@ class EconomicCalendarYearController extends Controller
     public function store(EconomicCalendarYearRequest $request)
     {
         $request->validated();
-        $economicCalendarYear = new EconomicCalendarYear();
-        $economicCalendarYear->title = $request->title;
-        $economicCalendarYear->description = $request->description;
-        $economicCalendarYear->company_id = Auth::user()->company->id;
-        $economicCalendarYear->save();
+        
+        $economicCalendarYear = EconomicCalendarYear::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'company_id' => Auth::user()->company->id,
+        ]);
 
         return redirect()->route('economic-calendar-year.index')->with("success", $economicCalendarYear->title . " created successfully!");
     }

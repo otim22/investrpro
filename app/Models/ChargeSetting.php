@@ -2,43 +2,34 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Expense extends Model
+class ChargeSetting extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'date_of_expense',
-        'details',
-        'rate',
+        'title',
+        'description',
         'amount',
-        'designate',
         'company_id',
     ];
 
-    protected $casts = [
-        "date_of_expense" => "datetime:d/m/Y",
-    ];
-    
+    /**
+     * Get the options for generating the slug.
+     */
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('date_of_expense')
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
     }
-
-    public function formatDate($date) 
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->isoFormat('MMM Do YYYY');
-    }
-
+    
     /**
      * Get the route key for the model.
      *
@@ -51,11 +42,6 @@ class Expense extends Model
 
     public function shortenSentence($value)
     {
-        return Str::limit($value, 35);
-    }
-
-    public function total($rate, $amount)
-    {
-        return $rate * $amount;
+        return Str::limit($value, 30);
     }
 }

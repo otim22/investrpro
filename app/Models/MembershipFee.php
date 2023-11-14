@@ -31,7 +31,6 @@ class MembershipFee extends Model
         return SlugOptions::create()
             ->generateSlugsFrom(['year_paid_for', 'member_id'])
             ->saveSlugsTo('slug')
-            ->allowDuplicateSlugs()
             ->slugsShouldBeNoLongerThan(50);
     }
 

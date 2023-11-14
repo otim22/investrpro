@@ -48,14 +48,15 @@ class MemberSavingController extends Controller
     public function store(MemberSavingsRequest $request)
     {
         $request->validated();
-        $memberSaving = new MemberSaving();
-        $memberSaving->premium = $request->premium;
-        $memberSaving->month = $request->month;
-        $memberSaving->date_paid = $request->date_paid;
-        $memberSaving->member_id = $request->member_id;
-        $memberSaving->comment = $request->comment;
-        $memberSaving->company_id = Auth::user()->company->id;
-        $memberSaving->save();
+
+        $memberSaving = MemberSaving::create([
+            'premium' => $request->premium,
+            'month' => $request->month,
+            'date_paid' => $request->date_paid,
+            'member_id' => $request->member_id,
+            'comment' => $request->comment,
+            'company_id' => Auth::user()->company->id,
+        ]);
 
         return redirect()->route('member-savings.index')->with("success", "Premium saved successfully!");
     }

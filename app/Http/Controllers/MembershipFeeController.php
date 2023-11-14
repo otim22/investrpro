@@ -38,15 +38,16 @@ class MembershipFeeController extends Controller
     public function store(MembershipFeeRequest $request)
     {
         $request->validated();
-        $membershipFee = new MembershipFee;
-        $membershipFee->fee_amount = $request->fee_amount;
-        $membershipFee->year_paid_for = $request->year_paid_for;
-        $membershipFee->date_of_payment = $request->date_of_payment;
-        $membershipFee->member_id = $request->member_id;
-        $membershipFee->comment = $request->comment;
-        $membershipFee->company_id = Auth::user()->company->id;
-        $membershipFee->save();
 
+        $membershipFee = MemberSaving::create([
+            'fee_amount' => $request->fee_amount,
+            'year_paid_for' => $request->year_paid_for,
+            'date_of_payment' => $request->date_of_payment,
+            'comment' => $request->comment,
+            'member_id' => $request->member_id,
+            'company_id' => Auth::user()->company->id,
+        ]);
+ 
         return redirect()->route('membership-fees.index')->with("success", "Membership fee saved successfully!");
     }
 

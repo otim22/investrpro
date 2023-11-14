@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Account / <a href="{{ route('org.user.index') }}">All Users </a> / </span>{{ $user->first_name }}</h4>
                     <div>

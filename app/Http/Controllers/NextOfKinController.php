@@ -29,18 +29,19 @@ class NextOfKinController extends Controller
     public function store(NextOfKinRequest $request, Member $member)
     {
         $request->validated();
-        $nextOfKin = new NextOfKin();
-        $nextOfKin->surname = $request->surname;
-        $nextOfKin->given_name = $request->given_name;
-        $nextOfKin->other_name = $request->other_name;
-        $nextOfKin->relationship = $request->relationship;
-        $nextOfKin->telephone_number = $request->telephone_number;
-        $nextOfKin->email = $request->email;
-        $nextOfKin->address = $request->address;
-        $nextOfKin->nin = $request->nin;
-        $nextOfKin->passport_number = $request->passport_number;
-        $nextOfKin->member_id = $member->id;
-        $nextOfKin->save();
+
+        $member = Member::create([
+            'surname' => $request->surname,
+            'given_name' => $request->given_name,
+            'other_name' => $request->other_name,
+            'relationship' => $request->relationship,
+            'telephone_number' => $request->telephone_number,
+            'email' => $request->email,
+            'address' => $request->address,
+            'nin' => $request->nin,
+            'passport_number' => $request->passport_number,
+            'member_id' => $member->id,
+        ]);
         
         if($request->hasFile('relevant_document')) {
             $nextOfKin->addMedia($request->relevant_document)->toMediaCollection('relevant_document');

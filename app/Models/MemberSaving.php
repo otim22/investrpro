@@ -34,7 +34,6 @@ class MemberSaving extends Model
         return SlugOptions::create()
             ->generateSlugsFrom(['month', 'member_id'])
             ->saveSlugsTo('slug')
-            ->allowDuplicateSlugs()
             ->slugsShouldBeNoLongerThan(50);
     }
 

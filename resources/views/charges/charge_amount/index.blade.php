@@ -10,42 +10,48 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Account / </span>List of application Users</h4>
+                    <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Charges / </span>List of Charges</h4>
                     <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('org.user.create') }}" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('charge-settings.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
-                            Add user
+                            Add charge
                         </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
-                    @if (count($users))
+                    @if (count($chargeSettings))
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>First name</th>
-                                    <th>Last name</th>
-                                    <th>Email address</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>amount</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                @foreach ($users as $user)
+                                @foreach ($chargeSettings as $charge)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('org.user.show', $user) }}">
-                                                {{ $user->first_name }} 
+                                            <a href="{{ route('charge-settings.show', $charge)}}">
+                                                {{ $charge->title }}
                                             </a>
                                         </td>
+                                        @if($charge->description)
+                                            <td>
+                                                {{ $charge->shortenSentence($charge->description) }}
+                                            </td>
+                                        @else
+                                            <td>
+                                                --
+                                            </td>
+                                        @endif
                                         <td>
-                                            {{ $user->last_name }}
-                                        </td>
-                                        <td>
-                                            {{ $user->email }}
+                                            {{ $charge->amount }}
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -55,42 +61,42 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('org.user.show', $user) }}">
+                                                        href="{{ route('charge-settings.show', $charge) }}">
                                                         <i class='bx bx-list-check me-1'></i> Show
                                                     </a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('org.user.edit', $user) }}">
+                                                        href="{{ route('charge-settings.edit', $charge) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#confirmMemberDeletion{{ $user->id }}">
+                                                        data-bs-target="#confirmMemberDeletion{{ $charge->id }}">
                                                         <i class="bx bx-trash me-1"></i> Delete
                                                     </a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('org.user.destroy', $user) }}" class="hidden"
-                                        id="delete-mmember-{{ $user->id }}" method="POST">
+                                    <form action="{{ route('charge-settings.destroy', $charge) }}" class="hidden"
+                                        id="delete-charge-{{ $charge->id }}" method="POST">
                                         @csrf
                                         @method('delete')
                                     </form>
-                                    <div class="modal fade" id="confirmMemberDeletion{{ $user->id }}"
+                                    <div class="modal fade" id="confirmMemberDeletion{{ $charge->id }}"
                                         tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title"
-                                                        id="confirmMemberDeletion{{ $user->id }}">
-                                                        {{ $user->first_name }} {{ $user->last_name }}</h5>
+                                                        id="confirmMemberDeletion{{ $charge->id }}">
+                                                        {{ $charge->title }} charge</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         <div class="col mb-0">
-                                                            Are you sure deleting {{ $user->first_name }}s?
+                                                            Are you sure to delete, "{{ $charge->title }}" charge?
                                                         </div>
                                                     </div>
                                                 </div>
@@ -100,7 +106,7 @@
                                                         Close
                                                     </button>
                                                     <button type="button" class="btn btn-primary"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-mmember-{{ $user->id }}').submit();">Delete</button>
+                                                        onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $charge->id }}').submit();">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +115,7 @@
                             </tbody>
                         </table>
                     @else
-                        <p class="mb-0 text-center text-capitalize">No users found</p>
+                        <p class="mb-0 text-center text-capitalize">No charges found</p>
                     @endif
                 </div>
             </div>

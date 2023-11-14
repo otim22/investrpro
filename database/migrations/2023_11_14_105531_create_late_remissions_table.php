@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('membership_fees', function (Blueprint $table) {
+        Schema::create('late_remissions', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
-            $table->string('fee_amount');
-            $table->string('year_paid_for');
-            $table->dateTime('date_of_payment');
+            $table->string('charge_paid_for');
+            $table->string('charge_amount');
+            $table->string('month_paid_for');
+            $table->dateTime('date_of_payment')->nullable();
             $table->longText('comment')->nullable();
             $table->foreignId('member_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('membership_fees');
+        Schema::dropIfExists('late_remissions');
     }
 };

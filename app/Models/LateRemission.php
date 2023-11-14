@@ -8,28 +8,31 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Expense extends Model
+class LateRemission extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'date_of_expense',
-        'details',
-        'rate',
-        'amount',
-        'designate',
+        'charge_paid_for',
+        'charge_amount',
+        'month_paid_for',
+        'date_of_payment',
+        'comment',
+        'member_id',
         'company_id',
     ];
 
     protected $casts = [
-        "date_of_expense" => "datetime:d/m/Y",
+        "date_of_payment" => "datetime:d/m/Y",
     ];
     
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('date_of_expense')
+            ->generateSlugsFrom(['charge_paid_for', 'month_paid_for'])
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
     }
@@ -54,8 +57,8 @@ class Expense extends Model
         return Str::limit($value, 35);
     }
 
-    public function total($rate, $amount)
+    public function member(): BelongsTo
     {
-        return $rate * $amount;
+        return $this->belongsTo(Member::class);
     }
 }

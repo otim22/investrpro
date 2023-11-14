@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Membership fees / <a href="{{ route('membership-fees.index') }}">Yearly membership fees</a> / </span>Collection form</h4>
+                <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Late remissions / <a href="{{ route('late-remissions.index') }}">All late remissions</a> / </span>Charge form</h4>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('membership-fees.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('late-remissions.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to membership fees
+                        Back to late remissions
                     </a>
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('membership-fees.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('late-remissions.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
@@ -32,9 +32,9 @@
                                     name="member_id"
                                     aria-label="Default select member"
                                     autofocus
+                                    required
                                 >
                                     @if($members)
-                                        <option selected>Select member</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach
@@ -48,17 +48,22 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="fee_amount">Fee amount</label>
+                            <label class="col-sm-2 col-form-label" for="charge_paid_for">Charge being paid for</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
-                                    id="fee_amount" 
-                                    class="form-control @error('fee_amount') is-invalid @enderror" 
-                                    name="fee_amount"
-                                    value="{{ old('fee_amount') }}"
-                                    placeholder="100000" 
-                                />
-                                @error('fee_amount')
+                                <select 
+                                    id="charge_paid_for" 
+                                    class="form-select @error('charge_paid_for') is-invalid @enderror" 
+                                    name="charge_paid_for"
+                                    aria-label="Default select charge"
+                                    required
+                                >
+                                    @if($chargeSettings)
+                                        @foreach($chargeSettings as $chargeSetting)
+                                            <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('charge_paid_for')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -66,17 +71,45 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="year_paid_for">Year being paid for</label>
+                            <label class="col-sm-2 col-form-label" for="charge_amount">Charge amount</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
-                                    id="year_paid_for" 
-                                    class="form-control @error('year_paid_for') is-invalid @enderror" 
-                                    name="year_paid_for"
-                                    value="{{ old('year_paid_for') }}"
-                                    placeholder="2045" 
-                                />
-                                @error('year_paid_for')
+                                <select 
+                                    id="charge_amount" 
+                                    class="form-select @error('charge_amount') is-invalid @enderror" 
+                                    name="charge_amount"
+                                    aria-label="Default select amount"
+                                    required
+                                >
+                                    @if($chargeSettings)
+                                        @foreach($chargeSettings as $chargeSetting)
+                                            <option value="{{ $chargeSetting->amount }}">{{ number_format($chargeSetting->amount) }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('charge_amount')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month paid for</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="month_paid_for" 
+                                    class="form-select @error('month_paid_for') is-invalid @enderror" 
+                                    name="month_paid_for"
+                                    aria-label="Default select month"
+                                    required
+                                >
+                                    @if($months)
+                                        @foreach($months as $month)
+                                            <option value="{{ $month->title }}">{{ $month->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('month_paid_for')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -126,7 +159,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Save membership fee</button>
+                                <button type="submit" class="btn btn-primary">Create late remission</button>
                             </div>
                         </div>
                     </form>

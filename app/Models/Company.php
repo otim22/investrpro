@@ -25,7 +25,6 @@ class Company extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('company_name')
             ->saveSlugsTo('slug')
-            ->allowDuplicateSlugs()
             ->slugsShouldBeNoLongerThan(50);
     }
     

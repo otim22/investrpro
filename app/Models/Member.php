@@ -40,7 +40,6 @@ class Member extends Model implements HasMedia
         return SlugOptions::create()
             ->generateSlugsFrom(['surname', 'given_name'])
             ->saveSlugsTo('slug')
-            ->allowDuplicateSlugs()
             ->slugsShouldBeNoLongerThan(50);
     }
 

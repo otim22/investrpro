@@ -12,6 +12,11 @@ use App\Http\Controllers\OrgUserController;
 use App\Http\Controllers\MemberSavingController;
 use App\Http\Controllers\MembershipFeeController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\LateRemissionController;
+// use App\Http\Controllers\ChargeController;
+use App\Http\Controllers\ChargeSettingController;
+// use App\Http\Controllers\LateChargeAmountController;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
@@ -60,14 +65,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add-user/{user}/edit', [OrgUserController::class, 'edit'])->name('org.user.edit');
     Route::patch('/add-user/{user}/update', [OrgUserController::class, 'update'])->name('org.user.update');
     Route::delete('/add-user/{user}/delete', [OrgUserController::class, 'destroy'])->name('org.user.destroy');
-
     Route::resource('/member-savings', MemberSavingController::class);
     Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
     Route::resource('/membership-fees', MembershipFeeController::class);
-
     Route::resource('/expenses', ExpenseController::class);
     
-    Route::get('/charges', [App\Http\Controllers\ChargesController::class, 'index'])->name('charges');
+    Route::resource('/charge-settings', ChargeSettingController::class);
+    Route::resource('/late-remissions', LateRemissionController::class);
+    // Route::resource('/late-charge-amount', LateChargeAmountController::class);
+
     Route::get('/investments', [App\Http\Controllers\InvestmentController::class, 'index'])->name('investments');
     Route::get('/general-report', [App\Http\Controllers\GeneralReportController::class, 'index'])->name('general-report');
     Route::get('/financial-report', [App\Http\Controllers\FinancialReportController::class, 'index'])->name('financial-report');

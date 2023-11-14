@@ -11,11 +11,6 @@ use App\Http\Requests\MemberUpdateRequest;
 
 class MemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {   
         $members = [];
@@ -45,20 +40,21 @@ class MemberController extends Controller
     public function store(MemberRequest $request)
     {
         $request->validated();
+        
+        $member = Member::create([
+            'surname' => $request->surname,
+            'given_name' => $request->given_name,
+            'other_name' => $request->other_name,
+            'date_of_birth' => $request->date_of_birth,
+            'telephone_number' => $request->telephone_number,
+            'email' => $request->email,
+            'address' => $request->address,
+            'occupation' => $request->occupation,
+            'nin' => $request->nin,
+            'passport_number' => $request->passport_number,
+            'company_id' => Auth::user()->company->id,
+        ]);
 
-        $member = new Member();
-        $member->surname = $request->surname;
-        $member->given_name = $request->given_name;
-        $member->other_name = $request->other_name;
-        $member->date_of_birth = $request->date_of_birth;
-        $member->telephone_number = $request->telephone_number;
-        $member->email = $request->email;
-        $member->address = $request->address;
-        $member->occupation = $request->occupation;
-        $member->nin = $request->nin;
-        $member->passport_number = $request->passport_number;
-        $member->company_id = Auth::user()->company->id;
-        $member->save();
         $member->assignRole($request->member_role);
         
         if($request->hasFile('relevant_document')) {
