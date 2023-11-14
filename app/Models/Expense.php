@@ -3,33 +3,33 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class MembershipFee extends Model
+class Expense extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'fee_amount',
-        'year_paid_for',
-        'date_of_payment',
-        'comment',
-        'member_id',
+        'date_of_expense',
+        'details',
+        'rate',
+        'amount',
+        'designate',
         'company_id',
     ];
 
     protected $casts = [
-        "date_of_payment" => "datetime:d/m/Y",
+        "date_of_expense" => "datetime:d/m/Y",
     ];
     
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['year_paid_for', 'member_id'])
+            ->generateSlugsFrom('date_of_expense')
             ->saveSlugsTo('slug')
             ->allowDuplicateSlugs()
             ->slugsShouldBeNoLongerThan(50);
@@ -50,8 +50,13 @@ class MembershipFee extends Model
         return 'slug';
     }
 
-    public function member(): BelongsTo
+    public function shortenSentence($value)
     {
-        return $this->belongsTo(Member::class);
+        return Str::limit($value, 35);
+    }
+
+    public function total($rate, $amount)
+    {
+        return $rate * $amount;
     }
 }

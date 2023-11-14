@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MemberSavingsRequest;
 use App\Http\Requests\MemberSavingsUpdateRequest;
 
-class MemberSavingsController extends Controller
+class MemberSavingController extends Controller
 {
     /**
      * Create a new controller instance.

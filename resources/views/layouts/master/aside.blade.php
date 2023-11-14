@@ -104,7 +104,7 @@
             <span class="menu-header-text">Activities</span>
         </li>
         <li class="menu-item {{ Request::is('expenses') ? 'active' : '' }}">
-            <a href="{{ route('expenses') }}" class="menu-link text-capitalize">
+            <a href="{{ route('expenses.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-credit-card-alt'></i>
                 <div data-i18n="Basi">Expenses</div>
             </a>
