@@ -51,7 +51,6 @@ class AssetController extends Controller
      */
     public function show(Asset $asset)
     {
-        $members = [];
         return view('assets.show', compact('asset'));
     }
 
