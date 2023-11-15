@@ -112,7 +112,7 @@
                                     id="fee_amount" 
                                     class="form-control @error('fee_amount') is-invalid @enderror" 
                                     name="fee_amount"
-                                    value="{{ old('fee_amount', number_format($membershipFee->fee_amount, 2)) }}"
+                                    value="{{ old('fee_amount', number_format($membershipFee->fee_amount)) }}"
                                     placeholder="100000" 
                                     disabled
                                 />
@@ -132,18 +132,18 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_paid">Date of payment</label>
+                            <label class="col-sm-2 col-form-label" for="date_of_payment">Date of payment</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="date"
-                                        id="date_paid"
-                                        name="date_paid"
-                                        value="{{ old('date_paid', date('Y-m-d')) }}"
-                                        class="form-control @error('date_paid') is-invalid @enderror"
+                                        id="date_of_payment"
+                                        name="date_of_payment"
+                                        value="{{ old('date_of_payment', date('Y-m-d')) }}"
+                                        class="form-control @error('date_of_payment') is-invalid @enderror"
                                         placeholder="12/03/2029"
                                         aria-label="12/03/2029"
-                                        aria-describedby="date_paid"
+                                        aria-describedby="date_of_payment"
                                         disabled
                                     />
                                 </div>

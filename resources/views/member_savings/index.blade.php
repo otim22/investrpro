@@ -44,7 +44,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{ number_format($memberSaving->premium, 2) }}
+                                        {{ number_format($memberSaving->premium) }}
                                     </td>
                                     <td>
                                         {{ $memberSaving->month }}

@@ -120,7 +120,7 @@
                                     id="charge_amount" 
                                     class="form-control @error('charge_amount') is-invalid @enderror" 
                                     name="charge_amount"
-                                    value="{{ old('charge_amount', number_format($missedMeeting->charge_amount, 2)) }}"
+                                    value="{{ old('charge_amount', number_format($missedMeeting->charge_amount)) }}"
                                     disabled
                                 />
                             </div>

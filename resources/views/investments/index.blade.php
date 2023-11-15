@@ -51,7 +51,7 @@
                                             
                                         </td>
                                         <td>
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Amount invested:</span> {{ number_format($investment->amount_invested, 2) }} </span> <br />
+                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Amount invested:</span> {{ number_format($investment->amount_invested) }} </span> <br />
                                             <span class="text-nowrap text-capitalize"> <span class="fw-bold">Date:</span> {{ $investment->formatDate($investment->date_of_maturity) }} </span>
                                         </td>
                                         <td>

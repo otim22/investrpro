@@ -43,7 +43,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{ number_format($membershipFee->fee_amount, 2) }}
+                                        {{ number_format($membershipFee->fee_amount) }}
                                     </td>
                                     <td>
                                         {{ $membershipFee->year_paid_for }}

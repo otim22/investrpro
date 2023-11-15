@@ -93,8 +93,9 @@
                                         name="date_of_payment"
                                         class="form-control @error('date_of_payment') is-invalid @enderror"
                                         placeholder="12/03/2029"
-                                        aria-label="12/03/2029"
+                                        aria-label="12/03/2029" 
                                         aria-describedby="date_of_payment"
+                                        value="{{ old('date_of_payment', date('Y-m-d')) }}"
                                     />
                                     @error('date_of_payment')
                                         <span class="invalid-feedback" role="alert">

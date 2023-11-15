@@ -112,7 +112,7 @@
                                     id="premium" 
                                     class="form-control @error('premium') is-invalid @enderror" 
                                     name="premium"
-                                    value="{{ old('premium', number_format($memberSaving->premium, 2)) }}"
+                                    value="{{ old('premium', number_format($memberSaving->premium)) }}"
                                     placeholder="100000" 
                                     disabled
                                 />
