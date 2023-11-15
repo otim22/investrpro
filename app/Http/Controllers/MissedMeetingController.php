@@ -15,7 +15,10 @@ class MissedMeetingController extends Controller
 {
     public function index()
     {   
-        $missedMeetings = MissedMeeting::all();
+        $missedMeetings = [];
+        if(Auth::user()->company) {
+            $missedMeetings = MissedMeeting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
         return view('charges.missed_meetings.index', compact('missedMeetings'));
     }
 

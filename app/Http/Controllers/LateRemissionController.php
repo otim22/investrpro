@@ -15,7 +15,10 @@ class LateRemissionController extends Controller
 {
     public function index()
     {   
-        $lateRemissions = LateRemission::all();
+        $lateRemissions = [];
+        if(Auth::user()->company) {
+            $lateRemissions = LateRemission::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
         return view('charges.late_remissions.index', compact('lateRemissions'));
     }
 

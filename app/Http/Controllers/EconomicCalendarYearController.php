@@ -12,7 +12,10 @@ class EconomicCalendarYearController extends Controller
 {
     public function index()
     {
-        $economicCalendarMonths = EconomicCalendarYear::all();
+        $economicCalendarMonths = [];
+        if(Auth::user()->company) {
+            $economicCalendarMonths = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
         return view('economic_calendar_year.index', compact('economicCalendarMonths'));
     }
 

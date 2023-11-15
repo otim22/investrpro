@@ -21,12 +21,12 @@ class LiabilityController extends Controller
         if(Auth::user()->company) {
             $liabilities = Liability::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
-        return view('liabilities.index', compact('liabilities'));
+        return view('liabilities.liability.index', compact('liabilities'));
     }
 
     public function create()
     {
-        return view('liabilities.create');
+        return view('liabilities.liability.create');
     }
 
     public function store(LiabilityRequest $request)
@@ -51,7 +51,7 @@ class LiabilityController extends Controller
      */
     public function show(Liability $liability)
     {
-        return view('liabilities.show', compact('liability'));
+        return view('liabilities.liability.show', compact('liability'));
     }
 
     /**
@@ -59,7 +59,7 @@ class LiabilityController extends Controller
      */
     public function edit(Liability $liability)
     {
-        return view('liabilities.edit', compact('liability'));
+        return view('liabilities.liability.edit', compact('liability'));
     }
 
     /**

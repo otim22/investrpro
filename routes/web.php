@@ -19,6 +19,7 @@ use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetSettingController;
 use App\Http\Controllers\LiabilityController;
+use App\Http\Controllers\LiabilitySettingController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -91,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
     Route::resource('/charge-settings', ChargeSettingController::class);
     Route::resource('/asset-settings', AssetSettingController::class);
+    Route::resource('/liability-settings', LiabilitySettingController::class);
 });
 
 // Admin

@@ -12,7 +12,10 @@ class ChargeSettingController extends Controller
 {
     public function index()
     {
-        $chargeSettings = ChargeSetting::all();
+        $chargeSettings = [];
+        if(Auth::user()->company) {
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
         return view('charges.settings.index', compact('chargeSettings'));
     }
 

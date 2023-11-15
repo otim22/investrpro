@@ -12,7 +12,10 @@ class AssetSettingController extends Controller
 {
     public function index()
     {
-        $assetSettings = AssetSetting::all();
+        $assetSettings = [];
+        if(Auth::user()->company) {
+            $assetSettings = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
         return view('assets.settings.index', compact('assetSettings'));
     }
 

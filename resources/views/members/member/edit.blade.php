@@ -6,7 +6,7 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 mb-2 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h4 class="fw-bold py-1 text-capitalize">
-                        <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a> / {{ $member->surname }} / </span>Member registration form
+                        <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a> / {{ $member->surname }} {{ $member->given_name }} </span>
                     </h4>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
