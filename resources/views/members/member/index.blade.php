@@ -10,10 +10,10 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h4 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member registration / </span>List of current members</h4>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member registration / </span>List of current members</h5>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
+                            href="{{ route('member-registration.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
                             Add member
                         </a>
@@ -39,7 +39,7 @@
                                 @foreach ($members as $member)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('members.show', $member)}}">
+                                            <a href="{{ route('member-registration.show', $member)}}">
                                                 {{ $member->surname }}<br/>
                                                 {{ $member->given_name }}<br/>
                                                 {{ $member->other_name }}
@@ -66,11 +66,11 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('members.show', $member) }}">
+                                                        href="{{ route('member-registration.show', $member) }}">
                                                         <i class='bx bx-list-check me-1'></i> Show
                                                     </a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('members.edit', $member) }}">
+                                                        href="{{ route('member-registration.edit', $member) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
@@ -82,7 +82,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('members.destroy', $member) }}" class="hidden"
+                                    <form action="{{ route('member-registration.destroy', $member) }}" class="hidden"
                                         id="delete-member-{{ $member->id }}" method="POST">
                                         @csrf
                                         @method('delete')

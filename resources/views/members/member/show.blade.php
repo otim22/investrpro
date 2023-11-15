@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <h4 class="fw-bold py-1 text-capitalize">
-                    <span class="text-muted fw-light">Member registration / <a href="{{ route('members.index') }}">Members</a>
+                    <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a>
                         / </span>{{ $member->surname }} {{ $member->given_name }}
                 </h4>
             </div>
@@ -20,7 +20,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('members.index') }}" aria-haspopup="true" aria-expanded="false">
+                            href="{{ route('member-registration.index') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-arrow-back'></i>
                             Back to members
                         </a>
@@ -31,7 +31,7 @@
                             Actions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item btn-sm" href="{{ route('members.edit', $member) }}">
+                            <a class="dropdown-item btn-sm" href="{{ route('member-registration.edit', $member) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
                                 Edit member
                             </a>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('members.destroy', $member) }}" class="hidden" id="delete-member-{{ $member->id }}"
+                <form action="{{ route('member-registration.destroy', $member) }}" class="hidden" id="delete-member-{{ $member->id }}"
                     method="POST">
                     @csrf
                     @method('delete')

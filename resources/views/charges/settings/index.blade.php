@@ -10,11 +10,11 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">late remissions / </span>List of late remissions</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Charges / </span>List of Charges</h5>
                     <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('late-remissions.create') }}" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('charge-settings.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
-                            Add late remissions
+                            Add charge
                         </a>
                     </div>
                 </div>
@@ -23,53 +23,36 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
-                    @if (count($lateRemissions))
+                    @if (count($chargeSettings))
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Member names</th>
-                                    <th>Amount (UGX)</th>
-                                    <th>Charge paid for</th>
-                                    <th>Date of payment</th>
-                                    <th>Comment</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>amount</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                @foreach ($lateRemissions as $lateRemission)
+                                @foreach ($chargeSettings as $charge)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('late-remissions.show', $lateRemission)}}">
-                                                {{ $lateRemission->member->surname }} {{ $lateRemission->member->given_name }}
+                                            <a href="{{ route('charge-settings.show', $charge)}}">
+                                                {{ $charge->title }}
                                             </a>
                                         </td>
-                                        <td>
-                                            {{ number_format($lateRemission->charge_amount) }}
-                                        </td>
-                                        <td>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                            </svg>
-                                            {{ $lateRemission->charge_paid_for }} 
-                                            <br />
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                            </svg>
-                                            {{ $lateRemission->month_paid_for }}
-                                        </td>
-                                        <td>
-                                            {{ $lateRemission->formatDate($lateRemission->date_of_payment) }}
-                                        </td>
-                                        @if($lateRemission->comment)
+                                        @if($charge->description)
                                             <td>
-                                                {{ $lateRemission->shortenSentence($lateRemission->comment) }}
+                                                {{ $charge->shortenSentence($charge->description) }}
                                             </td>
                                         @else
                                             <td>
                                                 --
                                             </td>
                                         @endif
-                                        
+                                        <td>
+                                            {{ $charge->amount }}
+                                        </td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -78,42 +61,42 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('late-remissions.show', $lateRemission) }}">
+                                                        href="{{ route('charge-settings.show', $charge) }}">
                                                         <i class='bx bx-list-check me-1'></i> Show
                                                     </a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('late-remissions.edit', $lateRemission) }}">
+                                                        href="{{ route('charge-settings.edit', $charge) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#confirmLateRemissionDeletion{{ $lateRemission->id }}">
+                                                        data-bs-target="#confirmMemberDeletion{{ $charge->id }}">
                                                         <i class="bx bx-trash me-1"></i> Delete
                                                     </a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('late-remissions.destroy', $lateRemission) }}" class="hidden"
-                                        id="delete-late-remission-{{ $lateRemission->id }}" method="POST">
+                                    <form action="{{ route('charge-settings.destroy', $charge) }}" class="hidden"
+                                        id="delete-charge-{{ $charge->id }}" method="POST">
                                         @csrf
                                         @method('delete')
                                     </form>
-                                    <div class="modal fade" id="confirmLateRemissionDeletion{{ $lateRemission->id }}"
+                                    <div class="modal fade" id="confirmMemberDeletion{{ $charge->id }}"
                                         tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title"
-                                                        id="confirmLateRemissionDeletion{{ $lateRemission->id }}">
-                                                        {{ $lateRemission->charge_paid_for }} charge</h5>
+                                                        id="confirmMemberDeletion{{ $charge->id }}">
+                                                        {{ $charge->title }} charge</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         <div class="col mb-0">
-                                                            Are you sure to delete, {{ $lateRemission->charge_paid_for }} charge?
+                                                            Are you sure to delete {{ $charge->title }} charge?
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,7 +106,7 @@
                                                         Close
                                                     </button>
                                                     <button type="button" class="btn btn-primary"
-                                                        onclick="event.preventDefault(); document.getElementById('delete-late-remission-{{ $lateRemission->id }}').submit();">Delete</button>
+                                                        onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $charge->id }}').submit();">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,7 +115,7 @@
                             </tbody>
                         </table>
                     @else
-                        <p class="mb-0 text-center text-capitalize">No late charges found</p>
+                        <p class="mb-0 text-center text-capitalize">No charges found</p>
                     @endif
                 </div>
             </div>

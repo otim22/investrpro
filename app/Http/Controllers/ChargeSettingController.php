@@ -13,7 +13,7 @@ class ChargeSettingController extends Controller
     public function index()
     {
         $chargeSettings = ChargeSetting::all();
-        return view('charges.charge_amount.index', compact('chargeSettings'));
+        return view('charges.settings.index', compact('chargeSettings'));
     }
 
     /**
@@ -21,8 +21,7 @@ class ChargeSettingController extends Controller
      */
     public function create()
     {
-        
-        return view('charges.charge_amount.create');
+        return view('charges.settings.create');
     }
 
     /**
@@ -47,7 +46,7 @@ class ChargeSettingController extends Controller
      */
     public function show(ChargeSetting $chargeSetting)
     {
-        return view('charges.charge_amount.show', compact('chargeSetting'));
+        return view('charges.settings.show', compact('chargeSetting'));
     }
 
     /**
@@ -55,7 +54,7 @@ class ChargeSettingController extends Controller
      */
     public function edit(ChargeSetting $chargeSetting)
     {
-        return view('charges.charge_amount.edit', compact('chargeSetting'));
+        return view('charges.settings.edit', compact('chargeSetting'));
     }
 
     /**

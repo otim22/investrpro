@@ -103,6 +103,6 @@ class NextOfKinController extends Controller
     public function destroy(Member $member, NextOfKin $nextOfKin)
     {
         $nextOfKin->delete();
-        return redirect()->route('members.show', $member)->with('success','Next of kin deleted successfully');
+        return redirect()->route('member-registration.show', $member)->with('success','Next of kin deleted successfully');
     }
 }

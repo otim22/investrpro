@@ -8,7 +8,7 @@
                     <h4 class="fw-bold py-1"><span class="text-muted text-capitalize fw-light">All members</span></h4>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
+                            href="{{ route('member-registration.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
                             Add member
                         </a>

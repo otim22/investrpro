@@ -22,12 +22,12 @@ class AssetController extends Controller
             $assets = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
             $assetGroups = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get()->groupBy('asset_type');
         }
-        return view('assets.index', compact(['assets', 'assetGroups']));
+        return view('assets.asset.index', compact(['assets', 'assetGroups']));
     }
 
     public function create()
     {
-        return view('assets.create');
+        return view('assets.asset.create');
     }
 
     public function store(AssetRequest $request)
@@ -52,7 +52,7 @@ class AssetController extends Controller
      */
     public function show(Asset $asset)
     {
-        return view('assets.show', compact('asset'));
+        return view('assets.asset.show', compact('asset'));
     }
 
     /**
@@ -60,7 +60,7 @@ class AssetController extends Controller
      */
     public function edit(Asset $asset)
     {
-        return view('assets.edit', compact('asset'));
+        return view('assets.asset.edit', compact('asset'));
     }
 
     /**

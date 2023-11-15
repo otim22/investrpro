@@ -65,7 +65,7 @@ class MemberController extends Controller
             $member->addMedia($request->conscent_form)->toMediaCollection('conscent_form');
         } 
     
-        return redirect()->route('members.show', $member)->with('success', 'Member created successfully');
+        return redirect()->route('member-registration.show', $member)->with('success', 'Member created successfully');
     }
 
     /**
@@ -117,7 +117,7 @@ class MemberController extends Controller
             $member->addMedia($request->conscent_form)->toMediaCollection('conscent_form');
         }
 
-        return redirect()->route('members.show', $member)->with('success','Member updated successfully');
+        return redirect()->route('member-registration.show', $member)->with('success','Member updated successfully');
     }
 
     /**
@@ -129,6 +129,6 @@ class MemberController extends Controller
     public function destroy(Member $member)
     {
         $member->delete();
-        return redirect()->route('members.index')->with('success','Member deleted successfully');
+        return redirect()->route('member-registration.index')->with('success','Member deleted successfully');
     }
 }

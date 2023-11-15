@@ -6,11 +6,11 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 mb-2 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h4 class="fw-bold py-1 text-capitalize">
-                        <span class="text-muted fw-light">Member registration / <a href="{{ route('members.index') }}">Members</a> / {{ $member->surname }} / </span>Member registration form
+                        <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a> / {{ $member->surname }} / </span>Member registration form
                     </h4>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('members.index') }}" aria-haspopup="true" aria-expanded="false">
+                            href="{{ route('member-registration.index') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-arrow-back'></i>
                             Back to members
                         </a>
@@ -22,7 +22,7 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('members.update', $member) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('member-registration.update', $member) }}" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
 

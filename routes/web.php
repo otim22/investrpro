@@ -17,6 +17,7 @@ use App\Http\Controllers\MissedMeetingController;
 use App\Http\Controllers\ChargeSettingController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\AssetSettingController;
 use App\Http\Controllers\LiabilityController;
 
 use App\Http\Controllers\ProfileController;
@@ -46,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/all-members', [AllMembersController::class, 'index'])->name('all-members');
     Route::get('/executive-members', [ExecutiveMembersController::class, 'index'])->name('executive-members');
-    Route::resource('/members', MemberController::class);
+    Route::resource('/member-registration', MemberController::class);
 
     Route::get('/members/{member}/nextOfKins/create', [NextOfKinController::class, 'create'])->name('next-of-kin.create');
     Route::get('/members/{member}/next-of-kins/{nextOfKin}/show', [NextOfKinController::class, 'show'])->name('next-of-kin.show');
@@ -56,23 +57,9 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/members/{member}/next-of-kins/{nextOfKin}/update', [NextOfKinController::class, 'update'])->name('next-of-kin.update');
     Route::delete('/members/{member}/next-of-kins/{nextOfKin}/destroy', [NextOfKinController::class, 'destroy'])->name('next-of-kin.delete');
     
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::patch('/update-name', [UserController::class, 'updateName'])->name('update.name');
-    Route::patch('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
-
-    Route::get('/add-user', [OrgUserController::class, 'index'])->name('org.user.index');
-    Route::get('/add-user/create', [OrgUserController::class, 'create'])->name('org.user.create');
-    Route::post('/add-user/store', [OrgUserController::class, 'store'])->name('org.user.store');
-    Route::get('/add-user/{user}/show', [OrgUserController::class, 'show'])->name('org.user.show');
-    Route::get('/add-user/{user}/edit', [OrgUserController::class, 'edit'])->name('org.user.edit');
-    Route::patch('/add-user/{user}/update', [OrgUserController::class, 'update'])->name('org.user.update');
-    Route::delete('/add-user/{user}/delete', [OrgUserController::class, 'destroy'])->name('org.user.destroy');
     Route::resource('/member-savings', MemberSavingController::class);
-    Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
     Route::resource('/membership-fees', MembershipFeeController::class);
     Route::resource('/expenses', ExpenseController::class);
-    
-    Route::resource('/charge-settings', ChargeSettingController::class);
     Route::resource('/late-remissions', LateRemissionController::class);
     Route::resource('/missed-meetings', MissedMeetingController::class);
     Route::resource('/investments', InvestmentController::class);
@@ -87,6 +74,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/saved-emails', [App\Http\Controllers\SavedEmailsController::class, 'index'])->name('saved-emails');
     Route::get('/recordings', [App\Http\Controllers\RecordingsController::class, 'index'])->name('recordings');
     Route::get('/billing', [App\Http\Controllers\BillingController::class, 'index'])->name('billing');
+
+    //  User management
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::patch('/update-name', [UserController::class, 'updateName'])->name('update.name');
+    Route::patch('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
+    Route::get('/add-user', [OrgUserController::class, 'index'])->name('org.user.index');
+    Route::get('/add-user/create', [OrgUserController::class, 'create'])->name('org.user.create');
+    Route::post('/add-user/store', [OrgUserController::class, 'store'])->name('org.user.store');
+    Route::get('/add-user/{user}/show', [OrgUserController::class, 'show'])->name('org.user.show');
+    Route::get('/add-user/{user}/edit', [OrgUserController::class, 'edit'])->name('org.user.edit');
+    Route::patch('/add-user/{user}/update', [OrgUserController::class, 'update'])->name('org.user.update');
+    Route::delete('/add-user/{user}/delete', [OrgUserController::class, 'destroy'])->name('org.user.destroy');
+
+    // Settings
+    Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
+    Route::resource('/charge-settings', ChargeSettingController::class);
+    Route::resource('/asset-settings', AssetSettingController::class);
 });
 
 // Admin
