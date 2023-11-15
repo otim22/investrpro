@@ -20,8 +20,9 @@ class AssetController extends Controller
         $assets = [];
         if(Auth::user()->company) {
             $assets = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $assetGroups = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get()->groupBy('asset_type');
         }
-        return view('assets.index', compact('assets'));
+        return view('assets.index', compact(['assets', 'assetGroups']));
     }
 
     public function create()
