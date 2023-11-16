@@ -132,7 +132,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Save asset</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Save asset</button>
                             </div>
                         </div>
                     </form>

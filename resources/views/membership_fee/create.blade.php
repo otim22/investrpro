@@ -127,7 +127,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Save membership fee</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Save membership fee</button>
                             </div>
                         </div>
                     </form>

@@ -162,7 +162,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Update late remission</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Update late remission</button>
                             </div>
                         </div>
                     </form>
