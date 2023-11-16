@@ -32,7 +32,8 @@
                                     class="form-control @error('asset_name') is-invalid @enderror" 
                                     name="asset_name"
                                     value="{{ old('asset_name') }}"
-                                    placeholder="Premiums" 
+                                    placeholder="Cash at hand" 
+                                    autofocus
                                 />
                                 @error('asset_name')
                                     <span class="invalid-feedback" role="alert">
@@ -44,14 +45,18 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
+                                <select 
                                     id="asset_type" 
-                                    class="form-control @error('asset_type') is-invalid @enderror" 
+                                    class="form-select @error('asset_type') is-invalid @enderror" 
                                     name="asset_type"
-                                    value="{{ old('asset_type') }}"
-                                    placeholder="Current assets" 
-                                />
+                                    aria-label="Default select asset type"
+                                >
+                                    @if($assetTypes)
+                                        @foreach($assetTypes as $assetType)
+                                            <option value="{{ $assetType->asset_type }}">{{ $assetType->asset_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                                 @error('asset_type')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

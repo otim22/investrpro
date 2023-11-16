@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Liability;
+use App\Models\LiabilitySetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LiabilityRequest;
@@ -20,13 +21,27 @@ class LiabilityController extends Controller
         $liabilities = [];
         if(Auth::user()->company) {
             $liabilities = Liability::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $totalValue = Liability::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
+                return $carry += $item->amount;
+            }, 0);
+            $totalByTypes = Liability::where('company_id', Auth::user()->company->id)->get()->groupBy('liability_type')
+                ->map(function ($option) {
+                    return $option
+                            ->reduce(function($carry, $item) {
+                                return $carry += $item->amount;
+                            });
+                });
         }
-        return view('liabilities.liability.index', compact('liabilities'));
+        return view('liabilities.liability.index', compact(['liabilities', 'totalValue', 'totalByTypes']));
     }
 
     public function create()
     {
-        return view('liabilities.liability.create');
+        $liabilityTypes = [];
+        if(Auth::user()->company) {
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('liabilities.liability.create', compact('liabilityTypes'));
     }
 
     public function store(LiabilityRequest $request)
@@ -51,7 +66,11 @@ class LiabilityController extends Controller
      */
     public function show(Liability $liability)
     {
-        return view('liabilities.liability.show', compact('liability'));
+        $liabilityTypes = [];
+        if(Auth::user()->company) {
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('liabilities.liability.show', compact(['liability', 'liabilityTypes']));
     }
 
     /**
@@ -59,7 +78,11 @@ class LiabilityController extends Controller
      */
     public function edit(Liability $liability)
     {
-        return view('liabilities.liability.edit', compact('liability'));
+        $liabilityTypes = [];
+        if(Auth::user()->company) {
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('liabilities.liability.edit', compact(['liability', 'liabilityTypes']));
     }
 
     /**

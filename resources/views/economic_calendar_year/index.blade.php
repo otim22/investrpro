@@ -27,7 +27,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Title</th>
+                                    <th>Month</th>
                                     <th>Description</th>
                                     <th></th>
                                 </tr>

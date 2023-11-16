@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asset;
+use App\Models\AssetSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AssetRequest;
@@ -18,16 +19,31 @@ class AssetController extends Controller
     public function index()
     {
         $assets = [];
+
         if(Auth::user()->company) {
             $assets = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
-            $assetGroups = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get()->groupBy('asset_type');
+            $totalNetworth = Asset::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
+                return $carry += $item->amount;
+            }, 0);
+            $totalByTypes = Asset::where('company_id', Auth::user()->company->id)->get()->groupBy('asset_type')
+                ->map(function ($option) {
+                    return $option
+                            ->reduce(function($carry, $item) {
+                                return $carry += $item->amount;
+                            });
+                });
         }
-        return view('assets.asset.index', compact(['assets', 'assetGroups']));
+
+        return view('assets.asset.index', compact(['assets', 'totalNetworth', 'totalByTypes']));
     }
 
     public function create()
     {
-        return view('assets.asset.create');
+        $assetTypes = [];
+        if(Auth::user()->company) {
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('assets.asset.create', compact('assetTypes'));
     }
 
     public function store(AssetRequest $request)
@@ -42,9 +58,8 @@ class AssetController extends Controller
             'date_acquired' => $request->date_acquired,
             'company_id' => Auth::user()->company->id,
         ]);
-
  
-        return redirect()->route('assets.index')->with("success", "Asset saved successfully!");
+        return redirect()->route('assets.index')->with("success", $asset->asset_type . " saved successfully!");
     }
 
     /**
@@ -52,7 +67,11 @@ class AssetController extends Controller
      */
     public function show(Asset $asset)
     {
-        return view('assets.asset.show', compact('asset'));
+        $assetTypes = [];
+        if(Auth::user()->company) {
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('assets.asset.show', compact(['asset', 'assetTypes']));
     }
 
     /**
@@ -60,7 +79,11 @@ class AssetController extends Controller
      */
     public function edit(Asset $asset)
     {
-        return view('assets.asset.edit', compact('asset'));
+        $assetTypes = [];
+        if(Auth::user()->company) {
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('assets.asset.edit', compact(['asset', 'assetTypes']));
     }
 
     /**
@@ -70,7 +93,7 @@ class AssetController extends Controller
     {
         $request->validated();
         $asset->update($request->all());
-        return redirect()->route('assets.index', $asset)->with('success', 'Asset updated successfully.');
+        return redirect()->route('assets.index', $asset)->with('success', $asset->asset_type . ' updated successfully.');
     }
 
     /**

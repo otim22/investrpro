@@ -25,7 +25,7 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_name">Asset name</label>
+                            <label class="col-sm-2 col-form-label" for="liability_name">liability name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -43,16 +43,22 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_type">Asset type</label>
+                            <label class="col-sm-2 col-form-label" for="liability_type">liability type</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
+                                <select 
                                     id="liability_type" 
-                                    class="form-control @error('liability_type') is-invalid @enderror" 
+                                    class="form-select @error('liability_type') is-invalid @enderror" 
                                     name="liability_type"
-                                    value="{{ old('liability_type', $liability->liability_type) }}"
-                                    placeholder="Current assets" 
-                                />
+                                    aria-label="Default select liability type"
+                                    autofocus
+                                >
+                                    @if($liabilityTypes)
+                                        <option value="{{ $liability->liability_type }}" selected>{{ $liability->liability_type }}</option>
+                                        @foreach($liabilityTypes as $liabilityType)
+                                            <option value="{{ $liabilityType->liability_type }}">{{ $liabilityType->liability_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                                 @error('liability_type')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

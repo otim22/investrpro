@@ -45,14 +45,13 @@
                                                     {{ $investment->investment_type }} <br />
                                                 </a>
                                             </span>
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Date:</span> {{ $investment->formatDate($investment->date_of_investment) }}</span> <br />
+                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Start:</span> {{ $investment->formatDate($investment->date_of_investment) }}</span> <br />
                                             <span class="text-nowrap text-capitalize"> <span class="fw-bold">Duration:</span> {{ $investment->duration }} </span> <br />
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Interest rate:</span> {{ $investment->interest_rate }} </span> <br />
-                                            
                                         </td>
                                         <td>
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Amount invested:</span> {{ number_format($investment->amount_invested) }} </span> <br />
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Date:</span> {{ $investment->formatDate($investment->date_of_maturity) }} </span>
+                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Amount:</span> {{ number_format($investment->amount_invested) }} </span> <br />
+                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Interest rate:</span> {{ $investment->interest_rate }} </span> <br />
+                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">End:</span> {{ $investment->formatDate($investment->date_of_maturity) }} </span>
                                         </td>
                                         <td>
                                             <span class="text-nowrap text-capitalize"> <span class="fw-bold">Before tax:</span> {{ $investment->expected_return_before_tax }} </span> <br />

@@ -44,14 +44,18 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="liability_type">Liability type</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
+                                <select 
                                     id="liability_type" 
-                                    class="form-control @error('liability_type') is-invalid @enderror" 
+                                    class="form-select @error('liability_type') is-invalid @enderror" 
                                     name="liability_type"
-                                    value="{{ old('liability_type') }}"
-                                    placeholder="Current liabilities" 
-                                />
+                                    aria-label="Default select liability type"
+                                >
+                                    @if($liabilityTypes)
+                                        @foreach($liabilityTypes as $liabilityType)
+                                            <option value="{{ $liabilityType->liability_type }}">{{ $liabilityType->liability_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                                 @error('liability_type')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

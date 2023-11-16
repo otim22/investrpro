@@ -20,6 +20,9 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetSettingController;
 use App\Http\Controllers\LiabilityController;
 use App\Http\Controllers\LiabilitySettingController;
+use App\Http\Controllers\AuditReportController;
+use App\Http\Controllers\FinancialReportController;
+use App\Http\Controllers\GeneralReportController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -67,9 +70,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/assets', AssetController::class);
     Route::resource('/liabilities', LiabilityController::class);
 
-    Route::get('/general-report', [App\Http\Controllers\GeneralReportController::class, 'index'])->name('general-report');
-    Route::get('/financial-report', [App\Http\Controllers\FinancialReportController::class, 'index'])->name('financial-report');
-    Route::get('/audit-report', [App\Http\Controllers\AuditReportController::class, 'index'])->name('audit-report');
+    Route::resource('/general-reports', GeneralReportController::class);
+    Route::resource('/financial-reports', FinancialReportController::class);
+    Route::resource('/audit-reports', AuditReportController::class);
+
     Route::get('/sop', [App\Http\Controllers\SOPController::class, 'index'])->name('sop');
     Route::get('/constitution', [App\Http\Controllers\ConstitutionController::class, 'index'])->name('constitution');
     Route::get('/saved-emails', [App\Http\Controllers\SavedEmailsController::class, 'index'])->name('saved-emails');

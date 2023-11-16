@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asset;
 use Illuminate\Http\Request;
+use App\DataTables\AssetsDataTable;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(AssetsDataTable $dataTable)
     {
-        return view('home');
+        $assets = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        return $dataTable->render('home', compact('assets'));
     }
 }

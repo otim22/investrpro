@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Assets / </span>List of assets</h4>
+                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Assets / </span>List of assets</h5>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('assets.create') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-plus'></i>
@@ -24,39 +24,37 @@
             <div class="col-lg-3 col-md-6 col-6 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <span class="fw-semibold d-block mb-1">Asset number</span>
+                        <span class="d-block text-capitalize mb-1">Asset number</span>
                         @if($assets)
-                            <h3 class="card-title mb-2">{{ count($assets) }}</h3>
+                            <h5 class="card-title mb-2">{{ count($assets) }}</h5>
                         @else
-                            <h3 class="card-title mb-2">0</h3>
+                            <h5 class="card-title mb-2">0</h5>
                         @endif
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-6 mb-4">
                 <div class="card">
-                    <div class="card-body">
-                        <span class="fw-semibold d-block mb-1">Overall Total (UGX)</span>
-                        <h3 class="card-title mb-2">12,628</h3>
+                    <div class="card-body"> 
+                        <span class="d-block text-capitalize mb-1">Overall Networth</span>
+                        @if($totalNetworth)
+                            <h5 class="card-title mb-2">{{ number_format($totalNetworth) }}</h5>
+                        @else
+                            <h5 class="card-title mb-2">0.00</h5>
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <span class="fw-semibold d-block mb-1">Total Type B (UGX)</span>
-                        <h3 class="card-title mb-2">12,628</h3>
+            @foreach($totalByTypes as $key => $totalByType)
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="d-block text-capitalize mb-1">{{ $key }}</span>
+                            <h5 class="card-title mb-2">{{ number_format($totalByType) }}</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <span class="fw-semibold d-block mb-1">Total Type C (UGX)</span>
-                        <h3 class="card-title mb-2">12,628</h3>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">

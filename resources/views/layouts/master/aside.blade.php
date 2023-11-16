@@ -57,7 +57,7 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
+        <li class="menu-item added-active {{ Request::is('dashboard') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bxs-dashboard'></i>
                 <div>Dashboard</div>
@@ -65,7 +65,7 @@
         </li>
         
         <!-- Investments -->
-        <li class="menu-item {{ Request::is('investments') ? 'active' : '' }}">
+        <li class="menu-item added-active {{ Request::is('investments') ? 'active' : '' }}">
             <a href="{{ route('investments.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-line-chart'></i>
                 <div>Investments</div>
@@ -153,24 +153,24 @@
         </li>
         
         <!-- Reports -->
-        <li class="menu-item added-active {{ Request::is(['general-report', 'financial-report', 'audit-report']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['general-reports', 'financial-reports', 'audit-reports']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-file'></i>
                 <div>Reports</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('general-report') ? 'active' : '' }}">
-                    <a href="{{ route('general-report') }}" class="menu-link text-capitalize">
+                <li class="menu-item {{ Request::is('general-reports') ? 'active' : '' }}">
+                    <a href="{{ route('general-reports.index') }}" class="menu-link text-capitalize">
                         <div>General</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('financial-report') ? 'active' : '' }}">
-                    <a href="{{ route('financial-report') }}" class="menu-link text-capitalize">
+                <li class="menu-item {{ Request::is('financial-reports') ? 'active' : '' }}">
+                    <a href="{{ route('financial-reports.index') }}" class="menu-link text-capitalize">
                         <div>Financial</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('audit-report') ? 'active' : '' }}">
-                    <a href="{{ route('audit-report') }}" class="menu-link text-capitalize">
+                <li class="menu-item {{ Request::is('audit-reports') ? 'active' : '' }}">
+                    <a href="{{ route('audit-reports.index') }}" class="menu-link text-capitalize">
                         <div>Audit</div>
                     </a>
                 </li>
@@ -206,7 +206,7 @@
                 </li>
                 <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
                     <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
-                        <div>Financial year</div>
+                        <div>Economic calendar</div>
                     </a>
                 </li>
             </ul>

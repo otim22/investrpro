@@ -92,7 +92,6 @@
                                     class="form-select @error('member_id') is-invalid @enderror" 
                                     name="member_id"
                                     aria-label="Default select member"
-                                    autofocus
                                     disabled
                                 >
                                     @if($members)
