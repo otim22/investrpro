@@ -11,7 +11,9 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">Member savings / </span>List of member's Monthly premiums</h4>
+                <div>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Member savings / </span>List of member's Monthly premiums</h5>
+                </div>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('member-savings.create') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-plus'></i>

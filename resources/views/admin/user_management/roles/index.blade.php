@@ -9,7 +9,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h4 class="fw-bold"><span class="text-muted text-capitalize fw-light">User management / </span>Roles</h4>
                     <div>

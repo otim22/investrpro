@@ -8,40 +8,33 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <h4 class="fw-bold py-1 text-capitalize">
-                    <span class="text-muted fw-light">Members / <a
-                            href="{{ route('member-registration.show', $member) }}">{{ $member->surname }} {{ $member->given_name }}</a>
-                        / Next of kin / </span>{{ $member->nextOfKin->surname }} {{ $member->nextOfKin->given_name }}
-                </h4>
-            </div>
-        </div>
-        <div class="row mb-4">
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('member-registration.show', $member) }}" aria-haspopup="true" aria-expanded="false">
-                            <i class='me-2 bx bx-arrow-back'></i>
-                            Back to {{ $member->surname }}
-                        </a>
+                        <h5 class="fw-bold py-1 text-capitalize">
+                            <span class="text-muted fw-light">Members / <a
+                                    href="{{ route('member-registration.show', $member) }}">{{ $member->surname }} {{ $member->given_name }}</a>
+                                / Next of kin / </span>{{ $member->nextOfKin->surname }} {{ $member->nextOfKin->given_name }}
+                        </h5>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Actions
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item text-capitalize btn-sm"
-                                href="{{ route('next-of-kin.edit', [$member, $member->nextOfKin]) }}">
-                                <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit next of kin
-                            </a>
-                            <a class="dropdown-item text-capitalize btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmmemberDeletion{{ $member->nextOfKin->id }}">
-                                <i class='me-2 bx bx-trash'></i>
-                                Delete next of kin
-                            </a>
+                    <div>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item text-capitalize btn-sm"
+                                    href="{{ route('next-of-kin.edit', [$member, $member->nextOfKin]) }}">
+                                    <i class='me-2 bx bxs-edit-alt'></i>
+                                    Edit next of kin
+                                </a>
+                                <a class="dropdown-item text-capitalize btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
+                                    data-bs-target="#confirmmemberDeletion{{ $member->nextOfKin->id }}">
+                                    <i class='me-2 bx bx-trash'></i>
+                                    Delete next of kin
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

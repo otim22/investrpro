@@ -8,42 +8,35 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <h4 class="fw-bold py-1 text-capitalize">
-                    <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a>
-                        / </span>{{ $member->surname }} {{ $member->given_name }}
-                </h4>
-            </div>
-        </div>
-        <div class="row mb-4">
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('member-registration.index') }}" aria-haspopup="true" aria-expanded="false">
-                            <i class='me-2 bx bx-arrow-back'></i>
-                            Back to members
-                        </a>
+                        <h5 class="fw-bold py-1 text-capitalize">
+                            <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a>
+                                / </span>{{ $member->surname }} {{ $member->given_name }}
+                        </h5>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Actions
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item btn-sm" href="{{ route('member-registration.edit', $member) }}">
-                                <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit member
-                            </a>
-                            <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmMemberDeletion{{ $member->id }}">
-                                <i class='me-2 bx bx-trash'></i>
-                                Delete member
-                            </a>
-                            <a class="dropdown-item btn-sm" href="{{ route('next-of-kin.index', $member) }}">
-                                <i class='me-2 bx bx-user'></i>
-                                Next of Kin
-                            </a>
+                    <div>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item btn-sm" href="{{ route('member-registration.edit', $member) }}">
+                                    <i class='me-2 bx bxs-edit-alt'></i>
+                                    Edit member
+                                </a>
+                                <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
+                                    data-bs-target="#confirmMemberDeletion{{ $member->id }}">
+                                    <i class='me-2 bx bx-trash'></i>
+                                    Delete member
+                                </a>
+                                <a class="dropdown-item btn-sm" href="{{ route('next-of-kin.index', $member) }}">
+                                    <i class='me-2 bx bx-user'></i>
+                                    Next of Kin
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

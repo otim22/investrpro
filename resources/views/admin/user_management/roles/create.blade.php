@@ -3,11 +3,11 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 mb-2 order-md-3 order-lg-2">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h4 class="fw-bold text-capitalize"><span class="text-muted fw-light">User management / <a
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">User management / <a
                                 href="{{ route('admin.roles.index') }}">Roles</a> / </span>Create
-                    </h4>
+                    </h5>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
                             href="{{ route('admin.roles.index') }}" aria-haspopup="true" aria-expanded="false">

@@ -9,37 +9,28 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-            <div class="d-flex justify-content-between">
-                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Asset settings / <a href="{{ route('asset-settings.index') }}">List of asset settings</a> / </span>{{ $assetSetting->asset_type }}</h5>
-            </div>
-        </div>
-    </div>
-    <div class="row mb-4">
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                        href="{{ route('asset-settings.index') }}" aria-haspopup="true" aria-expanded="false">
-                        <i class='me-2 bx bx-arrow-back'></i>
-                        Back to assets
-                    </a>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Asset settings / <a href="{{ route('asset-settings.index') }}">List of asset settings</a> / </span>{{ $assetSetting->asset_type }}</h5>
                 </div>
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Actions
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item btn-sm" href="{{ route('asset-settings.edit', $assetSetting) }}">
-                            <i class='me-2 bx bxs-edit-alt'></i>
-                            Edit asset
-                        </a>
-                        <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                            data-bs-target="#confirmAssetDeletion{{ $assetSetting->id }}">
-                            <i class='me-2 bx bx-trash'></i>
-                            Delete asset
-                        </a>
+                <div>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item btn-sm" href="{{ route('asset-settings.edit', $assetSetting) }}">
+                                <i class='me-2 bx bxs-edit-alt'></i>
+                                Edit asset
+                            </a>
+                            <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#confirmAssetDeletion{{ $assetSetting->id }}">
+                                <i class='me-2 bx bx-trash'></i>
+                                Delete asset
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
