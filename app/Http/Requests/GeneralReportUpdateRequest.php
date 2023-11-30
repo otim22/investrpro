@@ -26,6 +26,7 @@ class GeneralReportUpdateRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'nullable|string',
+            'report_attachement' => "nullable|mimes:pdf",
         ];
     }
 }

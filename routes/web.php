@@ -71,13 +71,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/liabilities', LiabilityController::class);
 
     Route::resource('/general-reports', GeneralReportController::class);
+    Route::get('/general-reports/download/{id}', [GeneralReportController::class, 'download'])->name('general-reports.download');
     Route::resource('/financial-reports', FinancialReportController::class);
     Route::resource('/audit-reports', AuditReportController::class);
 
-    Route::get('/sop', [App\Http\Controllers\SOPController::class, 'index'])->name('sop');
     Route::get('/constitution', [App\Http\Controllers\ConstitutionController::class, 'index'])->name('constitution');
-    Route::get('/saved-emails', [App\Http\Controllers\SavedEmailsController::class, 'index'])->name('saved-emails');
-    Route::get('/recordings', [App\Http\Controllers\RecordingsController::class, 'index'])->name('recordings');
+    Route::get('/sop', [App\Http\Controllers\SOPController::class, 'index'])->name('sop');
+    Route::get('/meeting-minutes', [App\Http\Controllers\MeetingMinuteController::class, 'index'])->name('meeting-minutes');
+    Route::get('/saved-emails', [App\Http\Controllers\SavedEmailController::class, 'index'])->name('saved-emails');
+    Route::get('/elections', [App\Http\Controllers\ElectionController::class, 'index'])->name('elections');
+    Route::get('/meeting-recordings', [App\Http\Controllers\MeetingRecordingController::class, 'index'])->name('recordings');
     Route::get('/billing', [App\Http\Controllers\BillingController::class, 'index'])->name('billing');
 
     //  User management

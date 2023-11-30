@@ -81,9 +81,7 @@ class FinancialReportController extends Controller
         $request->validated();
         $financialReport->update($request->except('report_attachement'));
         if($request->hasFile('report_attachement')) {
-            foreach ($financialReport->media as $media) {
-                $media->delete();
-            }
+            $financialReport->clearMediaCollection('report_attachement');
             $financialReport->addMedia($request->report_attachement)->toMediaCollection('report_attachement');
         }
         return redirect()->route('financial-reports.index', $financialReport)->with('success', $financialReport->title . ' updated successfully.');

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GeneralReportRequest extends FormRequest
+class AuditReportUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,6 @@ class GeneralReportRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'report_attachement' => "required|mimes:pdf",
         ];
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class GeneralReport extends Model implements HasMedia
+class Constitution extends Model
 {
     use HasFactory, HasSlug, InteractsWithMedia;
 
@@ -43,6 +43,6 @@ class GeneralReport extends Model implements HasMedia
 
     public function shortenSentence($value)
     {
-        return Str::limit($value, 45);
+        return Str::limit($value, 30);
     }
 }

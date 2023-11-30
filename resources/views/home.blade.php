@@ -20,12 +20,11 @@
 @endpush
 
 @section('content')
-    <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h4 class="fw-bold py-1"><span class="text-muted fw-light">Dashboard / </span>Overview</h4>
+                    <h5 class="fw-bold"><span class="text-muted fw-light">Dashboard / </span>Overview</h5>
                 </div>
             </div>
         </div>
@@ -33,7 +32,7 @@
             <div class="col-lg-3 col-md-6 col-6 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <span class="d-block mb-1">Total Premiums</span>
+                        <span class="d-block mb-1">Available Balance</span>
                         <h5 class="card-title mb-2">$12,628</h5>
                     </div>
                 </div>
@@ -41,7 +40,7 @@
             <div class="col-lg-3 col-md-6 col-6 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <span class="d-block mb-1">Expenses</span>
+                        <span class="d-block mb-1">Networth</span>
                         <h5 class="card-title mb-2">$12,628</h5>
                     </div>
                 </div>
@@ -49,7 +48,7 @@
             <div class="col-lg-3 col-md-6 col-6 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <span class="d-block mb-1">Investments</span>
+                        <span class="d-block mb-1">Assets</span>
                         <h5 class="card-title mb-2">$12,628</h5>
                     </div>
                 </div>
@@ -57,7 +56,7 @@
             <div class="col-lg-3 col-md-6 col-6 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <span class="d-block mb-1">Balance</span>
+                        <span class="d-block mb-1">Liabilities</span>
                         <h5 class="card-title mb-2">$12,628</h5>
                     </div>
                 </div>

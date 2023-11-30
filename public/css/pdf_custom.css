@@ -1,0 +1,31 @@
+#pdf_renderer {
+    text-align: center;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    border-radius: 6px;
+}
+
+.current-page {
+    width: 72px;
+    padding-left: 2px;
+}
+
+#current_page {
+    border-radius: 30px;
+    padding-left: 6px;
+    white-space: nowrap;
+}
+
+.canvas-border {
+    border: 1px solid #d1cccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.btn.circular-btn {
+    /* border-radius: 30px; */
+    padding-left: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+}

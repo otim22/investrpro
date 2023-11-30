@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use JavaScript;
+// use Spatie\PdfToText\Pdf;
 use App\Models\GeneralReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +64,8 @@ class GeneralReportController extends Controller
      */
     public function show(GeneralReport $generalReport)
     {
-        return view('reports.general.show', compact('generalReport'));
+        $generalReportUrl = $generalReport->getFirstMediaUrl('report_attachement');
+        return view('reports.general.show', compact(['generalReport', 'generalReportUrl']));
     }
 
     /**
@@ -81,9 +84,7 @@ class GeneralReportController extends Controller
         $request->validated();
         $generalReport->update($request->except('report_attachement'));
         if($request->hasFile('report_attachement')) {
-            foreach ($generalReport->media as $media) {
-                $media->delete();
-            }
+            $generalReport->clearMediaCollection('report_attachement');
             $generalReport->addMedia($request->report_attachement)->toMediaCollection('report_attachement');
         }
         return redirect()->route('general-reports.index', $generalReport)->with('success', $generalReport->title . ' updated successfully.');
@@ -96,5 +97,13 @@ class GeneralReportController extends Controller
     {
         $generalReport->delete();
         return redirect()->route('general-reports.index')->with('success', 'General report deleted successfully');
+    }
+
+    public function download($id)
+    {
+        $generalReport = GeneralReport::findOrFail($id);
+        $path = $generalReport->getFirstMedia('report_attachement')->getPath();
+        $file_name = $generalReport->getFirstMedia('report_attachement')->file_name;
+        return response()->download($path, $file_name);
     }
 }

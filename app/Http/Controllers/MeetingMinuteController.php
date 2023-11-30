@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SavedEmailsController extends Controller
+class MeetingMinuteController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +23,6 @@ class SavedEmailsController extends Controller
      */
     public function index()
     {
-        return view('saved_emails.index');
+        return view('meeting_minutes.index');
     }
 }

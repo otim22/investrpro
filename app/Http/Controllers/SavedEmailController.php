@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RecordingsController extends Controller
+class SavedEmailController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +23,6 @@ class RecordingsController extends Controller
      */
     public function index()
     {
-        return view('recordings.index');
+        return view('saved_emails.index');
     }
 }

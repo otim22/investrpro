@@ -68,7 +68,7 @@
                                     <input type="file" 
                                         class="form-control" 
                                         name="report_attachement" 
-                                        accept=".doc,.docx,.pdf" 
+                                        accept=".pdf" 
                                         id="report_attachement" 
                                     />
                                     <label class="input-group-text" for="report_attachement">Upload</label>

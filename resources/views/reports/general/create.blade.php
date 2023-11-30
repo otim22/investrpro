@@ -69,7 +69,7 @@
                                         class="form-control" 
                                         id="report_attachement"
                                         name="report_attachement" 
-                                        accept=".doc,.docx,.pdf" 
+                                        accept=".pdf" 
                                         required
                                         />
                                     <label class="input-group-text" for="report_attachement">Upload</label>

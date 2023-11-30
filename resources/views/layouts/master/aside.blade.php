@@ -176,6 +176,46 @@
                 </li>
             </ul>
         </li>
+        
+        <!-- Archive -->
+        <li class="menu-item added-active {{ Request::is(['constitution', 'sop', 'saved-emails', 'meeting-minutes', 'elections']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
+                <i class='menu-icon bx bxs-file-archive'></i>
+                <div>Archive</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('constitution') ? 'active' : '' }}">
+                    <a href="{{ route('constitution') }}" class="menu-link text-capitalize">
+                        <div>Constitution</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('sop') ? 'active' : '' }}">
+                    <a href="{{ route('sop') }}" class="menu-link text-capitalize">
+                        <div>SOP</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('meeting-minutes') ? 'active' : '' }}">
+                    <a href="{{ route('meeting-minutes') }}" class="menu-link text-capitalize">
+                        <div>Meeting minutes</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('saved-emails') ? 'active' : '' }}">
+                    <a href="{{ route('saved-emails') }}" class="menu-link text-capitalize">
+                        <div>Saved Emails</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('elections') ? 'active' : '' }}">
+                    <a href="{{ route('elections') }}" class="menu-link text-capitalize">
+                        <div>Elections</div>
+                    </a>
+                </li>
+                {{-- <li class="menu-item {{ Request::is('audit-reports') ? 'active' : '' }}">
+                    <a href="{{ route('audit-reports.index') }}" class="menu-link text-capitalize">
+                        <div>Meeting recording</div>
+                    </a>
+                </li> --}}
+            </ul>
+        </li>
 
         <!-- Settings -->
         <li class="menu-header small text-uppercase">

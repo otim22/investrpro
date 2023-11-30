@@ -81,9 +81,7 @@ class AuditReportController extends Controller
         $request->validated();
         $auditReport->update($request->except('report_attachement'));
         if($request->hasFile('report_attachement')) {
-            foreach ($auditReport->media as $media) {
-                $media->delete();
-            }
+            $auditReport->clearMediaCollection('report_attachement');
             $auditReport->addMedia($request->report_attachement)->toMediaCollection('report_attachement');
         }
         return redirect()->route('audit-reports.index', $auditReport)->with('success', $auditReport->title . ' updated successfully.');
