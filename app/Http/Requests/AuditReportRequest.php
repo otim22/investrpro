@@ -26,6 +26,7 @@ class AuditReportRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'nullable|string',
+            'report_attachement' => "required|mimes:pdf",
         ];
     }
 }

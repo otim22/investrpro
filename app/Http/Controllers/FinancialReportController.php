@@ -62,7 +62,8 @@ class FinancialReportController extends Controller
      */
     public function show(FinancialReport $financialReport)
     {
-        return view('reports.financial.show', compact('financialReport'));
+        $financialReportUrl = $financialReport->getFirstMediaUrl('report_attachement');
+        return view('reports.financial.show', compact(['financialReport', 'financialReportUrl']));
     }
 
     /**
@@ -94,5 +95,13 @@ class FinancialReportController extends Controller
     {
         $financialReport->delete();
         return redirect()->route('financial-reports.index')->with('success', 'Financial report deleted successfully');
+    }
+
+    public function download($id)
+    {
+        $financialReport = FinancialReport::findOrFail($id);
+        $path = $financialReport->getFirstMedia('report_attachement')->getPath();
+        $file_name = $financialReport->getFirstMedia('report_attachement')->file_name;
+        return response()->download($path, $file_name);
     }
 }

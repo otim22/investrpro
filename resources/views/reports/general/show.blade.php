@@ -1,10 +1,10 @@
 @extends('layouts.master.app')
 
-@section('content')
-    @push('styles')
-        <link rel="stylesheet" href="{{ asset('css/pdf_custom.css') }}" />
-    @endpush
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/pdf_custom.css') }}" />
+@endpush
 
+@section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">

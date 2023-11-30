@@ -43,6 +43,6 @@ class AuditReport extends Model implements HasMedia
 
     public function shortenSentence($value)
     {
-        return Str::limit($value, 30);
+        return Str::limit($value, 45);
     }
 }

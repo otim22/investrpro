@@ -29,7 +29,7 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Name</th>
+                                    <th>Download Link</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -41,18 +41,16 @@
                                                 {{ $auditReport->title }}
                                             </a>
                                         </td>
-                                        @if($auditReport->description)
-                                            <td>
+                                        <td>
+                                            @if($auditReport->description)
                                                 {{ $auditReport->shortenSentence($auditReport->description) }}
-                                            </td>
-                                        @else
-                                            <td>
+                                            @else
                                                 --
-                                            </td>
-                                        @endif
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($auditReport->getFirstMediaUrl('report_attachement'))
-                                                <div>{{ $auditReport->getFirstMedia('report_attachement')->name }}</div>
+                                                <a class="text-decoration-none" href="{{ route('audit-reports.download', $auditReport->id) }}" target="_blank">{{ \Str::limit(strip_tags($auditReport->getFirstMedia("report_attachement")->name), 35) }}</a>
                                             @endif
                                         </td>
                                         <td>

@@ -29,7 +29,7 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Name</th>
+                                    <th>Download Link</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -41,18 +41,18 @@
                                                 {{ $financialReport->title }}
                                             </a>
                                         </td>
-                                        @if($financialReport->description)
-                                            <td>
+                                        <td>
+                                            @if($financialReport->description)
                                                 {{ $financialReport->shortenSentence($financialReport->description) }}
-                                            </td>
-                                        @else
-                                            <td>
+                                            @else
                                                 --
-                                            </td>
-                                        @endif
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($financialReport->getFirstMediaUrl('report_attachement'))
-                                                <div>{{ $financialReport->getFirstMedia('report_attachement')->name }}</div>
+                                                <a class="text-decoration-none" href="{{ route('financial-reports.download', $financialReport->id) }}" target="_blank">{{ \Str::limit(strip_tags($financialReport->getFirstMedia("report_attachement")->name), 35) }}</a>
+                                            @else
+                                                --
                                             @endif
                                         </td>
                                         <td>

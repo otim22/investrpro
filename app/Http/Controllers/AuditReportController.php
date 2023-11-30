@@ -62,7 +62,8 @@ class AuditReportController extends Controller
      */
     public function show(AuditReport $auditReport)
     {
-        return view('reports.audit.show', compact('auditReport'));
+        $auditReportUrl = $auditReport->getFirstMediaUrl('report_attachement');
+        return view('reports.audit.show', compact(['auditReport', 'auditReportUrl']));
     }
 
     /**
@@ -94,5 +95,13 @@ class AuditReportController extends Controller
     {
         $auditReport->delete();
         return redirect()->route('audit-reports.index')->with('success', 'Audit report deleted successfully');
+    }
+
+    public function download($id)
+    {
+        $auditReport = AuditReport::findOrFail($id);
+        $path = $auditReport->getFirstMedia('report_attachement')->getPath();
+        $file_name = $auditReport->getFirstMedia('report_attachement')->file_name;
+        return response()->download($path, $file_name);
     }
 }

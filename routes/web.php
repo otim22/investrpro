@@ -73,7 +73,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/general-reports', GeneralReportController::class);
     Route::get('/general-reports/download/{id}', [GeneralReportController::class, 'download'])->name('general-reports.download');
     Route::resource('/financial-reports', FinancialReportController::class);
+    Route::get('/financial-reports/download/{id}', [FinancialReportController::class, 'download'])->name('financial-reports.download');
     Route::resource('/audit-reports', AuditReportController::class);
+    Route::get('/audit-reports/download/{id}', [AuditReportController::class, 'download'])->name('audit-reports.download');
 
     Route::get('/constitution', [App\Http\Controllers\ConstitutionController::class, 'index'])->name('constitution');
     Route::get('/sop', [App\Http\Controllers\SOPController::class, 'index'])->name('sop');
