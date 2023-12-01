@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/all-members', [AllMembersController::class, 'index'])->name('all-members');
     Route::get('/executive-members', [ExecutiveMembersController::class, 'index'])->name('executive-members');
-    Route::resource('/member-registration', MemberController::class);
+    Route::resource('/members', MemberController::class);
 
     Route::get('/members/{member}/nextOfKins/create', [NextOfKinController::class, 'create'])->name('next-of-kin.create');
     Route::get('/members/{member}/next-of-kins/{nextOfKin}/show', [NextOfKinController::class, 'show'])->name('next-of-kin.show');

@@ -11,7 +11,7 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="fw-bold text-capitalize py-1"><span class="text-muted fw-light">Members / <a href="{{ route('member-registration.show', $member) }}">{{ $member->surname }} {{ $member->given_name }} </a> / </span>Next of Kin</h5>
+                        <h5 class="fw-bold text-capitalize py-1"><span class="text-muted fw-light">Members / <a href="{{ route('members.show', $member) }}">{{ $member->surname }} {{ $member->given_name }} </a> / </span>Next of Kin</h5>
                     </div>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"

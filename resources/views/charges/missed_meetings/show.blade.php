@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Missed meetings / <a href="{{ route('missed-meetings.index') }}">List of Missed meetings</a> / </span>{{ $missedMeeting->charge_paid_for }}</h5>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Fund / <a href="{{ route('missed-meetings.index') }}">List of Missed meetings</a> / </span>{{ $missedMeeting->member->surname }} {{ $missedMeeting->member->given_name }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -23,12 +23,12 @@
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item btn-sm" href="{{ route('missed-meetings.edit', $missedMeeting) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit charge
+                                Edit missed meeting
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
                                 data-bs-target="#confirmChargeDeletion{{ $missedMeeting->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete charge
+                                Delete missed meeting
                             </a>
                         </div>
                     </div>

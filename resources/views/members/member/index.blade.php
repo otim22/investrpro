@@ -11,11 +11,11 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member registration / </span>List of current members</h5>
+                        <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Membership / </span> List of members</h5>
                     </div>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('member-registration.create') }}" aria-haspopup="true" aria-expanded="false">
+                            href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
                             Add member
                         </a>
@@ -41,19 +41,35 @@
                                 @foreach ($members as $member)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('member-registration.show', $member)}}">
-                                                {{ $member->surname }}<br/>
-                                                {{ $member->given_name }}<br/>
-                                                {{ $member->other_name }}
+                                            <a href="{{ route('members.show', $member)}}">
+                                                {{ $member->surname }} {{ $member->given_name }} {{ $member->other_name }}
                                             </a>
                                         </td>
                                         <td>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>
                                             {{ $member->address }}<br/>
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>
                                             {{ $member->email }}<br/>
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>
                                             {{ $member->telephone_number }}
                                         </td>
                                         <td>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>
                                             {{ $member->occupation }}<br/>
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>
                                             {{ $member->date_of_birth }}
                                         </td>
                                         <td>
@@ -68,11 +84,11 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('member-registration.show', $member) }}">
+                                                        href="{{ route('members.show', $member) }}">
                                                         <i class='bx bx-list-check me-1'></i> Show
                                                     </a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('member-registration.edit', $member) }}">
+                                                        href="{{ route('members.edit', $member) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
@@ -84,7 +100,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('member-registration.destroy', $member) }}" class="hidden"
+                                    <form action="{{ route('members.destroy', $member) }}" class="hidden"
                                         id="delete-member-{{ $member->id }}" method="POST">
                                         @csrf
                                         @method('delete')

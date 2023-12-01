@@ -3,16 +3,16 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 mb-2 order-lg-2">
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h4 class="fw-bold py-1 text-capitalize">
-                        <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a> / {{ $member->surname }} {{ $member->given_name }} </span>
-                    </h4>
+                    <h5 class="fw-bold py-1 text-capitalize">
+                        <span class="text-muted fw-light">Membership / <a href="{{ route('members.index') }}">Member registration</a> / </span>{{ $member->surname }} {{ $member->given_name }} 
+                    </h5>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('member-registration.index') }}" aria-haspopup="true" aria-expanded="false">
+                            href="{{ route('members.index') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-arrow-back'></i>
-                            Back to members
+                            Back to member registration
                         </a>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('member-registration.update', $member) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('members.update', $member) }}" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
 

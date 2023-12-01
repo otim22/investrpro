@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Late remissions / <a href="{{ route('late-remissions.index') }}">List of late remissions</a> / </span>{{ $lateRemission->charge_paid_for }}</h5>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Fund / <a href="{{ route('late-remissions.index') }}">List of late remissions</a> / </span>{{ $lateRemission->member->surname }} {{ $lateRemission->member->given_name }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -23,27 +23,27 @@
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item btn-sm" href="{{ route('late-remissions.edit', $lateRemission) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit charge
+                                Edit late remissions
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmChargeDeletion{{ $lateRemission->id }}">
+                                data-bs-target="#confirmLateRemissionDeletion{{ $lateRemission->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete charge
+                                Delete late remissions
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('late-remissions.destroy', $lateRemission) }}" class="hidden" id="delete-charge-{{ $lateRemission->id }}"
+            <form action="{{ route('late-remissions.destroy', $lateRemission) }}" class="hidden" id="delete-late-remission-{{ $lateRemission->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
             </form>
-            <div class="modal fade" id="confirmChargeDeletion{{ $lateRemission->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="confirmLateRemissionDeletion{{ $lateRemission->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmChargeDeletion{{ $lateRemission->id }}">
+                            <h5 class="modal-title" id="confirmLateRemissionDeletion{{ $lateRemission->id }}">
                                 Charge for {{ $lateRemission->charge_paid_for }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
@@ -60,7 +60,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $lateRemission->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-late-remission-{{ $lateRemission->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>

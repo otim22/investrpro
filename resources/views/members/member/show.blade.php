@@ -12,7 +12,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="fw-bold py-1 text-capitalize">
-                            <span class="text-muted fw-light">Member registration / <a href="{{ route('member-registration.index') }}">Members</a>
+                            <span class="text-muted fw-light">Membership / <a href="{{ route('members.index') }}">Member registration</a>
                                 / </span>{{ $member->surname }} {{ $member->given_name }}
                         </h5>
                     </div>
@@ -23,7 +23,7 @@
                                 Actions
                             </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item btn-sm" href="{{ route('member-registration.edit', $member) }}">
+                                <a class="dropdown-item btn-sm" href="{{ route('members.edit', $member) }}">
                                     <i class='me-2 bx bxs-edit-alt'></i>
                                     Edit member
                                 </a>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('member-registration.destroy', $member) }}" class="hidden" id="delete-member-{{ $member->id }}"
+                <form action="{{ route('members.destroy', $member) }}" class="hidden" id="delete-member-{{ $member->id }}"
                     method="POST">
                     @csrf
                     @method('delete')

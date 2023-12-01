@@ -12,7 +12,9 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Membership fees / <a href="{{ route('membership-fees.index') }}">Yearly membership fee</a> / </span>{{ $membershipFee->member->surname }} {{ $membershipFee->member->given_name }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize">
+                        <span class="text-muted fw-light">Membership / <a href="{{ route('membership-fees.index') }}">Annual membership fees</a> / </span>{{ $membershipFee->member->surname }} {{ $membershipFee->member->given_name }}
+                    </h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -23,12 +25,12 @@
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item btn-sm" href="{{ route('membership-fees.edit', $membershipFee) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit fee
+                                Edit membership fee
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
                                 data-bs-target="#confirmPremiumDeletion{{ $membershipFee->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete fee
+                                Delete membership fee
                             </a>
                         </div>
                     </div>

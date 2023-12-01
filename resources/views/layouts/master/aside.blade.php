@@ -123,7 +123,7 @@
         </li>
         
         <!-- Membership -->
-        <li class="menu-item added-active {{ Request::is(['all-members', 'executive-members', 'member-registration', 'membership-fees']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['all-members', 'executive-members', 'members', 'membership-fees']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-group'></i>
                 <div>Membership</div>
@@ -139,8 +139,8 @@
                         <div>Executive members</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('member-registration') ? 'active' : '' }}">
-                    <a href="{{ route('member-registration.index') }}" class="menu-link text-capitalize">
+                <li class="menu-item {{ Request::is('members') ? 'active' : '' }}">
+                    <a href="{{ route('members.index') }}" class="menu-link text-capitalize">
                         <div>Member registration</div>
                     </a>
                 </li>

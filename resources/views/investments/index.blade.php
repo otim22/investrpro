@@ -31,7 +31,7 @@
                                     <th class="text-nowrap">Investment</th>
                                     <th class="text-nowrap">Maturity</th>
                                     <th class="text-nowrap">Expected returns</th>
-                                    <th class="text-nowrap">Interest recieved & reinvested</th>
+                                    <th class="text-nowrap">Interests</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -40,26 +40,71 @@
                                     <tr>
                                         <td>
                                             <span class="text-nowrap text-capitalize">
-                                                <span class="fw-bold">Type:</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>
                                                 <a href="{{ route('investments.show', $investment) }}">
+                                                    <span>Type:</span>
                                                     {{ $investment->investment_type }} <br />
                                                 </a>
                                             </span>
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Start:</span> {{ $investment->formatDate($investment->date_of_investment) }}</span> <br />
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Duration:</span> {{ $investment->duration }} </span> <br />
+                                            <span class="text-nowrap text-capitalize"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>
+                                                <span>Start:</span> 
+                                                {{ $investment->formatDate($investment->date_of_investment) }}
+                                            </span> <br />
+                                            <span class="text-nowrap text-capitalize">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg> 
+                                                <span>Duration:</span> 
+                                                {{ $investment->duration }} 
+                                            </span> <br />
                                         </td>
                                         <td>
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Amount:</span> {{ number_format($investment->amount_invested) }} </span> <br />
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Interest rate:</span> {{ $investment->interest_rate }} </span> <br />
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">End:</span> {{ $investment->formatDate($investment->date_of_maturity) }} </span>
+                                            <span class="text-nowrap text-capitalize"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>
+                                                <span>Amount:</span> 
+                                                {{ number_format($investment->amount_invested) }} 
+                                            </span> <br />
+                                            <span class="text-nowrap text-capitalize"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>
+                                                <span>Interest rate:</span> 
+                                                {{ $investment->interest_rate }} 
+                                            </span> <br />
+                                            <span class="text-nowrap text-capitalize"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>
+                                                <span>End:</span> 
+                                                {{ $investment->formatDate($investment->date_of_maturity) }} 
+                                            </span>
                                         </td>
                                         <td>
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Before tax:</span> {{ $investment->expected_return_before_tax }} </span> <br />
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">After tax:</span> {{ $investment->expected_return_after_tax }}
+                                            <span class="text-nowrap text-capitalize"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>
+                                                <span>Before tax:</span> 
+                                                {{ $investment->expected_return_before_tax }} 
+                                            </span> <br />
+                                            <span class="text-nowrap text-capitalize"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                                </svg>
+                                                <span>After tax:</span> 
+                                                {{ $investment->expected_return_after_tax }}
+                                            </span>
                                         </td>
                                         <td>
                                         @if($investment->interest_recieved_and_reinvested)
-                                            <span class="text-nowrap text-capitalize"> <span class="fw-bold">Amount:</span> {{ $investment->interest_recieved_and_reinvested }}</span>
+                                            <span class="text-nowrap text-capitalize"> <span>Amount:</span> {{ number_format($investment->interest_recieved_and_reinvested) }}</span>
                                         @else
                                             --
                                         @endif

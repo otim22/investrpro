@@ -6,11 +6,11 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h4 class="fw-bold py-1 text-capitalize">
-                        <span class="text-muted fw-light">Members / <a href="{{ route('member-registration.show', $member) }}">{{ $member->surname }}</a> / Next of kin / </span>Next of kin form
+                        <span class="text-muted fw-light">Members / <a href="{{ route('members.show', $member) }}">{{ $member->surname }}</a> / Next of kin / </span>Next of kin form
                     </h4>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('member-registration.show', $member) }}" aria-haspopup="true" aria-expanded="false">
+                            href="{{ route('members.show', $member) }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-arrow-back'></i>
                             Back to {{ $member->surname }}
                         </a>
