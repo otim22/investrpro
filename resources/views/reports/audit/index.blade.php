@@ -51,6 +51,8 @@
                                         <td>
                                             @if ($auditReport->getFirstMediaUrl('report_attachement'))
                                                 <a class="text-decoration-none" href="{{ route('audit-reports.download', $auditReport->id) }}" target="_blank">{{ \Str::limit(strip_tags($auditReport->getFirstMedia("report_attachement")->name), 35) }}</a>
+                                            @else
+                                                --
                                             @endif
                                         </td>
                                         <td>

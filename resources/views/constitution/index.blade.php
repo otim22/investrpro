@@ -12,7 +12,7 @@
                 <div class="d-flex justify-content-between">
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Archive / </span>Constitution</h5>
                     <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('audit-reports.create') }}" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('constitution.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
                             Add constitution
                         </a>
@@ -29,7 +29,7 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Description</th>
-                                    <th>Name</th>
+                                    <th>Download Link</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -37,22 +37,22 @@
                                 @foreach ($constitutions as $constitution)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('audit-reports.show', $constitution)}}">
+                                            <a href="{{ route('constitution.show', $constitution)}}">
                                                 {{ $constitution->title }}
                                             </a>
                                         </td>
-                                        @if($constitution->description)
-                                            <td>
-                                                {{ $constitution->shortenSentence($constitution->description) }}
-                                            </td>
-                                        @else
-                                            <td>
-                                                --
-                                            </td>
-                                        @endif
                                         <td>
-                                            @if ($constitution->getFirstMediaUrl('report_attachement'))
-                                                <div>{{ $constitution->getFirstMedia('report_attachement')->name }}</div>
+                                            @if($constitution->description)
+                                                {{ $constitution->shortenSentence($constitution->description) }}
+                                            @else
+                                                --
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($constitution->getFirstMediaUrl('doc_attachement'))
+                                                <a class="text-decoration-none" href="{{ route('constitution.download', $constitution->id) }}" target="_blank">{{ \Str::limit(strip_tags($constitution->getFirstMedia("doc_attachement")->name), 35) }}</a>
+                                            @else
+                                                --
                                             @endif
                                         </td>
                                         <td>
@@ -63,11 +63,11 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('audit-reports.show', $constitution) }}">
+                                                        href="{{ route('constitution.show', $constitution) }}">
                                                         <i class='bx bx-list-check me-1'></i> Show
                                                     </a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('audit-reports.edit', $constitution) }}">
+                                                        href="{{ route('constitution.edit', $constitution) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
@@ -79,7 +79,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('audit-reports.destroy', $constitution) }}" class="hidden"
+                                    <form action="{{ route('constitution.destroy', $constitution) }}" class="hidden"
                                         id="delete-charge-{{ $constitution->id }}" method="POST">
                                         @csrf
                                         @method('delete')

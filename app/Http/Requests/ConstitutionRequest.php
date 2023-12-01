@@ -26,6 +26,7 @@ class ConstitutionRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'nullable|string',
+            'doc_attachement' => "required|mimes:pdf",
         ];
     }
 }

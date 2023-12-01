@@ -185,12 +185,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('constitution') ? 'active' : '' }}">
-                    <a href="{{ route('constitution') }}" class="menu-link text-capitalize">
+                    <a href="{{ route('constitution.index') }}" class="menu-link text-capitalize">
                         <div>Constitution</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('sop') ? 'active' : '' }}">
-                    <a href="{{ route('sop') }}" class="menu-link text-capitalize">
+                    <a href="{{ route('sop.index') }}" class="menu-link text-capitalize">
                         <div>SOP</div>
                     </a>
                 </li>

@@ -62,7 +62,8 @@ class ConstitutionController extends Controller
      */
     public function show(Constitution $constitution)
     {
-        return view('constitution.show', compact('Constitution'));
+        $constitutionUrl = $constitution->getFirstMediaUrl('doc_attachement');
+        return view('constitution.show', compact(['constitution', 'constitutionUrl']));
     }
 
     /**
@@ -70,7 +71,7 @@ class ConstitutionController extends Controller
      */
     public function edit(Constitution $constitution)
     {
-        return view('constitution.edit', compact('Constitution'));
+        return view('constitution.edit', compact('constitution'));
     }
 
     /**
@@ -94,5 +95,13 @@ class ConstitutionController extends Controller
     {
         $constitution->delete();
         return redirect()->route('constitution.index')->with('success', 'Constitution deleted successfully');
+    }
+
+    public function download($id)
+    {
+        $constitution = Constitution::findOrFail($id);
+        $path = $constitution->getFirstMedia('doc_attachement')->getPath();
+        $file_name = $constitution->getFirstMedia('doc_attachement')->file_name;
+        return response()->download($path, $file_name);
     }
 }
