@@ -105,8 +105,8 @@ class SopController extends Controller
     public function download($id)
     {
         $sop = Sop::findOrFail($id);
-        $path = $constitution->getFirstMedia('doc_attachement')->getPath();
-        $file_name = $constitution->getFirstMedia('doc_attachement')->file_name;
+        $path = $sop->getFirstMedia('doc_attachement')->getPath();
+        $file_name = $sop->getFirstMedia('doc_attachement')->file_name;
         return response()->download($path, $file_name);
     }
 }

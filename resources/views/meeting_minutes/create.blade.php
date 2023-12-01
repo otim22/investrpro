@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('sop.index') }}">Standard Operating Procedures</a> / </span>{{ $sop->title }}</h5>
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('meeting-minutes.index') }}">Meeting minute</a> / </span>Form</h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('sop.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('meeting-minutes.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to SOP
+                        Back to meeting minute
                     </a>
                 </div>
             </div>
@@ -20,9 +20,8 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('sop.update', $sop) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('meeting-minutes.store') }}" enctype="multipart/form-data">
                         @csrf
-                        @method('patch')
 
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="title">Title</label>
@@ -32,9 +31,10 @@
                                     id="title" 
                                     class="form-control @error('title') is-invalid @enderror" 
                                     name="title"
-                                    value="{{ old('title', $sop->title) }}"
-                                    placeholder="January" 
+                                    value="{{ old('title') }}"
+                                    placeholder="Meeting minute" 
                                     autofocus
+                                    required
                                 />
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
                                         id="description"
                                         name="description"
                                         class="form-control"
-                                    >{{ old('description', $sop->description) }} </textarea>
+                                    >{{ old('description') }} </textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -62,27 +62,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount">Attach document</label>
+                            <label class="col-sm-2 col-form-label" for="doc_attachement">Attach document</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <input type="file" 
                                         class="form-control" 
+                                        id="doc_attachement"
                                         name="doc_attachement" 
-                                        accept=".doc,.docx,.pdf" 
-                                        id="doc_attachement" 
-                                    />
+                                        accept=".pdf" 
+                                        required
+                                        />
                                     <label class="input-group-text" for="doc_attachement">Upload</label>
-                                </div>
-                                <div class="mt-2">
-                                    @if($sop->getFirstMediaUrl("doc_attachement"))
-                                        <label for="doc_attachement"><small class="text-warning">Current form (* Uploading a form overrides current one)</small> </label><br />
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-short pb-1" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                            </svg>                                         
-                                            {{ $sop->getFirstMedia("doc_attachement")->name }}
-                                        </div>
-                                    @endif
                                 </div>
                                 @error('doc_attachement')
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +83,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary text-capitalize">Update SOP</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Create Meeting minute</button>
                             </div>
                         </div>
                     </form>

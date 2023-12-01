@@ -25,6 +25,9 @@ use App\Http\Controllers\FinancialReportController;
 use App\Http\Controllers\GeneralReportController;
 use App\Http\Controllers\ConstitutionController;
 use App\Http\Controllers\SopController;
+use App\Http\Controllers\MeetingMinuteController;
+use App\Http\Controllers\SavedEmailController;
+use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleController;
@@ -82,9 +85,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/constitution/download/{id}', [ConstitutionController::class, 'download'])->name('constitution.download');
     Route::resource('/sop', SopController::class);
     Route::get('/sop/download/{id}', [SopController::class, 'download'])->name('sop.download');
-    Route::get('/meeting-minutes', [App\Http\Controllers\MeetingMinuteController::class, 'index'])->name('meeting-minutes');
-    Route::get('/saved-emails', [App\Http\Controllers\SavedEmailController::class, 'index'])->name('saved-emails');
-    Route::get('/elections', [App\Http\Controllers\ElectionController::class, 'index'])->name('elections');
+    Route::resource('/meeting-minutes', MeetingMinuteController::class);
+    Route::get('/meeting-minutes/download/{id}', [MeetingMinuteController::class, 'download'])->name('meeting-minutes.download');
+    Route::resource('/saved-emails', SavedEmailController::class);
+    Route::get('/saved-emails/download/{id}', [SavedEmailController::class, 'download'])->name('saved-emails.download');
+    Route::resource('/elections', ElectionController::class);
+    Route::get('/elections/download/{id}', [ElectionController::class, 'download'])->name('elections.download');
     Route::get('/meeting-recordings', [App\Http\Controllers\MeetingRecordingController::class, 'index'])->name('recordings');
     Route::get('/billing', [App\Http\Controllers\BillingController::class, 'index'])->name('billing');
 

@@ -15,7 +15,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('sop.index') }}">Standard Operating Procedures</a> / </span>{{ $sop->title }}</h5>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('meeting-minutes.index') }}">Meeting minute</a> / </span>{{ $meetingMinute->title }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -24,37 +24,37 @@
                             Actions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item btn-sm" href="{{ route('sop.edit', $sop) }}">
+                            <a class="dropdown-item btn-sm" href="{{ route('meeting-minutes.edit', $meetingMinute) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit sop
+                                Edit meeting minute
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmSopDeletion{{ $sop->id }}">
+                                data-bs-target="#confirmMeetingMinuteDeletion{{ $meetingMinute->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete sop
+                                Delete meeting minute
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('sop.destroy', $sop) }}" class="hidden" id="delete-sop-{{ $sop->id }}"
+            <form action="{{ route('meeting-minutes.destroy', $meetingMinute) }}" class="hidden" id="delete-meeting-minute-{{ $meetingMinute->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
             </form>
-            <div class="modal fade" id="confirmSopDeletion{{ $sop->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="confirmMeetingMinuteDeletion{{ $meetingMinute->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmSopDeletion{{ $sop->id }}">
-                                {{ $sop->title }}</h5>
+                            <h5 class="modal-title" id="confirmMeetingMinuteDeletion{{ $meetingMinute->id }}">
+                                {{ $meetingMinute->title }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row g-2">
                                 <div class="col mb-0">
-                                    Are you sure to delete {{ $sop->title }}?
+                                    Are you sure to delete {{ $meetingMinute->title }}?
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-sop-{{ $sop->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-meeting-minute-{{ $meetingMinute->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('sop.update', $sop) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('meeting-minutes.update', $meetingMinute) }}" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
 
@@ -86,7 +86,7 @@
                                     id="title" 
                                     class="form-control @error('title') is-invalid @enderror" 
                                     name="title"
-                                    value="{{ old('title', $sop->title) }}"
+                                    value="{{ old('title', $meetingMinute->title) }}"
                                     placeholder="January" 
                                     autofocus
                                     disabled
@@ -108,7 +108,7 @@
                                         name="description"
                                         class="form-control"
                                         disabled
-                                    >{{ old('description', $sop->description) }} </textarea>
+                                    >{{ old('description', $meetingMinute->description) }} </textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -121,8 +121,8 @@
                             <label class="col-sm-3 col-form-label" for="amount">Document attachement</label>
                             <div class="col-sm-9">
                                 <div class="col-sm-9">
-                                    @if ($sop->getFirstMediaUrl('doc_attachement'))
-                                        <div><a class="text-decoration-none" href="{{ route('sop.download', $sop->id) }}" target="_blank">{{ $sop->getFirstMedia("doc_attachement")->name }}</a></div>
+                                    @if ($meetingMinute->getFirstMediaUrl('doc_attachement'))
+                                        <div><a class="text-decoration-none" href="{{ route('meeting-minutes.download', $meetingMinute->id) }}" target="_blank">{{ $meetingMinute->getFirstMedia("doc_attachement")->name }}</a></div>
                                     @else
                                         <div>--</div>
                                     @endif
@@ -155,7 +155,7 @@
         let pdfRendering = false;
 
         function getPdf() {
-            let url = {{ Js::from($sopUrl) }};
+            let url = {{ Js::from($meetingMinuteUrl) }};
             if (url) {
                 return {
                     url

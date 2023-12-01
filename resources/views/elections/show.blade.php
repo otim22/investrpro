@@ -15,7 +15,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('sop.index') }}">Standard Operating Procedures</a> / </span>{{ $sop->title }}</h5>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('elections.index') }}">Elections</a> / </span>{{ $election->title }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -24,37 +24,37 @@
                             Actions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item btn-sm" href="{{ route('sop.edit', $sop) }}">
+                            <a class="dropdown-item btn-sm" href="{{ route('elections.edit', $election) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit sop
+                                Edit election
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmSopDeletion{{ $sop->id }}">
+                                data-bs-target="#confirmElectionDeletion{{ $election->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete sop
+                                Delete election
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('sop.destroy', $sop) }}" class="hidden" id="delete-sop-{{ $sop->id }}"
+            <form action="{{ route('elections.destroy', $election) }}" class="hidden" id="delete-charge-{{ $election->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
             </form>
-            <div class="modal fade" id="confirmSopDeletion{{ $sop->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="confirmElectionDeletion{{ $election->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmSopDeletion{{ $sop->id }}">
-                                {{ $sop->title }}</h5>
+                            <h5 class="modal-title" id="confirmElectionDeletion{{ $election->id }}">
+                                {{ $election->title }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row g-2">
                                 <div class="col mb-0">
-                                    Are you sure to delete {{ $sop->title }}?
+                                    Are you sure to delete {{ $election->title }}?
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-sop-{{ $sop->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $election->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('sop.update', $sop) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('elections.update', $election) }}" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
 
@@ -86,7 +86,7 @@
                                     id="title" 
                                     class="form-control @error('title') is-invalid @enderror" 
                                     name="title"
-                                    value="{{ old('title', $sop->title) }}"
+                                    value="{{ old('title', $election->title) }}"
                                     placeholder="January" 
                                     autofocus
                                     disabled
@@ -108,7 +108,7 @@
                                         name="description"
                                         class="form-control"
                                         disabled
-                                    >{{ old('description', $sop->description) }} </textarea>
+                                    >{{ old('description', $election->description) }} </textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -121,8 +121,8 @@
                             <label class="col-sm-3 col-form-label" for="amount">Document attachement</label>
                             <div class="col-sm-9">
                                 <div class="col-sm-9">
-                                    @if ($sop->getFirstMediaUrl('doc_attachement'))
-                                        <div><a class="text-decoration-none" href="{{ route('sop.download', $sop->id) }}" target="_blank">{{ $sop->getFirstMedia("doc_attachement")->name }}</a></div>
+                                    @if ($election->getFirstMediaUrl('doc_attachement'))
+                                        <div><a class="text-decoration-none" href="{{ route('elections.download', $election->id) }}" target="_blank">{{ $election->getFirstMedia("doc_attachement")->name }}</a></div>
                                     @else
                                         <div>--</div>
                                     @endif
@@ -155,7 +155,7 @@
         let pdfRendering = false;
 
         function getPdf() {
-            let url = {{ Js::from($sopUrl) }};
+            let url = {{ Js::from($electionUrl) }};
             if (url) {
                 return {
                     url

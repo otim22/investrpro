@@ -195,17 +195,17 @@
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('meeting-minutes') ? 'active' : '' }}">
-                    <a href="{{ route('meeting-minutes') }}" class="menu-link text-capitalize">
+                    <a href="{{ route('meeting-minutes.index') }}" class="menu-link text-capitalize">
                         <div>Meeting minutes</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('saved-emails') ? 'active' : '' }}">
-                    <a href="{{ route('saved-emails') }}" class="menu-link text-capitalize">
+                    <a href="{{ route('saved-emails.index') }}" class="menu-link text-capitalize">
                         <div>Saved Emails</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('elections') ? 'active' : '' }}">
-                    <a href="{{ route('elections') }}" class="menu-link text-capitalize">
+                    <a href="{{ route('elections.index') }}" class="menu-link text-capitalize">
                         <div>Elections</div>
                     </a>
                 </li>
