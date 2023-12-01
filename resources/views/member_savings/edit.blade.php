@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member savings / <a href="{{ route('member-savings.index') }}">Monthly premiums</a> / </span>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }} </h5>
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Fund / <a href="{{ route('member-savings.index') }}">Monthly savings</a> / </span>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }} </h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('member-savings.create') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('member-savings.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to premiums
+                        Back to savings
                     </a>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Update premium</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Update saving</button>
                             </div>
                         </div>
                     </form>

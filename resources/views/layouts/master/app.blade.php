@@ -44,6 +44,34 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('js/config.js') }}"></script>
+    <style>
+        .bg-menu-theme {
+            background-color: rgba(7, 7, 7, 0.988) !important;
+        }
+        .bg-menu-theme .menu-link,
+        .bg-menu-theme .menu-horizontal-prev,
+        .bg-menu-theme .menu-horizontal-next {
+            color: #adb0b3;
+        }
+        .bg-menu-theme .menu-link:hover, .bg-menu-theme .menu-link:focus,
+        .bg-menu-theme .menu-horizontal-prev:hover,
+        .bg-menu-theme .menu-horizontal-prev:focus,
+        .bg-menu-theme .menu-horizontal-next:hover,
+        .bg-menu-theme .menu-horizontal-next:focus {
+            color: #ffffff;
+        }
+        html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item.open > .menu-link, .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item.open > .menu-link,
+        html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover,
+        .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover {
+            background-color: rgba(105, 108, 255, 0.16);
+            
+        }
+        .menu.bg-primary .menu-link.active,
+.menu.bg-primary .menu-horizontal-prev.active,
+.menu.bg-primary .menu-horizontal-next.active {
+  color: red !important;
+}
+    </style>
 
     @stack('styles')
 </head>

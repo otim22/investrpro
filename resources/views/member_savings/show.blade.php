@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Member savings / <a href="{{ route('member-savings.index') }}">Monthly premiums</a> / </span>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Fund / <a href="{{ route('member-savings.index') }}">Monthly savings</a> / </span>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -23,27 +23,27 @@
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item btn-sm" href="{{ route('member-savings.edit', $memberSaving) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit premium
+                                Edit saving
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmPremiumDeletion{{ $memberSaving->id }}">
+                                data-bs-target="#confirmSavingDeletion{{ $memberSaving->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete premium
+                                Delete saving
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('member-savings.destroy', $memberSaving) }}" class="hidden" id="delete-month-{{ $memberSaving->id }}"
+            <form action="{{ route('member-savings.destroy', $memberSaving) }}" class="hidden" id="delete-saving-{{ $memberSaving->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
             </form>
-            <div class="modal fade" id="confirmPremiumDeletion{{ $memberSaving->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="confirmSavingDeletion{{ $memberSaving->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmPremiumDeletion{{ $memberSaving->id }}">
+                            <h5 class="modal-title" id="confirmSavingDeletion{{ $memberSaving->id }}">
                                 Premium for {{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
@@ -60,7 +60,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-month-{{ $memberSaving->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-saving-{{ $memberSaving->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>

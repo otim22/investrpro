@@ -28,5 +28,5 @@ class HomeController extends Controller
     {
         $assets = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         return $dataTable->render('home', compact('assets'));
-    }
+    } 
 }

@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Fund / <a href="{{ route('expenses.index') }}">Expenses</a> / </span>{{ $expense->formatDate($expense->date_of_expense) }}</h5>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Expenses / </span>{{ $expense->formatDate($expense->date_of_expense) }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">

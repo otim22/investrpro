@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-body">
                         <span class="d-block mb-1">Assets</span>
-                        <h5 class="card-title mb-2">$12,628</h5>
+                        <h5 class="card-title mb-2">{{ count($assets) }}</h5>
                     </div>
                 </div>
             </div>
