@@ -76,6 +76,68 @@
                         @method('patch')
 
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="asset_name">Asset name</label>
+                            <div class="col-sm-10">
+                                <input 
+                                    type="text" 
+                                    id="asset_name" 
+                                    class="form-control @error('asset_name') is-invalid @enderror" 
+                                    name="asset_name"
+                                    value="{{ old('asset_name', $memberSaving->asset_name) }}"
+                                    placeholder="Premiums" 
+                                    disabled
+                                    autofocus
+                                />
+                                @error('asset_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="asset_type" 
+                                    class="form-select @error('asset_type') is-invalid @enderror" 
+                                    name="asset_type"
+                                    aria-label="Default select asset type"
+                                    disabled
+                                >
+                                    @if($assetTypes)
+                                        <option value="{{ $memberSaving->asset_type }}" selected>{{ $memberSaving->asset_type }}</option>
+                                        @foreach($assetTypes as $assetType)
+                                            <option value="{{ $assetType->asset_type }}">{{ $assetType->asset_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('asset_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="text"
+                                        id="financial_year"
+                                        name="financial_year"
+                                        class="form-control @error('financial_year') is-invalid @enderror"
+                                        placeholder="FY22/23"
+                                        aria-label="FY22/23"
+                                        aria-describedby="financial_year"
+                                        value="{{ old('type', $memberSaving->financial_year) }}"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Member names</label>
                             <div class="col-sm-10">
                                 <select 
@@ -83,7 +145,6 @@
                                     class="form-select @error('member_id') is-invalid @enderror" 
                                     name="member_id"
                                     aria-label="Default select member"
-                                    autofocus
                                     disabled
                                 >
                                     @if($members)

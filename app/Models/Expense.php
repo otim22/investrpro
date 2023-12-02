@@ -54,7 +54,7 @@ class Expense extends Model
 
     public function shortenSentence($value)
     {
-        return Str::limit($value, 100);
+        return Str::limit($value, 80);
     }
 
     public function total($rate, $amount)

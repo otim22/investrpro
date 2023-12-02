@@ -14,6 +14,9 @@ class MemberSaving extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
+        'asset_name',
+        'asset_type',
+        'financial_year',
         'premium',
         'month',
         'date_paid',

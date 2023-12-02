@@ -24,9 +24,12 @@ class MemberSavingsUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'asset_name' => ['required', 'string'],
+            'asset_type' => ['required', 'string'],
+            'financial_year' => ['required', 'string'],
             'premium' => ['required', 'string'],
             'month' => ['required', 'string'],
-            'date_paid' => ['nullable', 'date'],
+            'date_paid' => ['required', 'date'],
             'member_id' => ['required'],
             'comment' => ['nullable'],
         ];

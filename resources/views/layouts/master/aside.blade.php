@@ -28,11 +28,11 @@
             </a>
         </li>
 
-        <!-- Fund -->
+        <!-- Asset -->
         <li class="menu-item added-active {{ Request::is(['member-savings', 'late-remissions', 'missed-meetings']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-money'></i>
-                <div>Fund</div>
+                <div>Assets</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('member-savings') ? 'active' : '' }}">

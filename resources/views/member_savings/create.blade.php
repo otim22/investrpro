@@ -24,6 +24,69 @@
                         @csrf
 
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="asset_name">Asset name</label>
+                            <div class="col-sm-10">
+                                <input 
+                                    type="text" 
+                                    id="asset_name" 
+                                    class="form-control @error('asset_name') is-invalid @enderror" 
+                                    name="asset_name"
+                                    value="{{ old('asset_name') }}"
+                                    placeholder="Cash at hand" 
+                                    autofocus
+                                />
+                                @error('asset_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="asset_type" 
+                                    class="form-select @error('asset_type') is-invalid @enderror" 
+                                    name="asset_type"
+                                    aria-label="Default select asset type"
+                                >
+                                    @if($assetTypes)
+                                        @foreach($assetTypes as $assetType)
+                                            <option value="{{ $assetType->asset_type }}">{{ $assetType->asset_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('asset_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="text"
+                                        id="financial_year"
+                                        name="financial_year"
+                                        class="form-control @error('financial_year') is-invalid @enderror"
+                                        placeholder="FY22/23"
+                                        aria-label="FY22/23"
+                                        aria-describedby="financial_year"
+                                        value="{{ old('financial_year') }}"
+                                    />
+                                    @error('financial_year')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Member names</label>
                             <div class="col-sm-10">
                                 <select 
@@ -51,7 +114,7 @@
                             <label class="col-sm-2 col-form-label" for="premium">Premium amount</label>
                             <div class="col-sm-10">
                                 <input 
-                                    type="text" 
+                                    type="number" 
                                     id="premium" 
                                     class="form-control @error('premium') is-invalid @enderror" 
                                     name="premium"
@@ -131,7 +194,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary text-capitalize">Save premium</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Save saving</button>
                             </div>
                         </div>
                     </form>
