@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expenses / </span>New form</h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('membership-fees.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('expenses.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
                         Back to expenses
                     </a>
@@ -24,7 +24,69 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_of_expense">Date of expense</label>
+                            <label class="col-sm-2 col-form-label" for="liability_name">Liability name</label>
+                            <div class="col-sm-10">
+                                <input 
+                                    type="text" 
+                                    id="liability_name" 
+                                    class="form-control @error('liability_name') is-invalid @enderror" 
+                                    name="liability_name"
+                                    value="{{ old('liability_name') }}"
+                                    placeholder="Expenses" 
+                                />
+                                @error('liability_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="liability_type">Liability type</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="liability_type" 
+                                    class="form-select @error('liability_type') is-invalid @enderror" 
+                                    name="liability_type"
+                                    aria-label="Default select liability type"
+                                >
+                                    @if($liabilityTypes)
+                                        @foreach($liabilityTypes as $liabilityType)
+                                            <option value="{{ $liabilityType->liability_type }}">{{ $liabilityType->liability_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('liability_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="text"
+                                        id="financial_year"
+                                        name="financial_year"
+                                        class="form-control @error('financial_year') is-invalid @enderror"
+                                        placeholder="FY22/23"
+                                        aria-label="FY22/23"
+                                        aria-describedby="financial_year"
+                                        value="{{ old('financial_year') }}"
+                                    />
+                                    @error('financial_year')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="date_of_expense">Date acquired</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -45,7 +107,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="details">Expense details</label>
+                            <label class="col-sm-2 col-form-label" for="details">Details</label>
                             <div class="col-sm-10">
                                 <textarea 
                                     type="text" 

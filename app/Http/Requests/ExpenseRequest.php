@@ -24,6 +24,9 @@ class ExpenseRequest extends FormRequest
     public function rules()
     {
         return [
+            'liability_name' => ['required', 'string'],
+            'liability_type' => ['required', 'string'],
+            'financial_year' => ['required', 'string'],
             'date_of_expense' => ['required', 'date'],
             'details' => ['required', 'string'],
             'rate' => ['nullable', 'string'],

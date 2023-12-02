@@ -25,6 +25,70 @@
                         @method('patch')
 
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="liability_name">liability name</label>
+                            <div class="col-sm-10">
+                                <input 
+                                    type="text" 
+                                    id="liability_name" 
+                                    class="form-control @error('liability_name') is-invalid @enderror" 
+                                    name="liability_name"
+                                    value="{{ old('liability_name', $expense->liability_name) }}"
+                                    placeholder="Name"
+                                    autofocus 
+                                />
+                                @error('liability_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="liability_type">liability type</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="liability_type" 
+                                    class="form-select @error('liability_type') is-invalid @enderror" 
+                                    name="liability_type"
+                                    aria-label="Default select liability type"
+                                >
+                                    @if($liabilityTypes)
+                                        <option value="{{ $expense->liability_type }}" selected>{{ $expense->liability_type }}</option>
+                                        @foreach($liabilityTypes as $liabilityType)
+                                            <option value="{{ $liabilityType->liability_type }}">{{ $liabilityType->liability_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('liability_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="text"
+                                        id="financial_year"
+                                        name="financial_year"
+                                        class="form-control @error('financial_year') is-invalid @enderror"
+                                        placeholder="FY22/23"
+                                        aria-label="FY22/23"
+                                        aria-describedby="financial_year"
+                                        value="{{ old('financial_year', $expense->financial_year) }}"
+                                    />
+                                    @error('financial_year')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="date_of_expense">Date of expense</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
@@ -114,7 +178,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Update expense</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Update expense</button>
                             </div>
                         </div>
                     </form>

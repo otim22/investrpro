@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Expense;
 use Illuminate\Http\Request;
+use App\Models\LiabilitySetting;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExpenseRequest;
 use App\Http\Requests\ExpenseUpdateRequest;
@@ -26,21 +27,28 @@ class ExpenseController extends Controller
 
     public function create()
     {
-        return view('expenses.create');
+        $liabilityTypes = [];
+        if(Auth::user()->company) {
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('expenses.create', compact('liabilityTypes'));
     }
 
     public function store(ExpenseRequest $request)
     {
         $request->validated();
-        $expense = new Expense;
-        $expense->date_of_expense = $request->date_of_expense;
-        $expense->details = $request->details;
-        $expense->rate = $request->rate;
-        $expense->amount = $request->amount;
-        $expense->designate = $request->designate;
-        $expense->company_id = Auth::user()->company->id;
-        $expense->save();
-
+        $expense = Expense::create([
+            'liability_name' => $request->liability_name,
+            'liability_type' => $request->liability_type,
+            'financial_year' => $request->financial_year,
+            'date_of_expense' => $request->date_of_expense,
+            'details' => $request->details,
+            'rate' => $request->rate,
+            'amount' => $request->amount,
+            'designate' => $request->designate,
+            'company_id' => Auth::user()->company->id,
+        ]);
+        
         return redirect()->route('expenses.index')->with("success", "Expense saved successfully!");
     }
 
@@ -49,7 +57,11 @@ class ExpenseController extends Controller
      */
     public function show(Expense $expense)
     {
-        return view('expenses.show', compact('expense'));
+        $liabilityTypes = [];
+        if(Auth::user()->company) {
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('expenses.show', compact(['expense', 'liabilityTypes']));
     }
 
     /**
@@ -57,7 +69,11 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        return view('expenses.edit', compact('expense'));
+        $liabilityTypes = [];
+        if(Auth::user()->company) {
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+        }
+        return view('expenses.edit', compact(['expense', 'liabilityTypes']));
     }
 
     /**

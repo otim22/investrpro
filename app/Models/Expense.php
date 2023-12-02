@@ -14,6 +14,9 @@ class Expense extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
+        'liability_name',
+        'liability_type',
+        'financial_year',
         'date_of_expense',
         'details',
         'rate',
@@ -51,7 +54,7 @@ class Expense extends Model
 
     public function shortenSentence($value)
     {
-        return Str::limit($value, 35);
+        return Str::limit($value, 100);
     }
 
     public function total($rate, $amount)

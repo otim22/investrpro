@@ -77,6 +77,51 @@
                         @method('patch')
 
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="liability_name">Liability name</label>
+                            <div class="col-sm-10">
+                                <input 
+                                    type="text" 
+                                    id="liability_name" 
+                                    class="form-control @error('liability_name') is-invalid @enderror" 
+                                    name="liability_name"
+                                    value="{{ old('liability_name', $expense->liability_name) }}"
+                                    placeholder="Premiums" 
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="liability_type">Liability type</label>
+                            <div class="col-sm-10">
+                                <input 
+                                    type="text" 
+                                    id="liability_type" 
+                                    class="form-control @error('liability_type') is-invalid @enderror" 
+                                    name="liability_type"
+                                    value="{{ old('liability_type', $expense->liability_type) }}"
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="text"
+                                        id="financial_year"
+                                        name="financial_year"
+                                        class="form-control @error('financial_year') is-invalid @enderror"
+                                        placeholder="FY22/23"
+                                        aria-label="FY22/23"
+                                        aria-describedby="financial_year"
+                                        value="{{ old('type', $expense->financial_year) }}"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="date_of_expense">Date of expense</label>
                             <div class="col-sm-10">
                                 <input 

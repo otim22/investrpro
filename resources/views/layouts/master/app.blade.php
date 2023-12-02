@@ -46,7 +46,8 @@
     <script src="{{ asset('js/config.js') }}"></script>
     <style>
         .bg-menu-theme {
-            background-color: rgba(7, 7, 7, 0.988) !important;
+            background-color: rgb(11, 1, 24)!important;
+            /* background-color: rgba(7, 7, 7, 0.988) !important; */
         }
         .bg-menu-theme .menu-link,
         .bg-menu-theme .menu-horizontal-prev,
@@ -66,11 +67,6 @@
             background-color: rgba(105, 108, 255, 0.16);
             
         }
-        .menu.bg-primary .menu-link.active,
-.menu.bg-primary .menu-horizontal-prev.active,
-.menu.bg-primary .menu-horizontal-next.active {
-  color: red !important;
-}
     </style>
 
     @stack('styles')

@@ -76,7 +76,7 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_name">Asset name</label>
+                            <label class="col-sm-2 col-form-label" for="liability_name">Liability name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_type">Asset type</label>
+                            <label class="col-sm-2 col-form-label" for="liability_type">Liability type</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -98,7 +98,6 @@
                                     class="form-control @error('liability_type') is-invalid @enderror" 
                                     name="liability_type"
                                     value="{{ old('liability_type', $liability->liability_type) }}"
-                                    placeholder="Current assets" 
                                     disabled
                                 />
                             </div>

@@ -27,36 +27,47 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Date of expense</th>
-                                <th>details</th>
-                                <th>rate</th>
-                                <th>Amount (UGX)</th>
-                                <th>Total (UGX)</th>
-                                <th>Designate</th>
+                                <th class="text-nowrap">Liability</th>
+                                <th class="text-nowrap">Details</th>
+                                <th class="text-nowrap">Total (UGX)</th>
+                                <th class="text-nowrap">Designate</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
                             @foreach ($expenses as $expense)
                                 <tr>
-                                    <td>
+                                    <td class="text-nowrap">
                                         <a href="{{ route('expenses.show', $expense) }}">
-                                            {{ $expense->formatDate($expense->date_of_expense) }}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>Date: {{ $expense->formatDate($expense->date_of_expense) }} <br />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>Name: {{ $expense->liability_name }}<br />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>Type: {{ $expense->liability_type }} <br />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>Year: {{ $expense->financial_year }}
                                         </a>
                                     </td>
                                     <td>
                                         {{ $expense->shortenSentence($expense->details) }}
                                     </td>
-                                    <td>
-                                        {{ $expense->rate }}
+                                    <td class="text-nowrap">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                        </svg>Amount: {{ number_format($expense->amount) }} <br />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                        </svg>Rate: {{ $expense->rate }} <br />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                        </svg>Total: {{ number_format($expense->total($expense->rate, $expense->amount)) }}
                                     </td>
-                                    <td>
-                                        {{ number_format($expense->amount) }}
-                                    </td>
-                                    <td>
-                                        {{ number_format($expense->total($expense->rate, $expense->amount)) }}
-                                    </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         {{ $expense->designate }}
                                     </td>
                                     <td>
