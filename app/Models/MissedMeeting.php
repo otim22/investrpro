@@ -16,6 +16,8 @@ class MissedMeeting extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
+        'asset_type',
+        'financial_year',
         'charge_paid_for',
         'charge_amount',
         'month_paid_for',

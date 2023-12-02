@@ -15,7 +15,7 @@
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">General reports / <a
+                        <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">General reports / <a
                                     href="{{ route('general-reports.index') }}">General reports</a> /
                             </span>{{ $generalReport->title }}</h5>
                     </div>

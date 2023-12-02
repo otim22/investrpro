@@ -15,7 +15,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('elections.index') }}">Elections</a> / </span>{{ $election->title }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('elections.index') }}">Elections</a> / </span>{{ $election->title }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">

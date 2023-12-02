@@ -182,7 +182,7 @@
         </li>
         
         <!-- General -->
-        <li class="menu-item added-active {{ Request::is(['charge-settings', 'asset-settings', 'liability-settings', 'economic-calendar-year']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['charge-settings', 'asset-settings', 'liability-settings', 'economic-calendar-year', 'financial-year']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-grid'></i>
                 <div>General</div>
@@ -206,6 +206,11 @@
                 <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
                     <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
                         <div>Economic calendar</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('financial-year') ? 'active' : '' }}">
+                    <a href="{{ route('financial-year.index') }}" class="menu-link text-capitalize">
+                        <div>Financial year</div>
                     </a>
                 </li>
             </ul>

@@ -63,7 +63,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary">Update setting</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Update setting</button>
                             </div>
                         </div>
                     </form>

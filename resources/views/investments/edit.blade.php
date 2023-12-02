@@ -208,7 +208,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-9 mt-2">
-                                <button type="submit" class="btn btn-primary">Update investment</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Update investment</button>
                             </div>
                         </div>
                     </form>
