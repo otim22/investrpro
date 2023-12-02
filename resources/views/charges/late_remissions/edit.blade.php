@@ -25,6 +25,75 @@
                         @method('patch')
 
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="charge_paid_for">Asset name</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="charge_paid_for" 
+                                    class="form-select @error('charge_paid_for') is-invalid @enderror" 
+                                    name="charge_paid_for"
+                                    aria-label="Default select charge"
+                                    autofocus
+                                >
+                                    @if($chargeSettings)
+                                        <option value="{{ $lateRemission->charge_paid_for}}" selected>{{ $lateRemission->charge_paid_for}}</option>
+                                        @foreach($chargeSettings as $chargeSetting)
+                                            <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('charge_paid_for')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="asset_type" 
+                                    class="form-select @error('asset_type') is-invalid @enderror" 
+                                    name="asset_type"
+                                    aria-label="Default select asset type"
+                                >
+                                    @if($assetTypes)
+                                        <option value="{{ $lateRemission->asset_type }}" selected>{{ $lateRemission->asset_type }}</option>
+                                        @foreach($assetTypes as $assetType)
+                                            <option value="{{ $assetType->asset_type }}">{{ $assetType->asset_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('asset_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="text"
+                                        id="financial_year"
+                                        name="financial_year"
+                                        class="form-control @error('financial_year') is-invalid @enderror"
+                                        placeholder="FY22/23"
+                                        aria-label="FY22/23"
+                                        aria-describedby="financial_year"
+                                        value="{{ old('financial_year', $lateRemission->financial_year) }}"
+                                    />
+                                    @error('financial_year')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="member_id">Member names</label>
                             <div class="col-sm-10">
                                 <select 
@@ -97,7 +166,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month paid for</label>
+                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month being paid for</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="month_paid_for" 

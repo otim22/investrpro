@@ -30,10 +30,10 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Asset</th>
-                                <th>Premium amount (UGX)</th>
-                                <th>Month paid for</th>
-                                <th>Date of payment</th>
+                                <th class="text-nowrap">Asset</th>
+                                <th class="text-nowrap">Amount (UGX)</th>
+                                <th class="text-nowrap">Month paid for</th>
+                                <th class="text-nowrap">Payment</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -46,7 +46,7 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                                                 </svg>
-                                                Member names: {{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}
+                                                Names: {{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}
                                             </div>
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
@@ -69,18 +69,28 @@
                                             </svg>
                                             {{ $memberSaving->asset_name }}
                                         </div>
+                                        <div>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                                             </svg>
-                                            {{ number_format($memberSaving->premium) }}
-                                        <div>
+                                            Amount: <span class="text-muted">{{ number_format($memberSaving->premium) }}</span>
                                         </div>
                                     </td>
                                     <td>
-                                        {{ $memberSaving->month }}
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>
+                                            {{ $memberSaving->month }}
+                                        </div>
                                     </td>
                                     <td>
-                                        {{ $memberSaving->formatDate($memberSaving->date_paid) }}
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                                            </svg>
+                                            Date: <span class="text-muted">{{ $memberSaving->formatDate($memberSaving->date_paid) }}</span>
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="dropdown">

@@ -24,6 +24,8 @@ class LateRemissionRequest extends FormRequest
     public function rules()
     {
         return [
+            'asset_type' => ['required', 'string'],
+            'financial_year' => ['required', 'string'],
             'charge_paid_for' => ['required', 'string'],
             'charge_amount' => ['required', 'string'],
             'month_paid_for' => ['required', 'string'],
