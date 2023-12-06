@@ -25,6 +25,78 @@
                         @method('patch')
 
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="charge_paid_for">Asset name</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="charge_paid_for" 
+                                    class="form-select @error('charge_paid_for') is-invalid @enderror" 
+                                    name="charge_paid_for"
+                                    aria-label="Default select charge"
+                                    autofocus
+                                >
+                                    @if($chargeSettings)
+                                        <option value="{{ $missedMeeting->charge_paid_for}}" selected>{{ $missedMeeting->charge_paid_for}}</option>
+                                        @foreach($chargeSettings as $chargeSetting)
+                                            <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('charge_paid_for')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="asset_type" 
+                                    class="form-select @error('asset_type') is-invalid @enderror" 
+                                    name="asset_type"
+                                    aria-label="Default select asset type"
+                                >
+                                    @if($assetTypes)
+                                        <option value="{{ $missedMeeting->asset_type }}" selected>{{ $missedMeeting->asset_type }}</option>
+                                        @foreach($assetTypes as $assetType)
+                                            <option value="{{ $assetType->asset_type }}">{{ $assetType->asset_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('asset_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <select 
+                                        id="financial_year" 
+                                        class="form-select @error('financial_year') is-invalid @enderror" 
+                                        name="financial_year"
+                                        aria-label="Default select year"
+                                    >
+                                        @if($financialYears)
+                                            <option value="{{ $missedMeeting->financial_year }}" selected>{{ $missedMeeting->financial_year }}</option>
+                                            @foreach($financialYears as $financialYear)
+                                                <option value="{{ $financialYear->title }}">{{ $financialYear->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    @error('financial_year')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="member_id">Member names</label>
                             <div class="col-sm-10">
                                 <select 
@@ -42,30 +114,6 @@
                                     @endif
                                 </select>
                                 @error('member_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="charge_paid_for">Charge being paid for</label>
-                            <div class="col-sm-10">
-                                <select 
-                                    id="charge_paid_for" 
-                                    class="form-select @error('charge_paid_for') is-invalid @enderror" 
-                                    name="charge_paid_for"
-                                    aria-label="Default select charge"
-                                    autofocus
-                                >
-                                    @if($chargeSettings)
-                                        <option value="{{ $missedMeeting->charge_paid_for}}" selected>{{ $missedMeeting->charge_paid_for}}</option>
-                                        @foreach($chargeSettings as $chargeSetting)
-                                            <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                                @error('charge_paid_for')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -97,7 +145,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month paid for</label>
+                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month being paid for</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="month_paid_for" 

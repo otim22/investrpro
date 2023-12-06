@@ -19,20 +19,33 @@ class LiabilityController extends Controller
     public function index()
     {
         $liabilities = [];
+        
+        $nonCurrentLiabilitiesTotal = 0;
+
         if(Auth::user()->company) {
             $liabilities = Liability::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
             $totalValue = Liability::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
                 return $carry += $item->amount;
             }, 0);
-            $totalByTypes = Liability::where('company_id', Auth::user()->company->id)->get()->groupBy('liability_type')
-                ->map(function ($option) {
-                    return $option
-                            ->reduce(function($carry, $item) {
-                                return $carry += $item->amount;
-                            });
-                });
-        }
-        return view('liabilities.liability.index', compact(['liabilities', 'totalValue', 'totalByTypes']));
+            // $totalByTypes = Liability::where('company_id', Auth::user()->company->id)->get()->groupBy('liability_type')
+            //     ->map(function ($option) {
+            //         return $option
+            //                 ->reduce(function($carry, $item) {
+            //                     return $carry += $item->amount;
+            //                 });
+            //     });
+            
+            $currentLiabilities = Liability::where([
+                'company_id' => Auth::user()->company->id,
+                'liability_type' => 'Current Liabilities'
+            ])->sum('amount');
+            $nonCurrentLiabilities = Liability::where([
+                'company_id' => Auth::user()->company->id,
+                'liability_type' => 'Non Current Liabilities'
+            ])->sum('amount');
+            dd($currentLiabilities);
+        } 
+        return view('liabilities.liability.index', compact(['liabilities', 'totalValue', 'currentLiabilities', 'nonCurrentLiabilities']));
     }
 
     public function create()

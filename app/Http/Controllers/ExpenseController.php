@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
+use App\Models\FinancialYear;
 use Illuminate\Http\Request;
 use App\Models\LiabilitySetting;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +29,12 @@ class ExpenseController extends Controller
     public function create()
     {
         $liabilityTypes = [];
+        $financialYears = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('expenses.create', compact('liabilityTypes'));
+        return view('expenses.create', compact(['liabilityTypes', 'financialYears']));
     }
 
     public function store(ExpenseRequest $request)
@@ -59,7 +62,7 @@ class ExpenseController extends Controller
     {
         $liabilityTypes = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->get();
         }
         return view('expenses.show', compact(['expense', 'liabilityTypes']));
     }
@@ -70,10 +73,12 @@ class ExpenseController extends Controller
     public function edit(Expense $expense)
     {
         $liabilityTypes = [];
+        $financialYears = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('expenses.edit', compact(['expense', 'liabilityTypes']));
+        return view('expenses.edit', compact(['expense', 'liabilityTypes', 'financialYears']));
     }
 
     /**

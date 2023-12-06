@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asset;
+use App\Models\MemberSaving;
+use App\Models\LateRemission;
+use App\Models\MissedMeeting;
+use App\Models\EconomicCalendarYear;
 use App\Models\AssetSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +23,39 @@ class AssetController extends Controller
     public function index()
     {
         $assets = [];
+        $MemberSavings = [];
+        $totalMemberSaving = 0;
+        $lateRemissions = [];
+        $totalLateRemission = 0;
+        $missedMeetings = [];
+        $economicCalenders = [];
+        $MemberSavingData = [];
+        $totalMissedMeeting = 0;
 
         if(Auth::user()->company) {
+            $MemberSavings = MemberSaving::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $lateRemissions = LateRemission::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $missedMeetings = MissedMeeting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $economicCalenders = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get()->pluck('title');
+            // dd($MemberSavings);
+            
+            foreach($MemberSavings as $MemberSaving) {
+                $totalMemberSaving += $MemberSaving->premium;
+
+                foreach($economicCalenders as $economicCalender) {
+                    if($MemberSaving->month == $economicCalender) {
+                        // array_push($MemberSavingData, $MemberSaving->premium);
+                    }
+                }
+            }
+            foreach($lateRemissions as $lateRemission) {
+                $totalLateRemission += $lateRemission->charge_amount;
+            }
+            foreach($missedMeetings as $missedMeeting) {
+                $totalMissedMeeting += $missedMeeting->charge_amount;
+            }
+
             $assets = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
-            $totalNetworth = Asset::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
-                return $carry += $item->amount;
-            }, 0);
             $totalByTypes = Asset::where('company_id', Auth::user()->company->id)->get()->groupBy('asset_type')
                 ->map(function ($option) {
                     return $option
@@ -34,7 +65,18 @@ class AssetController extends Controller
                 });
         }
 
-        return view('assets.asset.index', compact(['assets', 'totalNetworth', 'totalByTypes']));
+        $overrallTotal = $totalMemberSaving + $totalLateRemission + $totalMissedMeeting;
+
+        // dd($totalLateRemission, $totalMissedMeeting);
+
+        return view('assets.asset.index', compact([
+            'assets', 
+            'totalMemberSaving', 
+            'totalLateRemission', 
+            'totalMissedMeeting',
+            'overrallTotal',
+            'totalByTypes',
+        ]));
     }
 
     public function create()

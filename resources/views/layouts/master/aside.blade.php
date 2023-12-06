@@ -210,7 +210,7 @@
                 </li>
                 <li class="menu-item {{ Request::is('financial-year') ? 'active' : '' }}">
                     <a href="{{ route('financial-year.index') }}" class="menu-link text-capitalize">
-                        <div>Financial year</div>
+                        <div>Financial years</div>
                     </a>
                 </li>
             </ul>

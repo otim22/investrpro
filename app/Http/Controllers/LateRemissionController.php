@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Models\AssetSetting;
 use App\Models\LateRemission;
+use App\Models\FinancialYear;
 use App\Models\ChargeSetting;
 use Illuminate\Http\Request;
 use App\Models\EconomicCalendarYear;
@@ -29,15 +30,17 @@ class LateRemissionController extends Controller
         $chargeSettings = [];
         $months = [];
         $assetTypes = [];
+        $financialYears = [];
 
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
+            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
 
-        return view('charges.late_remissions.create', compact(['members', 'chargeSettings', 'months', 'assetTypes']));
+        return view('charges.late_remissions.create', compact(['members', 'chargeSettings', 'months', 'assetTypes', 'financialYears']));
     }
 
     public function store(LateRemissionRequest $request)
@@ -68,7 +71,7 @@ class LateRemissionController extends Controller
         $assetTypes = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
         }
         return view('charges.late_remissions.show', compact(['lateRemission', 'members', 'assetTypes']));
     }
@@ -82,15 +85,17 @@ class LateRemissionController extends Controller
         $chargeSettings = [];
         $months = [];
         $assetTypes = [];
+        $financialYears = [];
 
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
+            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
         
-        return view('charges.late_remissions.edit', compact(['lateRemission', 'members', 'chargeSettings', 'months', 'assetTypes']));
+        return view('charges.late_remissions.edit', compact(['lateRemission', 'members', 'chargeSettings', 'months', 'assetTypes', 'financialYears']));
     }
 
     /**

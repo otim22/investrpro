@@ -22,9 +22,9 @@
       </div>
       <div class="row">
             <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
+                <div class="card" style="background-color: rgb(204, 229, 243)">
                     <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Liability number</span>
+                        <span class="d-block text-capitalize mb-1">Number of Liabilities</span>
                         @if($liabilities)
                             <h5 class="card-title mb-2">{{ count($liabilities) }}</h5>
                         @else
@@ -34,27 +34,52 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
+                <div class="card" style="background-color: rgb(204, 243, 222)">
                     <div class="card-body"> 
-                        <span class="d-block text-capitalize mb-1">Overall value</span>
+                        <span class="d-block text-capitalize mb-1">Overall value (UGX)</span>
                         @if($totalValue)
-                            <h5 class="card-title mb-2">{{ number_format($totalValue) }}</h5>
+                            <h5 class="card-title mb-2">{{ number_format($totalValue) }}/-</h5>
                         @else
                             <h5 class="card-title mb-2">0.00</h5>
                         @endif
                     </div>
                 </div>
             </div>
-            @foreach($totalByTypes as $key => $totalByType)
+            {{-- @foreach($totalByTypes as $key => $totalByType)
                 <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="card">
+                    <div class="card" style="background-color: rgb(243, 211, 204)">
                         <div class="card-body">
                             <span class="d-block text-capitalize mb-1">{{ $key }}</span>
                             <h5 class="card-title mb-2">{{ number_format($totalByType) }}</h5>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @endforeach --}}
+            <div class="col-lg-3 col-md-6 col-6 mb-4">
+                <div class="card" style="background-color: rgb(234, 243, 204)">
+                    <div class="card-body">
+                        <span class="d-block text-capitalize mb-1">Current Liabilities (UGX)</span>
+                        @if($currentLiabilities)
+                            <h5 class="card-title mb-2">{{ number_format($currentLiabilities) }}/-</h5>
+                        @else
+                            <h5 class="card-title mb-2">0.00</h5>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-6 mb-4">
+                <div class="card" style="background-color: rgb(243, 211, 204)">
+                    <div class="card-body">
+                        <span class="d-block text-capitalize mb-1">Non Current Liabilities (UGX)</span>
+                        @if($nonCurrentLiabilities)
+                            <h5 class="card-title mb-2">{{ number_format($nonCurrentLiabilities) }}/-</h5>
+                        @else
+                            <h5 class="card-title mb-2">0.00</h5>
+                        @endif
+                        
+                    </div>
+                </div>
+            </div>
         </div>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">

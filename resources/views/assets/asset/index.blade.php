@@ -1,5 +1,14 @@
 @extends('layouts.master.app')
 
+@push('styles')
+    <style>
+        #chart-container {
+            width: 800px;
+            height: 500px;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
       <div class="row">
@@ -11,22 +20,34 @@
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Profit & Loss / </span>Assets</h5>
-                <div>
+                {{-- <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('assets.create') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-plus'></i>
                         Add asset
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
       </div>
       <div class="row">
             <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
+                <div class="card" style="background-color: rgb(204, 229, 243)">
+                    <div class="card-body"> 
+                        <span class="d-block text-capitalize mb-1">Overall networth (UGX)</span>
+                        @if($overrallTotal)
+                            <h5 class="card-title mb-2">{{ number_format($overrallTotal) }}/-</h5>
+                        @else
+                            <h5 class="card-title mb-2">0.00</h5>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-6 mb-4">
+                <div class="card" style="background-color: rgb(204, 243, 222)">
                     <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Asset number</span>
-                        @if($assets)
-                            <h5 class="card-title mb-2">{{ count($assets) }}</h5>
+                        <span class="d-block text-capitalize mb-1">Monthly savings total (UGX)</span>
+                        @if($totalMemberSaving)
+                            <h5 class="card-title mb-2">{{ number_format($totalMemberSaving) }}/-</h5>
                         @else
                             <h5 class="card-title mb-2">0</h5>
                         @endif
@@ -34,33 +55,39 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
+                <div class="card" style="background-color: rgb(234, 243, 204)">
                     <div class="card-body"> 
-                        <span class="d-block text-capitalize mb-1">Overall value</span>
-                        @if($totalNetworth)
-                            <h5 class="card-title mb-2">{{ number_format($totalNetworth) }}</h5>
+                        <span class="d-block text-capitalize mb-1">Late remissions total (UGX)</span>
+                        @if($totalLateRemission)
+                            <h5 class="card-title mb-2">{{ number_format($totalLateRemission) }}/-</h5>
                         @else
                             <h5 class="card-title mb-2">0.00</h5>
                         @endif
                     </div>
                 </div>
             </div>
-            @foreach($totalByTypes as $key => $totalByType)
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <span class="d-block text-capitalize mb-1">{{ $key }}</span>
-                            <h5 class="card-title mb-2">{{ number_format($totalByType) }}</h5>
-                        </div>
+            <div class="col-lg-3 col-md-6 col-6 mb-4">
+                <div class="card" style="background-color: rgb(243, 211, 204)">
+                    <div class="card-body"> 
+                        <span class="d-block text-capitalize mb-1">Missed meetings total (UGX)</span>
+                        @if($totalLateRemission)
+                            <h5 class="card-title mb-2">{{ number_format($totalMissedMeeting) }}/-</h5>
+                        @else
+                            <h5 class="card-title mb-2">0.00</h5>
+                        @endif
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
-      <div class="row">
+      <div class="row mt-3">
         <div class="col-lg-12 col-md-12 col-12">
             <div class="card p-3">
                 @if (count($assets))
-                    <table class="table table-striped table-hover">
+                    <div>
+                        <canvas id="myChart"></canvas>
+                        {{-- <canvas id="chart-container"></canvas> --}}
+                    </div>
+                    {{-- <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th class="text-nowrap">Asset name</th>
@@ -151,7 +178,7 @@
                                 </div>
                             @endforeach
                         </tbody>
-                    </table>
+                    </table> --}}
                 @else
                     <p class="mb-0 text-center text-capitalize">No assets found</p>
                 @endif
@@ -160,3 +187,62 @@
       </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'Monthly savings',
+                    data: [12, 19, 3, 5, 2, 3, 11, 4, 7, 1, 5, 17],
+                    backgroundColor: [
+                        'rgba(153, 102, 255, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(153, 102, 255, 0.2)',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Late remissions',
+                    data: [11, 4, 7, 1, 5, 17, 12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Missed meetings',
+                    data: [5, 17, 12, 19, 3, 11, 4, 7, 1, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgb(54, 162, 235)',
+                    ],
+                    borderWidth: 1
+                }],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart'
+                }
+                }
+            }
+        });
+    </script>    
+@endpush

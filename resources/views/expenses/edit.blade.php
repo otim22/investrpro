@@ -70,16 +70,19 @@
                             <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <input
-                                        type="text"
-                                        id="financial_year"
+                                    <select 
+                                        id="financial_year" 
+                                        class="form-select @error('financial_year') is-invalid @enderror" 
                                         name="financial_year"
-                                        class="form-control @error('financial_year') is-invalid @enderror"
-                                        placeholder="FY22/23"
-                                        aria-label="FY22/23"
-                                        aria-describedby="financial_year"
-                                        value="{{ old('financial_year', $expense->financial_year) }}"
-                                    />
+                                        aria-label="Default select year"
+                                    >
+                                        @if($financialYears)
+                                            <option value="{{ $expense->financial_year }}" selected>{{ $expense->financial_year }}</option>
+                                            @foreach($financialYears as $financialYear)
+                                                <option value="{{ $financialYear->title }}">{{ $financialYear->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
                                     @error('financial_year')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

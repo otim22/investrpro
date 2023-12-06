@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Models\AssetSetting;
 use App\Models\MissedMeeting;
 use App\Models\ChargeSetting;
+use App\Models\FinancialYear;
 use Illuminate\Http\Request;
 use App\Models\EconomicCalendarYear;
 use Illuminate\Support\Facades\Auth;
@@ -29,15 +30,17 @@ class MissedMeetingController extends Controller
         $chargeSettings = [];
         $months = [];
         $assetTypes = [];
+        $financialYears = [];
 
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
+            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
 
-        return view('charges.missed_meetings.create', compact(['members', 'chargeSettings', 'months', 'assetTypes']));
+        return view('charges.missed_meetings.create', compact(['members', 'chargeSettings', 'months', 'assetTypes', 'financialYears']));
     }
 
     public function store(MissedMeetingRequest $request)
@@ -82,15 +85,17 @@ class MissedMeetingController extends Controller
         $chargeSettings = [];
         $months = [];
         $assetTypes = [];
+        $financialYears = [];
 
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
+            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
         
-        return view('charges.missed_meetings.edit', compact(['missedMeeting', 'members', 'chargeSettings', 'months', 'assetTypes']));
+        return view('charges.missed_meetings.edit', compact(['missedMeeting', 'members', 'chargeSettings', 'months', 'assetTypes', 'financialYears']));
     }
 
     /**
