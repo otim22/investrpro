@@ -6,13 +6,11 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold py-1 text-capitalize">
-                    <span class="text-muted fw-light">Membership / <a href="{{ route('membership-fees.index') }}">Annual membership fees</a> / </span>Collection form
-                </h5>
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('late-remissions.index') }}">Late remissions</a> / </span>New form</h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('membership-fees.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('late-remissions.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to membership fees
+                        Back to late remissions
                     </a>
                 </div>
             </div>
@@ -22,9 +20,79 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('membership-fees.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('late-remissions.store') }}" enctype="multipart/form-data">
                         @csrf
 
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="charge_paid_for">Asset name</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="charge_paid_for" 
+                                    class="form-select @error('charge_paid_for') is-invalid @enderror" 
+                                    name="charge_paid_for"
+                                    aria-label="Default select charge"
+                                    autofocus
+                                    required
+                                >
+                                    @if($chargeSettings)
+                                        @foreach($chargeSettings as $chargeSetting)
+                                            <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('charge_paid_for')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="asset_type" 
+                                    class="form-select @error('asset_type') is-invalid @enderror" 
+                                    name="asset_type"
+                                    aria-label="Default select asset type"
+                                >
+                                    @if($assetTypes)
+                                        @foreach($assetTypes as $assetType)
+                                            <option value="{{ $assetType->asset_type }}">{{ $assetType->asset_type }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('asset_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <select 
+                                        id="financial_year" 
+                                        class="form-select @error('financial_year') is-invalid @enderror" 
+                                        name="financial_year"
+                                        aria-label="Default select year"
+                                    >
+                                        @if($financialYears)
+                                            @foreach($financialYears as $financialYear)
+                                                <option value="{{ $financialYear->title }}">{{ $financialYear->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    @error('financial_year')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="member_id">Member names</label>
                             <div class="col-sm-10">
@@ -33,10 +101,9 @@
                                     class="form-select @error('member_id') is-invalid @enderror" 
                                     name="member_id"
                                     aria-label="Default select member"
-                                    autofocus
+                                    required
                                 >
                                     @if($members)
-                                        <option selected>Select member</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach
@@ -50,12 +117,12 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="fee_amount">Fee amount</label>
+                            <label class="col-sm-2 col-form-label" for="charge_amount">Charge amount</label>
                             <div class="col-sm-10">
                                 <select 
-                                    id="fee_amount" 
-                                    class="form-select @error('fee_amount') is-invalid @enderror" 
-                                    name="fee_amount"
+                                    id="charge_amount" 
+                                    class="form-select @error('charge_amount') is-invalid @enderror" 
+                                    name="charge_amount"
                                     aria-label="Default select amount"
                                     required
                                 >
@@ -65,7 +132,7 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('fee_amount')
+                                @error('charge_amount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -73,21 +140,22 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="year_paid_for">Financial Year</label>
+                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month paid for</label>
                             <div class="col-sm-10">
                                 <select 
-                                        id="year_paid_for" 
-                                        class="form-select @error('year_paid_for') is-invalid @enderror" 
-                                        name="year_paid_for"
-                                        aria-label="Default select year"
-                                    >
-                                    @if($financialYears)
-                                        @foreach($financialYears as $financialYear)
-                                            <option value="{{ $financialYear->title }}">{{ $financialYear->title }}</option>
+                                    id="month_paid_for" 
+                                    class="form-select @error('month_paid_for') is-invalid @enderror" 
+                                    name="month_paid_for"
+                                    aria-label="Default select month"
+                                    required
+                                >
+                                    @if($months)
+                                        @foreach($months as $month)
+                                            <option value="{{ $month->title }}">{{ $month->title }}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('year_paid_for')
+                                @error('month_paid_for')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -104,9 +172,8 @@
                                         name="date_of_payment"
                                         class="form-control @error('date_of_payment') is-invalid @enderror"
                                         placeholder="12/03/2029"
-                                        aria-label="12/03/2029" 
+                                        aria-label="12/03/2029"
                                         aria-describedby="date_of_payment"
-                                        value="{{ old('date_of_payment', date('Y-m-d')) }}"
                                     />
                                     @error('date_of_payment')
                                         <span class="invalid-feedback" role="alert">
@@ -138,7 +205,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary text-capitalize">Save membership fee</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Create late remission</button>
                             </div>
                         </div>
                     </form>

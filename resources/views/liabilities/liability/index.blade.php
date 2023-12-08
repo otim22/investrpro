@@ -1,5 +1,24 @@
 @extends('layouts.master.app')
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+    <style>
+        table tr td, table tr th {
+            max-width: 14vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        table {
+            width: 100%;
+        }
+        div.dataTables_wrapper div.dataTables_length select {
+            width: 70px !important;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
       <div class="row">
@@ -11,172 +30,74 @@
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Profit & Loss / </span>Liabilities</h5>
-                {{-- <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('liabilities.create') }}" aria-haspopup="true" aria-expanded="false">
-                        <i class='me-2 bx bx-plus'></i>
-                        Add liability
-                    </a>
-                </div> --}}
+            </div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-lg-3 col-md-6 col-6 mb-4">
+            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card-body"> 
+                    <span class="d-block text-capitalize mb-1">Overall value</span>
+                    @if($totalValue)
+                        <h5 class="card-title mb-2">UGX {{ number_format($totalValue) }}/-</h5>
+                    @else
+                        <h5 class="card-title mb-2">0.00</h5>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-6 mb-4">
+            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card-body">
+                    <span class="d-block text-capitalize mb-1">Number of Liabilities</span>
+                    @if($liabilities)
+                        <h5 class="card-title mb-2">{{ number_format(count($liabilities)) }}</h5>
+                    @else
+                        <h5 class="card-title mb-2">0</h5>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-6 mb-4">
+            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card-body">
+                    <span class="d-block text-capitalize mb-1">Current Liabilities</span>
+                    @if($currentLiabilities)
+                        <h5 class="card-title mb-2">UGX {{ number_format($currentLiabilities) }}/-</h5>
+                    @else
+                        <h5 class="card-title mb-2">0.00</h5>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-6">
+            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card-body">
+                    <span class="d-block text-capitalize mb-1">Non Current Liabilities</span>
+                    @if($nonCurrentLiabilities)
+                        <h5 class="card-title mb-2">UGX {{ number_format($nonCurrentLiabilities) }}/-</h5>
+                    @else
+                        <h5 class="card-title mb-2">0.00</h5>
+                    @endif
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+            <div class="d-flex justify-content-between">
+                <h5 class="py-1 text-capitalize">Table of all liabilities</h5>
             </div>
         </div>
       </div>
       <div class="row">
-            <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card" style="background-color: rgb(204, 229, 243)">
-                    <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Number of Liabilities</span>
-                        @if($liabilities)
-                            <h5 class="card-title mb-2">{{ count($liabilities) }}</h5>
-                        @else
-                            <h5 class="card-title mb-2">0</h5>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card" style="background-color: rgb(204, 243, 222)">
-                    <div class="card-body"> 
-                        <span class="d-block text-capitalize mb-1">Overall value (UGX)</span>
-                        @if($totalValue)
-                            <h5 class="card-title mb-2">{{ number_format($totalValue) }}/-</h5>
-                        @else
-                            <h5 class="card-title mb-2">0.00</h5>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            {{-- @foreach($totalByTypes as $key => $totalByType)
-                <div class="col-lg-3 col-md-6 col-6 mb-4">
-                    <div class="card" style="background-color: rgb(243, 211, 204)">
-                        <div class="card-body">
-                            <span class="d-block text-capitalize mb-1">{{ $key }}</span>
-                            <h5 class="card-title mb-2">{{ number_format($totalByType) }}</h5>
-                        </div>
-                    </div>
-                </div>
-            @endforeach --}}
-            <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card" style="background-color: rgb(234, 243, 204)">
-                    <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Current Liabilities (UGX)</span>
-                        @if($currentLiabilities)
-                            <h5 class="card-title mb-2">{{ number_format($currentLiabilities) }}/-</h5>
-                        @else
-                            <h5 class="card-title mb-2">0.00</h5>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card" style="background-color: rgb(243, 211, 204)">
-                    <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Non Current Liabilities (UGX)</span>
-                        @if($nonCurrentLiabilities)
-                            <h5 class="card-title mb-2">{{ number_format($nonCurrentLiabilities) }}/-</h5>
-                        @else
-                            <h5 class="card-title mb-2">0.00</h5>
-                        @endif
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-      <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
             <div class="card p-3">
                 @if (count($liabilities))
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-nowrap">Liability name</th>
-                                <th class="text-nowrap">Type</th>
-                                <th class="text-nowrap">Amount (UGX)</th>
-                                <th class="text-nowrap">Financial year</th>
-                                <th class="text-nowrap">Date acquired</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                            @foreach ($liabilities as $liability)
-                                <tr>
-                                    <td>
-                                        <a href="{{ route('liabilities.show', $liability) }}">
-                                            {{ $liability->liability_name }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {{ $liability->liability_type }}
-                                    </td>
-                                    <td>
-                                        {{ number_format($liability->amount) }}
-                                    </td>
-                                    <td>
-                                        {{ $liability->financial_year }}
-                                    </td>
-                                    <td>
-                                        {{ $liability->formatDate($liability->date_acquired) }}
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('liabilities.show', $liability) }}">
-                                                    <i class='bx bx-list-check me-1'></i> Show
-                                                </a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('liabilities.edit', $liability) }}">
-                                                    <i class="bx bx-edit-alt me-1"></i> Edit
-                                                </a>
-                                                <a class="dropdown-item" href="javascript:void(0);"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#confirmMemberDeletion{{ $liability->id }}">
-                                                    <i class="bx bx-trash me-1"></i> Delete
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <form action="{{ route('liabilities.destroy', $liability) }}" class="hidden"
-                                    id="delete-asset-{{ $liability->id }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                </form>
-                                <div class="modal fade" id="confirmMemberDeletion{{ $liability->id }}"
-                                    tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    id="confirmMemberDeletion{{ $liability->id }}">
-                                                    Deleting {{ $liability->liability_name }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row g-2">
-                                                    <div class="col mb-0">
-                                                        Are you sure deleting {{ $liability->liability_name }}?
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    data-bs-dismiss="modal">
-                                                    Close
-                                                </button>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="event.preventDefault(); document.getElementById('delete-asset-{{ $liability->id }}').submit();">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="card p-3">
+                        {{ $dataTable->table() }}
+                    </div>
                 @else
                     <p class="mb-0 text-center text-capitalize">No liabilities found</p>
                 @endif
@@ -185,3 +106,10 @@
       </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    {{ $dataTable->scripts() }}
+@endpush

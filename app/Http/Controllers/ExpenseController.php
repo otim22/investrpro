@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Expense;
 use App\Models\FinancialYear;
 use Illuminate\Http\Request;
-use App\Models\LiabilitySetting;
+use App\Models\LiabilityType;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExpenseRequest;
 use App\Http\Requests\ExpenseUpdateRequest;
@@ -31,7 +31,7 @@ class ExpenseController extends Controller
         $liabilityTypes = [];
         $financialYears = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->get();
+            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
         return view('expenses.create', compact(['liabilityTypes', 'financialYears']));
@@ -62,7 +62,7 @@ class ExpenseController extends Controller
     {
         $liabilityTypes = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->get();
+            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
         }
         return view('expenses.show', compact(['expense', 'liabilityTypes']));
     }
@@ -75,7 +75,7 @@ class ExpenseController extends Controller
         $liabilityTypes = [];
         $financialYears = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->get();
+            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
         return view('expenses.edit', compact(['expense', 'liabilityTypes', 'financialYears']));

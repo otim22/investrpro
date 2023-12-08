@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\MembershipFee;
+use App\Models\ChargeSetting;
+use App\Models\FinancialYear;
 use Illuminate\Http\Request;
 use App\Models\EconomicCalendarYear;
 use Illuminate\Support\Facades\Auth;
@@ -29,17 +31,21 @@ class MembershipFeeController extends Controller
     public function create()
     {
         $members = [];
+        $chargeSettings = [];
+        $financialYears = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('membership_fee.create', compact(['members']));
+        return view('membership_fee.create', compact(['members', 'financialYears', 'chargeSettings']));
     }
 
     public function store(MembershipFeeRequest $request)
     {
         $request->validated();
 
-        $membershipFee = MemberSaving::create([
+        $membershipFee = MembershipFee::create([
             'fee_amount' => $request->fee_amount,
             'year_paid_for' => $request->year_paid_for,
             'date_of_payment' => $request->date_of_payment,
@@ -69,10 +75,14 @@ class MembershipFeeController extends Controller
     public function edit(MembershipFee $membershipFee)
     {
         $members = [];
+        $chargeSettings = [];
+        $financialYears = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('membership_fee.edit', compact(['membershipFee', 'members']));
+        return view('membership_fee.edit', compact(['membershipFee', 'members', 'chargeSettings', 'financialYears']));
     }
 
     /**

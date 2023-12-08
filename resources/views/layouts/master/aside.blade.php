@@ -1,7 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
     <div class="app-brand demo">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
-            <h3 class="fw-bolder text-white ms-2">InvestrPro</h3>
+            <h3 class="fw-bolder ms-2" style="color: #121213">InvestrPro</h3>
         </a>
 
         {{-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -168,11 +168,6 @@
                         <div>Elections</div>
                     </a>
                 </li>
-                {{-- <li class="menu-item {{ Request::is('audit-reports') ? 'active' : '' }}">
-                    <a href="{{ route('audit-reports.index') }}" class="menu-link text-capitalize">
-                        <div>Meeting recording</div>
-                    </a>
-                </li> --}}
             </ul>
         </li>
 
@@ -182,7 +177,7 @@
         </li>
         
         <!-- General -->
-        <li class="menu-item added-active {{ Request::is(['charge-settings', 'asset-settings', 'liability-settings', 'economic-calendar-year', 'financial-year']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['charge-settings', 'asset-types', 'liability-types', 'economic-calendar-year', 'financial-year']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-grid'></i>
                 <div>General</div>
@@ -193,14 +188,14 @@
                         <div>Charges</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('asset-settings') ? 'active' : '' }}">
-                    <a href="{{ route('asset-settings.index') }}" class="menu-link text-capitalize">
-                        <div>Assets</div>
+                <li class="menu-item {{ Request::is('asset-types') ? 'active' : '' }}">
+                    <a href="{{ route('asset-types.index') }}" class="menu-link text-capitalize">
+                        <div>Asset types</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('liability-settings') ? 'active' : '' }}">
-                    <a href="{{ route('liability-settings.index') }}" class="menu-link text-capitalize">
-                        <div>Liabilities</div>
+                <li class="menu-item {{ Request::is('liability-types') ? 'active' : '' }}">
+                    <a href="{{ route('liability-types.index') }}" class="menu-link text-capitalize">
+                        <div>Liability types</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">

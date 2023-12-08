@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Liability;
-use App\Models\LiabilitySetting;
 use Illuminate\Http\Request;
+use App\Models\LiabilityType;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LiabilityRequest;
+use App\DataTables\LiabilitiesDataTable;
 use App\Http\Requests\LiabilityUpdateRequest;
 
 class LiabilityController extends Controller
@@ -16,25 +17,15 @@ class LiabilityController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(LiabilitiesDataTable $dataTable)
     {
         $liabilities = [];
-        
-        $nonCurrentLiabilitiesTotal = 0;
 
         if(Auth::user()->company) {
             $liabilities = Liability::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
             $totalValue = Liability::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
                 return $carry += $item->amount;
             }, 0);
-            // $totalByTypes = Liability::where('company_id', Auth::user()->company->id)->get()->groupBy('liability_type')
-            //     ->map(function ($option) {
-            //         return $option
-            //                 ->reduce(function($carry, $item) {
-            //                     return $carry += $item->amount;
-            //                 });
-            //     });
-            
             $currentLiabilities = Liability::where([
                 'company_id' => Auth::user()->company->id,
                 'liability_type' => 'Current Liabilities'
@@ -43,16 +34,21 @@ class LiabilityController extends Controller
                 'company_id' => Auth::user()->company->id,
                 'liability_type' => 'Non Current Liabilities'
             ])->sum('amount');
-            dd($currentLiabilities);
         } 
-        return view('liabilities.liability.index', compact(['liabilities', 'totalValue', 'currentLiabilities', 'nonCurrentLiabilities']));
+
+        return $dataTable->render('liabilities.liability.index', compact([
+            'liabilities', 
+            'totalValue', 
+            'currentLiabilities',
+            'nonCurrentLiabilities',
+        ]));
     }
 
     public function create()
     {
         $liabilityTypes = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
         return view('liabilities.liability.create', compact('liabilityTypes'));
     }
@@ -81,7 +77,7 @@ class LiabilityController extends Controller
     {
         $liabilityTypes = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
         return view('liabilities.liability.show', compact(['liability', 'liabilityTypes']));
     }
@@ -93,7 +89,7 @@ class LiabilityController extends Controller
     {
         $liabilityTypes = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilitySetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
         return view('liabilities.liability.edit', compact(['liability', 'liabilityTypes']));
     }

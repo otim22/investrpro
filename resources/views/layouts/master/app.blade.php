@@ -45,10 +45,10 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('js/config.js') }}"></script>
     <style>
-        .bg-menu-theme {
-            background-color: rgb(11, 1, 24)!important;
-            /* background-color: rgba(7, 7, 7, 0.988) !important; */
-        }
+        /* .bg-menu-theme {
+            background-color: #060508 !important;
+        } */
+        /* 
         .bg-menu-theme .menu-link,
         .bg-menu-theme .menu-horizontal-prev,
         .bg-menu-theme .menu-horizontal-next {
@@ -60,7 +60,7 @@
         .bg-menu-theme .menu-horizontal-next:hover,
         .bg-menu-theme .menu-horizontal-next:focus {
             color: #ffffff;
-        }
+        } */
         html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item.open > .menu-link, .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item.open > .menu-link,
         html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover,
         .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover {

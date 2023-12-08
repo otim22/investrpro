@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('member-savings.index') }}">Monthly savings</a> / </span>New form</h5>
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('missed-meetings.index') }}">Missed meetings</a> / </span>missed meeting form</h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('member-savings.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('missed-meetings.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to savings
+                        Back to missed meeting
                     </a>
                 </div>
             </div>
@@ -20,16 +20,16 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('member-savings.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('missed-meetings.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="asset_name">Asset name</label>
+                            <label class="col-sm-2 col-form-label" for="charge_paid_for">Asset name</label>
                             <div class="col-sm-10">
                                 <select 
-                                    id="asset_name" 
-                                    class="form-select @error('asset_name') is-invalid @enderror" 
-                                    name="asset_name"
+                                    id="charge_paid_for" 
+                                    class="form-select @error('charge_paid_for') is-invalid @enderror" 
+                                    name="charge_paid_for"
                                     aria-label="Default select charge"
                                     autofocus
                                     required
@@ -40,7 +40,7 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('asset_name')
+                                @error('charge_paid_for')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -62,7 +62,6 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                
                                 @error('asset_type')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -95,17 +94,16 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member names</label>
+                            <label class="col-sm-2 col-form-label" for="member_id">Member names</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="member_id" 
                                     class="form-select @error('member_id') is-invalid @enderror" 
                                     name="member_id"
                                     aria-label="Default select member"
-                                    autofocus
+                                    required
                                 >
                                     @if($members)
-                                        <option selected>Select member</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach
@@ -119,12 +117,12 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="premium">Premium amount</label>
+                            <label class="col-sm-2 col-form-label" for="charge_amount">Charge amount</label>
                             <div class="col-sm-10">
                                 <select 
-                                    id="number" 
-                                    class="form-select @error('number') is-invalid @enderror" 
-                                    name="number"
+                                    id="charge_amount" 
+                                    class="form-select @error('charge_amount') is-invalid @enderror" 
+                                    name="charge_amount"
                                     aria-label="Default select amount"
                                     required
                                 >
@@ -134,7 +132,7 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('premium')
+                                @error('charge_amount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -142,22 +140,22 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month being paid for</label>
+                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month being paid for</label>
                             <div class="col-sm-10">
                                 <select 
-                                    id="month" 
-                                    class="form-select @error('month') is-invalid @enderror" 
-                                    name="month"
+                                    id="month_paid_for" 
+                                    class="form-select @error('month_paid_for') is-invalid @enderror" 
+                                    name="month_paid_for"
                                     aria-label="Default select month"
+                                    required
                                 >
                                     @if($months)
-                                        <option selected>Select month</option>
-                                        @foreach($months as $months)
-                                            <option value="{{ $months->title }}">{{ $months->title }}</option>
+                                        @foreach($months as $month)
+                                            <option value="{{ $month->title }}">{{ $month->title }}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('month')
+                                @error('month_paid_for')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -165,19 +163,19 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_paid">Date of payment</label>
+                            <label class="col-sm-2 col-form-label" for="date_of_payment">Date of payment</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="date"
-                                        id="date_paid"
-                                        name="date_paid"
-                                        class="form-control @error('date_paid') is-invalid @enderror"
+                                        id="date_of_payment"
+                                        name="date_of_payment"
+                                        class="form-control @error('date_of_payment') is-invalid @enderror"
                                         placeholder="12/03/2029"
                                         aria-label="12/03/2029"
-                                        aria-describedby="date_paid"
+                                        aria-describedby="date_of_payment"
                                     />
-                                    @error('date_paid')
+                                    @error('date_of_payment')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -207,7 +205,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary text-capitalize">Save saving</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Create missed meeting</button>
                             </div>
                         </div>
                     </form>

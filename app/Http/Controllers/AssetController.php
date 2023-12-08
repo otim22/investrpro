@@ -7,7 +7,7 @@ use App\Models\MemberSaving;
 use App\Models\LateRemission;
 use App\Models\MissedMeeting;
 use App\Models\EconomicCalendarYear;
-use App\Models\AssetSetting;
+use App\Models\AssetType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AssetRequest;
@@ -22,60 +22,47 @@ class AssetController extends Controller
 
     public function index()
     {
-        $assets = [];
-        $MemberSavings = [];
-        $totalMemberSaving = 0;
+        $memberSavings = [];
         $lateRemissions = [];
-        $totalLateRemission = 0;
         $missedMeetings = [];
-        $economicCalenders = [];
-        $MemberSavingData = [];
+        $totalMemberSaving = 0;
+        $totalLateRemission = 0;
         $totalMissedMeeting = 0;
+        $overallTotal = 0;
 
         if(Auth::user()->company) {
-            $MemberSavings = MemberSaving::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $memberSavings = MemberSaving::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
             $lateRemissions = LateRemission::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
             $missedMeetings = MissedMeeting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
-            $economicCalenders = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get()->pluck('title');
-            // dd($MemberSavings);
-            
-            foreach($MemberSavings as $MemberSaving) {
-                $totalMemberSaving += $MemberSaving->premium;
 
-                foreach($economicCalenders as $economicCalender) {
-                    if($MemberSaving->month == $economicCalender) {
-                        // array_push($MemberSavingData, $MemberSaving->premium);
-                    }
-                }
+            foreach($memberSavings as $memberSaving) {
+                $totalMemberSaving += $memberSaving->premium;
             }
+
             foreach($lateRemissions as $lateRemission) {
                 $totalLateRemission += $lateRemission->charge_amount;
             }
+
             foreach($missedMeetings as $missedMeeting) {
                 $totalMissedMeeting += $missedMeeting->charge_amount;
             }
 
-            $assets = Asset::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
-            $totalByTypes = Asset::where('company_id', Auth::user()->company->id)->get()->groupBy('asset_type')
-                ->map(function ($option) {
-                    return $option
-                            ->reduce(function($carry, $item) {
-                                return $carry += $item->amount;
-                            });
-                });
+            // $totalByTypes = Asset::where('company_id', Auth::user()->company->id)->get()->groupBy('asset_type')
+            //     ->map(function ($option) {
+            //         return $option
+            //                 ->reduce(function($carry, $item) {
+            //                     return $carry += $item->amount;
+            //                 });
+            //     });
         }
 
-        $overrallTotal = $totalMemberSaving + $totalLateRemission + $totalMissedMeeting;
-
-        // dd($totalLateRemission, $totalMissedMeeting);
+        $overallTotal = $totalMemberSaving + $totalLateRemission + $totalMissedMeeting;
 
         return view('assets.asset.index', compact([
-            'assets', 
             'totalMemberSaving', 
             'totalLateRemission', 
             'totalMissedMeeting',
-            'overrallTotal',
-            'totalByTypes',
+            'overallTotal',
         ]));
     }
 
@@ -83,7 +70,7 @@ class AssetController extends Controller
     {
         $assetTypes = [];
         if(Auth::user()->company) {
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
         return view('assets.asset.create', compact('assetTypes'));
     }
@@ -111,7 +98,7 @@ class AssetController extends Controller
     {
         $assetTypes = [];
         if(Auth::user()->company) {
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
         return view('assets.asset.show', compact(['asset', 'assetTypes']));
     }
@@ -123,7 +110,7 @@ class AssetController extends Controller
     {
         $assetTypes = [];
         if(Auth::user()->company) {
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
         return view('assets.asset.edit', compact(['asset', 'assetTypes']));
     }

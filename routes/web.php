@@ -18,9 +18,9 @@ use App\Http\Controllers\MissedMeetingController;
 use App\Http\Controllers\ChargeSettingController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\AssetController;
-use App\Http\Controllers\AssetSettingController;
+use App\Http\Controllers\AssetTypeController;
 use App\Http\Controllers\LiabilityController;
-use App\Http\Controllers\LiabilitySettingController;
+use App\Http\Controllers\LiabilityTypeController;
 use App\Http\Controllers\AuditReportController;
 use App\Http\Controllers\FinancialReportController;
 use App\Http\Controllers\GeneralReportController;
@@ -106,8 +106,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
     Route::resource('/financial-year', FinancialYearController::class);
     Route::resource('/charge-settings', ChargeSettingController::class);
-    Route::resource('/asset-settings', AssetSettingController::class);
-    Route::resource('/liability-settings', LiabilitySettingController::class);
+    Route::resource('/asset-types', AssetTypeController::class);
+    Route::resource('/liability-types', LiabilityTypeController::class);
 });
 
 // Admin

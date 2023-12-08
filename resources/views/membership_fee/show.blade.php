@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="year_paid_for">Year being paid for</label>
+                            <label class="col-sm-2 col-form-label" for="year_paid_for">Financial Year</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 

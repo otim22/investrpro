@@ -53,14 +53,20 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="fee_amount">Fee amount</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
+                                <select 
                                     id="fee_amount" 
-                                    class="form-control @error('fee_amount') is-invalid @enderror" 
+                                    class="form-select @error('fee_amount') is-invalid @enderror" 
                                     name="fee_amount"
-                                    value="{{ old('fee_amount', $membershipFee->fee_amount) }}"
-                                    placeholder="100000" 
-                                />
+                                    aria-label="Default select charge"
+                                    autofocus
+                                >
+                                    @if($chargeSettings)
+                                        <option value="{{ $membershipFee->fee_amount}}" selected>{{ $membershipFee->fee_amount}}</option>
+                                        @foreach($chargeSettings as $chargeSetting)
+                                            <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                                 @error('fee_amount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -69,15 +75,21 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="year_paid_for">Year being paid for</label>
+                            <label class="col-sm-2 col-form-label" for="year_paid_for">Financial Year</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
-                                    id="year_paid_for" 
-                                    class="form-control @error('year_paid_for') is-invalid @enderror" 
-                                    name="year_paid_for"
-                                    value="{{ old('year_paid_for', $membershipFee->year_paid_for) }}"
-                                />
+                                <select 
+                                        id="year_paid_for" 
+                                        class="form-select @error('year_paid_for') is-invalid @enderror" 
+                                        name="year_paid_for"
+                                        aria-label="Default select year"
+                                    >
+                                        @if($financialYears)
+                                            <option value="{{ $membershipFee->year_paid_for }}" selected>{{ $membershipFee->year_paid_for }}</option>
+                                            @foreach($financialYears as $financialYear)
+                                                <option value="{{ $financialYear->title }}">{{ $financialYear->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
                                 @error('year_paid_for')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

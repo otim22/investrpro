@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\AssetType;
+use Illuminate\Http\Request;
 use App\Models\MemberSaving;
 use App\Models\FinancialYear;
-use Illuminate\Http\Request;
-use App\Models\AssetSetting;
+use App\Models\ChargeSetting;
 use App\Models\EconomicCalendarYear;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MemberSavingsRequest;
@@ -37,16 +38,18 @@ class MemberSavingController extends Controller
     {
         $members = [];
         $months = [];
+        $chargeSettings = [];
         $financialYears = [];
         $assetTypes = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
             $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
+            $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
         }
         // dd($financialYears);
-        return view('member_savings.create', compact(['members', 'months', 'assetTypes', 'financialYears']));
+        return view('member_savings.create', compact(['members', 'months', 'assetTypes', 'financialYears', 'chargeSettings']));
     }
 
     /**
@@ -82,7 +85,7 @@ class MemberSavingController extends Controller
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
             $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
+            $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
         }
         return view('member_savings.show', compact(['memberSaving', 'members', 'months', 'assetTypes']));
     }
@@ -94,15 +97,17 @@ class MemberSavingController extends Controller
     {
         $members = [];
         $months = [];
+        $chargeSettings = [];
         $assetTypes = [];
         $financialYears = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
             $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
-            $assetTypes = AssetSetting::where('company_id', Auth::user()->company->id)->get();
+            $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
+            $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('member_savings.edit', compact(['memberSaving', 'members', 'months', 'assetTypes', 'financialYears']));
+        return view('member_savings.edit', compact(['memberSaving', 'members', 'months', 'assetTypes', 'financialYears', 'chargeSettings']));
     }
 
     /**
