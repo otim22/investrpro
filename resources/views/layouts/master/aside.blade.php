@@ -177,7 +177,7 @@
         </li>
         
         <!-- General -->
-        <li class="menu-item added-active {{ Request::is(['charge-settings', 'asset-types', 'liability-types', 'economic-calendar-year', 'financial-year']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['charge-settings', 'asset-types', 'liability-types', 'financial-months', 'financial-years']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-grid'></i>
                 <div>General</div>
@@ -198,13 +198,13 @@
                         <div>Liability types</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('economic-calendar-year') ? 'active' : '' }}">
-                    <a href="{{ route('economic-calendar-year.index') }}" class="menu-link text-capitalize">
-                        <div>Economic calendar</div>
+                <li class="menu-item {{ Request::is('financial-months') ? 'active' : '' }}">
+                    <a href="{{ route('financial-months.index') }}" class="menu-link text-capitalize">
+                        <div>Financial Months</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('financial-year') ? 'active' : '' }}">
-                    <a href="{{ route('financial-year.index') }}" class="menu-link text-capitalize">
+                <li class="menu-item {{ Request::is('financial-years') ? 'active' : '' }}">
+                    <a href="{{ route('financial-years.index') }}" class="menu-link text-capitalize">
                         <div>Financial years</div>
                     </a>
                 </li>
@@ -218,14 +218,14 @@
                 <div>Account</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('profile') ? 'active' : '' }}">
-                    <a href="{{ route('profile') }}" class="menu-link text-capitalize">
-                        <div>Profile</div>
-                    </a>
-                </li>
                 <li class="menu-item {{ Request::is('add-user') ? 'active' : '' }}">
                     <a href="{{ route('org.user.index') }}" class="menu-link text-capitalize">
                         <div>Add user</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('profile') ? 'active' : '' }}">
+                    <a href="{{ route('profile') }}" class="menu-link text-capitalize">
+                        <div>Profile</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('billing') ? 'active' : '' }}">

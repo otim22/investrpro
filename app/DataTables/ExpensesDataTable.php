@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Asset;
+use App\Models\Expense;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class AssetsDataTable extends DataTable
+class ExpensesDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -27,7 +27,7 @@ class AssetsDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Asset $model): QueryBuilder
+    public function query(Expense $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -38,7 +38,7 @@ class AssetsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('assets-table')
+                    ->setTableId('expenses-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -60,11 +60,14 @@ class AssetsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('asset_name'),
-            Column::make('asset_type'),
-            Column::make('amount'),
+            Column::make('liability_name'),
+            Column::make('liability_type'),
             Column::make('financial_year'),
-            Column::make('date_acquired'),
+            Column::make('date_of_expense'),
+            Column::make('details'),
+            Column::make('rate'),
+            Column::make('amount'),
+            Column::make('designate'),
         ];
     }
 
@@ -73,6 +76,6 @@ class AssetsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Assets_' . date('YmdHis');
+        return 'expenses_' . date('YmdHis');
     }
 }

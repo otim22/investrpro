@@ -8,7 +8,7 @@ use App\Models\LateRemission;
 use App\Models\FinancialYear;
 use App\Models\ChargeSetting;
 use Illuminate\Http\Request;
-use App\Models\EconomicCalendarYear;
+use App\Models\FinancialMonth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LateRemissionRequest;
 use App\Http\Requests\LateRemissionUpdateRequest;
@@ -35,7 +35,7 @@ class LateRemissionController extends Controller
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
             $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
             $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }
@@ -90,7 +90,7 @@ class LateRemissionController extends Controller
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
             $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
             $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
         }

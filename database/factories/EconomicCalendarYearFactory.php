@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EconomicCalendarYear>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FinancialMonth>
  */
-class EconomicCalendarYearFactory extends Factory
+class FinancialMonthFactory extends Factory
 {
     /**
      * Define the model's default state.

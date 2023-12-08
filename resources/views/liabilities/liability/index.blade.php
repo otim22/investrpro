@@ -93,11 +93,9 @@
       </div>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
-            <div class="card p-3">
+            <div class="card px-3 py-4" style="overflow-x: auto">
                 @if (count($liabilities))
-                    <div class="card p-3">
-                        {{ $dataTable->table() }}
-                    </div>
+                    {{ $dataTable->table() }}
                 @else
                     <p class="mb-0 text-center text-capitalize">No liabilities found</p>
                 @endif

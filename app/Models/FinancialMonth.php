@@ -2,40 +2,30 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Asset extends Model
+class FinancialMonth extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'asset_name',
-        'asset_type',
-        'amount',
-        'financial_year',
-        'date_acquired',
+        'title',
+        'description',
         'company_id',
     ];
 
-    protected $casts = [
-        "date_acquired" => "datetime:d/m/Y",
-    ];
-    
+    /**
+     * Get the options for generating the slug.
+     */
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['asset_name', 'financial_year'])
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
-    }
-
-    public function formatDate($date) 
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->isoFormat('MMM Do YYYY');
     }
 
     /**
@@ -48,3 +38,4 @@ class Asset extends Model
         return 'slug';
     }
 }
+

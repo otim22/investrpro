@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month paid for</label>
+                            <label class="col-sm-2 col-form-label" for="month_paid_for">Month being paid for</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="month_paid_for" 

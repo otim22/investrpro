@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">General / <a href="{{ route('financial-year.index') }}">Financial year</a> / </span>{{ $financialYear->title }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Financial year / <a href="{{ route('financial-months.index') }}">List of Months</a> / </span>{{ $financialMonth->title }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -21,37 +21,37 @@
                             Actions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item btn-sm" href="{{ route('financial-year.edit', $financialYear) }}">
+                            <a class="dropdown-item btn-sm" href="{{ route('financial-months.edit', $financialMonth) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit year
+                                Edit month
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmYearDeletion{{ $financialYear->id }}">
+                                data-bs-target="#confirmMonthDeletion{{ $financialMonth->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete year
+                                Delete month
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('financial-year.destroy', $financialYear) }}" class="hidden" id="delete-year-{{ $financialYear->id }}"
+            <form action="{{ route('financial-months.destroy', $financialMonth) }}" class="hidden" id="delete-month-{{ $financialMonth->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
             </form>
-            <div class="modal fade" id="confirmYearDeletion{{ $financialYear->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="confirmMonthDeletion{{ $financialMonth->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmYearDeletion{{ $financialYear->id }}">
-                                Month of {{ $financialYear->title }}</h5>
+                            <h5 class="modal-title" id="confirmMonthDeletion{{ $financialMonth->id }}">
+                                Month of {{ $financialMonth->title }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row g-2">
                                 <div class="col mb-0">
-                                    Are you sure to delete, "{{ $financialYear->title }}"?
+                                    Are you sure deleting {{ $financialMonth->title }}?
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-year-{{ $financialYear->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-month-{{ $financialMonth->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('financial-year.update', $financialYear) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('financial-months.update', $financialMonth) }}" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
 
@@ -83,7 +83,7 @@
                                     id="title" 
                                     class="form-control @error('title') is-invalid @enderror" 
                                     name="title"
-                                    value="{{ old('title', $financialYear->title) }}"
+                                    value="{{ old('title', $financialMonth->title) }}"
                                     placeholder="January" 
                                     autofocus
                                     disabled
@@ -105,7 +105,7 @@
                                         name="description"
                                         class="form-control"
                                         disabled
-                                    >{{ old('description', $financialYear->description) }} </textarea>
+                                    >{{ old('description', $financialMonth->description) }} </textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

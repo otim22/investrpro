@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AllMembersController;
 use App\Http\Controllers\ExecutiveMembersController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\EconomicCalendarYearController;
+use App\Http\Controllers\FinancialMonthController;
 use App\Http\Controllers\FinancialYearController;
 use App\Http\Controllers\NextOfKinController;
 use App\Http\Controllers\UserController;
@@ -103,8 +103,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/add-user/{user}/delete', [OrgUserController::class, 'destroy'])->name('org.user.destroy');
 
     // Settings
-    Route::resource('/economic-calendar-year', EconomicCalendarYearController::class);
-    Route::resource('/financial-year', FinancialYearController::class);
+    Route::resource('/financial-months', FinancialMonthController::class);
+    Route::resource('/financial-years', FinancialYearController::class);
     Route::resource('/charge-settings', ChargeSettingController::class);
     Route::resource('/asset-types', AssetTypeController::class);
     Route::resource('/liability-types', LiabilityTypeController::class);

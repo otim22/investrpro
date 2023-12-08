@@ -12,7 +12,7 @@
                 <div class="d-flex justify-content-between">
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">General / </span> Financial years</h5>
                     <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('financial-year.create') }}" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('financial-years.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
                             Add year
                         </a>
@@ -36,7 +36,7 @@
                                 @foreach ($financialYears as $financialYear)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('financial-year.show', $financialYear)}}">
+                                            <a href="{{ route('financial-years.show', $financialYear)}}">
                                                 {{ $financialYear->title }}
                                             </a>
                                         </td>
@@ -57,11 +57,11 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('financial-year.show', $financialYear) }}">
+                                                        href="{{ route('financial-years.show', $financialYear) }}">
                                                         <i class='bx bx-list-check me-1'></i> Show
                                                     </a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('financial-year.edit', $financialYear) }}">
+                                                        href="{{ route('financial-years.edit', $financialYear) }}">
                                                         <i class="bx bx-edit-alt me-1"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item" href="javascript:void(0);"
@@ -73,7 +73,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <form action="{{ route('financial-year.destroy', $financialYear) }}" class="hidden"
+                                    <form action="{{ route('financial-years.destroy', $financialYear) }}" class="hidden"
                                         id="delete-year-{{ $financialYear->id }}" method="POST">
                                         @csrf
                                         @method('delete')
@@ -85,14 +85,14 @@
                                                 <div class="modal-header">
                                                     <h5 class="modal-title"
                                                         id="confirmYearDeletion{{ $financialYear->id }}">
-                                                        {{ $financialYear->title }} month</h5>
+                                                        Year of {{ $financialYear->title }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         <div class="col mb-0">
-                                                            Are you sure to delete {{ $financialYear->title }} month?
+                                                            Are you sure deleting {{ $financialYear->title }}?
                                                         </div>
                                                     </div>
                                                 </div>

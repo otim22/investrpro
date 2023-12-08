@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MemberSaving;
 use App\Models\FinancialYear;
 use App\Models\ChargeSetting;
-use App\Models\EconomicCalendarYear;
+use App\Models\FinancialMonth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MemberSavingsRequest;
 use App\Http\Requests\MemberSavingsUpdateRequest;
@@ -43,7 +43,7 @@ class MemberSavingController extends Controller
         $assetTypes = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
             $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
             $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
@@ -84,7 +84,7 @@ class MemberSavingController extends Controller
         $assetTypes = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
             $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
         }
         return view('member_savings.show', compact(['memberSaving', 'members', 'months', 'assetTypes']));
@@ -102,7 +102,7 @@ class MemberSavingController extends Controller
         $financialYears = [];
         if(Auth::user()->company) {
             $members = Member::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get();
-            $months = EconomicCalendarYear::where('company_id', Auth::user()->company->id)->get();
+            $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
             $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->get();
             $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();

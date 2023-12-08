@@ -16,7 +16,7 @@ class FinancialYearController extends Controller
         if(Auth::user()->company) {
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
-        return view('financial_year.index', compact('financialYears'));
+        return view('economic_calendar.years.index', compact('financialYears'));
     }
 
     /**
@@ -25,7 +25,7 @@ class FinancialYearController extends Controller
     public function create()
     {
         
-        return view('financial_year.create');
+        return view('economic_calendar.years.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class FinancialYearController extends Controller
             'company_id' => Auth::user()->company->id,
         ]);
 
-        return redirect()->route('financial-year.index')->with("success", $financialYear->title . " created successfully!");
+        return redirect()->route('financial-years.index')->with("success", $financialYear->title . " created successfully!");
     }
 
     /**
@@ -49,7 +49,7 @@ class FinancialYearController extends Controller
      */
     public function show(FinancialYear $financialYear)
     {
-        return view('financial_year.show', compact('financialYear'));
+        return view('economic_calendar.years.show', compact('financialYear'));
     }
 
     /**
@@ -57,7 +57,7 @@ class FinancialYearController extends Controller
      */
     public function edit(FinancialYear $financialYear)
     {
-        return view('financial_year.edit', compact('financialYear'));
+        return view('economic_calendar.years.edit', compact('financialYear'));
     }
 
     /**
@@ -67,7 +67,7 @@ class FinancialYearController extends Controller
     {
         $request->validated();
         $financialYear->update($request->all());
-        return redirect()->route('financial-year.index', $financialYear)->with('success', $financialYear->title . ' updated successfully.');
+        return redirect()->route('financial-years.index', $financialYear)->with('success', $financialYear->title . ' updated successfully.');
     }
 
     /**
@@ -76,7 +76,7 @@ class FinancialYearController extends Controller
     public function destroy(FinancialYear $financialYear)
     {
         $financialYear->delete();
-        return redirect()->route('financial-year.index')->with('success', 'Financial year deleted successfully');
+        return redirect()->route('financial-years.index')->with('success', 'Financial year deleted successfully');
     }
 }
 

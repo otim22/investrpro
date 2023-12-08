@@ -7,7 +7,7 @@ use App\Models\MembershipFee;
 use App\Models\ChargeSetting;
 use App\Models\FinancialYear;
 use Illuminate\Http\Request;
-use App\Models\EconomicCalendarYear;
+use App\Models\FinancialMonth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\MembershipFeeRequest;
 use App\Http\Requests\MembershipFeeUpdateRequest;
