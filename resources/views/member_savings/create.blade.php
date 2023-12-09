@@ -121,19 +121,14 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="premium">Premium amount</label>
                             <div class="col-sm-10">
-                                <select 
-                                    id="number" 
-                                    class="form-select @error('number') is-invalid @enderror" 
-                                    name="number"
-                                    aria-label="Default select amount"
-                                    required
-                                >
-                                    @if($chargeSettings)
-                                        @foreach($chargeSettings as $chargeSetting)
-                                            <option value="{{ $chargeSetting->amount }}">{{ number_format($chargeSetting->amount) }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                                <input 
+                                    type="text" 
+                                    id="premium" 
+                                    class="form-control @error('premium') is-invalid @enderror" 
+                                    name="premium"
+                                    value="{{ old('premium') }}"
+                                    placeholder="100000" 
+                                />
                                 @error('premium')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

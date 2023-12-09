@@ -27,15 +27,20 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="asset_name">Asset name</label>
                             <div class="col-sm-10">
-                                <input 
-                                    type="text" 
+                                <select 
                                     id="asset_name" 
-                                    class="form-control @error('asset_name') is-invalid @enderror" 
+                                    class="form-select @error('asset_name') is-invalid @enderror" 
                                     name="asset_name"
-                                    value="{{ old('asset_name', $memberSaving->asset_name) }}"
-                                    placeholder="Premiums" 
+                                    aria-label="Default select charge"
                                     autofocus
-                                />
+                                >
+                                    @if($chargeSettings)
+                                        <option value="{{ $memberSaving->asset_name}}" selected>{{ $memberSaving->asset_name}}</option>
+                                        @foreach($chargeSettings as $chargeSetting)
+                                            <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                                 @error('asset_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -124,7 +129,7 @@
                                     name="premium"
                                     value="{{ old('premium', $memberSaving->premium) }}"
                                     placeholder="100000" 
-                                />
+                                /> 
                                 @error('premium')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

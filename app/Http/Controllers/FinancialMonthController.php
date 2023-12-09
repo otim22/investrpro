@@ -14,7 +14,7 @@ class FinancialMonthController extends Controller
     {
         $financialMonths = [];
         if(Auth::user()->company) {
-            $financialMonths = FinancialMonth::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $financialMonths = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
         }
         return view('economic_calendar.months.index', compact('financialMonths'));
     }
