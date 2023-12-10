@@ -23,12 +23,14 @@ class MissedMeeting extends Model
         'month_paid_for',
         'date_of_payment',
         'comment',
+        'has_paid',
         'member_id',
         'company_id',
     ];
 
     protected $casts = [
         "date_of_payment" => "datetime:d/m/Y",
+        'has_paid' => 'boolean',
     ];
     
     public function getSlugOptions() : SlugOptions

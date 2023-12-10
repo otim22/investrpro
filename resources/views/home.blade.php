@@ -81,6 +81,7 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- Monthly savings --}}
     <script>
         const savingsCtx = document.getElementById('savingsBar');
         var financialMonths = {{ Js::from($financialMonths) }};
@@ -103,14 +104,14 @@
             data: {
                 labels: financialMonths,
                 datasets: [{
-                    label: 'Expected Monthly Savings',
+                    label: 'Expected',
                     data: [expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings],
                     backgroundColor: ['rgb(151, 208, 232, 0.2)'],
                     borderColor: ['rgba(151, 208, 232)'],
                     borderWidth: 1
                 }, 
                 {
-                    label: 'Actual Monthly Savings',
+                    label: 'Actual',
                     data: [janSavings, febSavings, marSavings, aprSavings, maySavings, junSavings, julSavings, augSavings, septSavings, octSavings, novSavings, decSavings],
                     backgroundColor: ['rgb(151, 208, 232)'],
                     borderColor: ['rgba(151, 208, 232, 0.2)'],
@@ -126,8 +127,9 @@
             }
         });
     </script>  
+    {{-- Late remissions --}}
     <script>
-        const missedMeetingCtx = document.getElementById('lateRemissionBar');
+        const lateRemissionCtx = document.getElementById('lateRemissionBar');
         var janLateRems = {{ Js::from($janLateRems) }};
         var febLateRems = {{ Js::from($febLateRems) }};
         var marLateRems = {{ Js::from($marLateRems) }};
@@ -154,20 +156,20 @@
         var expNovLateRems = {{ Js::from($expNovLateRems) }};
         var expDecLateRems = {{ Js::from($expDecLateRems) }};
 
-        new Chart(missedMeetingCtx, {
+        new Chart(lateRemissionCtx, {
             type: 'bar',
             data: {
                 labels: financialMonths,
                 datasets: [
                 {
-                    label: 'Expected Late remissions',
+                    label: 'Expected',
                     data: [expJanLateRems, expFebLateRems, expMarLateRems, expAprLateRems, expMayLateRems, expJunLateRems, expJulLateRems, expAugLateRems, expSeptLateRems, expOctLateRems, expNovLateRems, expDecLateRems],
                     backgroundColor: ['rgb(137, 171, 141, 0.2)'],
                     borderColor: ['rgba(137, 171, 141)'],
                     borderWidth: 1
                 },
                 {
-                    label: 'Actual Late remissions',
+                    label: 'Actual',
                     data: [janLateRems, febLateRems, marLateRems, aprLateRems, mayLateRems, junLateRems, julLateRems, augLateRems, septLateRems, octLateRems, novLateRems, decLateRems],
                     backgroundColor: ['rgb(137, 171, 141)'],
                     borderColor: ['rgba(137, 171, 141, 0.5)'],
@@ -182,26 +184,51 @@
                 }
             }
         });
-    </script>  
+    </script> 
+     {{-- Missed meetings  --}}
     <script>
-        const lateRemissionCtx = document.getElementById('missedMeetingBar');
-        var totalMembers = {{ Js::from($totalMembers) }};
+        const missedMeetingCtx = document.getElementById('missedMeetingBar');
+        var janMissMeetings = {{ Js::from($janMissMeetings) }};
+        var febMissMeetings = {{ Js::from($febMissMeetings) }};
+        var marMissMeetings = {{ Js::from($marMissMeetings) }};
+        var aprMissMeetings = {{ Js::from($aprMissMeetings) }};
+        var mayMissMeetings = {{ Js::from($mayMissMeetings) }};
+        var junMissMeetings = {{ Js::from($junMissMeetings) }};
+        var julMissMeetings = {{ Js::from($julMissMeetings) }};
+        var augMissMeetings = {{ Js::from($augMissMeetings) }};
+        var septMissMeetings = {{ Js::from($septMissMeetings) }};
+        var octMissMeetings = {{ Js::from($octMissMeetings) }};
+        var novMissMeetings = {{ Js::from($novMissMeetings) }};
+        var decMissMeetings = {{ Js::from($decMissMeetings) }};
+        
+        var expJanMissMeetings = {{ Js::from($expJanMissMeetings) }};
+        var expFebMissMeetings = {{ Js::from($expFebMissMeetings) }};
+        var expMarMissMeetings = {{ Js::from($expMarMissMeetings) }};
+        var expAprMissMeetings = {{ Js::from($expAprMissMeetings) }};
+        var expMayMissMeetings = {{ Js::from($expMayMissMeetings) }};
+        var expJunMissMeetings = {{ Js::from($expJunMissMeetings) }};
+        var expJulMissMeetings = {{ Js::from($expJulMissMeetings) }};
+        var expAugMissMeetings = {{ Js::from($expAugMissMeetings) }};
+        var expSeptMissMeetings = {{ Js::from($expSeptMissMeetings) }};
+        var expOctMissMeetings = {{ Js::from($expOctMissMeetings) }};
+        var expNovMissMeetings = {{ Js::from($expNovMissMeetings) }};
+        var expDecMissMeetings = {{ Js::from($expDecMissMeetings) }};
 
-        new Chart(lateRemissionCtx, {
+        new Chart(missedMeetingCtx, {
             type: 'bar',
             data: {
                 labels: financialMonths,
                 datasets: [
                 {
-                    label: 'Expected Missed meetings',
-                    data: [10, 20, 0, 5, 8, 0, 6],
+                    label: 'Expected',
+                    data: [expJanMissMeetings, expFebMissMeetings, expMarMissMeetings, expAprMissMeetings, expMayMissMeetings, expJunMissMeetings, expJulMissMeetings, expAugMissMeetings, expSeptMissMeetings, expOctMissMeetings, expNovMissMeetings, expDecMissMeetings],
                     backgroundColor: ['rgb(192, 151, 232, 0.2)'],
                     borderColor: ['rgba(192, 151, 232)'],
                     borderWidth: 1
                 },
                 {
-                    label: 'Actual Missed meetings',
-                    data: [0, 3, 1, 5, 2, 7, 0],
+                    label: 'Actual',
+                    data: [janMissMeetings, febMissMeetings, marMissMeetings, aprMissMeetings, mayMissMeetings, junMissMeetings, julMissMeetings, augMissMeetings, septMissMeetings, octMissMeetings, novMissMeetings, decMissMeetings],
                     backgroundColor: ['rgb(192, 151, 232)'],
                     borderColor: ['rgba(192, 151, 232, 0.2)'],
                     borderWidth: 1

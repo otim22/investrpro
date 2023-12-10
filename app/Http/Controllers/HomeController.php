@@ -48,10 +48,11 @@ class HomeController extends Controller
         $expJulLateRems = $expAugLateRems = $expSeptLateRems = $expOctLateRems = $expNovLateRems = $expDecLateRems = 0;
         
         // missMeeting months
-        $janMissMeetingTotal = $febMissMeetingTotal = $marMissMeetingTotal = $aprMissMeetingTotal = $mayMissMeetingTotal = $junMissMeetingTotal = 0;
-        $julMissMeetingTotal = $augMissMeetingTotal = $septMissMeetingTotal = $octMissMeetingTotal = $novMissMeetingTotal = $decMissMeetingTotal = 0;
-        $expMissedMeetings = 0;
-        
+        $janMissMeetings = $febMissMeetings = $marMissMeetings = $aprMissMeetings = $mayMissMeetings = $junMissMeetings = 0;
+        $julMissMeetings = $augMissMeetings = $septMissMeetings = $octMissMeetings = $novMissMeetings = $decMissMeetings = $expMissedMeetings = 0;
+        $expJanMissMeetings = $expFebMissMeetings = $expMarMissMeetings = $expAprMissMeetings = $expMayMissMeetings = $expJunMissMeetings = 0 ;
+        $expJulMissMeetings = $expAugMissMeetings = $expSeptMissMeetings = $expOctMissMeetings = $expNovMissMeetings = $expDecMissMeetings = 0;
+
         if(Auth::user()->company) {
             $memberSavings = MemberSaving::where('company_id', Auth::user()->company->id)->get();
             $lateRemissions = LateRemission::where('company_id', Auth::user()->company->id)->get();
@@ -115,68 +116,159 @@ class HomeController extends Controller
                 }
             }
             
+            // lateRemissions
             foreach($lateRemissions as $lateRemission) {
                 // Get total for lateRemissions
                 $totalLateRemission += $lateRemission->charge_amount;
 
                 // Get monthly late remissions for members
                 if ($lateRemission->month_paid_for == "Jan") {
-                    $janLateRems += $lateRemission->charge_amount;
-                    $expJanLateRems += $janLateRems;
+                    $expJanLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $janLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Feb") {
-                    $febLateRems += $lateRemission->charge_amount;
-                    $expFebLateRems += $febLateRems;
+                    $expFebLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $febLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Mar") {
-                    $marLateRems += $lateRemission->charge_amount;
-                    $expMarLateRems += $marLateRems;
+                    $expMarLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $marLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Apr") {
-                    $aprLateRems += $lateRemission->charge_amount;
-                    $expAprLateRems += $aprLateRems;
+                    $expAprLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $aprLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "May") {
-                    $mayLateRems += $lateRemission->charge_amount;
-                    $expMayLateRems += $mayLateRems;
+                    $expMayLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $mayLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Jun") {
-                    $junLateRems += $lateRemission->charge_amount;
-                    $expJunLateRems += $junLateRems;
+                    $expJunLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $junLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Jul") {
-                    $julLateRems += $lateRemission->charge_amount;
-                    $expJulLateRems += $julLateRems;
+                    $expJulLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $julLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Aug") {
-                    $augLateRems += $lateRemission->charge_amount;
-                    $expAugLateRems += $augLateRems;
+                    $expAugLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $augLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Sept") {
-                    $septLateRems += $lateRemission->charge_amount;
-                    $expSeptLateRems += $septLateRems;
+                    $expSeptLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $septLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Oct") {
-                    $octLateRems += $lateRemission->charge_amount;
-                    $expOctLateRems += $octLateRems;
+                    $expOctLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $octLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Nov") {
-                    $novLateRems += $lateRemission->charge_amount;
-                    $expNovLateRems += $novLateRems;
+                    $expNovLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $novLateRems += $lateRemission->charge_amount;
+                    }
                 }if ($lateRemission->month_paid_for == "Dec") {
-                    $decLateRems += $lateRemission->charge_amount;
-                    $expDecLateRems += $decLateRems;
+                    $expDecLateRems += $lateRemission->charge_amount;
+                    if ($lateRemission->has_paid == true) {
+                        $decLateRems += $lateRemission->charge_amount;
+                    }
                 }
             }
-            // dd($expOctLateRems);
-            // Get total for missedMeetings
+            
+            // missedMeetings
             foreach($missedMeetings as $missedMeeting) {
+                // Get total for missedMeetings
                 $totalMissedMeeting += $missedMeeting->charge_amount;
+
+                // Get monthly missedMeetings for members
+                if ($missedMeeting->month_paid_for == "Jan") {
+                    $expJanMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $janMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Feb") {
+                    $expFebMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $febMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Mar") {
+                    $expMarMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $marMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Apr") {
+                    $expAprMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $aprMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "May") {
+                    $expMayMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $mayMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Jun") {
+                    $expJunMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $junMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Jul") {
+                    $expJulMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $julMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Aug") {
+                    $expAugMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $augMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Sept") {
+                    $expSeptMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $septMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Oct") {
+                    $expOctMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $octMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Nov") {
+                    $expNovMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $novMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }if ($missedMeeting->month_paid_for == "Dec") {
+                    $expDecMissMeetings += $missedMeeting->charge_amount;
+                    if ($missedMeeting->has_paid == true) {
+                        $decMissMeetings += $missedMeeting->charge_amount;
+                    }
+                }
             }
 
             $totalAssets = $totalMemberSaving + $totalLateRemission + $totalMissedMeeting;
             $expMonthSavings = $totalMembers * $monthlyAmount;
-            $expMissedMeetings = $totalMissedMeetings * $missedMeetingAmount;
         }
         
         return view('home', compact([
-            'totalMemberSaving', 'totalLateRemission', 'totalMissedMeeting', 'totalInvestments', 'totalMembers', 'totalAssets', 
-            'totalLiabilities', 'expMonthSavings', 'financialMonths', 'janSavings', 'febSavings', 'marSavings', 'aprSavings', 
-            'maySavings', 'junSavings', 'julSavings', 'augSavings', 'septSavings', 'octSavings', 'novSavings', 'decSavings', 
-            'expJanLateRems', 'expFebLateRems', 'expMarLateRems', 'expAprLateRems', 'expMayLateRems', 'expJunLateRems', 'expJulLateRems',
-            'expAugLateRems', 'expSeptLateRems', 'expOctLateRems', 'expNovLateRems', 'expDecLateRems', 'expMissedMeetings', 'janLateRems', 
-            'febLateRems', 'marLateRems', 'aprLateRems', 'mayLateRems', 'junLateRems', 'julLateRems', 'augLateRems', 'septLateRems', 
-            'octLateRems', 'novLateRems', 'decLateRems',
+            'totalMemberSaving', 'totalLateRemission', 'totalMissedMeeting', 'totalInvestments', 'totalMembers', 'totalAssets', 'totalLiabilities', 'expMonthSavings', 'financialMonths', 
+            'janSavings', 'febSavings', 'marSavings', 'aprSavings', 'maySavings', 'junSavings', 'julSavings', 'augSavings', 'septSavings', 'octSavings', 'novSavings', 'decSavings', 
+            'expJanLateRems', 'expFebLateRems', 'expMarLateRems', 'expAprLateRems', 'expMayLateRems', 'expJunLateRems', 'expJulLateRems', 'expAugLateRems', 'expSeptLateRems', 'expOctLateRems', 
+            'expNovLateRems', 'expDecLateRems', 
+            'janLateRems', 'febLateRems', 'marLateRems', 'aprLateRems', 'mayLateRems', 'junLateRems', 'julLateRems', 'augLateRems', 'septLateRems', 
+            'octLateRems', 'novLateRems', 'decLateRems', 
+            'expJanMissMeetings', 'expFebMissMeetings', 'expMarMissMeetings', 'expAprMissMeetings', 'expMayMissMeetings', 'expJunMissMeetings', 'expJulMissMeetings', 'expAugMissMeetings', 'expSeptMissMeetings', 'expOctMissMeetings', 
+            'expNovMissMeetings', 'expDecMissMeetings', 
+            'janMissMeetings', 'febMissMeetings', 'marMissMeetings', 'aprMissMeetings', 'mayMissMeetings', 'junMissMeetings', 'julMissMeetings', 'augMissMeetings', 'septMissMeetings', 
+            'octMissMeetings', 'novMissMeetings', 'decMissMeetings', 
         ]));
     } 
 }
