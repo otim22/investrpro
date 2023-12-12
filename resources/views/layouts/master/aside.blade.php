@@ -21,6 +21,14 @@
         </li>
         
         <!-- Investments -->
+        <li class="menu-item added-active {{ Request::is('calendar') ? 'active' : '' }}">
+            <a href="{{ route('calendar.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-calendar'></i>
+                <div>Calendar</div>
+            </a>
+        </li>
+
+        <!-- Investments -->
         <li class="menu-item added-active {{ Request::is('investments') ? 'active' : '' }}">
             <a href="{{ route('investments.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-line-chart'></i>

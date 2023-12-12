@@ -67,28 +67,53 @@
       <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h5 class="fw-bold text-capitalize">Assets status summary</h5>
-                    <h5 class="fw-bold text-capitalize">Assets status summary</h5>
+                    <div>
+                        <h5 class="fw-bold text-capitalize">Assets status summary</h5>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-between">
+                            <div class="me-2">Filter:</div>
+                            <div>
+                                <select 
+                                    id="filterByMonth" 
+                                    class="form-select form-select-sm" 
+                                    aria-label="Default select"
+                                    onchange="filterDataByMonth()"
+                                >
+                                    <option selected>Month</option>
+                                    @foreach ($months as $month)
+                                        <option value="{{ $month }}">{{ $month }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row mb-5">
             <div class="col-lg-4 col-md-12 col-12">
-                <div class="card px-2 py-3">
-                    <h5 class="fw-bold text-center text-capitalize">Monthly savings</h5>
+                <div class="card p-3">
+                    <div class="d-flex justify-content-center">
+                        <h5 class="fw-bold text-center text-capitalize">Monthly savings</h5>
+                    </div>
                     <canvas id="monthlySavingsChart"></canvas>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12 col-12">
-                <div class="card px-2 py-3">
-                    <h5 class="fw-bold text-center text-capitalize">Late remissions</h5>
+            <div class="col-lg-4 col-md-12 col-12" id="remissions_data">
+                <div class="card p-3">
+                    <div class="d-flex justify-content-center">
+                        <h5 class="fw-bold text-center text-capitalize">Late remissions</h5>
+                    </div>
                     <canvas id="lateRemissionsChart"></canvas>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12 col-12">
-                <div class="card px-2 py-3">
-                    <h5 class="fw-bold text-center text-capitalize">Missed meetings</h5>
+                <div class="card p-3">
+                    <div class="d-flex justify-content-center">
+                        <h5 class="fw-bold text-center text-capitalize">Missed meetings</h5>
+                    </div>
                     <canvas id="missedMeetingsChart"></canvas>
                 </div>
             </div>
@@ -98,6 +123,7 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const monthlySavingCtx = document.getElementById('monthlySavingsChart');
         new Chart(monthlySavingCtx, {
@@ -118,6 +144,9 @@
         });
     </script> 
     <script>
+        var expLateRems = {{ Js::from($expLateRems) }};
+        var availLateRems = {{ Js::from($availLateRems) }};
+
         const lateRemissionCtx = document.getElementById('lateRemissionsChart');
         new Chart(lateRemissionCtx, {
             type: 'doughnut',
@@ -125,7 +154,7 @@
                 labels: ['Expected', 'Actual', 'UnPaid'],
                 datasets: [{
                     label: 'Late Remissions',
-                    data: [300, 10, 20],
+                    data: [expLateRems, availLateRems, (expLateRems - availLateRems)],
                     backgroundColor: [
                         'rgb(110, 131, 150)',
                         'rgb(5, 56, 125)',
@@ -155,4 +184,23 @@
             },
         });
     </script>    
+    <script>
+        function filterDataByMonth() {
+            let filter = document.getElementById("filterByMonth").value;
+            $.ajax({
+                type:'GET',
+                url:'/assets-by-month',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "filter": filter
+                },
+                dataType: 'json',
+                success:function(data) {
+                    // $("#msg").html(data.msg);
+                    $('#remissions_data').html(data.html);
+                    console.log(data)
+               }
+            });
+        }
+    </script>
 @endpush
