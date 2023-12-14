@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
-                <div>
+                <div> 
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expenses / </span>{{ $expense->formatDate($expense->date_of_expense) }}</h5>
                 </div>
                 <div>
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row">
                             <label class="col-sm-2 col-form-label" for="designate">Designate</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">

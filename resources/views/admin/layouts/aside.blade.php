@@ -1,16 +1,15 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #130c32 !important;">
     <div class="app-brand demo">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
-            <h3 class="fw-bolder ms-2">InvestrPro</h3>
+            <h3 class="fw-bolder ms-2" style="color: #ffffff;">InvestrPro</h3>
         </a>
     </div>
 
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <!-- Dashboard -->
         <li class="menu-item {{ Request::is('admin.dashboard') ? 'active' : '' }}">
-            <a href="{{ route('admin.dashboard') }}" class="menu-link">
+            <a href="{{ route('admin.dashboard') }}" class="menu-linktext-white-50">
                 <i class='menu-icon bx bx-tachometer'></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -20,13 +19,13 @@
             <span class="menu-header-text text-capitalize">settings</span>
         </li>
         <li class="menu-item {{ Request::is('admin.roles') ? 'active' : '' }}">
-            <a href="{{ route('admin.roles.index') }}" class="menu-link">
+            <a href="{{ route('admin.roles.index') }}" class="menu-link text-white-50">
                 <i class='menu-icon bx bxs-user-circle'></i>
                 <div data-i18n="Roles text-capitalize">Roles</div>
             </a>
         </li>
         <li class="menu-item {{ Request::is('admin.permissions') ? 'active' : '' }}">
-            <a href="{{ route('admin.permissions.index') }}" class="menu-link">
+            <a href="{{ route('admin.permissions.index') }}" class="menu-link text-white-50">
                 <i class='menu-icon bx bxs-user-detail' ></i>
                 <div data-i18n="Permissions text-capitalize">Permissions</div>
             </a>

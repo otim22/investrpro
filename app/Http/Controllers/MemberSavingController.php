@@ -51,7 +51,7 @@ class MemberSavingController extends Controller
         // dd($financialYears);
         return view('member_savings.create', compact(['members', 'months', 'assetTypes', 'financialYears', 'chargeSettings']));
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      */

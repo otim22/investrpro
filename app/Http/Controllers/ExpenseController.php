@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\LiabilityType;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExpenseRequest;
+use App\DataTables\ExpensesDataTable;
 use App\Http\Requests\ExpenseUpdateRequest;
 
 class ExpenseController extends Controller
@@ -17,13 +18,15 @@ class ExpenseController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(ExpensesDataTable $dataTable)
     {
         $expenses = [];
         if(Auth::user()->company) {
             $expenses = Expense::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
-        return view('expenses.index', compact('expenses'));
+        return $dataTable->render('expenses.index', compact([
+            'expenses', 
+        ]));
     }
 
     public function create()

@@ -19,7 +19,7 @@ class LiabilityController extends Controller
 
     public function index(ExpensesDataTable $dataTable)
     {
-        $liabilities = [];
+        $liabilities = []; 
 
         if(Auth::user()->company) {
             $liabilities = Expense::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();

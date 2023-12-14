@@ -72,7 +72,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
     Route::resource('/investments', InvestmentController::class);
     Route::get('/assets', [AssetController::class, 'index'])->name('assets.index');
-    Route::get('assets-by-month', [AssetController::class, 'index']);
+
+    Route::get('late-remissions-by-month', [AssetController::class, 'filterData']);
+
     Route::get('/liabilities', [LiabilityController::class, 'index'])->name('liabilities.index');
     Route::resource('/general-reports', GeneralReportController::class);
     Route::get('/general-reports/download/{id}', [GeneralReportController::class, 'download'])->name('general-reports.download');

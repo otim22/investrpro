@@ -11,7 +11,7 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Reports / </span>General reports</h5>
+                        <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Reports / </span>({{ count($generalReports) }}) General reports</h5>
                     </div>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('general-reports.create') }}" aria-haspopup="true" aria-expanded="false">
@@ -25,7 +25,7 @@
          <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
-                    @if (count($generalReports))
+                    @if (!empty($generalReports))
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>

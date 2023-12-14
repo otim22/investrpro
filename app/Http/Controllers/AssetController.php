@@ -18,12 +18,13 @@ class AssetController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $memberSavings = [];
         $lateRemissions = [];
         $missedMeetings = [];
         $months = [];
+        $years = [];
         $totalMemberSaving = 0;
         $totalLateRemission = 0;
         $totalMissedMeeting = 0;
@@ -36,30 +37,6 @@ class AssetController extends Controller
             $lateRemissions = LateRemission::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
             $missedMeetings = MissedMeeting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
 
-            if ($request->filter) {
-                $memberSavings = MemberSaving::where([
-                    'company_id' => Auth::user()->company->id,
-                    'month' => $request->filter
-                ])->orderBy('id', 'desc')->get();
-                $lateRemissions = LateRemission::where([
-                    'company_id' => Auth::user()->company->id,
-                    'month_paid_for' => $request->filter
-                ])->orderBy('id', 'desc')->get();
-                $missedMeetings = MissedMeeting::where([
-                    'company_id' => Auth::user()->company->id,
-                    'month_paid_for' => $request->filter
-                ])->orderBy('id', 'desc')->get();
-                // dd($lateRemissions);
-                
-                // lateRemissions
-                foreach($lateRemissions as $lateRemission) {
-                    // Get total for lateRemissions
-                    $expLateRems += $lateRemission->charge_amount;
-                    if ($lateRemission->has_paid == true) {
-                        $availLateRems += $lateRemission->charge_amount;
-                    }
-                }
-            }
             $months = FinancialMonth::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get()->pluck('title');
             
             foreach($lateRemissions as $lateRemission) {
@@ -84,8 +61,14 @@ class AssetController extends Controller
             'overallTotal',
             'months',
             'expLateRems',
-            'availLateRems'
+            'availLateRems',
         ]));
     }
 
+    public function filterData(Request $request)
+    {
+        $testSample = "";
+        $testSample = $request->filter;
+        return response()->json($testSample);
+    }
 }
