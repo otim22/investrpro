@@ -2,8 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\MemberSaving;
-use App\Livewire\MemberSavingShow;
+use App\Models\Expense;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -17,7 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class MemberSavingTable extends PowerGridComponent
+final class ExpenseTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -46,8 +45,7 @@ final class MemberSavingTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return MemberSaving::query()->join('members', 'member_savings.member_id', '=', 'members.id')
-            ->select('member_savings.*', 'members.surname as member');
+        return Expense::query();
     }
 
     public function relationSearch(): array
@@ -58,44 +56,51 @@ final class MemberSavingTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('member')
-            ->addColumn('asset_name')
-            ->addColumn('premium')
+            ->addColumn('liability_name')
+            ->addColumn('liability_type')
             ->addColumn('financial_year')
-            ->addColumn('month')
-            ->addColumn('date_paid_formatted', function (MemberSaving $model) { 
-                return Carbon::parse($model->date_paid)->format('d/m/Y');
+            ->addColumn('date_of_expense_formatted', function (Expense $model) { 
+                return Carbon::parse($model->date_of_expense)->format('d/m/Y');
             })
-            ->addColumn('comment', function (MemberSaving $model) {
-                return \Str::words(e($model->comment), 5); 
-            });
+            ->addColumn('details', function (Expense $model) {
+                return \Str::words(e($model->details), 10); 
+            })
+            ->addColumn('rate')
+            ->addColumn('amount')
+            ->addColumn('designate');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Member', 'member')
+            Column::make('Liability name', 'liability_name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Asset Name', 'asset_name')
+            Column::make('Liability type', 'liability_type')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Financial year', 'financial_year')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Date of expense', 'date_of_expense_formatted', 'date_of_expense')
                 ->sortable(),
 
-            Column::make('Premium', 'premium')
-                ->sortable(),
-
-
-            Column::make('Financial Year', 'financial_year')
+            Column::make('Details', 'details')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Month', 'month')
+            Column::make('Rate', 'rate')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Date Paid', 'date_paid_formatted'),
+            Column::make('Amount', 'amount')
+                ->sortable()
+                ->searchable(),
 
-            Column::make('Comment', 'comment')
+            Column::make('Designate', 'designate')
                 ->sortable()
                 ->searchable(),
 
@@ -106,26 +111,29 @@ final class MemberSavingTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::inputText('liability_name')->operators(['contains']),
+            Filter::inputText('liability_type')->operators(['contains']),
             Filter::inputText('financial_year')->operators(['contains']),
-            Filter::inputText('month')->operators(['contains']),
-            Filter::datetimepicker('date_paid'),
+            Filter::inputText('rate')->operators(['contains']),
+            Filter::inputText('amount')->operators(['contains']),
+            Filter::inputText('designate')->operators(['contains']),
         ];
     }
 
     #[\Livewire\Attributes\On('show')]
     public function show($rowId)
     {
-        $memberSaving = MemberSaving::findOrFail($rowId);
-        $this->redirectRoute('member-savings.show', $memberSaving);
+        $expenses = Expense::findOrFail($rowId);
+        $this->redirectRoute('expenses.show', $expenses);
     }
 
-    public function actions(MemberSaving $row): array
+    public function actions(Expense $row): array
     {
         return [
             Button::add('show')
                 ->slot('View')
                 ->class('btn btn-sm btn-primary')
-                ->dispatch('show', ['rowId' => $row->id]),
+                ->dispatch('show', ['rowId' => $row->id])
         ];
     }
 

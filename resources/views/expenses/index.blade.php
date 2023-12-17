@@ -43,7 +43,7 @@
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="card px-3 py-4" style="overflow-x: auto">
                     @if (count($expenses))
-                        {{ $dataTable->table() }}
+                        <livewire:expense-table />
                     @else
                         <p class="mb-0 text-center text-capitalize">No expenses found</p>
                     @endif
