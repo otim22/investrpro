@@ -1,4 +1,4 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #130c32 !important;">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #011338 !important;">
     <div class="app-brand demo">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
             <h3 class="fw-bold" style="color: #ffffff;">PesaBridge</h3>
@@ -14,7 +14,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item added-active {{ Request::is('dashboard') ? 'active' : '' }}">
-            <a href="{{ route('dashboard') }}" class="menu-link text-white-50 text-capitalize">
+            <a href="{{ route('dashboard') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bxs-dashboard'></i>
                 <div>Dashboard</div>
             </a>
@@ -22,7 +22,7 @@
         
         <!-- Investments -->
         <li class="menu-item added-active {{ Request::is('calendar') ? 'active' : '' }}">
-            <a href="{{ route('calendar.index') }}" class="menu-link text-white-50 text-capitalize">
+            <a href="{{ route('calendar.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-calendar'></i>
                 <div>Calendar</div>
             </a>
@@ -30,7 +30,7 @@
 
         <!-- Investments -->
         <li class="menu-item added-active {{ Request::is('investments') ? 'active' : '' }}">
-            <a href="{{ route('investments.index') }}" class="menu-link text-white-50 text-capitalize">
+            <a href="{{ route('investments.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-line-chart'></i>
                 <div>Investments</div>
             </a>
@@ -38,7 +38,7 @@
 
         <!-- Asset -->
         <li class="menu-item added-active {{ Request::is(['member-savings', 'late-remissions', 'missed-meetings']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link text-white-50 menu-toggle text-capitalize">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-money'></i>
                 <div>Assets</div>
             </a>
@@ -63,7 +63,7 @@
         
         <!-- Expenses -->
         <li class="menu-item added-active {{ Request::is('expenses') ? 'active' : '' }}">
-            <a href="{{ route('expenses.index') }}" class="menu-link text-white-50 text-capitalize">
+            <a href="{{ route('expenses.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-credit-card-alt'></i>
                 <div>Expenses</div>
             </a>
@@ -71,7 +71,7 @@
 
         <!-- Profit & Loss -->
         <li class="menu-item added-active {{ Request::is(['assets', 'liabilities']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link text-white-50 menu-toggle text-capitalize">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-dollar-circle'></i>
                 <div>Profit & Loss</div>
             </a>
@@ -91,7 +91,7 @@
         
         <!-- Membership -->
         <li class="menu-item added-active {{ Request::is(['all-members', 'executive-members', 'members', 'membership-fees']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link text-white-50 menu-toggle text-capitalize">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-group'></i>
                 <div>Membership</div>
             </a>
@@ -121,7 +121,7 @@
         
         <!-- Reports -->
         <li class="menu-item added-active {{ Request::is(['general-reports', 'financial-reports', 'audit-reports']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link text-white-50 menu-toggle text-capitalize">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-file'></i>
                 <div>Reports</div>
             </a>
@@ -146,9 +146,9 @@
         
         <!-- Archive -->
         <li class="menu-item added-active {{ Request::is(['constitution', 'sop', 'saved-emails', 'meeting-minutes', 'elections']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link text-white-50 menu-toggle text-capitalize">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-file-archive'></i>
-                <div>Archive</div>
+                <div>HR Manual</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('constitution') ? 'active' : '' }}">
@@ -186,7 +186,7 @@
         
         <!-- General -->
         <li class="menu-item added-active {{ Request::is(['charge-settings', 'asset-types', 'liability-types', 'financial-months', 'financial-years']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link text-white-50 menu-toggle text-capitalize">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-grid'></i>
                 <div>General</div>
             </a>
@@ -221,7 +221,7 @@
         
         <!-- Account -->
         <li class="menu-item added-active {{ Request::is(['profile', 'add-user', 'billing']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link text-white-50 menu-toggle text-capitalize">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-user-account'></i>
                 <div>Account</div>
             </a>

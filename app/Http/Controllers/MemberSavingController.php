@@ -15,23 +15,13 @@ use App\Http\Requests\MemberSavingsUpdateRequest;
 
 class MemberSavingController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $memberSavings = [];
         if(Auth::user()->company) {
             $memberSavings = MemberSaving::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
-        return view('member_savings.index', compact('memberSavings'));
+        return view('member_savings.index', compact(['memberSavings']));
     }
 
     public function create()

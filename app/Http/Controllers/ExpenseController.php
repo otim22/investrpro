@@ -13,11 +13,6 @@ use App\Http\Requests\ExpenseUpdateRequest;
 
 class ExpenseController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index(ExpensesDataTable $dataTable)
     {
         $expenses = [];
