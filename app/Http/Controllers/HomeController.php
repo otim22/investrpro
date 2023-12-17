@@ -79,29 +79,29 @@ class HomeController extends Controller
                 $totalMemberSaving += $memberSaving->premium;
                 
                 // Get monthly total for members
-                if ($memberSaving->month == "Jan") {
+                if ($memberSaving->month == "January") {
                     $janSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Feb") {
+                }if ($memberSaving->month == "Febuary") {
                     $febSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Mar") {
+                }if ($memberSaving->month == "March") {
                     $marSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Apr") {
+                }if ($memberSaving->month == "April") {
                     $aprSavings += $memberSaving->premium;
                 }if ($memberSaving->month == "May") {
                     $maySavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Jun") {
+                }if ($memberSaving->month == "June") {
                     $junSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Jul") {
+                }if ($memberSaving->month == "July") {
                     $julSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Aug") {
+                }if ($memberSaving->month == "August") {
                     $augSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Sept") {
+                }if ($memberSaving->month == "September") {
                     $septSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Oct") {
+                }if ($memberSaving->month == "October") {
                     $octSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Nov") {
+                }if ($memberSaving->month == "November") {
                     $novSavings += $memberSaving->premium;
-                }if ($memberSaving->month == "Dec") {
+                }if ($memberSaving->month == "December") {
                     $decSavings += $memberSaving->premium;
                 }
             }
@@ -112,22 +112,22 @@ class HomeController extends Controller
                 $totalLateRemission += $lateRemission->charge_amount;
 
                 // Get monthly late remissions for members
-                if ($lateRemission->month_paid_for == "Jan") {
+                if ($lateRemission->month_paid_for == "January") {
                     $expJanLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $janLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Feb") {
+                }if ($lateRemission->month_paid_for == "Febuary") {
                     $expFebLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $febLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Mar") {
+                }if ($lateRemission->month_paid_for == "March") {
                     $expMarLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $marLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Apr") {
+                }if ($lateRemission->month_paid_for == "April") {
                     $expAprLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $aprLateRems += $lateRemission->charge_amount;
@@ -137,37 +137,37 @@ class HomeController extends Controller
                     if ($lateRemission->has_paid == true) {
                         $mayLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Jun") {
+                }if ($lateRemission->month_paid_for == "June") {
                     $expJunLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $junLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Jul") {
+                }if ($lateRemission->month_paid_for == "July") {
                     $expJulLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $julLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Aug") {
+                }if ($lateRemission->month_paid_for == "August") {
                     $expAugLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $augLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Sept") {
+                }if ($lateRemission->month_paid_for == "September") {
                     $expSeptLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $septLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Oct") {
+                }if ($lateRemission->month_paid_for == "October") {
                     $expOctLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $octLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Nov") {
+                }if ($lateRemission->month_paid_for == "November") {
                     $expNovLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $novLateRems += $lateRemission->charge_amount;
                     }
-                }if ($lateRemission->month_paid_for == "Dec") {
+                }if ($lateRemission->month_paid_for == "December") {
                     $expDecLateRems += $lateRemission->charge_amount;
                     if ($lateRemission->has_paid == true) {
                         $decLateRems += $lateRemission->charge_amount;
@@ -181,22 +181,22 @@ class HomeController extends Controller
                 $totalMissedMeeting += $missedMeeting->charge_amount;
 
                 // Get monthly missedMeetings for members
-                if ($missedMeeting->month_paid_for == "Jan") {
+                if ($missedMeeting->month_paid_for == "January") {
                     $expJanMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $janMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Feb") {
+                }if ($missedMeeting->month_paid_for == "Febuary") {
                     $expFebMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $febMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Mar") {
+                }if ($missedMeeting->month_paid_for == "March") {
                     $expMarMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $marMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Apr") {
+                }if ($missedMeeting->month_paid_for == "April") {
                     $expAprMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $aprMissMeetings += $missedMeeting->charge_amount;
@@ -206,37 +206,37 @@ class HomeController extends Controller
                     if ($missedMeeting->has_paid == true) {
                         $mayMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Jun") {
+                }if ($missedMeeting->month_paid_for == "June") {
                     $expJunMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $junMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Jul") {
+                }if ($missedMeeting->month_paid_for == "July") {
                     $expJulMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $julMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Aug") {
+                }if ($missedMeeting->month_paid_for == "August") {
                     $expAugMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $augMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Sept") {
+                }if ($missedMeeting->month_paid_for == "September") {
                     $expSeptMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $septMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Oct") {
+                }if ($missedMeeting->month_paid_for == "October") {
                     $expOctMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $octMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Nov") {
+                }if ($missedMeeting->month_paid_for == "November") {
                     $expNovMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $novMissMeetings += $missedMeeting->charge_amount;
                     }
-                }if ($missedMeeting->month_paid_for == "Dec") {
+                }if ($missedMeeting->month_paid_for == "December") {
                     $expDecMissMeetings += $missedMeeting->charge_amount;
                     if ($missedMeeting->has_paid == true) {
                         $decMissMeetings += $missedMeeting->charge_amount;

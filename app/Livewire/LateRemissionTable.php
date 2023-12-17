@@ -2,8 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\MemberSaving;
-use App\Livewire\MemberSavingShow;
+use App\Models\LateRemission;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -17,7 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class MemberSavingTable extends PowerGridComponent
+final class LateRemissionTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -46,8 +45,8 @@ final class MemberSavingTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return MemberSaving::query()->join('members', 'member_savings.member_id', '=', 'members.id')
-            ->select('member_savings.*', 'members.surname as member');
+        return LateRemission::query()->join('members', 'late_remissions.member_id', '=', 'members.id')
+            ->select('late_remissions.*', 'members.surname as member');
     }
 
     public function relationSearch(): array
@@ -59,46 +58,43 @@ final class MemberSavingTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('member')
-            ->addColumn('asset_name')
             ->addColumn('asset_type')
-            ->addColumn('premium')
             ->addColumn('financial_year')
-            ->addColumn('month')
-            // ->addColumn('date_paid_formatted', fn (MemberSaving $model) => Carbon::parse($model->date_paid)->format('d/m/Y'))
-            ->addColumn('comment');
+            ->addColumn('charge_paid_for')
+            ->addColumn('charge_amount')
+            ->addColumn('month_paid_for')
+            ->addColumn('date_of_payment_formatted', function (LateRemission $model) { 
+                return Carbon::parse($model->date_paid)->format('d/m/Y');
+            })
+            ->addColumn('comment', function (LateRemission $model) {
+                return \Str::words(e($model->comment), 5); 
+            });
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Member', 'member')
-                ->sortable()
-                ->searchable(),
+            Column::make('Member', 'member'),
 
-            Column::make('Asset Name', 'asset_name')
+            Column::make('Charge paid for', 'charge_paid_for')
                 ->sortable(),
 
-            Column::make('Asset Type', 'asset_type')
+            Column::make('Charge amount', 'charge_amount'),
+
+            Column::make('Financial year', 'financial_year')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Premium', 'premium')
-                ->sortable(),
-
-
-            Column::make('Financial Year', 'financial_year')
+            Column::make('Month paid for', 'month_paid_for')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Month', 'month')
+            Column::make('Date of payment', 'date_of_payment_formatted', 'date_of_payment')
                 ->sortable()
                 ->searchable(),
-
-            Column::make('Date Paid', 'date_paid_formatted'),
 
             Column::make('Comment', 'comment')
-                ->sortable()
-                ->searchable(),
+                ->sortable(),
 
             Column::action('Action')
         ];
@@ -107,26 +103,27 @@ final class MemberSavingTable extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::inputText('asset_type')->operators(['contains']),
             Filter::inputText('financial_year')->operators(['contains']),
-            Filter::inputText('month')->operators(['contains']),
-            Filter::datetimepicker('date_paid'),
+            Filter::inputText('comment')->operators(['contains']),
+            Filter::inputText('month_paid_for')->operators(['contains']),
         ];
     }
 
     #[\Livewire\Attributes\On('show')]
     public function show($rowId)
     {
-        $memberSaving = MemberSaving::findOrFail($rowId);
-        $this->redirectRoute('member-savings.show', $memberSaving);
+        $lateRemissions = LateRemission::findOrFail($rowId);
+        $this->redirectRoute('late-remissions.show', $lateRemissions);
     }
 
-    public function actions(MemberSaving $row): array
+    public function actions(LateRemission $row): array
     {
         return [
             Button::add('show')
                 ->slot('View')
-                ->class('btn btn-sm btn-primary mb-1')
-                ->dispatch('show', ['rowId' => $row->id]),
+                ->class('btn btn-sm btn-primary')
+                ->dispatch('show', ['rowId' => $row->id])
         ];
     }
 

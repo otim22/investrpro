@@ -25,7 +25,11 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
             <div class="card p-3">
-                <livewire:member-saving-table />
+                @if (!empty($memberSavings))
+                    <livewire:member-saving-table />
+                @else
+                        <p class="mb-0 text-center text-capitalize">No savings found</p>
+                    @endif
             </div>
         </div>
     </div>
