@@ -53,6 +53,7 @@ class LateRemissionController extends Controller
             'charge_paid_for' => $request->charge_paid_for,
             'charge_amount' => $request->charge_amount,
             'month_paid_for' => $request->month_paid_for,
+            'has_paid' => $request->has_paid,
             'date_of_payment' => $request->date_of_payment,
             'comment' => $request->comment,
             'member_id' => $request->member_id,

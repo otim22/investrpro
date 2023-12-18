@@ -179,7 +179,7 @@
                                     autofocus
                                 >
                                     @if($months)
-                                        <option value="{{ $lateRemission->month_paid_for}}" selected>{{ $lateRemission->month_paid_for }}</option>
+                                        <option value="{{ $lateRemission->month_paid_for }}" selected>{{ $lateRemission->month_paid_for }}</option>
                                         @foreach($months as $month)
                                             <option value="{{ $month->title }}">{{ $month->title }}</option>
                                         @endforeach
@@ -190,6 +190,35 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="has_paid">Has charge been paid?</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <select 
+                                        id="has_paid" 
+                                        class="form-select @error('has_paid') is-invalid @enderror" 
+                                        name="has_paid"
+                                        aria-label="Default select month"
+                                        required
+                                    >
+                                        <option value="{{ $lateRemission->has_paid }}" selected>
+                                            @if($lateRemission->has_paid == 1)
+                                                Yes, Has already paid.
+                                            @else
+                                                No, Hasn't yet paid.
+                                            @endif
+                                        </option>
+                                        <option value="0">No, Hasn't yet paid.</option>
+                                        <option value="1">Yes, Has already paid.</option>
+                                </select>
+                                    @error('has_paid')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-3">
