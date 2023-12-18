@@ -2,6 +2,6 @@
 
 @section('content')
 
-<livewire:asset-index />
+<livewire:profit-and-loss-show />
     
 @endsection

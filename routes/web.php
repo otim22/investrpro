@@ -20,6 +20,7 @@ use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetTypeController;
 use App\Http\Controllers\LiabilityController;
+use App\Http\Controllers\ProfitAndLossController;
 use App\Http\Controllers\LiabilityTypeController;
 use App\Http\Controllers\AuditReportController;
 use App\Http\Controllers\FinancialReportController;
@@ -72,10 +73,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
     Route::resource('/investments', InvestmentController::class);
     Route::get('/assets', [AssetController::class, 'index'])->name('assets.index');
-
-    Route::get('late-remissions-by-month', [AssetController::class, 'filterData']);
-
     Route::get('/liabilities', [LiabilityController::class, 'index'])->name('liabilities.index');
+    Route::get('/profit-and-loss', [ProfitAndLossController::class, 'index'])->name('profit-and-loss.index');
+    Route::get('late-remissions-by-month', [AssetController::class, 'filterData']);
     Route::resource('/general-reports', GeneralReportController::class);
     Route::get('/general-reports/download/{id}', [GeneralReportController::class, 'download'])->name('general-reports.download');
     Route::resource('/financial-reports', FinancialReportController::class);

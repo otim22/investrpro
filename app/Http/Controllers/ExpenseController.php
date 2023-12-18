@@ -6,6 +6,7 @@ use App\Models\Expense;
 use App\Models\FinancialYear;
 use Illuminate\Http\Request;
 use App\Models\LiabilityType;
+use App\Models\FinancialMonth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExpenseRequest;
 use App\DataTables\ExpensesDataTable;
@@ -20,7 +21,7 @@ class ExpenseController extends Controller
             $expenses = Expense::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
         return $dataTable->render('expenses.index', compact([
-            'expenses', 
+            'expenses' 
         ]));
     }
 
@@ -28,11 +29,13 @@ class ExpenseController extends Controller
     {
         $liabilityTypes = [];
         $financialYears = [];
+        $months = [];
         if(Auth::user()->company) {
             $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
+            $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('expenses.create', compact(['liabilityTypes', 'financialYears']));
+        return view('expenses.create', compact(['liabilityTypes', 'financialYears', 'months']));
     }
 
     public function store(ExpenseRequest $request)
@@ -46,6 +49,7 @@ class ExpenseController extends Controller
             'details' => $request->details,
             'rate' => $request->rate,
             'amount' => $request->amount,
+            'month' => $request->month,
             'designate' => $request->designate,
             'company_id' => Auth::user()->company->id,
         ]);
@@ -72,11 +76,13 @@ class ExpenseController extends Controller
     {
         $liabilityTypes = [];
         $financialYears = [];
+        $months = [];
         if(Auth::user()->company) {
             $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
+            $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('expenses.edit', compact(['expense', 'liabilityTypes', 'financialYears']));
+        return view('expenses.edit', compact(['expense', 'liabilityTypes', 'financialYears', 'months']));
     }
 
     /**

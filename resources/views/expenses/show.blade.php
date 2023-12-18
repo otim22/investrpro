@@ -122,6 +122,19 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="month">Month paid</label>
+                            <div class="col-sm-10">
+                                <input 
+                                    type="text" 
+                                    id="month" 
+                                    class="form-control @error('month') is-invalid @enderror" 
+                                    name="month"
+                                    value="{{ old('month', $expense->month) }}"
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="date_of_expense">Date of expense</label>
                             <div class="col-sm-10">
                                 <input 

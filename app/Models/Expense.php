@@ -21,6 +21,7 @@ class Expense extends Model
         'details',
         'rate',
         'amount',
+        'month',
         'designate',
         'company_id',
     ];

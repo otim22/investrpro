@@ -68,25 +68,13 @@
                 <div>Expenses</div>
             </a>
         </li>
-
-        <!-- Profit & Loss -->
-        <li class="menu-item added-active {{ Request::is(['assets', 'liabilities']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
+        
+        <!-- Profits and Loss -->
+        <li class="menu-item added-active {{ Request::is('profit-and-loss') ? 'active' : '' }}">
+            <a href="{{ route('profit-and-loss.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-dollar-circle'></i>
-                <div>Profit & Loss</div>
+                <div>Profits & Losses</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('assets') ? 'active' : '' }}">
-                    <a href="{{ route('assets.index') }}" class="menu-link text-capitalize">
-                        <div>Assets</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('liabilities') ? 'active' : '' }}">
-                    <a href="{{ route('liabilities.index') }}" class="menu-link text-capitalize">
-                        <div>Liabilities</div>
-                    </a>
-                </li>
-            </ul>
         </li>
         
         <!-- Membership -->

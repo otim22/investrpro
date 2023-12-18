@@ -92,6 +92,30 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="month">Month paid</label>
+                            <div class="col-sm-10">
+                                <select 
+                                    id="month" 
+                                    class="form-select @error('month') is-invalid @enderror" 
+                                    name="month"
+                                    aria-label="Default select month"
+                                    autofocus
+                                >
+                                    @if($months)
+                                        <option value="{{ $expense->month }}" selected>{{ $expense->month }}</option>
+                                        @foreach($months as $month)
+                                            <option value="{{ $month->title }}">{{ $month->title }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('month')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="date_of_expense">Date of expense</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
