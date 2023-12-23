@@ -15,7 +15,7 @@
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">General reports / <a
+                        <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Reports / <a
                                     href="{{ route('general-reports.index') }}">General reports</a> /
                             </span>{{ $generalReport->title }}</h5>
                     </div>
@@ -76,54 +76,35 @@
         </div>
         <div class="row">
             <div class="col-xxl">
-                <div class="card p-3">
+                <div class="card px-3 py-2">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('general-reports.update', $generalReport) }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('patch')
-
-                            <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="title">Title</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="title"
-                                        class="form-control @error('title') is-invalid @enderror" name="title"
-                                        value="{{ old('title', $generalReport->title) }}" placeholder="January" autofocus
-                                        disabled />
-                                    @error('title')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                        <div>
+                            
+                            <div class="mb-3">
+                                @include('pdf.pdf_viewer')
                             </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="description">Description</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group input-group-merge">
-                                        <textarea type="text" id="description" name="description" class="form-control" disabled>{{ old('description', $generalReport->description) }} </textarea>
-                                        @error('description')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+
+                            <div class="mb-3">
+                                <div class="fw-bold">
+                                    Description
+                                </div>
+                                <div>
+                                    {{ $generalReport->description }}
                                 </div>
                             </div> 
-                            <div class="row">
-                            <label class="col-sm-3 col-form-label" for="amount">Download link</label>
-                            <div class="col-sm-9">
-                                <div class="col-sm-9">
-                                @if ($generalReport->getFirstMediaUrl('report_attachement'))
-                                    <div><a class="text-decoration-none" href="{{ route('general-reports.download', $generalReport->id) }}" target="_blank">{{ $generalReport->getFirstMedia("report_attachement")->name }}</a></div>
-                                @else
-                                    <div>--</div>
-                                @endif
-                            </div>
+                            <div>
+                                <div class="text-capitalize fw-bold">
+                                    Download link
+                                </div>
+                                <div>
+                                    @if ($generalReport->getFirstMediaUrl('report_attachement'))
+                                        <div><a class="text-decoration-none" href="{{ route('general-reports.download', $generalReport->id) }}" target="_blank">{{ $generalReport->getFirstMedia("report_attachement")->name }}</a></div>
+                                    @else
+                                        <div>--</div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                        </form>
-                        @include('pdf.pdf_viewer')
                     </div>
                 </div>
             </div>

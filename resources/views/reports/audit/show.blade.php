@@ -15,7 +15,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Audit reports / <a href="{{ route('audit-reports.index') }}">Audit reports</a> / </span>{{ $auditReport->title }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Reports / <a href="{{ route('audit-reports.index') }}">Audit reports</a> / </span>{{ $auditReport->title }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -74,63 +74,32 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('audit-reports.update', $auditReport) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('patch')
+                    <div>
+                        <div class="mb-3">
+                            @include('pdf.pdf_viewer')
+                        </div>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="title">Title</label>
-                            <div class="col-sm-9">
-                                <input 
-                                    type="text" 
-                                    id="title" 
-                                    class="form-control @error('title') is-invalid @enderror" 
-                                    name="title"
-                                    value="{{ old('title', $auditReport->title) }}"
-                                    placeholder="January" 
-                                    autofocus
-                                    disabled
-                                />
-                                @error('title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="mb-3">
+                            <div class="fw-bold">
+                                Description
+                            </div>
+                            <div>
+                                {{ $auditReport->description }}
+                            </div>
+                        </div> 
+                        <div>
+                            <div class="text-capitalize fw-bold">
+                                Download link
+                            </div>
+                            <div>
+                                @if ($auditReport->getFirstMediaUrl('report_attachement'))
+                                    <div><a class="text-decoration-none" href="{{ route('audit-reports.download', $auditReport->id) }}" target="_blank">{{ $auditReport->getFirstMedia("report_attachement")->name }}</a></div>
+                                @else
+                                    <div>--</div>
+                                @endif
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="description">Description</label>
-                            <div class="col-sm-9">
-                                <div class="input-group input-group-merge">
-                                    <textarea
-                                        type="text"
-                                        id="description"
-                                        name="description"
-                                        class="form-control"
-                                        disabled
-                                    >{{ old('description', $auditReport->description) }} </textarea>
-                                    @error('description')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label" for="amount">Document attachement</label>
-                            <div class="col-sm-9">
-                                <div class="col-sm-9">
-                                    @if ($auditReport->getFirstMediaUrl('report_attachement'))
-                                        <div><a class="text-decoration-none" href="{{ route('audit-reports.download', $auditReport->id) }}" target="_blank">{{ $auditReport->getFirstMedia("report_attachement")->name }}</a></div>
-                                    @else
-                                        <div>--</div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    @include('pdf.pdf_viewer')
+                    </div>
                 </div>
             </div>
         </div>
