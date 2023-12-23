@@ -24,7 +24,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_name">Liability name</label>
+                            <label class="col-sm-2 col-form-label" for="liability_name">Expense name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_type">Liability type</label>
+                            <label class="col-sm-2 col-form-label" for="liability_type">Expense type</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="liability_type" 

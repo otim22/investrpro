@@ -2,39 +2,67 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .fc-event {
+            width: 140px;
+            height: 80px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                @include('messages.flash')
+    <div class="row">
+        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+            @include('messages.flash')
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+            <div class="d-flex justify-content-between">
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Calendar / </span>Events overview</h5>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <div class="d-flex justify-content-between">
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Calendar / </span>Calendar view</h5>
-                    <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('investments.create') }}" aria-haspopup="true" aria-expanded="false">
-                            <i class='me-2 bx bx-plus'></i>
-                            Add meeting
-                        </a>
-                    </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+            <div class="card p-4">
+                <div wire:ignore id="calendar" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title text-capitalize fs-5" id="eventModalLabel">Add event</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <div class="card p-4">
-                    <div id="calendar" style="width: 100%;height:100vh;"></div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="eventTitle">
+                    <span id="titleError" class="text-danger"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary text-capitalize" id="addBtn">Add event</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 @endsection
 
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -48,73 +76,100 @@
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
             },
-            initialView: 'dayGridMonth',
+            initialView: 'timeGridWeek',
             timeZone: 'EAT',
             displayEventTime: true,
-            events: '/schedules',
+            events: @json($events),
+            eventColor: '#378006',
+            displayEventTime: true,
             editable: true,
             selectable: true,
-            selectHelper: true,
+            select: function(data) {
+                $('#eventModal').modal('toggle');
+                $('#addBtn').click(function() {
+                    let title = $('#eventTitle').val();
+                    let start_date = data.start.toISOString();
+                    let end_date = data.end.toISOString();
 
-            eventContent: function(info) {
-                var meeting = {};
-                var slug = meeting.slug
-                var eventTitle = info.event.title;
-                var eventId = info.event.id;
-                var eventElement = document.createElement('div');
-                eventElement.innerHTML = '<span class="fw-bold" > ' + eventTitle + '</span>';
-                var modalHeading= document.getElementById('eventModalHeader');
-                var modalBody = document.getElementById('eventModalBody');
-                var start = info.event.start;
-                var end = info.event.end;
-
-                eventElement.querySelector('span').addEventListener('click', function() {
                     $.ajax({
-                        method: 'GET',
-                        url: `/meeting/${eventId}`,
+                        url: "{{ route('calendar.store') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: { title, start_date, end_date },
                         success: function(response) {
-                            meeting = response
-                            console.log(meeting)
-                            $('#meetingModalLabel').text(`Created by ${meeting.user_id}`);
-                            $('#responseSpan').text(meeting.meeting_link);
-                            var link = document.getElementById('responseSpan');
-                            link.href =`${meeting.meeting_link}`;
+                            $('#eventModal').modal('hide');
+                            swal("Good job!", "Successful deleted event!", "success");
+                            location.reload(true);
                         },
                         error: function(error) {
-                            console.error('Error searching events:', error);
-                        }
+                            if (error.responseJSON.errors) {
+                                swal("Error!", "Oops... something is wrong!", "error");
+                                $('#titleError').html(error.responseJSON.errors.title);
+                            }
+                        },
                     });
-                    modalBody.innerHTML = 
-                    '<div><div class="mb-3>span class="fw-bold text-capitalize">Meeting Name:</span><span class="fw-bold text-capitalize">' + info.event.title + 
-                    '</span></div><div class="mb-3><span class="fw-bold text-capitalize">Starts On:</span><span class="fw-bold text-capitalize">' + start + 
-                    '</span></div><div class="mb-3><span class="fw-bold text-capitalize">Ends On:</span><span class="fw-bold text-capitalize">' + end + 
-                    '</span></div><div class="mb-3><span class="fw-bold text-capitalize">Link:</span><a class="fw-bold" id="responseSpan">'
-                    '</a></div></div>'
-                    
-                    $('#eventDetailsModal').modal('show');
                 });
-                
-                return {
-                    domNodes: [eventElement]
-                };
             },
+            eventDrop: function(data) {
+                let id = data.event.id;
+                let title = data.event.title;
+                let start_date = data.event.start.toISOString();
+                let end_date = data.event.end.toISOString();
+
+                $.ajax({
+                    url: "{{ route('calendar.update', '') }}" + "/" + id,
+                    type: "PATCH",
+                    dataType: "json",
+                    data: { id, title, start_date, end_date },
+                    success: function(response) {
+                        swal("Good job!", "Successful updated event!", "success");
+                    },
+                    error: function(error) {
+                        swal("Failed!", "Oops... Sorry, Didn't update event!", "error");
+                    },
+                });
+            },
+            eventClick : function(data) {
+                let id = data.event.id;
+                
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you'll not be able to recover the event!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "{{ route('calendar.destroy', '') }}" + "/" + id,
+                            type: "DELETE",
+                            dataType: "json",
+                            success: function(response) {
+                                location.reload(true);
+                                swal("Good job!", "Successful deleted event!", "success");
+                            },
+                            error: function(error) {
+                                console.log(error);
+                                swal("Failed!", "Oops... Sorry, Didn't delete event!", "error");
+                            },
+                        });
+                        swal("Done! Your event has been deleted!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Your event is safe!");
+                    }
+                });
+            }
+        });
+        
+        $('#eventModal').on('hidden.bs.modal', function() {
+            $('#addBtn').unbind();
         });
 
         calendar.render();
-
-        function getMeeting(id) {
-            $.ajax({
-                method: 'GET',
-                url: `/meeting/${id}`,
-                success: function(response) {
-                    console.log(response)
-                },
-                error: function(error) {
-                    console.error('Error searching events:', error);
-                }
-            });
-        }
      </script>
 @endpush

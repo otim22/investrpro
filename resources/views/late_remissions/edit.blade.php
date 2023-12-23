@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="member_id">Member names</label>
+                            <label class="col-sm-2 col-form-label" for="member_id">Member's name</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="member_id" 

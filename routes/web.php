@@ -70,7 +70,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/member-savings', MemberSavingController::class);
     Route::resource('/late-remissions', LateRemissionController::class);
     Route::resource('/missed-meetings', MissedMeetingController::class);
-    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+    Route::get('/calendar/index', [CalendarController::class, 'index'])->name('calendar.index');
+    Route::post('/calendar', [CalendarController::class, 'store'])->name('calendar.store');
+    Route::patch('/calendar/update/{id}', [CalendarController::class, 'update'])->name('calendar.update');
+    Route::delete('/calendar/destroy/{id}', [CalendarController::class, 'destroy'])->name('calendar.destroy');
     Route::resource('/investments', InvestmentController::class);
     Route::get('/assets', [AssetController::class, 'index'])->name('assets.index');
     Route::get('/liabilities', [LiabilityController::class, 'index'])->name('liabilities.index');

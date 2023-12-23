@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('member-savings.index') }}">Monthly savings</a> / </span>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('member-savings.index') }}">Savings</a> / </span>{{ $memberSaving->member->surname }} {{ $memberSaving->member->given_name }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member names</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member's name</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="member_id" 

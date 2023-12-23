@@ -1,7 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #011338 !important;">
     <div class="app-brand demo">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
-            <h3 class="fw-bold" style="color: #ffffff;">PesaBridge</h3>
+            <h3 class="fw-bold" style="color: #ffffff;">PesaShield</h3>
         </a>
 
         {{-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -45,7 +45,7 @@
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('member-savings') ? 'active' : '' }}">
                     <a href="{{ route('member-savings.index') }}" class="menu-link text-capitalize">
-                        <div>Monthly Savings</div>
+                        <div>Savings</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('late-remissions') ? 'active' : '' }}">
