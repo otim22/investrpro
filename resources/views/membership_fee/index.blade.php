@@ -11,7 +11,7 @@
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold py-1 text-capitalize">
-                    <span class="text-muted fw-light">Membership / </span>Annual membership fees
+                    <span class="text-muted fw-light">Assets / </span>Membership fees
                 </h5>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('membership-fees.create') }}" aria-haspopup="true" aria-expanded="false">

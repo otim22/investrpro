@@ -12,7 +12,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="fw-bold py-1 text-capitalize">
-                            <span class="text-muted fw-light">Membership / <a href="{{ route('members.index') }}">Member registration</a>
+                            <span class="text-muted fw-light">Membership / <a href="{{ route('members.index') }}">Registration</a>
                                 / </span>{{ $member->surname }} {{ $member->given_name }}
                         </h5>
                     </div>

@@ -7,7 +7,7 @@
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold py-1 text-capitalize">
-                    <span class="text-muted fw-light">Membership / <a href="{{ route('membership-fees.index') }}">Annual membership fees</a> / </span>{{ $membershipFee->member->surname }} {{ $membershipFee->member->given_name }}</span>
+                    <span class="text-muted fw-light">Assets / <a href="{{ route('membership-fees.index') }}">Membership fees</a> / </span>{{ $membershipFee->member->surname }} {{ $membershipFee->member->given_name }}</span>
                 </h5>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('membership-fees.index') }}" aria-haspopup="true" aria-expanded="false">
@@ -27,7 +27,7 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Member's name</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="member_id" 

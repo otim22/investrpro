@@ -14,15 +14,13 @@ class Expense extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'liability_name',
-        'liability_type',
+        'expense_name',
+        'expense_type',
         'financial_year',
         'date_of_expense',
         'details',
         'rate',
         'amount',
-        'month',
-        'designate',
         'company_id',
     ];
 
@@ -33,7 +31,7 @@ class Expense extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('date_of_expense')
+            ->generateSlugsFrom('expense_name')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
     }

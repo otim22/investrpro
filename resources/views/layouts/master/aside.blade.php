@@ -37,7 +37,7 @@
         </li>
 
         <!-- Asset -->
-        <li class="menu-item added-active {{ Request::is(['member-savings', 'late-remissions', 'missed-meetings']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['member-savings', 'late-remissions', 'missed-meetings', 'membership-fees']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-money'></i>
                 <div>Assets</div>
@@ -56,6 +56,11 @@
                 <li class="menu-item {{ Request::is('missed-meetings') ? 'active' : '' }}">
                     <a href="{{ route('missed-meetings.index') }}" class="menu-link text-capitalize">
                         <div>Missed meetings</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('membership-fees') ? 'active' : '' }}">
+                    <a href="{{ route('membership-fees.index') }}" class="menu-link text-capitalize">
+                        <div>Membership Fees</div>
                     </a>
                 </li>
             </ul>
@@ -78,7 +83,7 @@
         </li>
         
         <!-- Membership -->
-        <li class="menu-item added-active {{ Request::is(['all-members', 'executive-members', 'members', 'membership-fees']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['all-members', 'executive-members', 'members']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-group'></i>
                 <div>Membership</div>
@@ -96,12 +101,7 @@
                 </li>
                 <li class="menu-item {{ Request::is('members') ? 'active' : '' }}">
                     <a href="{{ route('members.index') }}" class="menu-link text-capitalize">
-                        <div>Member registration</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('membership-fees') ? 'active' : '' }}">
-                    <a href="{{ route('membership-fees.index') }}" class="menu-link text-capitalize">
-                        <div>Membership Fee</div>
+                        <div>Registration</div>
                     </a>
                 </li>
             </ul>
@@ -191,7 +191,7 @@
                 </li>
                 <li class="menu-item {{ Request::is('liability-types') ? 'active' : '' }}">
                     <a href="{{ route('liability-types.index') }}" class="menu-link text-capitalize">
-                        <div>Liability types</div>
+                        <div>Expense types</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('financial-months') ? 'active' : '' }}">

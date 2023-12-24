@@ -15,7 +15,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Archive / <a href="{{ route('constitution.index') }}">Constitution</a> / </span>{{ $constitution->title }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">HR Manual / <a href="{{ route('constitution.index') }}">Constitution</a> / </span>{{ $constitution->title }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -74,63 +74,31 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('constitution.update', $constitution) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('patch')
+                    <div class="mb-3">
+                        @include('pdf.pdf_viewer')
+                    </div>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="title">Title</label>
-                            <div class="col-sm-9">
-                                <input 
-                                    type="text" 
-                                    id="title" 
-                                    class="form-control @error('title') is-invalid @enderror" 
-                                    name="title"
-                                    value="{{ old('title', $constitution->title) }}"
-                                    placeholder="January" 
-                                    autofocus
-                                    disabled
-                                />
-                                @error('title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    <div class="mb-3">
+                        <div class="text-capitalize fw-bold">
+                            Description
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="description">Description</label>
-                            <div class="col-sm-9">
-                                <div class="input-group input-group-merge">
-                                    <textarea
-                                        type="text"
-                                        id="description"
-                                        name="description"
-                                        class="form-control"
-                                        disabled
-                                    >{{ old('description', $constitution->description) }} </textarea>
-                                    @error('description')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+                        <div>
+                            {{ $constitution->description }}
                         </div>
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label" for="amount">Document attachement</label>
-                            <div class="col-sm-9">
-                                <div class="col-sm-9">
-                                    @if ($constitution->getFirstMediaUrl('doc_attachement'))
-                                        <div><a class="text-decoration-none" href="{{ route('constitution.download', $constitution->id) }}" target="_blank">{{ $constitution->getFirstMedia("doc_attachement")->name }}</a></div>
-                                    @else
-                                        <div>--</div>
-                                    @endif
-                                </div>
-                            </div>
+                    </div>
+
+                    <div>
+                        <div class="text-capitalize fw-bold">
+                            Download link
                         </div>
-                    </form>
-                    @include('pdf.pdf_viewer')
+                        <div>
+                            @if ($constitution->getFirstMediaUrl('doc_attachement'))
+                                <div><a class="text-decoration-none" href="{{ route('constitution.download', $constitution->id) }}" target="_blank">{{ $constitution->getFirstMedia("doc_attachement")->name }}</a></div>
+                            @else
+                                <div>--</div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

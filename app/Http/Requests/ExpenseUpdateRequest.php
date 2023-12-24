@@ -24,14 +24,13 @@ class ExpenseUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'liability_name' => ['required', 'string'],
-            'liability_type' => ['required', 'string'],
+            'expense_name' => ['required', 'string'],
+            'expense_type' => ['required', 'string'],
             'financial_year' => ['required', 'string'],
             'date_of_expense' => ['required', 'date'],
             'details' => ['required', 'string'],
             'rate' => ['nullable', 'string'],
             'amount' => ['required'],
-            'designate' => ['nullable'],
         ];
     }
 }

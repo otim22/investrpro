@@ -1,24 +1,5 @@
 @extends('layouts.master.app')
 
-@push('styles')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
-    <style>
-        table tr td, table tr th {
-            max-width: 14vw;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        table {
-            width: 100%;
-        }
-        div.dataTables_wrapper div.dataTables_length select {
-            width: 70px !important;
-        }
-    </style>
-@endpush
-
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
       <div class="row">
@@ -52,10 +33,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    {{ $dataTable->scripts() }}
-@endpush

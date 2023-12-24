@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">General / <a href="{{ route('liability-types.index') }}">List of liability types</a> / </span>{{ $liabilityType->liability_type }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">General / <a href="{{ route('liability-types.index') }}">List of expense types</a> / </span>{{ $liabilityType->liability_type }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">

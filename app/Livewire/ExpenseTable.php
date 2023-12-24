@@ -56,8 +56,8 @@ final class ExpenseTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('liability_name')
-            ->addColumn('liability_type')
+            ->addColumn('expense_name')
+            ->addColumn('expense_type')
             ->addColumn('financial_year')
             ->addColumn('date_of_expense_formatted', function (Expense $model) { 
                 return Carbon::parse($model->date_of_expense)->format('d/m/Y');
@@ -66,20 +66,19 @@ final class ExpenseTable extends PowerGridComponent
                 return \Str::words(e($model->details), 10); 
             })
             ->addColumn('rate')
-            ->addColumn('amount')
-            ->addColumn('designate');
+            ->addColumn('amount');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Liability name', 'liability_name')
+            Column::make('Expense name', 'expense_name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Liability type', 'liability_type')
-                ->sortable()
-                ->searchable(),
+            Column::make('Expense type', 'expense_type')
+                ->sortable(),
+                
 
             Column::make('Financial year', 'financial_year')
                 ->sortable()
@@ -100,10 +99,6 @@ final class ExpenseTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Designate', 'designate')
-                ->sortable()
-                ->searchable(),
-
             Column::action('Action')
         ];
     }
@@ -111,12 +106,11 @@ final class ExpenseTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('liability_name')->operators(['contains']),
-            Filter::inputText('liability_type')->operators(['contains']),
+            Filter::inputText('expense_name')->operators(['contains']),
             Filter::inputText('financial_year')->operators(['contains']),
+            Filter::inputText('details')->operators(['contains']),
             Filter::inputText('rate')->operators(['contains']),
             Filter::inputText('amount')->operators(['contains']),
-            Filter::inputText('designate')->operators(['contains']),
         ];
     }
 

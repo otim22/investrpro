@@ -40,9 +40,9 @@ class InvestmentController extends Controller
             'interest_rate' => $request->interest_rate,
             'amount_invested' => $request->amount_invested,
             'date_of_maturity' => $request->date_of_maturity,
-            'expected_return_before_tax' => $request->expected_return_before_tax,
+            'expected_tax' => $request->expected_tax,
             'expected_return_after_tax' => $request->expected_return_after_tax,
-            'interest_recieved_and_reinvested' => $request->interest_recieved_and_reinvested,
+            'interest_recieved' => $request->interest_recieved,
             'company_id' => Auth::user()->company->id,
         ]);
  

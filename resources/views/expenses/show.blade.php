@@ -77,28 +77,28 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_name">Expense name</label>
+                            <label class="col-sm-2 col-form-label" for="expense_name">Expense name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
-                                    id="liability_name" 
-                                    class="form-control @error('liability_name') is-invalid @enderror" 
-                                    name="liability_name"
-                                    value="{{ old('liability_name', $expense->liability_name) }}"
-                                    placeholder="Premiums" 
+                                    id="expense_name" 
+                                    class="form-control @error('expense_name') is-invalid @enderror" 
+                                    name="expense_name"
+                                    value="{{ old('expense_name', $expense->expense_name) }}"
+                                    placeholder="Expenses" 
                                     disabled
                                 />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_type">Expense type</label>
+                            <label class="col-sm-2 col-form-label" for="expense_type">Expense type</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
-                                    id="liability_type" 
-                                    class="form-control @error('liability_type') is-invalid @enderror" 
-                                    name="liability_type"
-                                    value="{{ old('liability_type', $expense->liability_type) }}"
+                                    id="expense_type" 
+                                    class="form-control @error('expense_type') is-invalid @enderror" 
+                                    name="expense_type"
+                                    value="{{ old('expense_type', $expense->expense_type) }}"
                                     disabled
                                 />
                             </div>
@@ -119,19 +119,6 @@
                                         disabled
                                     />
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month paid</label>
-                            <div class="col-sm-10">
-                                <input 
-                                    type="text" 
-                                    id="month" 
-                                    class="form-control @error('month') is-invalid @enderror" 
-                                    name="month"
-                                    value="{{ old('month', $expense->month) }}"
-                                    disabled
-                                />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -187,22 +174,6 @@
                                         value="{{ old('amount', $expense->amount) }}"
                                         class="form-control @error('amount') is-invalid @enderror"
                                         aria-describedby="amount"
-                                        disabled
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label" for="designate">Designate</label>
-                            <div class="col-sm-10">
-                                <div class="input-group input-group-merge">
-                                    <input
-                                        type="text"
-                                        id="designate"
-                                        name="designate"
-                                        value="{{ old('designate', $expense->designate) }}"
-                                        class="form-control @error('designate') is-invalid @enderror"
-                                        aria-describedby="designate"
                                         disabled
                                     />
                                 </div>

@@ -42,15 +42,13 @@ class ExpenseController extends Controller
     {
         $request->validated();
         $expense = Expense::create([
-            'liability_name' => $request->liability_name,
-            'liability_type' => $request->liability_type,
+            'expense_name' => $request->expense_name,
+            'expense_type' => $request->expense_type,
             'financial_year' => $request->financial_year,
             'date_of_expense' => $request->date_of_expense,
             'details' => $request->details,
             'rate' => $request->rate,
             'amount' => $request->amount,
-            'month' => $request->month,
-            'designate' => $request->designate,
             'company_id' => Auth::user()->company->id,
         ]);
         

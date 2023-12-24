@@ -55,14 +55,14 @@ class ProfitAndLossShow extends Component
             }, 0);
             $this->currentLiabilities = Expense::where([
                 'company_id' => Auth::user()->company->id,
-                'liability_type' => 'Current Liabilities'
+                'expense_type' => 'Current Liabilities'
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
                 return $carry += $subTotal;
             }, 0);
             $this->nonCurrentLiabilities = Expense::where([
                 'company_id' => Auth::user()->company->id,
-                'liability_type' => 'Non Current Liabilities'
+                'expense_type' => 'Non Current Liabilities'
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
                 return $carry += $subTotal;
@@ -140,7 +140,7 @@ class ProfitAndLossShow extends Component
             }, 0);
             $this->currentLiabilities = Expense::where([
                 'company_id' => Auth::user()->company->id,
-                'liability_type' => 'Current Liabilities',
+                'expense_type' => 'Current Liabilities',
                 'month' => $this->month
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
@@ -148,7 +148,7 @@ class ProfitAndLossShow extends Component
             }, 0);
             $this->nonCurrentLiabilities = Expense::where([
                 'company_id' => Auth::user()->company->id,
-                'liability_type' => 'Non Current Liabilities',
+                'expense_type' => 'Non Current Liabilities',
                 'month' => $this->month
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
@@ -209,7 +209,7 @@ class ProfitAndLossShow extends Component
             }, 0);
             $this->currentLiabilities = Expense::where([
                 'company_id' => Auth::user()->company->id,
-                'liability_type' => 'Current Liabilities',
+                'expense_type' => 'Current Liabilities',
                 'financial_year' => $this->year
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
@@ -217,7 +217,7 @@ class ProfitAndLossShow extends Component
             }, 0);
             $this->nonCurrentLiabilities = Expense::where([
                 'company_id' => Auth::user()->company->id,
-                'liability_type' => 'Non Current Liabilities',
+                'expense_type' => 'Non Current Liabilities',
                 'financial_year' => $this->year
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;

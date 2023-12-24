@@ -30,9 +30,9 @@ class InvestmentUpdateRequest extends FormRequest
             'interest_rate' => ['required', 'string'],
             'amount_invested' => ['required', 'string'],
             'date_of_maturity' => ['required', 'date'],
-            'expected_return_before_tax' => ['required', 'string'],
+            'expected_tax' => ['required', 'string'],
             'expected_return_after_tax' => ['nullable', 'string'],
-            'interest_recieved_and_reinvested' => ['nullable', 'string'],
+            'interest_recieved' => ['nullable', 'string'],
         ];
     }
 }

@@ -66,9 +66,9 @@ final class InvestmentTable extends PowerGridComponent
             ->addColumn('date_of_maturity_formatted', function (Investment $model) { 
                 return Carbon::parse($model->date_of_maturity)->format('d/m/Y');
             })
-            ->addColumn('expected_return_before_tax')
+            ->addColumn('expected_tax')
             ->addColumn('expected_return_after_tax')
-            ->addColumn('interest_recieved_and_reinvested');
+            ->addColumn('interest_recieved');
     }
 
     public function columns(): array
@@ -96,7 +96,7 @@ final class InvestmentTable extends PowerGridComponent
             Column::make('Date of maturity', 'date_of_maturity_formatted', 'date_of_maturity')
                 ->sortable(),
 
-            Column::make('Expected return before tax', 'expected_return_before_tax')
+            Column::make('Expected tax', 'expected_tax')
                 ->sortable()
                 ->searchable(),
 
@@ -104,7 +104,7 @@ final class InvestmentTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Interest recieved and reinvested', 'interest_recieved_and_reinvested')
+            Column::make('Interest recieved', 'interest_recieved')
                 ->sortable()
                 ->searchable(),
 
@@ -119,9 +119,9 @@ final class InvestmentTable extends PowerGridComponent
             Filter::inputText('duration')->operators(['contains']),
             Filter::inputText('interest_rate')->operators(['contains']),
             Filter::inputText('amount_invested')->operators(['contains']),
-            Filter::inputText('expected_return_before_tax')->operators(['contains']),
+            Filter::inputText('expected_tax')->operators(['contains']),
             Filter::inputText('expected_return_after_tax')->operators(['contains']),
-            Filter::inputText('interest_recieved_and_reinvested')->operators(['contains']),
+            Filter::inputText('interest_recieved')->operators(['contains']),
         ];
     }
 

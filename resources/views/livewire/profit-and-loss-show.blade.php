@@ -8,7 +8,7 @@
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Profit / </span>Assets</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets overview</span></h5>
                 </div>
                 <div class="d-flex">
                     <div class="me-3">
@@ -109,12 +109,12 @@
     
     <div class="row mb-2">
         <div class="col-lg-12 col-md-12 col-12">
-            <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Loss / </span>Liabilities</h5>
+            <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expense overview</span></h5>
         </div>
         <div class="col-lg-3 col-md-6 col-6 mb-4">
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Liability value</span>
+                    <span class="d-block text-capitalize mb-2">Expense total</span>
                     @if ($totalLiabilityValue)
                         <h5 class="card-title mb-2">UGX {{ number_format($totalLiabilityValue) }}/-</h5>
                     @else
@@ -126,7 +126,7 @@
         <div class="col-lg-3 col-md-6 col-6 mb-4">
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Number of Liabilities</span>
+                    <span class="d-block text-capitalize mb-2">Number of expenses</span>
                     @if ($liabilities)
                         <h5 class="card-title mb-2">{{ number_format(count($liabilities)) }}</h5>
                     @else
@@ -138,7 +138,7 @@
         <div class="col-lg-3 col-md-6 col-6 mb-4">
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Current Liabilities</span>
+                    <span class="d-block text-capitalize mb-2">Current expenses</span>
                     @if ($currentLiabilities)
                         <h5 class="card-title mb-2">UGX {{ number_format($currentLiabilities) }}/-</h5>
                     @else
@@ -150,7 +150,7 @@
         <div class="col-lg-3 col-md-6 col-6">
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Non Current Liabilities</span>
+                    <span class="d-block text-capitalize mb-2">Non Current expenses</span>
                     @if ($nonCurrentLiabilities)
                         <h5 class="card-title mb-2">UGX {{ number_format($nonCurrentLiabilities) }}/-</h5>
                     @else

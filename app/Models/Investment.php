@@ -20,9 +20,9 @@ class Investment extends Model
         'interest_rate',
         'amount_invested',
         'date_of_maturity',
-        'expected_return_before_tax',
+        'expected_tax',
         'expected_return_after_tax',
-        'interest_recieved_and_reinvested',
+        'interest_recieved',
         'company_id',
     ];
 

@@ -22,7 +22,7 @@
             <div class="col-lg-3 col-md-6 col-6 mb-4">
                 <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                     <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Total liability value</span>
+                        <span class="d-block text-capitalize mb-1">Total expenses</span>
                         <h5 class="card-title mb-2">UGX {{ number_format($totalLiabilities) }}/-</h5>
                     </div>
                 </div>

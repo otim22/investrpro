@@ -171,17 +171,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expected_return_before_tax">Expected return before tax</label>
+                            <label class="col-sm-2 col-form-label" for="expected_tax">Expected tax</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="number"
-                                        id="expected_return_before_tax"
-                                        name="expected_return_before_tax"
-                                        class="form-control @error('expected_return_before_tax') is-invalid @enderror"
+                                        id="expected_tax"
+                                        name="expected_tax"
+                                        class="form-control @error('expected_tax') is-invalid @enderror"
                                         placeholder="0.015"
-                                        aria-describedby="expected_return_before_tax"
-                                        value="{{ old('expected_return_before_tax', $investment->expected_return_before_tax) }}"
+                                        aria-describedby="expected_tax"
+                                        value="{{ old('expected_tax', $investment->expected_tax) }}"
                                         disabled
                                     />
                                 </div>
@@ -205,17 +205,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label" for="interest_recieved_and_reinvested">Interest recieved & reinvested</label>
+                            <label class="col-sm-2 col-form-label" for="interest_recieved">Interest recieved</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="number"
-                                        id="interest_recieved_and_reinvested"
-                                        name="interest_recieved_and_reinvested"
-                                        class="form-control @error('interest_recieved_and_reinvested') is-invalid @enderror"
+                                        id="interest_recieved"
+                                        name="interest_recieved"
+                                        class="form-control @error('interest_recieved') is-invalid @enderror"
                                         placeholder="0.01"
-                                        aria-describedby="interest_recieved_and_reinvested"
-                                        value="{{ old('interest_recieved_and_reinvested', $investment->interest_recieved_and_reinvested) }}"
+                                        aria-describedby="interest_recieved"
+                                        value="{{ old('interest_recieved', $investment->interest_recieved) }}"
                                         disabled
                                     />
                                 </div>

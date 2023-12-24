@@ -24,17 +24,17 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_name">Expense name</label>
+                            <label class="col-sm-2 col-form-label" for="expense_name">Expense name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
-                                    id="liability_name" 
-                                    class="form-control @error('liability_name') is-invalid @enderror" 
-                                    name="liability_name"
-                                    value="{{ old('liability_name') }}"
+                                    id="expense_name" 
+                                    class="form-control @error('expense_name') is-invalid @enderror" 
+                                    name="expense_name"
+                                    value="{{ old('expense_name') }}"
                                     placeholder="Expenses" 
                                 />
-                                @error('liability_name')
+                                @error('expense_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -42,12 +42,12 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="liability_type">Expense type</label>
+                            <label class="col-sm-2 col-form-label" for="expense_type">Expense type</label>
                             <div class="col-sm-10">
                                 <select 
-                                    id="liability_type" 
-                                    class="form-select @error('liability_type') is-invalid @enderror" 
-                                    name="liability_type"
+                                    id="expense_type" 
+                                    class="form-select @error('expense_type') is-invalid @enderror" 
+                                    name="expense_type"
                                     aria-label="Default select liability type"
                                 >
                                     @if($liabilityTypes)
@@ -56,7 +56,7 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('liability_type')
+                                @error('expense_type')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -87,29 +87,6 @@
                                 </div>
                             </div>
                         </div> 
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month paid</label>
-                            <div class="col-sm-10">
-                                <select 
-                                    id="month" 
-                                    class="form-select @error('month') is-invalid @enderror" 
-                                    name="month"
-                                    aria-label="Default select month"
-                                    required
-                                >
-                                    @if($months)
-                                        @foreach($months as $month)
-                                            <option value="{{ $month->title }}">{{ $month->title }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                                @error('month')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="date_of_expense">Date acquired</label>
                             <div class="col-sm-10">
@@ -178,23 +155,6 @@
                                     placeholder="10000" 
                                 />
                                 @error('amount')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="designate">Designate</label>
-                            <div class="col-sm-10">
-                                <input 
-                                    type="text" 
-                                    id="designate" 
-                                    class="form-control @error('designate') is-invalid @enderror" 
-                                    name="designate"
-                                    value="{{ old('designate') }}"
-                                />
-                                @error('designate')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
