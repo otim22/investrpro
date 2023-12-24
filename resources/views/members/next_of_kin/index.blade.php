@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
-                    @if ($member->nextOfKin)
+                    @if (count($member->nextOfKin) > 0)
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>

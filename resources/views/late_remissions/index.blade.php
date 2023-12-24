@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
-                    @if (!empty($lateRemissions))
+                    @if (count($lateRemissions) > 0)
                         <livewire:late-remission-table />
                     @else
                         <p class="mb-0 text-center text-capitalize">No late charges found</p>

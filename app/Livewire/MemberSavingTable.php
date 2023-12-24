@@ -23,9 +23,7 @@ final class MemberSavingTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        // Custom per page
         $perPage = 25;
-        // Custom per page values
         $perPageValues = [0, 25, 50, 100, 200];
 
         $this->showCheckBox();

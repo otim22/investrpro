@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Investment;
+use App\Models\MembershipFee;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -16,7 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class InvestmentTable extends PowerGridComponent
+final class MembershipFeeTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -43,7 +43,8 @@ final class InvestmentTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Investment::query();
+        return MembershipFee::query()->join('members', 'membership_fees.member_id', '=', 'members.id')
+            ->select('membership_fees.*', 'members.surname as member');
     }
 
     public function relationSearch(): array
@@ -54,55 +55,34 @@ final class InvestmentTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('investment_type')
-            ->addColumn('date_of_investment_formatted', function (Investment $model) { 
-                return Carbon::parse($model->date_of_investment)->format('d/m/Y');
+            ->addColumn('member')
+            ->addColumn('fee_amount')
+            ->addColumn('year_paid_for')
+            ->addColumn('date_of_payment_formatted', function (MembershipFee $model) { 
+                return Carbon::parse($model->date_of_payment)->format('d/m/Y');
             })
-            ->addColumn('duration')
-            ->addColumn('interest_rate')
-            ->addColumn('amount_invested')
-            ->addColumn('date_of_maturity_formatted', function (Investment $model) { 
-                return Carbon::parse($model->date_of_maturity)->format('d/m/Y');
-            })
-            ->addColumn('expected_tax')
-            ->addColumn('expected_return_after_tax')
-            ->addColumn('interest_recieved');
+            ->addColumn('comment');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Investment type', 'investment_type')
+            Column::make('Member', 'member')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Date of investment', 'date_of_investment_formatted', 'date_of_investment')
+            Column::make('Fee amount', 'fee_amount')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Year paid for', 'year_paid_for')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Date of payment', 'date_of_payment_formatted', 'date_of_payment')
                 ->sortable(),
 
-            Column::make('Duration', 'duration')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Interest rate', 'interest_rate')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Amount invested', 'amount_invested')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Date of maturity', 'date_of_maturity_formatted', 'date_of_maturity')
-                ->sortable(),
-
-            Column::make('Expected tax', 'expected_tax')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Expected return after tax', 'expected_return_after_tax')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Interest recieved', 'interest_recieved')
+            Column::make('Comment', 'comment')
                 ->sortable()
                 ->searchable(),
 
@@ -113,30 +93,27 @@ final class InvestmentTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('investment_type')->operators(['contains']),
-            Filter::inputText('duration')->operators(['contains']),
-            Filter::inputText('interest_rate')->operators(['contains']),
-            Filter::inputText('amount_invested')->operators(['contains']),
-            Filter::inputText('expected_tax')->operators(['contains']),
-            Filter::inputText('expected_return_after_tax')->operators(['contains']),
-            Filter::inputText('interest_recieved')->operators(['contains']),
+            Filter::inputText('member')->operators(['contains']),
+            Filter::inputText('fee_amount')->operators(['contains']),
+            Filter::inputText('year_paid_for')->operators(['contains']),
+            Filter::inputText('comment')->operators(['contains']),
         ];
     }
 
     #[\Livewire\Attributes\On('show')]
     public function show($rowId)
     {
-        $investment = Investment::findOrFail($rowId);
-        $this->redirectRoute('investments.show', $investment);
+        $membershipFee = MembershipFee::findOrFail($rowId);
+        $this->redirectRoute('membership-fees.show', $membershipFee);
     }
 
-    public function actions(Investment $row): array
+    public function actions(MembershipFee $row): array
     {
         return [
             Button::add('show')
                 ->slot('View')
                 ->class('btn btn-sm btn-primary')
-                ->dispatch('show', ['rowId' => $row->id])
+                ->dispatch('show', ['rowId' => $row->id]),
         ];
     }
 

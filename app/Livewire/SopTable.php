@@ -2,7 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\LateRemission;
+use App\Models\Sop;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -16,7 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class LateRemissionTable extends PowerGridComponent
+final class SopTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -43,8 +44,7 @@ final class LateRemissionTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return LateRemission::query()->join('members', 'late_remissions.member_id', '=', 'members.id')
-            ->select('late_remissions.*', 'members.surname as member');
+        return Sop::query();
     }
 
     public function relationSearch(): array
@@ -55,44 +55,24 @@ final class LateRemissionTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('member')
-            ->addColumn('asset_type')
-            ->addColumn('financial_year')
-            ->addColumn('charge_paid_for')
-            ->addColumn('charge_amount')
-            ->addColumn('month_paid_for')
-            ->addColumn('date_of_payment_formatted', function (LateRemission $model) { 
-                return Carbon::parse($model->date_paid)->format('d/m/Y');
+            ->addColumn('title', function (Sop $model) { 
+                return Str::limit($model->title, 40);
             })
-            ->addColumn('comment', function (LateRemission $model) {
-                return \Str::words(e($model->comment), 5); 
+            ->addColumn('description', function (Sop $model) { 
+                return Str::limit($model->description, 50);
             });
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Member', 'member'),
-
-            Column::make('Charge paid for', 'charge_paid_for')
-                ->sortable(),
-
-            Column::make('Charge amount', 'charge_amount'),
-
-            Column::make('Financial year', 'financial_year')
+            Column::make('Title', 'title')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Month paid for', 'month_paid_for')
+            Column::make('Description', 'description')
                 ->sortable()
                 ->searchable(),
-
-            Column::make('Date of payment', 'date_of_payment_formatted', 'date_of_payment')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Comment', 'comment')
-                ->sortable(),
 
             Column::action('Action')
         ];
@@ -101,27 +81,25 @@ final class LateRemissionTable extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('asset_type')->operators(['contains']),
-            Filter::inputText('financial_year')->operators(['contains']),
-            Filter::inputText('comment')->operators(['contains']),
-            Filter::inputText('month_paid_for')->operators(['contains']),
+            Filter::inputText('title')->operators(['contains']),
+            Filter::inputText('description')->operators(['contains']),
         ];
     }
 
     #[\Livewire\Attributes\On('show')]
     public function show($rowId)
     {
-        $lateRemissions = LateRemission::findOrFail($rowId);
-        $this->redirectRoute('late-remissions.show', $lateRemissions);
+        $sop = Sop::findOrFail($rowId);
+        $this->redirectRoute('sop.show', $sop);
     }
 
-    public function actions(LateRemission $row): array
+    public function actions(Sop $row): array
     {
         return [
             Button::add('show')
                 ->slot('View')
                 ->class('btn btn-sm btn-primary')
-                ->dispatch('show', ['rowId' => $row->id])
+                ->dispatch('show', ['rowId' => $row->id]),
         ];
     }
 
