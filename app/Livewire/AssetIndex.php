@@ -110,7 +110,7 @@ class AssetIndex extends Component
             foreach($this->memberSavings as $memberSaving) {
                 $memyearSavTotal += $memberSaving->premium;
             }
-            // dd($this->memberSavings);
+            
             $this->totalMemberSaving = $memyearSavTotal;
             
             // Late remissions saving by year

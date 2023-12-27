@@ -15,7 +15,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">HR Manual / <a href="{{ route('constitution.index') }}">Constitution</a> / </span>{{ $constitution->title }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">HR Manual / <a href="{{ route('hr-manuals.index') }}">List of HR Manuals</a> / </span>{{ $hrManual->title }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -24,37 +24,37 @@
                             Actions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item btn-sm" href="{{ route('constitution.edit', $constitution) }}">
+                            <a class="dropdown-item btn-sm" href="{{ route('hr-manuals.edit', $hrManual) }}">
                                 <i class='me-2 bx bxs-edit-alt'></i>
-                                Edit constitution
+                                Edit manual
                             </a>
                             <a class="dropdown-item btn-sm" href="javascript:void(0);" data-bs-toggle="modal"
-                                data-bs-target="#confirmConstitutionDeletion{{ $constitution->id }}">
+                                data-bs-target="#confirmHrManualDeletion{{ $hrManual->id }}">
                                 <i class='me-2 bx bx-trash'></i>
-                                Delete constitution
+                                Delete manual
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('constitution.destroy', $constitution) }}" class="hidden" id="delete-charge-{{ $constitution->id }}"
+            <form action="{{ route('hr-manuals.destroy', $hrManual) }}" class="hidden" id="delete-charge-{{ $hrManual->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
             </form>
-            <div class="modal fade" id="confirmConstitutionDeletion{{ $constitution->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="confirmHrManualDeletion{{ $hrManual->id }}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmConstitutionDeletion{{ $constitution->id }}">
-                                {{ $constitution->title }}</h5>
+                            <h5 class="modal-title" id="confirmHrManualDeletion{{ $hrManual->id }}">
+                                {{ $hrManual->title }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row g-2">
                                 <div class="col mb-0">
-                                    Are you sure to delete {{ $constitution->title }}?
+                                    Are you sure deleting {{ $hrManual->title }}?
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $constitution->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $hrManual->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                             Description
                         </div>
                         <div>
-                            {{ $constitution->description }}
+                            {{ $hrManual->description }}
                         </div>
                     </div>
 
@@ -92,8 +92,8 @@
                             Download link
                         </div>
                         <div>
-                            @if ($constitution->getFirstMediaUrl('doc_attachement'))
-                                <div><a class="text-decoration-none" href="{{ route('constitution.download', $constitution->id) }}" target="_blank">{{ $constitution->getFirstMedia("doc_attachement")->name }}</a></div>
+                            @if ($hrManual->getFirstMediaUrl('doc_attachement'))
+                                <div><a class="text-decoration-none" href="{{ route('hr-manuals.download', $hrManual->id) }}" target="_blank">{{ $hrManual->getFirstMedia("doc_attachement")->name }}</a></div>
                             @else
                                 <div>--</div>
                             @endif
@@ -123,7 +123,7 @@
         let pdfRendering = false;
 
         function getPdf() {
-            let url = {{ Js::from($constitutionUrl) }};
+            let url = {{ Js::from($hrManualUrl) }};
             if (url) {
                 return {
                     url

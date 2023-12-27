@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConstitutionUpdateRequest extends FormRequest
+class HrManualRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class ConstitutionUpdateRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'doc_attachement' => "nullable|mimes:pdf",
+            'doc_attachement' => "required|mimes:pdf",
         ];
     }
 }

@@ -22,11 +22,7 @@ use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\AuditReportController;
 use App\Http\Controllers\FinancialReportController;
 use App\Http\Controllers\GeneralReportController;
-use App\Http\Controllers\ConstitutionController;
-use App\Http\Controllers\SopController;
-use App\Http\Controllers\MeetingMinuteController;
-use App\Http\Controllers\SavedEmailController;
-use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\HrManualController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -78,17 +74,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/financial-reports/download/{id}', [FinancialReportController::class, 'download'])->name('financial-reports.download');
     Route::resource('/audit-reports', AuditReportController::class);
     Route::get('/audit-reports/download/{id}', [AuditReportController::class, 'download'])->name('audit-reports.download');
-    Route::resource('/constitution', ConstitutionController::class);
-    Route::get('/constitution/download/{id}', [ConstitutionController::class, 'download'])->name('constitution.download');
-    Route::resource('/sop', SopController::class);
-    Route::get('/sop/download/{id}', [SopController::class, 'download'])->name('sop.download');
-    Route::resource('/meeting-minutes', MeetingMinuteController::class);
-    Route::get('/meeting-minutes/download/{id}', [MeetingMinuteController::class, 'download'])->name('meeting-minutes.download');
-    Route::resource('/saved-emails', SavedEmailController::class);
-    Route::get('/saved-emails/download/{id}', [SavedEmailController::class, 'download'])->name('saved-emails.download');
-    Route::resource('/elections', ElectionController::class);
-    Route::get('/elections/download/{id}', [ElectionController::class, 'download'])->name('elections.download');
-    Route::get('/meeting-recordings', [App\Http\Controllers\MeetingRecordingController::class, 'index'])->name('recordings');
+    Route::resource('/hr-manuals', HrManualController::class);
+    Route::get('/hr-manuals/download/{id}', [HrManualController::class, 'download'])->name('hr-manuals.download');
     Route::get('/billing', [App\Http\Controllers\BillingController::class, 'index'])->name('billing');
 
     //  User management

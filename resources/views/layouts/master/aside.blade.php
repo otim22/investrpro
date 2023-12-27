@@ -110,39 +110,12 @@
             </ul>
         </li>
         
-        <!-- Archive -->
-        <li class="menu-item added-active {{ Request::is(['constitution', 'sop', 'saved-emails', 'meeting-minutes', 'elections']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
+        <!-- HR manauls -->
+        <li class="menu-item added-active {{ Request::is('hr-manuals') ? 'active' : '' }}">
+            <a href="{{ route('hr-manuals.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bxs-file-archive'></i>
-                <div>HR Manual</div>
+                <div>HR Manuals</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('constitution') ? 'active' : '' }}">
-                    <a href="{{ route('constitution.index') }}" class="menu-link text-capitalize">
-                        <div>Constitution</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('sop') ? 'active' : '' }}">
-                    <a href="{{ route('sop.index') }}" class="menu-link text-capitalize">
-                        <div>SOP</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('meeting-minutes') ? 'active' : '' }}">
-                    <a href="{{ route('meeting-minutes.index') }}" class="menu-link text-capitalize">
-                        <div>Meeting minutes</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('saved-emails') ? 'active' : '' }}">
-                    <a href="{{ route('saved-emails.index') }}" class="menu-link text-capitalize">
-                        <div>Saved Emails</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('elections') ? 'active' : '' }}">
-                    <a href="{{ route('elections.index') }}" class="menu-link text-capitalize">
-                        <div>Elections</div>
-                    </a>
-                </li>
-            </ul>
         </li>
 
         <!-- Settings -->

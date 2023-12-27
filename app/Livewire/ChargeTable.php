@@ -72,36 +72,45 @@ final class ChargeTable extends PowerGridComponent
     {
         return [
             Column::make('Member', 'member')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Asset type', 'asset_type')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Charge', 'charge')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Amount', 'amount')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Financial year', 'financial_year')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Month', 'month')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Date paid', 'date_paid_formatted', 'date_paid'),
+            Column::make('Date paid', 'date_paid_formatted', 'date_paid')
+                ->headerAttribute('text-capitalize fs-6'),
 
             Column::make('Comment', 'comment')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::action('Action')
+                ->headerAttribute('text-capitalize fs-6')
         ];
     }
 

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class MeetingMinute extends Model implements HasMedia
+class HrManual extends Model implements HasMedia
 {
     use HasFactory, HasSlug, InteractsWithMedia;
 
@@ -46,4 +46,3 @@ class MeetingMinute extends Model implements HasMedia
         return Str::limit($value, 30);
     }
 }
-

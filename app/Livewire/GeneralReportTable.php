@@ -67,14 +67,17 @@ final class GeneralReportTable extends PowerGridComponent
     {
         return [
             Column::make('Title', 'title')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Description', 'description')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::action('Action')
+                ->headerAttribute('text-capitalize fs-6')
         ];
     }
 

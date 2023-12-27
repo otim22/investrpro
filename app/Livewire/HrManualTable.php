@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Sop;
+use App\Models\HrManual;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class SopTable extends PowerGridComponent
+final class HrManualTable extends PowerGridComponent
 {
     use WithExport;
 
@@ -44,7 +44,7 @@ final class SopTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Sop::query();
+        return HrManual::query();
     }
 
     public function relationSearch(): array
@@ -55,10 +55,10 @@ final class SopTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('title', function (Sop $model) { 
+            ->addColumn('title', function (HrManual $model) { 
                 return Str::limit($model->title, 40);
             })
-            ->addColumn('description', function (Sop $model) { 
+            ->addColumn('description', function (HrManual $model) { 
                 return Str::limit($model->description, 50);
             });
     }
@@ -67,14 +67,17 @@ final class SopTable extends PowerGridComponent
     {
         return [
             Column::make('Title', 'title')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Description', 'description')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::action('Action')
+                ->headerAttribute('text-capitalize fs-6')
         ];
     }
 
@@ -89,11 +92,11 @@ final class SopTable extends PowerGridComponent
     #[\Livewire\Attributes\On('show')]
     public function show($rowId)
     {
-        $sop = Sop::findOrFail($rowId);
-        $this->redirectRoute('sop.show', $sop);
+        $hrManual = HrManual::findOrFail($rowId);
+        $this->redirectRoute('hr-manuals.show', $hrManual);
     }
 
-    public function actions(Sop $row): array
+    public function actions(HrManual $row): array
     {
         return [
             Button::add('show')
@@ -102,16 +105,4 @@ final class SopTable extends PowerGridComponent
                 ->dispatch('show', ['rowId' => $row->id]),
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }
