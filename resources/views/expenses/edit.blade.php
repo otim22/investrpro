@@ -2,11 +2,17 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expenses / </span>{{ $expense->formatDate($expense->date_of_expense) }}</h5>
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expenses / <a href="{{ route('expenses.index') }}">List of expenses / </a></span>{{ $expense->expense_name }}</h5>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('expenses.create') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
@@ -25,7 +31,7 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expense_name">Expense name</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expense_name">Expense name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -44,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expense_type">Expense type</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expense_type">Expense type</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="expense_type" 
@@ -52,10 +58,10 @@
                                     name="expense_type"
                                     aria-label="Default select liability type"
                                 >
-                                    @if($liabilityTypes)
+                                    @if($expenseTypes)
                                         <option value="{{ $expense->expense_type }}" selected>{{ $expense->expense_type }}</option>
-                                        @foreach($liabilityTypes as $liabilityType)
-                                            <option value="{{ $liabilityType->liability_type }}">{{ $liabilityType->liability_type }}</option>
+                                        @foreach($expenseTypes as $expenseType)
+                                            <option value="{{ $expenseType->expense_type }}">{{ $expenseType->expense_type }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -67,7 +73,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <select 
@@ -92,7 +98,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_of_expense">Date of expense</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_of_expense">Date of expense</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -112,7 +118,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="details">Details</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="details">Details</label>
                             <div class="col-sm-10">
                                 <textarea 
                                     type="text" 
@@ -129,7 +135,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="rate">Rate</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="rate">Rate</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="number" 
@@ -146,7 +152,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount">Amount</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="number" 

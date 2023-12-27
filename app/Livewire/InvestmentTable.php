@@ -75,40 +75,50 @@ final class InvestmentTable extends PowerGridComponent
     {
         return [
             Column::make('Investment type', 'investment_type')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Date of investment', 'date_of_investment_formatted', 'date_of_investment')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable(),
 
             Column::make('Duration', 'duration')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Interest rate', 'interest_rate')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Amount invested', 'amount_invested')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Date of maturity', 'date_of_maturity_formatted', 'date_of_maturity')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable(),
 
             Column::make('Expected tax', 'expected_tax')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Expected return after tax', 'expected_return_after_tax')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Interest recieved', 'interest_recieved')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::action('Action')
+                ->headerAttribute('text-capitalize fs-6')
         ];
     }
 

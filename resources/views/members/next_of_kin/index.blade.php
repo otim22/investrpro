@@ -30,10 +30,10 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Full Names</th>
-                                    <th>Address</th>
-                                    <th>Relationship</th>
-                                    <th>Identification</th>
+                                    <th class="text-capitalize fs-6">Full Names</th>
+                                    <th class="text-capitalize fs-6">Address</th>
+                                    <th class="text-capitalize fs-6">Relationship</th>
+                                    <th class="text-capitalize fs-6">Identification</th>
                                     <th></th>
                                 </tr>
                             </thead>

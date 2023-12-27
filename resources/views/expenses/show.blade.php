@@ -2,6 +2,12 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
@@ -12,7 +18,7 @@
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
                 <div> 
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expenses / </span>{{ $expense->formatDate($expense->date_of_expense) }}</h5>
+                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expenses / <a href="{{ route('expenses.index') }}">List of expenses / </a> </span>{{ $expense->expense_name }}</h5>
                 </div>
                 <div>
                     <div class="btn-group" role="group">
@@ -44,7 +50,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="confirmPremiumDeletion{{ $expense->id }}">
-                                Expense on the date of {{ $expense->formatDate($expense->date_of_expense) }}
+                                Expense on the date of {{ $expense->expense_name }}
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
@@ -52,7 +58,7 @@
                         <div class="modal-body">
                             <div class="row g-2">
                                 <div class="col mb-0">
-                                    Are you sure deleting expense for the date of {{ $expense->formatDate($expense->date_of_expense) }}?
+                                    Are you sure deleting expense for the date of {{ $expense->expense_name }}?
                                 </div>
                             </div>
                         </div>
@@ -77,7 +83,7 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expense_name">Expense name</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expense_name">Expense name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -91,7 +97,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expense_type">Expense type</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expense_type">Expense type</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -104,7 +110,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -122,7 +128,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_of_expense">Date of expense</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_of_expense">Date of expense</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -135,7 +141,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="details">Details</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="details">Details</label>
                             <div class="col-sm-10">
                                 <textarea 
                                     type="text" 
@@ -148,7 +154,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="rate">Rate</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="rate">Rate</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -164,7 +170,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount">Amount</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input

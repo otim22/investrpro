@@ -1,5 +1,11 @@
 @extends('layouts.master.app')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
@@ -32,7 +38,7 @@
                             @method('patch')
 
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="surname">Surname</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="surname">Surname</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -49,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="given_name">Given name</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="given_name">Given name</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -66,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="other_name">Other name</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="other_name">Other name</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -82,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="relationship">Relationship</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="relationship">Relationship</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -99,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="telephone_number">Telephone number</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="telephone_number">Telephone number</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -116,7 +122,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="email">email</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="email">email</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="email" 
@@ -133,7 +139,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="address">Address</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="address">Address</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -150,7 +156,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="nin">National Identification Number (NIN)</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="nin">National Identification Number (NIN)</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -166,7 +172,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="passport_number">Passport number</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="passport_number">Passport number</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -182,7 +188,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="relevant_document">Attach NIN or Passport</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="relevant_document">Attach NIN or Passport</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <input type="file" 

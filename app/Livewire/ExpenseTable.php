@@ -22,9 +22,7 @@ final class ExpenseTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        // Custom per page
         $perPage = 25;
-        // Custom per page values
         $perPageValues = [0, 25, 50, 100, 200];
 
         $this->showCheckBox();
@@ -75,33 +73,41 @@ final class ExpenseTable extends PowerGridComponent
     {
         return [
             Column::make('Expense name', 'expense_name')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Expense type', 'expense_type')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable(),
                 
 
             Column::make('Financial year', 'financial_year')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Date of expense', 'date_of_expense_formatted', 'date_of_expense')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable(),
 
             Column::make('Details', 'details')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Rate', 'rate')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::make('Amount', 'amount')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
             Column::action('Action')
+                ->headerAttribute('text-capitalize fs-6')
         ];
     }
 
@@ -109,6 +115,7 @@ final class ExpenseTable extends PowerGridComponent
     {
         return [
             Filter::inputText('expense_name')->operators(['contains']),
+            Filter::inputText('expense_type')->operators(['contains']),
             Filter::inputText('financial_year')->operators(['contains']),
             Filter::inputText('details')->operators(['contains']),
             Filter::inputText('rate')->operators(['contains']),
@@ -132,16 +139,4 @@ final class ExpenseTable extends PowerGridComponent
                 ->dispatch('show', ['rowId' => $row->id])
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

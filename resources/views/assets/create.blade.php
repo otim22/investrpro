@@ -4,9 +4,7 @@
 
 @push('styles')
     <style>
-        .camel-sent {
-            text-transform: capitalize;
-        }
+        .camel-sent {text-transform: capitalize;}
     </style>
 @endpush
 
@@ -172,7 +170,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="has_paid">Status</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="has_paid">Payment Status</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <select 

@@ -21,9 +21,9 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Identification</th>
-                                    <th>Address</th>
-                                    <th>Occupation</th>
+                                    <th class="text-capitalize fs-6">Identification</th>
+                                    <th class="text-capitalize fs-6">Address</th>
+                                    <th class="text-capitalize fs-6">Occupation</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">

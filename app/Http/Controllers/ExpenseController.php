@@ -5,37 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Expense;
 use App\Models\FinancialYear;
 use Illuminate\Http\Request;
-use App\Models\LiabilityType;
+use App\Models\ExpenseType;
 use App\Models\FinancialMonth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExpenseRequest;
-use App\DataTables\ExpensesDataTable;
 use App\Http\Requests\ExpenseUpdateRequest;
 
 class ExpenseController extends Controller
 {
-    public function index(ExpensesDataTable $dataTable)
+    public function index()
     {
         $expenses = [];
         if(Auth::user()->company) {
             $expenses = Expense::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
-        return $dataTable->render('expenses.index', compact([
-            'expenses' 
-        ]));
+        return view('expenses.index', compact('expenses'));
     }
 
     public function create()
     {
-        $liabilityTypes = [];
+        $expenseTypes = [];
         $financialYears = [];
         $months = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
+            $expenseTypes = ExpenseType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
             $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('expenses.create', compact(['liabilityTypes', 'financialYears', 'months']));
+        return view('expenses.create', compact(['expenseTypes', 'financialYears', 'months']));
     }
 
     public function store(ExpenseRequest $request)
@@ -60,11 +57,11 @@ class ExpenseController extends Controller
      */
     public function show(Expense $expense)
     {
-        $liabilityTypes = [];
+        $expenseTypes = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
+            $expenseTypes = ExpenseType::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('expenses.show', compact(['expense', 'liabilityTypes']));
+        return view('expenses.show', compact(['expense', 'expenseTypes']));
     }
 
     /**
@@ -72,15 +69,15 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        $liabilityTypes = [];
+        $expenseTypes = [];
         $financialYears = [];
         $months = [];
         if(Auth::user()->company) {
-            $liabilityTypes = LiabilityType::where('company_id', Auth::user()->company->id)->get();
+            $expenseTypes = ExpenseType::where('company_id', Auth::user()->company->id)->get();
             $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
             $months = FinancialMonth::where('company_id', Auth::user()->company->id)->get();
         }
-        return view('expenses.edit', compact(['expense', 'liabilityTypes', 'financialYears', 'months']));
+        return view('expenses.edit', compact(['expense', 'expenseTypes', 'financialYears', 'months']));
     }
 
     /**

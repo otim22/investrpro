@@ -1,5 +1,11 @@
 @extends('layouts.master.app')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
@@ -78,49 +84,49 @@
                 <div class="card p-3">
                     <div class="card-body">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="surname">Surname</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="surname">Surname</label>
                             <div class="col-sm-9">
                                 <input type="text" id="surname" class="form-control" name="surname"
                                     value="{{ $member->nextOfKin->surname }}" disabled />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="given_name">Given name</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="given_name">Given name</label>
                             <div class="col-sm-9">
                                 <input type="text" id="given_name" class="form-control" name="given_name"
                                     value="{{ $member->nextOfKin->given_name }}" disabled />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="other_name">Other name</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="other_name">Other name</label>
                             <div class="col-sm-9">
                                 <input type="text" id="other_name" class="form-control" name="other_name"
                                     value="{{ $member->nextOfKin->other_name }}" disabled />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="relationship">Relationship</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="relationship">Relationship</label>
                             <div class="col-sm-9">
                                 <input type="text" id="relationship" class="form-control" name="relationship"
                                     value="{{ $member->nextOfKin->relationship }}" disabled />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="telephone_number">Telephone number</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="telephone_number">Telephone number</label>
                             <div class="col-sm-9">
                                 <input type="text" id="telephone_number" class="form-control" name="telephone_number"
                                     value="{{ $member->nextOfKin->telephone_number }}" disabled />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="email">email</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="email">email</label>
                             <div class="col-sm-9">
                                 <input type="email" id="email" class="form-control" name="email"
                                     value="{{ $member->nextOfKin->email }}" disabled />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label" for="address">Address</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="address">Address</label>
                             <div class="col-sm-9">
                                 <input type="text" id="address" class="form-control" name="address"
                                     value="{{ $member->nextOfKin->address }}" disabled />
@@ -128,7 +134,7 @@
                         </div>
                         @if ($member->nextOfKin->nin)
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="nin">National Identification Number
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="nin">National Identification Number
                                     (NIN)</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="nin" class="form-control" name="nin"
@@ -138,7 +144,7 @@
                         @endif
                         @if ($member->nextOfKin->passport_number)
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="passport_number">Passport number</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="passport_number">Passport number</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="passport_number" class="form-control"
                                         name="passport_number" value="{{ $member->nextOfKin->passport_number }}"
@@ -147,7 +153,7 @@
                             </div>
                         @endif
                         <div class="row">
-                            <label class="col-sm-3 col-form-label" for="passport_number">Attached document</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="passport_number">Attached document</label>
                             <div class="col-sm-9">
                                 @if ($member->nextOfKin->getFirstMediaUrl('relevant_document'))
                                     <div>{{ $member->nextOfKin->getFirstMedia('relevant_document')->name }}</div>

@@ -2,6 +2,12 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
@@ -24,7 +30,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="investment_type">Investment type</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="investment_type">Investment type</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -42,7 +48,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_of_investment">Date of investment</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_of_investment">Date of investment</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="date" 
@@ -59,7 +65,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="duration">Duration</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="duration">Duration</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -80,7 +86,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="interest_rate">Interest rate</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="interest_rate">Interest rate</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -101,7 +107,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount_invested">Amount invested</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount_invested">Amount invested</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -122,7 +128,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_of_maturity">Date of maturity</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_of_maturity">Date of maturity</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -143,7 +149,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expected_tax">Expected tax</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expected_tax">Expected tax</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -164,7 +170,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expected_return_after_tax">Expected return after tax</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expected_return_after_tax">Expected return after tax</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -185,7 +191,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="interest_recieved">Interest recieved</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="interest_recieved">Interest recieved</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input

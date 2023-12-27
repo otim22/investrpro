@@ -3,6 +3,9 @@
 @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
 @endpush
 
 @section('content')
@@ -31,8 +34,8 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="surname">Surname</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="surname">Surname</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="surname"
@@ -48,8 +51,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="given_name">Given name</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="given_name">Given name</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="given_name"
@@ -65,8 +68,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="other_name">Other name</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="other_name">Other name</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="other_name"
@@ -81,8 +84,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="date_of_birth">Date of birth</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_of_birth">Date of birth</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="date" 
                                         id="date_of_birth"
@@ -98,8 +101,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="telephone_number">Telephone number</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="telephone_number">Telephone number</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="telephone_number"
@@ -115,8 +118,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="email">email</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="email">Email address</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="email" 
                                         id="email"
@@ -132,8 +135,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="address">Address</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="address">Physical Address</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="address"
@@ -149,8 +152,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="occupation">Occupation</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="occupation">Occupation</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="occupation"
@@ -166,8 +169,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="nin">National Identification Number (NIN)</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="nin">National Identification Number (NIN)</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="nin"
@@ -182,8 +185,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="passport_number">Passport number</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="passport_number">Passport number</label>
+                                <div class="col-sm-9">
                                     <input 
                                         type="text" 
                                         id="passport_number"
@@ -198,8 +201,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="relevant_document">Attach NIN or Passport</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="relevant_document">Attach NIN or Passport</label>
+                                <div class="col-sm-9">
                                     <div class="input-group">
                                         <input type="file" 
                                             class="form-control" 
@@ -218,8 +221,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="member_role">Member Role(s)</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="member_role">Member Role</label>
+                                <div class="col-sm-9">
                                     <div class="input-group"> 
                                         <select class="form-select" data-placeholder="Choose role" name="member_role[]" multiple id="multiple_member_role">
                                             @foreach($roles as $role)
@@ -235,8 +238,8 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-4 col-form-label" for="conscent_form">Attach conscent form</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="conscent_form">Attach conscent form</label>
+                                <div class="col-sm-9">
                                     <div class="input-group">
                                         <input type="file" 
                                             class="form-control" 
@@ -255,7 +258,7 @@
                                 </div>
                             </div>
                             <div class="row justify-content-end">
-                                <div class="col-sm-8 mt-2">
+                                <div class="col-sm-9 mt-2">
                                     <button type="submit" class="btn btn-primary text-capitalize">Create member</button>
                                 </div>
                             </div>

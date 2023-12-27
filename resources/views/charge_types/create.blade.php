@@ -2,6 +2,12 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
@@ -24,7 +30,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="title">Title</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="title">Title</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -43,7 +49,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="description">Description</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="description">Description</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <textarea
@@ -61,7 +67,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount">Amount</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input

@@ -4,9 +4,7 @@
 
 @push('styles')
     <style>
-        .camel-sent {
-            text-transform: capitalize;
-        }
+        .camel-sent {text-transform: capitalize;}
     </style>
 @endpush
 

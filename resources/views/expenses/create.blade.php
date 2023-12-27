@@ -2,6 +2,12 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
@@ -24,8 +30,8 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expense_name">Expense name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="expense_name">Expense name</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="expense_name" 
@@ -42,8 +48,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="expense_type">Expense type</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="expense_type">Expense type</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="expense_type" 
                                     class="form-select @error('expense_type') is-invalid @enderror" 
@@ -64,8 +70,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <select 
                                         id="financial_year" 
@@ -88,8 +94,8 @@
                             </div>
                         </div> 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_of_expense">Date acquired</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_of_expense">Date acquired</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="date"
@@ -109,8 +115,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="details">Details</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="details">Details</label>
+                            <div class="col-sm-9">
                                 <textarea 
                                     type="text" 
                                     id="details" 
@@ -126,8 +132,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="rate">Rate</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="rate">Rate</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="number" 
                                     id="rate" 
@@ -144,8 +150,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount">Amount</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="number" 
                                     id="amount" 
@@ -162,7 +168,7 @@
                             </div>
                         </div>
                         <div class="row justify-content-end">
-                            <div class="col-sm-10 mt-2">
+                            <div class="col-sm-9 mt-2">
                                 <button type="submit" class="btn btn-primary text-capitalize">Save expense</button>
                             </div>
                         </div>

@@ -27,9 +27,9 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Amount (UGX)</th>
+                                    <th class="text-capitalize fs-6">Title</th>
+                                    <th class="text-capitalize fs-6">Description</th>
+                                    <th class="text-capitalize fs-6">Amount (UGX)</th>
                                     <th></th>
                                 </tr>
                             </thead>

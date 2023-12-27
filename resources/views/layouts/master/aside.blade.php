@@ -43,31 +43,6 @@
                 <div>Assets</div>
             </a>
         </li>
-
-        <!-- Asset -->
-        {{-- <li class="menu-item added-active {{ Request::is(['assets', 'charges', 'membership-fees']) ? 'active' : '' }}" onclick="addActiveClass(this)">
-            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
-                <i class='menu-icon bx bx-money'></i>
-                <div>Assets</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item {{ Request::is('assets') ? 'active' : '' }}">
-                    <a href="{{ route('assets.index') }}" class="menu-link text-capitalize">
-                        <div>Assets</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('charges') ? 'active' : '' }}">
-                    <a href="{{ route('charges.index') }}" class="menu-link text-capitalize">
-                        <div>Charges</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('membership-fees') ? 'active' : '' }}">
-                    <a href="{{ route('membership-fees.index') }}" class="menu-link text-capitalize">
-                        <div>Membership Fees</div>
-                    </a>
-                </li>
-            </ul>
-        </li> --}}
         
         <!-- Expenses -->
         <li class="menu-item added-active {{ Request::is('expenses') ? 'active' : '' }}">
@@ -225,11 +200,6 @@
                 <li class="menu-item {{ Request::is('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}" class="menu-link text-capitalize">
                         <div>Profile</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ Request::is('billing') ? 'active' : '' }}">
-                    <a href="{{ route('billing') }}" class="menu-link text-capitalize">
-                        <div>Billing</div>
                     </a>
                 </li>
             </ul>

@@ -27,8 +27,8 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Year</th>
-                                    <th>Description</th>
+                                    <th class="text-capitalize fs-6">Year</th>
+                                    <th class="text-capitalize fs-6">Description</th>
                                     <th></th>
                                 </tr>
                             </thead>

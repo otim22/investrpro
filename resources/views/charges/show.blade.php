@@ -2,6 +2,12 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
@@ -76,7 +82,7 @@
                             @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="member_id">Member's name</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="member_id">Member's name</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -89,7 +95,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="charge">Asset name</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="charge">Asset name</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input 
@@ -104,7 +110,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="asset_type" 
@@ -128,7 +134,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
@@ -146,7 +152,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="charge">Charge being paid for</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="charge">Charge being paid for</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input 
@@ -161,7 +167,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount">Charge Amount</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Charge Amount</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -174,7 +180,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month (Being paid for)</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="month">Month (Being paid for)</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -187,7 +193,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_paid">Date of payment</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
                             <div class="col-sm-10">
                                 <input 
                                     type="text" 
@@ -200,7 +206,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label" for="comment">Comment</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
                             <div class="col-sm-10">
                                 <textarea 
                                     type="text" 
