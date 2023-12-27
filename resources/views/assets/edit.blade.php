@@ -2,15 +2,23 @@
 
 @section('content')
 
+@push('styles')
+    <style>
+        .camel-sent {
+            text-transform: capitalize;
+        }
+    </style>
+@endpush
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('charges.index') }}">charges</a> / </span>New form</h5>
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('assets.index') }}">Assets</a> / </span>{{ $asset->member->surname }} {{ $asset->member->given_name }} </h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('charges.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('assets.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to charges
+                        Back to assets
                     </a>
                 </div>
             </div>
@@ -20,20 +28,21 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('charges.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('assets.update', $asset) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="member_id">Member's name</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="basic-default-name">Member's name</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="member_id" 
                                     class="form-select @error('member_id') is-invalid @enderror" 
                                     name="member_id"
                                     aria-label="Default select member"
-                                    required
                                 >
                                     @if($members)
+                                        <option value="{{ $asset->member->id }}" selected>{{ $asset->member->surname }} {{ $asset->member->given_name }}</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach
@@ -47,23 +56,23 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="charge">Asset name</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset">Asset name</label>
                             <div class="col-sm-10">
                                 <select 
-                                    id="charge" 
-                                    class="form-select @error('charge') is-invalid @enderror" 
-                                    name="charge"
+                                    id="asset" 
+                                    class="form-select @error('asset') is-invalid @enderror" 
+                                    name="asset"
                                     aria-label="Default select charge"
                                     autofocus
-                                    required
                                 >
                                     @if($chargeSettings)
+                                        <option value="{{ $asset->asset}}" selected>{{ $asset->asset}}</option>
                                         @foreach($chargeSettings as $chargeSetting)
                                             <option value="{{ $chargeSetting->title }}">{{ $chargeSetting->title }}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('charge')
+                                @error('asset')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -71,7 +80,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="asset_type">Asset type</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
                             <div class="col-sm-10">
                                 <select 
                                     id="asset_type" 
@@ -80,6 +89,7 @@
                                     aria-label="Default select asset type"
                                 >
                                     @if($assetTypes)
+                                        <option value="{{ $asset->asset_type }}" selected>{{ $asset->asset_type }}</option>
                                         @foreach($assetTypes as $assetType)
                                             <option value="{{ $assetType->asset_type }}">{{ $assetType->asset_type }}</option>
                                         @endforeach
@@ -93,7 +103,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="financial_year">Financial year</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <select 
@@ -103,6 +113,7 @@
                                         aria-label="Default select year"
                                     >
                                         @if($financialYears)
+                                            <option value="{{ $asset->financial_year }}" selected>{{ $asset->financial_year }}</option>
                                             @foreach($financialYears as $financialYear)
                                                 <option value="{{ $financialYear->title }}">{{ $financialYear->title }}</option>
                                             @endforeach
@@ -117,21 +128,16 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="amount">Amount</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
                             <div class="col-sm-10">
-                                <select 
+                                <input 
+                                    type="text" 
                                     id="amount" 
-                                    class="form-select @error('amount') is-invalid @enderror" 
+                                    class="form-control @error('amount') is-invalid @enderror" 
                                     name="amount"
-                                    aria-label="Default select amount"
-                                    required
-                                >
-                                    @if($chargeSettings)
-                                        @foreach($chargeSettings as $chargeSetting)
-                                            <option value="{{ $chargeSetting->amount }}">{{ number_format($chargeSetting->amount) }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                                    value="{{ old('amount', $asset->amount) }}"
+                                    placeholder="100000" 
+                                /> 
                                 @error('amount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -140,36 +146,14 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="month">Month (Being paid for)</label>
-                            <div class="col-sm-10">
-                                <select 
-                                    id="month" 
-                                    class="form-select @error('month') is-invalid @enderror" 
-                                    name="month"
-                                    aria-label="Default select month"
-                                    required
-                                >
-                                    @if($months)
-                                        @foreach($months as $month)
-                                            <option value="{{ $month->title }}">{{ $month->title }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                                @error('month')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="date_paid">Date paid</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="date"
                                         id="date_paid"
                                         name="date_paid"
+                                        value="{{ old('date_paid', date('Y-m-d')) }}"
                                         class="form-control @error('date_paid') is-invalid @enderror"
                                         placeholder="12/03/2029"
                                         aria-label="12/03/2029"
@@ -184,7 +168,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="has_paid">Has he/she paid?</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="has_paid">Status</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <select 
@@ -193,8 +177,13 @@
                                         name="has_paid"
                                         aria-label="Default select month"
                                     >
-                                        <option value="0">No, Hasn't yet paid.</option>
-                                        <option value="1">Yes, Has already paid.</option>
+                                        @if ($asset->has_paid)
+                                            <option value="{{ $asset->has_paid }}" selected>Has paid</option>
+                                        @else 
+                                            <option value="{{ $asset->has_paid }}" selected>Hasn't paid</option>
+                                        @endif
+                                        <option value="0">No, Hasn't paid</option>
+                                        <option value="1">Yes, Has paid</option>
                                 </select>
                                     @error('has_paid')
                                         <span class="invalid-feedback" role="alert">
@@ -205,7 +194,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="comment">Comment</label>
+                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
                                     <textarea
@@ -215,7 +204,7 @@
                                         rows="3"
                                         class="form-control @error('comment') is-invalid @enderror"
                                         aria-describedby="comment"
-                                    >{{ old('comment')}}</textarea>
+                                    >{{ old('comment', $asset->comment) }}</textarea>
                                     @error('comment')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -226,7 +215,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10 mt-2">
-                                <button type="submit" class="btn btn-primary text-capitalize">Create charge</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Update asset</button>
                             </div>
                         </div>
                     </form>

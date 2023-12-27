@@ -1,5 +1,5 @@
 @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-dismissible" role="alert" style="padding: 10px;background-color: #16ac2a;color: white;margin-bottom: 15px;">
+    <div class="alert alert-success alert-dismissible" role="alert" style="padding: 10px;background-color: #19b42d;color: white;margin-bottom: 15px;">
         <strong>{{ $message }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

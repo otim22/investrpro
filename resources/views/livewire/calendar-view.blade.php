@@ -69,30 +69,30 @@
                 events: @json($events),
                 eventColor: '#378006',
                 select: function(data) {
-                    // var event_name = prompt('Event name:');
-                    // var eventModal = document.getElementById('eventModal');
-                    // @this.openModal()
-                    // console.log(eventModal);
-                    // eventModal.modal(open);
-                    // Livewire.on('showModal', (e) => {
-                    //     let modal = Modal.getOrCreateInstance(modalsElement)
-                    //     modal.show();
+                    var event_name = prompt('Event name:');
+                    var eventModal = document.getElementById('eventModal');
+                    @this.openModal()
+                    console.log(eventModal);
+                    eventModal.modal(open);
+                    Livewire.on('showModal', (e) => {
+                        let modal = Modal.getOrCreateInstance(modalsElement)
+                        modal.show();
 
-                    // });
-                    // if (!event_name) {
-                    //     return;
-                    // }
-                    // @this.newEvent(event_name, data.start.toISOString(), data.end.toISOString())
-                    //     .then(function (id) {
-                    //         calendar.addEvent({
-                    //             id: id,
-                    //             title: event_name,
-                    //             start: data.startStr,
-                    //             end: data.endStr,
-                    //         }),
-                    //         calendar.unselect()
-                    //     }
-                    // );
+                    });
+                    if (!event_name) {
+                        return;
+                    }
+                    @this.newEvent(event_name, data.start.toISOString(), data.end.toISOString())
+                        .then(function (id) {
+                            calendar.addEvent({
+                                id: id,
+                                title: event_name,
+                                start: data.startStr,
+                                end: data.endStr,
+                            }),
+                            calendar.unselect()
+                        }
+                    );
                 },
                 eventDrop: function (data) {
                     @this.updateEvent(
@@ -105,8 +105,6 @@
                     })
                 },
                 eventClick : function(info) {
-                    // console.log(info.event.id);
-                    // info.event.remove();
                     if (info.event.id) {
                         var event = calendar.getEventById(info.event.id);
                         event.remove();

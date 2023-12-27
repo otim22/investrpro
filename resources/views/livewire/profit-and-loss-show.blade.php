@@ -61,7 +61,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body"> 
                     <span class="d-block text-capitalize mb-2">Asset value</span>
-                    @if($overallAssetTotal)
+                    @if($overallAssetTotal > 0)
                         <h5 class="card-title mb-2">UGX {{ number_format($overallAssetTotal) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
@@ -73,7 +73,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
                     <span class="d-block text-capitalize mb-2">Monthly savings total</span>
-                    @if($totalMemberSaving)
+                    @if($totalMemberSaving > 0)
                         <h5 class="card-title mb-2">UGX {{ number_format($totalMemberSaving) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
@@ -85,7 +85,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body"> 
                     <span class="d-block text-capitalize mb-2">Late remissions total</span>
-                    @if($totalLateRemission)
+                    @if($totalLateRemission > 0)
                         <h5 class="card-title mb-2">UGX {{ number_format($totalLateRemission) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
@@ -97,7 +97,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body"> 
                     <span class="d-block text-capitalize mb-2">Missed meetings total</span>
-                    @if($totalLateRemission)
+                    @if($totalMissedMeeting > 0)
                         <h5 class="card-title mb-2">UGX {{ number_format($totalMissedMeeting) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
@@ -115,7 +115,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
                     <span class="d-block text-capitalize mb-2">Expense total</span>
-                    @if ($totalLiabilityValue)
+                    @if ($totalLiabilityValue > 0)
                         <h5 class="card-title mb-2">UGX {{ number_format($totalLiabilityValue) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
@@ -127,7 +127,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
                     <span class="d-block text-capitalize mb-2">Number of expenses</span>
-                    @if ($liabilities)
+                    @if (count($liabilities) > 0)
                         <h5 class="card-title mb-2">{{ number_format(count($liabilities)) }}</h5>
                     @else
                         <h5 class="card-title mb-2">0</h5>
@@ -139,7 +139,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
                     <span class="d-block text-capitalize mb-2">Current expenses</span>
-                    @if ($currentLiabilities)
+                    @if ($currentLiabilities > 0)
                         <h5 class="card-title mb-2">UGX {{ number_format($currentLiabilities) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
@@ -151,7 +151,7 @@
             <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
                 <div class="card-body">
                     <span class="d-block text-capitalize mb-2">Non Current expenses</span>
-                    @if ($nonCurrentLiabilities)
+                    @if ($nonCurrentLiabilities > 0)
                         <h5 class="card-title mb-2">UGX {{ number_format($nonCurrentLiabilities) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>

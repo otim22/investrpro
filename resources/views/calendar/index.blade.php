@@ -78,7 +78,7 @@
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
             },
-            initialView: 'timeGridWeek',
+            initialView: 'dayGridMonth',
             timeZone: 'EAT',
             displayEventTime: true,
             events: @json($events),

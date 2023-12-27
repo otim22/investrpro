@@ -60,7 +60,9 @@ final class InvestmentTable extends PowerGridComponent
             })
             ->addColumn('duration')
             ->addColumn('interest_rate')
-            ->addColumn('amount_invested')
+            ->addColumn('amount_invested', function (Investment $model) { 
+                return number_format($model->amount_invested);
+            })
             ->addColumn('date_of_maturity_formatted', function (Investment $model) { 
                 return Carbon::parse($model->date_of_maturity)->format('d/m/Y');
             })
@@ -139,16 +141,4 @@ final class InvestmentTable extends PowerGridComponent
                 ->dispatch('show', ['rowId' => $row->id])
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

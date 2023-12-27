@@ -16,7 +16,7 @@ class AssetTypeController extends Controller
         if(Auth::user()->company) {
             $assetTypes = AssetType::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
-        return view('assets.types.index', compact('assetTypes'));
+        return view('asset_types.index', compact('assetTypes'));
     }
 
     /**
@@ -24,7 +24,7 @@ class AssetTypeController extends Controller
      */
     public function create()
     {
-        return view('assets.types.create');
+        return view('asset_types.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class AssetTypeController extends Controller
      */
     public function show(AssetType $assetType)
     {
-        return view('assets.types.show', compact('assetType'));
+        return view('asset_types.show', compact('assetType'));
     }
 
     /**
@@ -56,7 +56,7 @@ class AssetTypeController extends Controller
      */
     public function edit(AssetType $assetType)
     {
-        return view('assets.types.edit', compact('assetType'));
+        return view('asset_types.edit', compact('assetType'));
     }
 
     /**

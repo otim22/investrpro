@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Expense;
+use App\Models\Asset;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -16,15 +16,13 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class ExpenseTable extends PowerGridComponent
+final class AssetTable extends PowerGridComponent
 {
     use WithExport;
 
     public function setUp(): array
     {
-        // Custom per page
         $perPage = 25;
-        // Custom per page values
         $perPageValues = [0, 25, 50, 100, 200];
 
         $this->showCheckBox();
@@ -45,7 +43,8 @@ final class ExpenseTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Expense::query();
+        return Asset::query()->join('members', 'assets.member_id', '=', 'members.id')
+            ->select('assets.*', 'members.surname as member');
     }
 
     public function relationSearch(): array
@@ -56,92 +55,86 @@ final class ExpenseTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('expense_name')
-            ->addColumn('expense_type')
-            ->addColumn('financial_year')
-            ->addColumn('date_of_expense_formatted', function (Expense $model) { 
-                return Carbon::parse($model->date_of_expense)->format('d/m/Y');
-            })
-            ->addColumn('details', function (Expense $model) {
-                return \Str::words(e($model->details), 10); 
-            })
-            ->addColumn('rate')
-            ->addColumn('amount', function (Expense $model) { 
+            ->addColumn('member')
+            ->addColumn('asset')
+            ->addColumn('amount', function (Asset $model) { 
                 return number_format($model->amount);
+            })
+            ->addColumn('financial_year')
+            ->addColumn('date_paid_formatted', function (Asset $model) { 
+                return Carbon::parse($model->date_paid)->format('d/m/Y');
+            })
+            ->addColumn('has_paid', function (Asset $model) {
+                return ($model->has_paid ? 'Yes' : 'No');
+            })
+            ->addColumn('comment', function (Asset $model) {
+                return \Str::words(e($model->comment), 5); 
             });
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Expense name', 'expense_name')
+            Column::make("Member", 'member')
                 ->sortable()
+                ->headerAttribute('text-capitalize fs-6')
                 ->searchable(),
 
-            Column::make('Expense type', 'expense_type')
+            Column::make('Asset Name', 'asset')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable(),
-                
-
-            Column::make('Financial year', 'financial_year')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Date of expense', 'date_of_expense_formatted', 'date_of_expense')
-                ->sortable(),
-
-            Column::make('Details', 'details')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Rate', 'rate')
-                ->sortable()
-                ->searchable(),
 
             Column::make('Amount', 'amount')
+                ->headerAttribute('text-capitalize fs-6')
+                ->sortable(),
+
+            Column::make('Financial Year', 'financial_year')
+                ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
 
+            Column::make('Date Paid', 'date_paid_formatted')
+                ->headerAttribute('text-capitalize fs-6'),
+
+            Column::make('Comment', 'comment')
+                ->headerAttribute('text-capitalize fs-6')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Status', 'has_paid')
+                ->headerAttribute('text-capitalize fs-6'),
+
             Column::action('Action')
+                ->headerAttribute('text-capitalize fs-6')
         ];
     }
 
     public function filters(): array
     {
         return [
-            Filter::inputText('expense_name')->operators(['contains']),
-            Filter::inputText('financial_year')->operators(['contains']),
-            Filter::inputText('details')->operators(['contains']),
-            Filter::inputText('rate')->operators(['contains']),
+            Filter::inputText('member')->operators(['contains']),
+            Filter::inputText('asset')->operators(['contains']),
             Filter::inputText('amount')->operators(['contains']),
+            Filter::inputText('financial_year')->operators(['contains']),
+            Filter::boolean('has_paid')->label('Yes', 'No'),
+            Filter::inputText('comment')->operators(['contains']),
         ];
     }
 
     #[\Livewire\Attributes\On('show')]
     public function show($rowId)
     {
-        $expenses = Expense::findOrFail($rowId);
-        $this->redirectRoute('expenses.show', $expenses);
+        $asset = Asset::findOrFail($rowId);
+        $this->redirectRoute('assets.show', $asset);
     }
 
-    public function actions(Expense $row): array
+    public function actions(Asset $row): array
     {
         return [
             Button::add('show')
                 ->slot('View')
                 ->class('btn btn-sm btn-primary')
-                ->dispatch('show', ['rowId' => $row->id])
+                ->dispatch('show', ['rowId' => $row->id]),
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

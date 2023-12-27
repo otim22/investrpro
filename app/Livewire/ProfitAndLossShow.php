@@ -2,11 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Models\Charge;
 use App\Models\Expense;
 use Livewire\Component;
 use App\Models\MemberSaving;
-use App\Models\LateRemission;
-use App\Models\MissedMeeting;
 use App\Models\FinancialMonth;
 use App\Models\FinancialYear;
 use Illuminate\Http\Request;
@@ -40,14 +39,22 @@ class ProfitAndLossShow extends Component
     public function mount()
     {
         if(Auth::user()->company) {
-            // Assets
+            /* Assets */
             $this->memberSavings = MemberSaving::where('company_id', Auth::user()->company->id)->get();
-            $this->lateRemissions = LateRemission::where('company_id', Auth::user()->company->id)->get();
-            $this->missedMeetings = MissedMeeting::where('company_id', Auth::user()->company->id)->get();
+            $this->lateRemissions = Charge::where([
+                'company_id'  => Auth::user()->company->id,
+                'charge' => 'Late remission',
+                'has_paid' => true
+            ])->get();
+            $this->missedMeetings = Charge::where([
+                'company_id'  => Auth::user()->company->id,
+                'charge' => 'Missed meeting',
+                'has_paid' => true
+            ])->get();
             $this->months = FinancialMonth::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get()->pluck('title');
             $this->years = FinancialYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get()->pluck('title');
             
-            // Liabilities
+            /* Liabilities */
             $this->liabilities = Expense::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
             $this->totalLiabilityValue = Expense::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
@@ -73,10 +80,10 @@ class ProfitAndLossShow extends Component
                 $this->totalMemberSaving += $memberSaving->premium;
             }
             foreach($this->lateRemissions as $lateRemission) {
-                $this->totalLateRemission += $lateRemission->charge_amount;
+                $this->totalLateRemission += $lateRemission->amount;
             }
             foreach($this->missedMeetings as $missedMeeting) {
-                $this->totalMissedMeeting += $missedMeeting->charge_amount;
+                $this->totalMissedMeeting += $missedMeeting->amount;
             }
         }
 
@@ -91,7 +98,7 @@ class ProfitAndLossShow extends Component
     public function filterDataByMonth()
     {
         if ($this->month) {
-            // Assets
+            /* Assets */
             // Member saving by month
             $this->memberSavings = MemberSaving::where([
                 'company_id' => Auth::user()->company->id,
@@ -104,29 +111,33 @@ class ProfitAndLossShow extends Component
             $this->totalMemberSaving = $memMonthSavTotal;
             
             // Late remissions saving by month
-            $this->lateRemissions = LateRemission::where([
+            $this->lateRemissions = Charge::where([
                 'company_id' => Auth::user()->company->id,
-                'month_paid_for' => $this->month
+                'charge' => 'Late remission',
+                'month' => $this->month,
+                'has_paid' => true
             ])->get();
             $latRemMonthTotal = 0;
             foreach($this->lateRemissions as $lateRemission) {
-                $latRemMonthTotal += $lateRemission->charge_amount;
+                $latRemMonthTotal += $lateRemission->amount;
             }
             $this->totalLateRemission = $latRemMonthTotal;
             
             // Missed meeting by month
-            $this->missedMeetings = MissedMeeting::where([
+            $this->missedMeetings = Charge::where([
                 'company_id' => Auth::user()->company->id,
-                'month_paid_for' => $this->month
+                'charge' => 'Missed meeting',
+                'month' => $this->month,
+                'has_paid' => true
             ])->get();
             $missedMeetingTotal = 0;
             foreach($this->missedMeetings as $missedMeeting) {
-                $missedMeetingTotal += $missedMeeting->charge_amount;
+                $missedMeetingTotal += $missedMeeting->amount;
             }
             $this->totalMissedMeeting = $missedMeetingTotal;
             $this->overallAssetTotal = $this->totalMemberSaving + $this->totalLateRemission + $this->totalMissedMeeting;
 
-            // Liabilities
+            /* Liabilities */
             $this->liabilities = Expense::where([
                 'company_id' => Auth::user()->company->id,
                 'month' => $this->month
@@ -169,28 +180,31 @@ class ProfitAndLossShow extends Component
             foreach($this->memberSavings as $memberSaving) {
                 $memyearSavTotal += $memberSaving->premium;
             }
-            // dd($this->memberSavings);
             $this->totalMemberSaving = $memyearSavTotal;
             
             // Late remissions saving by year
-            $this->lateRemissions = LateRemission::where([
+            $this->lateRemissions = Charge::where([
                 'company_id' => Auth::user()->company->id,
-                'financial_year' => $this->year
+                'charge' => 'Late remission',
+                'financial_year' => $this->year,
+                'has_paid' => true
             ])->get();
             $latRemyearTotal = 0;
             foreach($this->lateRemissions as $lateRemission) {
-                $latRemyearTotal += $lateRemission->charge_amount;
+                $latRemyearTotal += $lateRemission->amount;
             }
             $this->totalLateRemission = $latRemyearTotal;
             
             // Missed meeting by year
-            $this->missedMeetings = MissedMeeting::where([
+            $this->missedMeetings = Charge::where([
                 'company_id' => Auth::user()->company->id,
-                'financial_year' => $this->year
+                'charge' => 'Missed meeting',
+                'financial_year' => $this->year,
+                'has_paid' => true
             ])->get();
             $missedMeetingTotal = 0;
             foreach($this->missedMeetings as $missedMeeting) {
-                $missedMeetingTotal += $missedMeeting->charge_amount;
+                $missedMeetingTotal += $missedMeeting->amount;
             }
             $this->totalMissedMeeting = $missedMeetingTotal;
             $this->overallAssetTotal = $this->totalMemberSaving + $this->totalLateRemission + $this->totalMissedMeeting;

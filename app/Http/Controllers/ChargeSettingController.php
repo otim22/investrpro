@@ -16,7 +16,7 @@ class ChargeSettingController extends Controller
         if(Auth::user()->company) {
             $chargeSettings = ChargeSetting::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
         }
-        return view('charges.index', compact('chargeSettings'));
+        return view('charge_types.index', compact('chargeSettings'));
     }
 
     /**
@@ -24,7 +24,7 @@ class ChargeSettingController extends Controller
      */
     public function create()
     {
-        return view('charges.create');
+        return view('charge_types.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class ChargeSettingController extends Controller
      */
     public function show(ChargeSetting $chargeSetting)
     {
-        return view('charges.show', compact('chargeSetting'));
+        return view('charge_types.show', compact('chargeSetting'));
     }
 
     /**
@@ -57,7 +57,7 @@ class ChargeSettingController extends Controller
      */
     public function edit(ChargeSetting $chargeSetting)
     {
-        return view('charges.edit', compact('chargeSetting'));
+        return view('charge_types.edit', compact('chargeSetting'));
     }
 
     /**
