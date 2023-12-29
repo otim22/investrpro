@@ -12,43 +12,43 @@
         
         <div class="row mb-2">
             <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card shadow" style="background-color: rgb(247, 248, 249)">
                     <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Total asset value</span>
+                        <span class="d-block text-capitalize mb-1 text-muted">Total asset value</span>
                         <h5 class="card-title mb-2">UGX {{ number_format($totalAssets) }}/-</h5>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card shadow" style="background-color: rgb(247, 248, 249)">
                     <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Total expenses</span>
-                        <h5 class="card-title mb-2">UGX {{ number_format($totalLiabilities) }}/-</h5>
+                        <span class="d-block text-capitalize mb-1 text-muted">Total expenses</span>
+                        <h5 class="card-title mb-2">UGX {{ number_format($totalExpenses) }}/-</h5>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card shadow" style="background-color: rgb(247, 248, 249)">
                     <div class="card-body">
-                        <span class="d-block mb-1">Number of Investments</span>
+                        <span class="d-block mb-1 text-muted">Number of Investments</span>
                         <h5 class="card-title mb-2">{{ number_format($totalInvestments) }}</h5>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-6">
-                <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+                <div class="card shadow" style="background-color: rgb(247, 248, 249)">
                     <div class="card-body">
-                        <span class="d-block text-capitalize mb-1">Total members</span>
+                        <span class="d-block text-capitalize mb-1 text-muted">Total members</span>
                         <h5 class="card-title mb-2">{{ number_format($totalMembers) }}</h5>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mb-4">
+        <div class="row mb-5">
             <div class="col-12 col-lg-12  col-md-12">
-                <div class="d-flex justify-content-between">
-                    <h5 class="text-capitalize fw-bold">Annual savings performance</h5>
+                <div class="d-flex justify-content-center">
+                    <h5 class="text-capitalize fw-bold">Savings performance</h5>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-12">
@@ -57,19 +57,19 @@
                 </div>
             </div>
         </div>
-
+    
         <div class="row">
             <div class="col-lg-6 col-md-12 col-12">
-                <div class="d-flex justify-content-between">
-                    <h5 class="text-capitalize fw-bold">Annual missed meetings</h5>
+                <div class="d-flex justify-content-center">
+                    <h5 class="text-capitalize fw-bold">Missed meetings</h5>
                 </div>
                 <div class="card shadow-sm px-4 py-3" style="background-color: rgb(251, 251, 251)">
                     <canvas id="missedMeetingBar"></canvas>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-12">
-                <div class="d-flex justify-content-between">
-                    <h5 class="text-capitalize fw-bold">Annual late remissions</h5>
+                <div class="d-flex justify-content-center">
+                    <h5 class="text-capitalize fw-bold">Late remissions</h5>
                 </div>
                 <div class="card shadow-sm px-4 py-3" style="background-color: rgb(251, 251, 251)">
                     <canvas id="lateRemissionBar"></canvas>
@@ -81,6 +81,7 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     {{-- Monthly savings --}}
     <script>
         const savingsCtx = document.getElementById('savingsBar');
@@ -98,6 +99,19 @@
         var octSavings = {{ Js::from($octSavings) }};
         var novSavings = {{ Js::from($novSavings) }};
         var decSavings = {{ Js::from($decSavings) }};
+        
+        var expJanSavings = {{ Js::from($expJanSavings) }};
+        var expFebSavings = {{ Js::from($expFebSavings) }};
+        var expMarSavings = {{ Js::from($expMarSavings) }};
+        var expAprSavings = {{ Js::from($expAprSavings) }};
+        var expMaySavings = {{ Js::from($expMaySavings) }};
+        var expJunSavings = {{ Js::from($expJunSavings) }};
+        var expJulSavings = {{ Js::from($expJulSavings) }};
+        var expAugSavings = {{ Js::from($expAugSavings) }};
+        var expSeptSavings = {{ Js::from($expSeptSavings) }};
+        var expOctSavings = {{ Js::from($expOctSavings) }};
+        var expNovSavings = {{ Js::from($expNovSavings) }};
+        var expDecSavings = {{ Js::from($expDecSavings) }};
 
         new Chart(savingsCtx, {
             type: 'bar',
@@ -105,7 +119,7 @@
                 labels: financialMonths,
                 datasets: [{
                     label: 'Expected',
-                    data: [expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings, expMonthSavings],
+                    data: [expJanSavings, expFebSavings, expMarSavings, expAprSavings, expMaySavings, expJunSavings, expJulSavings, expAugSavings, expSeptSavings, expOctSavings, expNovSavings, expDecSavings],
                     backgroundColor: ['rgb(151, 208, 232, 0.2)'],
                     borderColor: ['rgba(151, 208, 232)'],
                     borderWidth: 1

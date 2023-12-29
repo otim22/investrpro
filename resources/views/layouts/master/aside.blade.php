@@ -1,4 +1,4 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #011338 !important;">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #010d23 !important;">
     <div class="app-brand demo">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
             <h3 class="fw-bold" style="color: #ffffff;">SenteShield</h3>
@@ -21,7 +21,7 @@
         </li>
         
         <!-- Investments -->
-        <li class="menu-item added-active {{ Request::is('calendar') ? 'active' : '' }}">
+        <li class="menu-item added-active {{ Request::is('calendar/index') ? 'active' : '' }}">
             <a href="{{ route('calendar.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-calendar'></i>
                 <div>Calendar</div>
@@ -56,7 +56,7 @@
         <li class="menu-item added-active {{ Request::is('profit-and-loss') ? 'active' : '' }}">
             <a href="{{ route('profit-and-loss.index') }}" class="menu-link text-capitalize">
                 <i class='menu-icon bx bx-dollar-circle'></i>
-                <div>Profits & Losses</div>
+                <div>Profit & Loss</div>
             </a>
         </li>
         
@@ -118,9 +118,25 @@
             </a>
         </li>
 
-        <!-- Settings -->
+        <!-- Account -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text text-capitalize">settings</span>
+            <span class="menu-header-text text-capitalize">Account</span>
+        </li>
+
+        <!-- Add user -->
+        <li class="menu-item added-active {{ Request::is('add-user') ? 'active' : '' }}">
+            <a href="{{ route('org.user.index') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bx-user-plus'></i>
+                <div>Users</div>
+            </a>
+        </li>
+
+        <!-- Profile -->
+        <li class="menu-item added-active {{ Request::is('profile') ? 'active' : '' }}">
+            <a href="{{ route('profile') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bxs-user-circle' ></i>
+                <div>Profile</div>
+            </a>
         </li>
         
         <!-- General -->
@@ -159,7 +175,7 @@
         </li>
         
         <!-- Account -->
-        <li class="menu-item added-active {{ Request::is(['profile', 'add-user', 'billing']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        {{-- <li class="menu-item added-active {{ Request::is(['profile', 'add-user']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-user-account'></i>
                 <div>Account</div>
@@ -176,7 +192,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
     </ul>
 </aside>
 

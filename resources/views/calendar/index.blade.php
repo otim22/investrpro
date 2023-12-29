@@ -5,8 +5,8 @@
 @push('styles')
     <style>
         .fc-event {
-            width: 140px;
-            height: 80px;
+            height: 23px;
+            padding-left: 8px;
             display: flex;
             flex-wrap: wrap;
         }
@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="card p-4">
-                <div wire:ignore id="calendar" style="width: 100%;"></div>
+                <div id="calendar" style="width: 100%;"></div>
             </div>
         </div>
     </div>
@@ -71,18 +71,18 @@
         });
 
         var calendarEl = document.getElementById('calendar');
-        var events = [];
+        // var events = [];
         var calendar = new FullCalendar.Calendar(calendarEl, {
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             initialView: 'dayGridMonth',
             timeZone: 'EAT',
             displayEventTime: true,
             events: @json($events),
-            eventColor: '#378006',
+            eventColor: '#45995c',
             displayEventTime: true,
             editable: true,
             selectable: true,
@@ -90,14 +90,14 @@
                 $('#eventModal').modal('toggle');
                 $('#addBtn').click(function() {
                     let title = $('#eventTitle').val();
-                    let start_date = data.start.toISOString();
-                    let end_date = data.end.toISOString();
+                    let start = data.start.toISOString();
+                    let end = data.end.toISOString();
 
                     $.ajax({
                         url: "{{ route('calendar.store') }}",
                         type: "POST",
                         dataType: "json",
-                        data: { title, start_date, end_date },
+                        data: { title, start, end },
                         success: function(response) {
                             $('#eventModal').modal('hide');
                             swal("Good job!", "Successful deleted event!", "success");
@@ -115,14 +115,14 @@
             eventDrop: function(data) {
                 let id = data.event.id;
                 let title = data.event.title;
-                let start_date = data.event.start.toISOString();
-                let end_date = data.event.end.toISOString();
+                let start = data.event.start.toISOString();
+                let end = data.event.end.toISOString();
 
                 $.ajax({
                     url: "{{ route('calendar.update', '') }}" + "/" + id,
                     type: "PATCH",
                     dataType: "json",
-                    data: { id, title, start_date, end_date },
+                    data: { id, title, start, end },
                     success: function(response) {
                         swal("Good job!", "Successful updated event!", "success");
                     },
@@ -163,7 +163,20 @@
                         swal("Your event is safe!");
                     }
                 });
-            }
+            },
+            eventContent: function(info) {
+                console.log(info)
+                var eventTitle = info.event.title;
+                var eventId = info.event.id;
+                var eventElement = document.createElement('div');
+                eventElement.innerHTML = '<span class="fw-bold" > ' + eventTitle + '</span>';
+                var start = info.event.start;
+                var end = info.event.end;
+                
+                return {
+                    domNodes: [eventElement]
+                };
+            },
         });
         
         $('#eventModal').on('hidden.bs.modal', function() {

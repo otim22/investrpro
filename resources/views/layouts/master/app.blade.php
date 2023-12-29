@@ -50,28 +50,40 @@
         /* .bg-menu-theme {
             background-color: #060508 !important;
         } */
-        /* 
+         
         .bg-menu-theme .menu-link,
         .bg-menu-theme .menu-horizontal-prev,
         .bg-menu-theme .menu-horizontal-next {
-            color: #adb0b3;
+            color: #a6a7a9;
         }
+        
         .bg-menu-theme .menu-link:hover, .bg-menu-theme .menu-link:focus,
         .bg-menu-theme .menu-horizontal-prev:hover,
         .bg-menu-theme .menu-horizontal-prev:focus,
         .bg-menu-theme .menu-horizontal-next:hover,
         .bg-menu-theme .menu-horizontal-next:focus {
-            color: #ffffff;
-        } */
+            color: #030303;
+        }
         html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item.open > .menu-link, .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item.open > .menu-link,
         html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover,
         .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover {
-            background-color: rgba(105, 108, 255, 0.16);
-            
+            background-color: rgb(207, 207, 212);
+        }
+        .bg-menu-theme .menu-inner > .menu-item.active > .menu-link {
+            color: #030303;
+            background-color: #ffffff !important;
+        }
+        .bg-menu-theme .menu-inner > .menu-item.active:before {
+            background: #ffffff !important;
+        }
+        .bg-menu-theme .menu-item.active > .menu-link {
+            color: #ffffff;
+            background-color: #011338 !important;
         }
     </style>
 
     @stack('styles')
+    <livewire:styles />
 </head>
 
 <body>
@@ -133,6 +145,8 @@
     <!-- Page JS -->
     {{-- <script src="{{ asset('js/dashboards-analytics.js') }}"></script> --}}
     @stack('scripts')
+    <livewire:scripts />
+    @livewireChartsScripts
 </body>
 
 </html>

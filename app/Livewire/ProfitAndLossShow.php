@@ -13,21 +13,22 @@ use Illuminate\Support\Facades\Auth;
 class ProfitAndLossShow extends Component
 {
     // Assets
-    public $memberSavings = [];
-    public $lateRemissions = [];
-    public $missedMeetings = [];
-    public $totalMemberSaving = 0;
-    public $totalLateRemission = 0;
-    public $totalMissedMeeting = 0;
-    public $overallAssetTotal = 0;
-    public $expLateRems = 0;
-    public $availLateRems = 0;
+    public $expAssetToal = 0;
+    public $actAssetToal = 0;
+    public $netAsset = 0;
+    public $totalActSaving = 0;
+    public $totalActLateRemission = 0;
+    public $totalActMissedMeeting = 0;
+    public $expAssetTotal = 0;
+    public $actualAssetTotal = 0;
 
-    // Liabilities
-    public $liabilities = [];
-    public $totalLiabilityValue = 0;
-    public $currentLiabilities = 0;
-    public $nonCurrentLiabilities = 0;
+    // Expenses
+    public $expenses = [];
+    public $totalExpensesValue = 0;
+    public $totalCurrentExpenses = 0;
+    public $currentExpenses = 0;
+    public $nonCurrentExpenses = 0;
+    public $totalNonCurrentExpenses = 0;
     
     // Constants
     public $months = [];
@@ -48,8 +49,8 @@ class ProfitAndLossShow extends Component
     protected $customSavings = "Savings";
     protected $customLateRemission = "Late remission";
     protected $customMissedMeeting = "Missed meeting";
-    protected $customCurrentLiab = "Current Liabilities";
-    protected $customNonCurrentLiab = "Non Current Liabilities";
+    protected $customCurrentLiab = "Current expenses";
+    protected $customNonCurrentLiab = "Non Current expenses";
     public $years = [];
     public $year = null;
     public $month = null;
@@ -58,57 +59,80 @@ class ProfitAndLossShow extends Component
     {
         if(Auth::user()->company) {
             /* Assets */
-            $this->memberSavings = Asset::where([
+            $this->totalActSaving = Asset::where([
                 'company_id' => Auth::user()->company->id,
                 'asset' => $this->customSavings,
-            ])->get();
-            $this->lateRemissions = Asset::where([
+                'has_paid' => true
+            ])->get()->reduce(function($carry, $item){
+                return $carry + $item->amount;
+            }, 0);
+
+            $this->totalActLateRemission = Asset::where([
                 'company_id'  => Auth::user()->company->id,
                 'asset' => $this->customLateRemission,
                 'has_paid' => true
-            ])->get();
-            $this->missedMeetings = Asset::where([
+            ])->get()->reduce(function($carry, $item){
+                return $carry + $item->amount;
+            }, $this->expAssetToal);
+
+            $this->totalActMissedMeeting = Asset::where([
                 'company_id'  => Auth::user()->company->id,
                 'asset' => $this->customMissedMeeting,
                 'has_paid' => true
-            ])->get();
+            ])->get()->reduce(function($carry, $item){
+                return $carry + $item->amount;
+            }, $this->expAssetToal);
+
+            $this->expAssetToal = Asset::where([
+                'company_id' => Auth::user()->company->id,
+            ])->get()->reduce(function($carry, $item){
+                return $carry + $item->amount;
+            }, $this->expAssetToal);
+
+            $this->actAssetToal = Asset::where([
+                'company_id' => Auth::user()->company->id,
+                'has_paid' => true
+            ])->get()->reduce(function($carry, $item){
+                return $carry + $item->amount;
+            }, $this->actAssetToal);
+
             $this->months = FinancialMonth::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get()->pluck('title');
             $this->years = FinancialYear::where('company_id', Auth::user()->company->id)->orderBy('id', 'asc')->get()->pluck('title');
             
-            /* Liabilities */
-            $this->liabilities = Expense::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
-            $this->totalLiabilityValue = Expense::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
+            /* Expenses */
+            $this->expenses = Expense::where('company_id', Auth::user()->company->id)->orderBy('id', 'desc')->get();
+            $this->totalExpensesValue = Expense::where('company_id', Auth::user()->company->id)->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
                 return $carry += $subTotal;
             }, 0);
-            $this->currentLiabilities = Expense::where([
+
+            $this->currentExpenses = Expense::where([
                 'company_id' => Auth::user()->company->id,
                 'expense_type' => $this->customCurrentLiab
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
                 return $carry += $subTotal;
             }, 0);
-            $this->nonCurrentLiabilities = Expense::where([
+
+            $this->totalCurrentExpenses = Expense::where([
+                'company_id' => Auth::user()->company->id,
+                'expense_type' => $this->customCurrentLiab
+            ])->count();
+            $this->totalNonCurrentExpenses = Expense::where([
+                'company_id' => Auth::user()->company->id,
+                'expense_type' => $this->customNonCurrentLiab
+            ])->count();
+            $this->nonCurrentExpenses = Expense::where([
                 'company_id' => Auth::user()->company->id,
                 'expense_type' => $this->customNonCurrentLiab
             ])->get()->reduce(function($carry, $item){
                 $subTotal = $item->amount * $item->rate;
                 return $carry += $subTotal;
             }, 0);
-
-
-            foreach($this->memberSavings as $memberSaving) {
-                $this->totalMemberSaving += $memberSaving->premium;
-            }
-            foreach($this->lateRemissions as $lateRemission) {
-                $this->totalLateRemission += $lateRemission->amount;
-            }
-            foreach($this->missedMeetings as $missedMeeting) {
-                $this->totalMissedMeeting += $missedMeeting->amount;
-            }
         }
 
-        $this->overallAssetTotal = $this->totalMemberSaving + $this->totalLateRemission + $this->totalMissedMeeting;
+        $this->actualAssetTotal = $this->actAssetToal;
+        $this->netAsset = $this->actAssetToal - $this->totalExpensesValue;
     }
 
     public function render()
@@ -123,80 +147,59 @@ class ProfitAndLossShow extends Component
             if(!$key) {
                 return;
             } else {
-                /* Assets
-                ** Member saving by month */
-                $this->memberSavings = Asset::where([
+                /* Member saving by month */
+                $this->totalActSaving = Asset::where([
                     'company_id' => Auth::user()->company->id,
-                    'asset' => $this->customSavings
-                ])
-                ->whereMonth('date_paid', $key)->get();
-                
-                $memMonthSavTotal = 0;
-                foreach($this->memberSavings as $memberSaving) {
-                    $memMonthSavTotal += $memberSaving->premium;
-                }
-                $this->totalMemberSaving = $memMonthSavTotal;
+                    'asset' => $this->customSavings,
+                    'has_paid' => true
+                ])->whereMonth('date_paid', $key)->get()->reduce(function($carry, $item){
+                    return $carry + $item->amount;
+                }, 0);
                 
                 // Late remissions saving by month
-                $this->lateRemissions = Asset::where([
+                $this->totalActLateRemission = Asset::where([
                     'company_id' => Auth::user()->company->id,
                     'asset' => $this->customLateRemission,
                     'has_paid' => true
-                ])->whereMonth('date_paid', $key)->get();
-
-                $latRemMonthTotal = 0;
-                foreach($this->lateRemissions as $lateRemission) {
-                    $latRemMonthTotal += $lateRemission->amount;
-                }
-                $this->totalLateRemission = $latRemMonthTotal;
+                ])->whereMonth('date_paid', $key)->get()->reduce(function($carry, $item) {
+                    return $carry + $item->amount;
+                }, 0);
                 
                 // Missed meeting by month
-                $this->missedMeetings = Asset::where([
+                $this->totalActMissedMeeting = Asset::where([
                     'company_id' => Auth::user()->company->id,
                     'asset' => $this->customMissedMeeting,
                     'has_paid' => true
-                ])->whereMonth('date_paid', $key)->get();
+                ])->whereMonth('date_paid', $key)->get()->reduce(function($carry, $item){
+                    return $carry + $item->amount;
+                }, 0);
+                
+                $this->actualAssetTotal = $this->totalActSaving + $this->totalActLateRemission + $this->totalActMissedMeeting;
 
-                $missedMeetingTotal = 0;
-                foreach($this->missedMeetings as $missedMeeting) {
-                    $missedMeetingTotal += $missedMeeting->amount;
-                }
-
-                $this->totalMissedMeeting = $missedMeetingTotal;
-                $this->overallAssetTotal = $this->totalMemberSaving + $this->totalLateRemission + $this->totalMissedMeeting;
-
-                /* Liabilities */
-                $this->liabilities = Expense::where([
+                /* Expenses */
+                $this->expenses = Expense::where([
                     'company_id' => Auth::user()->company->id,
-                ])
-                ->whereMonth('date_of_expense', $key)
-                ->orderBy('id', 'desc')->get();
+                ])->whereMonth('date_of_expense', $key)->orderBy('id', 'desc')->get();
 
-                $this->totalLiabilityValue = Expense::where([
+                $this->totalExpensesValue = Expense::where([
                     'company_id' => Auth::user()->company->id,
-                ])
-                ->whereMonth('date_of_expense', $key)
-                ->get()->reduce(function($carry, $item) {
+                ])->whereMonth('date_of_expense', $key)->get()->reduce(function($carry, $item) {
                     $subTotal = $item->amount * $item->rate;
                     return $carry += $subTotal;
                 }, 0);
 
-                $this->currentLiabilities = Expense::where([
+                $this->currentExpenses = Expense::where([
                     'company_id' => Auth::user()->company->id,
                     'expense_type' => $this->customCurrentLiab
-                ])
-                ->whereMonth('date_of_expense', $key)
-                ->get()->reduce(function($carry, $item){
+                ])->whereMonth('date_of_expense', $key)->get()->reduce(function($carry, $item){
                     $subTotal = $item->amount * $item->rate;
                     return $carry += $subTotal;
                 }, 0);
 
-                $this->nonCurrentLiabilities = Expense::where([
+                $this->nonCurrentExpenses = Expense::where([
                     'company_id' => Auth::user()->company->id,
                     'expense_type' => $this->customNonCurrentLiab
-                ])
-                ->whereMonth('date_of_expense', $key)
-                ->get()->reduce(function($carry, $item){
+                ])->whereMonth('date_of_expense', $key)->get()->reduce(function($carry, $item){
                     $subTotal = $item->amount * $item->rate;
                     return $carry += $subTotal;
                 }, 0);
@@ -208,52 +211,44 @@ class ProfitAndLossShow extends Component
     {
         if ($this->year) {
             // Member saving by year
-            $this->memberSavings = Asset::where([
+            $this->totalActSaving = Asset::where([
                 'company_id' => Auth::user()->company->id,
                 'asset' => $this->customSavings,
-                'financial_year' => $this->year
-            ])->get();
-            $memyearSavTotal = 0;
-            foreach($this->memberSavings as $memberSaving) {
-                $memyearSavTotal += $memberSaving->premium;
-            }
-            $this->totalMemberSaving = $memyearSavTotal;
+                'financial_year' => $this->year,
+                'has_paid' => true
+            ])->get()->reduce(function($carry, $item){
+                    return $carry + $item->amount;
+            }, 0);
             
             // Late remissions saving by year
-            $this->lateRemissions = Asset::where([
+            $this->totalActLateRemission = Asset::where([
                 'company_id' => Auth::user()->company->id,
                 'asset' => $this->customLateRemission,
                 'financial_year' => $this->year,
                 'has_paid' => true
-            ])->get();
-            $latRemyearTotal = 0;
-            foreach($this->lateRemissions as $lateRemission) {
-                $latRemyearTotal += $lateRemission->amount;
-            }
-            $this->totalLateRemission = $latRemyearTotal;
+            ])->get()->reduce(function($carry, $item){
+                    return $carry + $item->amount;
+            }, 0);
             
             // Missed meeting by year
-            $this->missedMeetings = Asset::where([
+            $this->totalActMissedMeeting = Asset::where([
                 'company_id' => Auth::user()->company->id,
                 'asset' => $this->customMissedMeeting,
                 'financial_year' => $this->year,
                 'has_paid' => true
-            ])->get();
-            $missedMeetingTotal = 0;
-            foreach($this->missedMeetings as $missedMeeting) {
-                $missedMeetingTotal += $missedMeeting->amount;
-            }
+            ])->get()->reduce(function($carry, $item){
+                    return $carry + $item->amount;
+            }, 0);
+            
+            $this->actualAssetTotal = $this->totalActSaving + $this->totalActLateRemission + $this->totalActMissedMeeting;
 
-            $this->totalMissedMeeting = $missedMeetingTotal;
-            $this->overallAssetTotal = $this->totalMemberSaving + $this->totalLateRemission + $this->totalMissedMeeting;
-
-            // Liabilities
-            $this->liabilities = Expense::where([
+            // Expenses
+            $this->expenses = Expense::where([
                 'company_id' => Auth::user()->company->id,
                 'financial_year' => $this->year
             ])->orderBy('id', 'desc')->get();
 
-            $this->totalLiabilityValue = Expense::where([
+            $this->totalExpensesValue = Expense::where([
                 'company_id' => Auth::user()->company->id,
                 'financial_year' => $this->year
             ])->get()->reduce(function($carry, $item){
@@ -261,7 +256,7 @@ class ProfitAndLossShow extends Component
                 return $carry += $subTotal;
             }, 0);
 
-            $this->currentLiabilities = Expense::where([
+            $this->currentExpenses = Expense::where([
                 'company_id' => Auth::user()->company->id,
                 'expense_type' => $this->customCurrentLiab,
                 'financial_year' => $this->year
@@ -270,7 +265,7 @@ class ProfitAndLossShow extends Component
                 return $carry += $subTotal;
             }, 0);
 
-            $this->nonCurrentLiabilities = Expense::where([
+            $this->nonCurrentExpenses = Expense::where([
                 'company_id' => Auth::user()->company->id,
                 'expense_type' => $this->customNonCurrentLiab,
                 'financial_year' => $this->year

@@ -1,14 +1,9 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
-        <div class="col-12">
-            <h5 class="fw-bold py-1 text-capitalize">Summary of Profits & Losses</h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
+        <div class="col-12 mb-2">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets overview</span></h5>
+                    <h5 class="fw-bold py-1 text-capitalize">Summary of Profits & Losses</h5>
                 </div>
                 <div class="d-flex">
                     <div class="me-3">
@@ -55,14 +50,13 @@
             </div>
         </div>
     </div>
-
     <div class="row mb-2">
         <div class="col-lg-3 col-md-6 col-6 mb-4">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+            <div class="card shadow-sm" style="background-color: rgb(247, 248, 249)">
                 <div class="card-body"> 
-                    <span class="d-block text-capitalize mb-2">Asset value</span>
-                    @if($overallAssetTotal > 0)
-                        <h5 class="card-title mb-2">UGX {{ number_format($overallAssetTotal) }}/-</h5>
+                    <span class="d-block text-capitalize mb-2 text-muted">Expected asset (UGX)</span>
+                    @if($expAssetToal > 0)
+                        <h5 class="card-title mb-2">{{ number_format($expAssetToal) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
                     @endif
@@ -70,11 +64,11 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-6 mb-4">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
-                <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Monthly savings total</span>
-                    @if($totalMemberSaving > 0)
-                        <h5 class="card-title mb-2">UGX {{ number_format($totalMemberSaving) }}/-</h5>
+            <div class="card shadow-sm" style="background-color: rgb(247, 248, 249)">
+                <div class="card-body"> 
+                    <span class="d-block text-capitalize mb-2 text-muted">available asset (UGX)</span>
+                    @if($actAssetToal > 0)
+                        <h5 class="card-title mb-2">{{ number_format($actAssetToal) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
                     @endif
@@ -82,11 +76,11 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-6 mb-4">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+            <div class="card shadow-sm" style="background-color: rgb(247, 248, 249)">
                 <div class="card-body"> 
-                    <span class="d-block text-capitalize mb-2">Late remissions total</span>
-                    @if($totalLateRemission > 0)
-                        <h5 class="card-title mb-2">UGX {{ number_format($totalLateRemission) }}/-</h5>
+                    <span class="d-block text-capitalize mb-2 text-muted">Net asset (UGX)</span>
+                    @if($netAsset)
+                        <h5 class="card-title mb-2">{{ number_format($netAsset) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
                     @endif
@@ -94,11 +88,11 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-6 col-6 mb-4">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
+            <div class="card shadow-sm" style="background-color: rgb(247, 248, 249)">
                 <div class="card-body"> 
-                    <span class="d-block text-capitalize mb-2">Missed meetings total</span>
-                    @if($totalMissedMeeting > 0)
-                        <h5 class="card-title mb-2">UGX {{ number_format($totalMissedMeeting) }}/-</h5>
+                    <span class="d-block text-capitalize mb-2 text-muted">Expense (UGX)</span>
+                    @if($totalExpensesValue > 0)
+                        <h5 class="card-title mb-2">{{ number_format($totalExpensesValue) }}/-</h5>
                     @else
                         <h5 class="card-title mb-2">0.00</h5>
                     @endif
@@ -106,56 +100,99 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row mb-2">
-        <div class="col-lg-12 col-md-12 col-12">
-            <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expense overview</span></h5>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6 mb-4">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
-                <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Expense total</span>
-                    @if ($totalLiabilityValue > 0)
-                        <h5 class="card-title mb-2">UGX {{ number_format($totalLiabilityValue) }}/-</h5>
-                    @else
-                        <h5 class="card-title mb-2">0.00</h5>
-                    @endif
+        <div class="col-lg-6 col-md-6 col-6 mb-4">
+            <div class="card shadow" style="background-color: rgb(247, 248, 249)">
+                <div class="card-body"> 
+                    <div class="text-capitalize fw-bold d-flex justify-content-center mb-2">
+                        Available asset overview (UGX)
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="d-block text-capitalize mb-2 text-muted">Savings</div>
+                        @if($totalActSaving > 0)
+                            <div class="card-title mb-2">{{ number_format($totalActSaving) }}/-</div>
+                        @else
+                            <div class="card-title mb-2">0.00</div>
+                        @endif
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <span class="d-block text-capitalize mb-2 text-muted">Late remissions</span>
+                        @if($totalActLateRemission > 0)
+                            <div class="card-title mb-2">{{ number_format($totalActLateRemission) }}/-</div>
+                        @else
+                            <div class="card-title mb-2">0.00</div>
+                        @endif
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <span class="d-block text-capitalize mb-2 text-muted">Missed meetings</span>
+                        @if($totalActMissedMeeting > 0)
+                            <div class="card-title mb-2">{{ number_format($totalActMissedMeeting) }}/-</div>
+                        @else
+                            <div class="card-title mb-2">0.00</div>
+                        @endif
+                    </div>
+                    
+                    <div><hr /></div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="d-block text-capitalize mb-2 text-muted">Total</div>
+                        @if($actualAssetTotal > 0)
+                            <div class="mb-2 fw-bold">{{ number_format($actualAssetTotal) }}/-</div>
+                        @else
+                            <div class="mb-2">0.00</div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-6 mb-4">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
-                <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Number of expenses</span>
-                    @if (count($liabilities) > 0)
-                        <h5 class="card-title mb-2">{{ number_format(count($liabilities)) }}</h5>
-                    @else
-                        <h5 class="card-title mb-2">0</h5>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6 mb-4">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
-                <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Current expenses</span>
-                    @if ($currentLiabilities > 0)
-                        <h5 class="card-title mb-2">UGX {{ number_format($currentLiabilities) }}/-</h5>
-                    @else
-                        <h5 class="card-title mb-2">0.00</h5>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6">
-            <div class="card shadow-sm" style="background-color: rgb(235, 238, 247">
-                <div class="card-body">
-                    <span class="d-block text-capitalize mb-2">Non Current expenses</span>
-                    @if ($nonCurrentLiabilities > 0)
-                        <h5 class="card-title mb-2">UGX {{ number_format($nonCurrentLiabilities) }}/-</h5>
-                    @else
-                        <h5 class="card-title mb-2">0.00</h5>
-                    @endif
+        <div class="col-lg-6 col-md-6 col-6 mb-4">
+            <div class="card shadow" style="background-color: rgb(247, 248, 249)">
+                <div class="card-body"> 
+                    <div class="text-capitalize fw-bold d-flex justify-content-center mb-2">
+                        Expense overview (UGX)
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <span class="d-block text-capitalize mb-2 text-muted">Current expenses ({{ $totalCurrentExpenses }})</span>
+                        @if ($currentExpenses > 0)
+                            <div class="card-title mb-2">{{ number_format($currentExpenses) }}/-</div>
+                        @else
+                            <div class="card-title mb-2">0.00</div>
+                        @endif
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <span class="d-block text-capitalize mb-2 text-muted">Non Current expenses ({{ $totalNonCurrentExpenses }})</span>
+                        @if ($nonCurrentExpenses > 0)
+                            <div class="card-title mb-2">{{ number_format($nonCurrentExpenses) }}/-</div>
+                        @else
+                            <div class="card-title mb-2">0.00</div>
+                        @endif
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <span class="d-block text-capitalize mb-2 text-muted">Number of expenses</span>
+                        @if (count($expenses) > 0)
+                            <div class="card-title mb-2">{{ number_format(count($expenses)) }}</div>
+                        @else
+                            <div class="card-title mb-2">0</div>
+                        @endif
+                    </div>
+
+                    <div><hr /></div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <div class="d-block text-capitalize mb-2 text-muted">Total</div>
+                        @if ($totalExpensesValue > 0)
+                            <div class="card-title fw-bold mb-2">{{ number_format($totalExpensesValue) }}/-</div>
+                        @else
+                            <div class="card-title mb-2">0.00</div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

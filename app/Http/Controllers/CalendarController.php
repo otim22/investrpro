@@ -14,10 +14,11 @@ class CalendarController extends Controller
             $events[] = [
                 'id' => $event->id, 
                 'title' => $event->title,
-                'start' => $event->start_date->toIso8601String(),
-                'end' => $event->end_date->toIso8601String()
+                'start' => $event->start->toDateTimeString(),
+                'end' => $event->end->toDateTimeString()
             ];
         }
+        
         return view('calendar.index', compact('events'));
     }
 
@@ -25,13 +26,15 @@ class CalendarController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'start' => 'required',
+            'end' => 'required',
         ]);
 
         $event = Event::create([
             'id' => $request->id,
             'title' => $request->title,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'start' => $request->start,
+            'end' => $request->end,
         ]);
 
         return response()->json($event);
@@ -47,8 +50,8 @@ class CalendarController extends Controller
         }
 
         $event->update([
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date
+            'start' => $request->start,
+            'end' => $request->end
         ]);
         
         return response()->json('Event updated');
