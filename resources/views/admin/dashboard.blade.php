@@ -24,7 +24,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <h4 class="fw-bold py-1"><span class="text-muted fw-light">Dashboard / </span>Overview</h4>
+                <h5 class="fw-bold py-1"><span class="text-muted fw-light">Dashboard / </span>Overview</h5>
             </div>
         </div>
         <div class="row">

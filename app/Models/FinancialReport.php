@@ -45,4 +45,5 @@ class FinancialReport extends Model implements HasMedia
     {
         return Str::limit($value, 45);
     }
+    
 }

@@ -7,8 +7,7 @@
         </div>
         <div>
             <a href="#" class="footer-link me-4" target="_blank">License</a>
-            <a href="#" target="_blank"
-                class="footer-link me-4">Support</a>
+            <a href="#" target="_blank" class="footer-link me-4">Support</a>
         </div>
     </div>
 </footer>

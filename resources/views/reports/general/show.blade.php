@@ -16,7 +16,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Reports / <a
-                                    href="{{ route('general-reports.index') }}">General reports</a> /
+                                    href="{{ route('general-reports.index') }}">List of general reports</a> /
                             </span>{{ $generalReport->title }}</h5>
                     </div>
                     <div>

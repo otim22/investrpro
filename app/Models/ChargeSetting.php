@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ChargeSetting extends Model
 {
@@ -43,5 +44,10 @@ class ChargeSetting extends Model
     public function shortenSentence($value)
     {
         return Str::limit($value, 30);
+    }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
     }
 }

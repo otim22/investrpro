@@ -6,7 +6,7 @@
         <div class="row">
             <!-- Total Revenue -->
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
-                <h4 class="fw-bold py-1"><span class="text-muted fw-light">Account settings / </span>Billing</h4>
+                <h5 class="fw-bold py-1"><span class="text-muted fw-light">Account settings / </span>Billing</h5>
                 <p>Billing</p>
             </div>
         </div>

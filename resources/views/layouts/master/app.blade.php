@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="description" content="" />
 
-    <title>InvestrPro</title>
+    <title>SenteShield</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon/favicon.ico') }}" />
@@ -47,16 +47,11 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('js/config.js') }}"></script>
     <style>
-        /* .bg-menu-theme {
-            background-color: #060508 !important;
-        } */
-         
         .bg-menu-theme .menu-link,
         .bg-menu-theme .menu-horizontal-prev,
         .bg-menu-theme .menu-horizontal-next {
             color: #a6a7a9;
         }
-        
         .bg-menu-theme .menu-link:hover, .bg-menu-theme .menu-link:focus,
         .bg-menu-theme .menu-horizontal-prev:hover,
         .bg-menu-theme .menu-horizontal-prev:focus,

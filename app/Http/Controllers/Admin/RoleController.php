@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
 
@@ -16,20 +16,10 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-
-    }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {   
         $roles = Role::all();
-        return view('admin.user_management.roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles'));
     }
     
     /**
@@ -40,7 +30,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::get();
-        return view('admin.user_management.roles.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions'));
     }
     
     /**
@@ -72,8 +62,7 @@ class RoleController extends Controller
     {
         $role = $role;
         $rolePermissions = $role->permissions;
-    
-        return view('admin.user_management.roles.show', compact('role', 'rolePermissions'));
+        return view('admin.roles.show', compact('role', 'rolePermissions'));
     }
     
     /**
@@ -86,8 +75,7 @@ class RoleController extends Controller
     {
         $rolePermissions = $role->permissions->pluck('name')->toArray();
         $permissions = Permission::get();
-    
-        return view('admin.user_management.roles.edit', compact('role', 'rolePermissions', 'permissions'));
+        return view('admin.roles.edit', compact('role', 'rolePermissions', 'permissions'));
     }
     
     /**

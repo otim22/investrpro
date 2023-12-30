@@ -1,5 +1,11 @@
 @extends('layouts.master.app')
 
+@push('styles')
+    <style>
+        .camel-sent {text-transform: capitalize;}
+    </style>
+@endpush
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
@@ -9,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
-                <h4 class="fw-bold py-1"><span class="text-muted fw-light">Account / </span>Profile</h4>
+                <h5 class="fw-bold py-1"><span class="text-muted fw-light">Account / </span>Profile</h5>
             </div>
         </div>
         <div class="row">
@@ -24,7 +30,7 @@
                             @method('patch')
 
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="first_name">First Name</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="first_name">First Name</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -42,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="last_name">Last Name</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="last_name">Last Name</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -60,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="email">Email</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="email">Email</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="text" 
@@ -78,7 +84,7 @@
                             </div>
                             <div class="row justify-content-end">
                                 <div class="col-sm-9 mt-2">
-                                    <button type="submit" class="btn btn-primary text-capitalize">Update</button>
+                                    <button type="submit" class="btn btn-primary text-capitalize">Update profile</button>
                                 </div>
                             </div>
                         </form>
@@ -94,7 +100,7 @@
                             @method('patch')
 
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="password">Old password</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="password">Old password</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="password" 
@@ -110,7 +116,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="new_password">Create new password</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="new_password">Create new password</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="password"
@@ -126,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="password-confirm">Confirm new password</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="password-confirm">Confirm new password</label>
                                 <div class="col-sm-9">
                                     <input 
                                         type="password" 
@@ -139,7 +145,7 @@
                             </div>
                             <div class="row justify-content-end">
                                 <div class="col-sm-9 mt-2">
-                                    <button type="submit" class="btn btn-primary text-capitalize">Update</button>
+                                    <button type="submit" class="btn btn-primary text-capitalize">Update password</button>
                                 </div>
                             </div>
                         </form>

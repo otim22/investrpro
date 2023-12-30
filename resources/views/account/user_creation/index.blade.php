@@ -7,10 +7,10 @@
                 @include('messages.flash')
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Account / </span>List of application Users</h5>
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Users / </span>List of Users</h5>
                     <div>
                         <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('org.user.create') }}" aria-haspopup="true" aria-expanded="false">
                             <i class='me-2 bx bx-plus'></i>
@@ -27,9 +27,9 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>First name</th>
-                                    <th>Last name</th>
-                                    <th>Email address</th>
+                                    <th class="text-capitalize fs-6">First name</th>
+                                    <th class="text-capitalize fs-6">Last name</th>
+                                    <th class="text-capitalize fs-6">Email address</th>
                                     <th></th>
                                 </tr>
                             </thead>

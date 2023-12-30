@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>InvestrPro</title>
+    <title>SenteShield</title>
 
     <meta name="description" content="" />
 
@@ -45,6 +45,36 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('js/config.js') }}"></script>
+    <style>
+        .bg-menu-theme .menu-link,
+        .bg-menu-theme .menu-horizontal-prev,
+        .bg-menu-theme .menu-horizontal-next {
+            color: #a6a7a9;
+        }
+        .bg-menu-theme .menu-link:hover, .bg-menu-theme .menu-link:focus,
+        .bg-menu-theme .menu-horizontal-prev:hover,
+        .bg-menu-theme .menu-horizontal-prev:focus,
+        .bg-menu-theme .menu-horizontal-next:hover,
+        .bg-menu-theme .menu-horizontal-next:focus {
+            color: #030303;
+        }
+        html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item.open > .menu-link, .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item.open > .menu-link,
+        html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover,
+        .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover {
+            background-color: rgb(207, 207, 212);
+        }
+        .bg-menu-theme .menu-inner > .menu-item.active > .menu-link {
+            color: #030303;
+            background-color: #ffffff !important;
+        }
+        .bg-menu-theme .menu-inner > .menu-item.active:before {
+            background: #ffffff !important;
+        }
+        .bg-menu-theme .menu-item.active > .menu-link {
+            color: #ffffff;
+            background-color: #011338 !important;
+        }
+    </style>
     @stack('styles')
 </head>
 

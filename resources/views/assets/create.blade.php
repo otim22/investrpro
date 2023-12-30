@@ -40,8 +40,8 @@
                                     autofocus
                                     required
                                 >
+                                    <option value="" selected>Select member</option>
                                     @if($members)
-                                        <option value="" selected>Select member</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach

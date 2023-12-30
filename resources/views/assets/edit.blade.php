@@ -39,8 +39,8 @@
                                     name="member_id"
                                     aria-label="Default select member"
                                 >
+                                    <option value="{{ $asset->member->id }}" selected>{{ $asset->member->surname }} {{ $asset->member->given_name }}</option>
                                     @if($members)
-                                        <option value="{{ $asset->member->id }}" selected>{{ $asset->member->surname }} {{ $asset->member->given_name }}</option>
                                         @foreach($members as $member)
                                             <option value="{{ $member->id }}">{{ $member->surname }} {{ $member->given_name }}</option>
                                         @endforeach

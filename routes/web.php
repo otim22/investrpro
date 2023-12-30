@@ -5,20 +5,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AllMembersController;
 use App\Http\Controllers\ExecutiveMembersController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\FinancialMonthController;
-use App\Http\Controllers\FinancialYearController;
 use App\Http\Controllers\NextOfKinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrgUserController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ChargeController;
-use App\Http\Controllers\ChargeSettingController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\AssetController;
-use App\Http\Controllers\AssetTypeController;
 use App\Http\Controllers\LiabilityController;
 use App\Http\Controllers\ProfitAndLossController;
-use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\AuditReportController;
 use App\Http\Controllers\FinancialReportController;
 use App\Http\Controllers\GeneralReportController;
@@ -26,6 +21,11 @@ use App\Http\Controllers\HrManualController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AssetTypeController;
+use App\Http\Controllers\Admin\ExpenseTypeController;
+use App\Http\Controllers\Admin\ChargeSettingController;
+use App\Http\Controllers\Admin\FinancialMonthController;
+use App\Http\Controllers\Admin\FinancialYearController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
 
@@ -89,13 +89,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add-user/{user}/edit', [OrgUserController::class, 'edit'])->name('org.user.edit');
     Route::patch('/add-user/{user}/update', [OrgUserController::class, 'update'])->name('org.user.update');
     Route::delete('/add-user/{user}/delete', [OrgUserController::class, 'destroy'])->name('org.user.destroy');
-
-    // Settings
-    Route::resource('/financial-months', FinancialMonthController::class);
-    Route::resource('/financial-years', FinancialYearController::class);
-    Route::resource('/charge-settings', ChargeSettingController::class);
-    Route::resource('/asset-types', AssetTypeController::class);
-    Route::resource('/expense-types', ExpenseTypeController::class);
 });
 
 // Admin
@@ -104,6 +97,11 @@ Route::name('admin.')
     ->middleware(['web', 'auth', 'role:super-admin'])
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('/financial-months', FinancialMonthController::class);
+        Route::resource('/financial-years', FinancialYearController::class);
+        Route::resource('/charge-settings', ChargeSettingController::class);
+        Route::resource('/asset-types', AssetTypeController::class);
+        Route::resource('/expense-types', ExpenseTypeController::class);
         Route::resource('/roles', RoleController::class);
         Route::resource('/permissions', PermissionController::class);
 });

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
 
@@ -17,7 +17,7 @@ class PermissionController extends Controller
     public function index()
     {   
         $permissions = Permission::all();
-        return view('admin.user_management.permissions.index', [
+        return view('admin.permissions.index', [
             'permissions' => $permissions
         ]);
     }
@@ -29,7 +29,7 @@ class PermissionController extends Controller
      */
     public function create() 
     {   
-        return view('admin.user_management.permissions.create');
+        return view('admin.permissions.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        return view('admin.user_management.permissions.edit', [
+        return view('admin.permissions.edit', [
             'permission' => $permission
         ]);
     }

@@ -4,7 +4,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold py-1"><span class="text-muted text-capitalize fw-light">Membership / </span>({{ count($executiveMembers) }}) Executive members </h5>
+                <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Membership / </span>List of executive members </h5>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
                         href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">

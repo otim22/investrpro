@@ -36,6 +36,7 @@ class LoginController extends Controller
         if ($this->guard()->user()->hasRole('admin')) {
             return '/dashboard';
         }
+
         if ($this->guard()->user()->hasRole('super-admin')) {
             return '/admin/dashboard';
         }
