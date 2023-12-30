@@ -12,7 +12,8 @@ class Event extends Model
     protected $fillable = [
         'title',
         'start',
-        'end'
+        'end',
+        'company_id'
     ];
 
     protected $casts = [

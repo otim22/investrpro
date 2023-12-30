@@ -19,6 +19,7 @@
                     <div>
                         <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Users / <a href="{{ route('org.user.index') }}">List of Users </a> / </span>{{ $user->first_name }}</h5>
                     </div>
+                    @can('show user actions')
                     <div>
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
@@ -38,6 +39,7 @@
                             </div>
                         </div>
                     </div>
+                    @endcan
                 </div>
                 <form action="{{ route('org.user.destroy', $user) }}" class="hidden" id="delete-month-{{ $user->id }}"
                     method="POST">

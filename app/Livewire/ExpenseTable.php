@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Expense;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -43,7 +44,7 @@ final class ExpenseTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Expense::query();
+        return Expense::query()->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array

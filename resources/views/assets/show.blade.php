@@ -20,6 +20,7 @@
                 <div>
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Assets / <a href="{{ route('assets.index') }}">Assets</a> / </span>{{ $asset->member->surname }} {{ $asset->member->given_name }}</h5>
                 </div>
+                @can('show asset actions')
                 <div>
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
@@ -39,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+                @endcan
             </div>
             <form action="{{ route('assets.destroy', $asset) }}" class="hidden" id="delete-saving-{{ $asset->id }}"
                 method="POST">
@@ -82,8 +84,8 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="basic-default-name">Member's name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="basic-default-name">Member's name</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="member_id" 
                                     class="form-select @error('member_id') is-invalid @enderror" 
@@ -101,8 +103,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset">Asset name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="asset">Asset name</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="asset" 
@@ -120,8 +122,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="asset_type" 
                                     class="form-select @error('asset_type') is-invalid @enderror" 
@@ -144,8 +146,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="text"
@@ -162,8 +164,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="amount" 
@@ -176,8 +178,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="date"
@@ -194,8 +196,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="has_paid">Status</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="has_paid">Status</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <select 
                                     id="has_paid" 
@@ -221,8 +223,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <textarea
                                         type="text"

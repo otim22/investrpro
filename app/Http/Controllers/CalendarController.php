@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
     public function index()
     {
         $events = [];
-        foreach (Event::all() as $event) {
+        $dbEvents = Event::where(['company_id' => Auth::user()->company->id])->get();
+        foreach ($dbEvents as $event) {
             $events[] = [
                 'id' => $event->id, 
                 'title' => $event->title,
@@ -35,6 +37,7 @@ class CalendarController extends Controller
             'title' => $request->title,
             'start' => $request->start,
             'end' => $request->end,
+            'company_id' => Auth::user()->company->id,
         ]);
 
         return response()->json($event);

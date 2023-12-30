@@ -4,7 +4,8 @@ namespace App\Livewire;
 
 use App\Models\ExpenseType;
 use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -41,10 +42,11 @@ final class ExpenseTypeTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): Collection
     {
-        return ExpenseType::query()->join('companies', 'expense_types.company_id', '=', 'companies.id')
-            ->select('expense_types.*', 'companies.company_name as company');
+        $data = ExpenseType::query()->join('companies', 'expense_types.company_id', '=', 'companies.id')
+            ->select('expense_types.*', 'companies.company_name as company')->get();
+        return $data->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array

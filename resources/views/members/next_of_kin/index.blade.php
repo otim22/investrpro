@@ -13,13 +13,15 @@
                     <div>
                         <h5 class="fw-bold text-capitalize py-1"><span class="text-muted fw-light">Members / <a href="{{ route('members.show', $member) }}">{{ $member->surname }} {{ $member->given_name }} </a> / </span>Next of Kin</h5>
                     </div>
-                    <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('next-of-kin.create', $member) }}" aria-haspopup="true" aria-expanded="false">
-                            <i class='me-2 bx bx-plus'></i>
-                            Create next of kin
-                        </a>
-                    </div>
+                    @can('add next of kin')
+                        <div>
+                            <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
+                                href="{{ route('next-of-kin.create', $member) }}" aria-haspopup="true" aria-expanded="false">
+                                <i class='me-2 bx bx-plus'></i>
+                                Create next of kin
+                            </a>
+                        </div>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -10,11 +10,6 @@ use App\Http\Requests\InvestmentUpdateRequest;
 
 class InvestmentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $investments = [];

@@ -4,7 +4,8 @@ namespace App\Livewire;
 
 use App\Models\Charge;
 use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -41,10 +42,11 @@ final class ChargeTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): Collection
     {
-        return Charge::query()->join('members', 'charges.member_id', '=', 'members.id')
-            ->select('charges.*', 'members.surname as member');
+        $data = Charge::query()->join('members', 'charges.member_id', '=', 'members.id')
+            ->select('charges.*', 'members.surname as member')->get();
+        return $data->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array
@@ -143,16 +145,4 @@ final class ChargeTable extends PowerGridComponent
                 ->dispatch('show', ['rowId' => $row->id]),
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

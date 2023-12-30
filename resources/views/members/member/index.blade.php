@@ -13,13 +13,15 @@
                     <div>
                         <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Membership / </span> List of members</h5>
                     </div>
-                    <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                            href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
-                            <i class='me-2 bx bx-plus'></i>
-                            Add member
-                        </a>
-                    </div>
+                    @can('add member')
+                        <div>
+                            <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
+                                href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
+                                <i class='me-2 bx bx-plus'></i>
+                                Add member
+                            </a>
+                        </div>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -138,7 +140,7 @@
                             </tbody>
                         </table>
                     @else
-                        <p class="mb-0 text-center text-capitalize">No member found</p>
+                        <p class="mb-0 text-center text-capitalize">No members found</p>
                     @endif
                 </div>
             </div>

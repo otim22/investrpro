@@ -11,12 +11,14 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">HR Manuals / </span>List of HR Manuals</h5>
-                    <div>
-                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('hr-manuals.create') }}" aria-haspopup="true" aria-expanded="false">
-                            <i class='me-2 bx bx-plus'></i>
-                            Add manuals
-                        </a>
-                    </div>
+                    @can('add hr manual')
+                        <div>
+                            <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('hr-manuals.create') }}" aria-haspopup="true" aria-expanded="false">
+                                <i class='me-2 bx bx-plus'></i>
+                                Add manuals
+                            </a>
+                        </div>
+                    @endcan
                 </div>
             </div>
         </div>

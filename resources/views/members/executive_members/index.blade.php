@@ -5,13 +5,15 @@
         <div class="row">
             <div class="d-flex justify-content-between">
                 <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Membership / </span>List of executive members </h5>
-                <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
-                        href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
-                        <i class='me-2 bx bx-plus'></i>
-                        Add member
-                    </a>
-                </div>
+                @can('add member')
+                    <div>
+                        <a class="btn btn-sm btn-outline-primary text-capitalize" type="button"
+                            href="{{ route('members.create') }}" aria-haspopup="true" aria-expanded="false">
+                            <i class='me-2 bx bx-plus'></i>
+                            Add member
+                        </a>
+                    </div>
+                @endcan
             </div>
         </div>
         <div class="row">

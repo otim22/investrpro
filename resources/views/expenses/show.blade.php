@@ -20,6 +20,7 @@
                 <div> 
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">Expenses / <a href="{{ route('expenses.index') }}">List of expenses / </a> </span>{{ $expense->expense_name }}</h5>
                 </div>
+                @can('show expense actions')
                 <div>
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
@@ -39,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+                @endcan
             </div>
             <form action="{{ route('expenses.destroy', $expense) }}" class="hidden" id="delete-month-{{ $expense->id }}"
                 method="POST">
@@ -83,8 +85,8 @@
                         @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expense_name">Expense name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="expense_name">Expense name</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="expense_name" 
@@ -97,8 +99,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="expense_type">Expense type</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="expense_type">Expense type</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="expense_type" 
@@ -110,8 +112,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="text"
@@ -128,8 +130,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_of_expense">Date of expense</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_of_expense">Date of expense</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="date_of_expense" 
@@ -141,8 +143,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="details">Details</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="details">Details</label>
+                            <div class="col-sm-9">
                                 <textarea 
                                     type="text" 
                                     id="details" 
@@ -154,8 +156,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="rate">Rate</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="rate">Rate</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="number"
@@ -170,8 +172,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="number"

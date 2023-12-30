@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\FinancialYear;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -43,8 +44,9 @@ final class FinancialYearsTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return FinancialYear::query()->join('companies', 'financial_years.company_id', '=', 'companies.id')
-            ->select('financial_years.*', 'companies.company_name as company');
+        $data = FinancialYear::query()->join('companies', 'financial_years.company_id', '=', 'companies.id')
+            ->select('financial_years.*', 'companies.company_name as company')->get();
+        return $data->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array

@@ -45,4 +45,16 @@ class UserController extends Controller
             return redirect()->route('profile');
         }
     }
+
+    public function uploadProfilePic(Request $request)
+    {
+        $request->validate([
+            'profile_pic' => 'required|mimes:png,jpeg,gif,svg|max:10000',
+        ]);
+        $user = Auth::user();
+        if($request->hasFile('profile_pic')) {
+            $user->addMedia($request->profile_pic)->toMediaCollection('profile_pic');
+        } 
+        return redirect()->back();
+    }
 }

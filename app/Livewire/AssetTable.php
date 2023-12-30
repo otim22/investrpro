@@ -4,7 +4,9 @@ namespace App\Livewire;
 
 use App\Models\Asset;
 use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
+use PowerComponents\LivewirePowerGrid\Cache;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -24,7 +26,6 @@ final class AssetTable extends PowerGridComponent
     {
         $perPage = 25;
         $perPageValues = [0, 25, 50, 100, 200];
-
         $this->showCheckBox();
         $this->persist(['columns', 'filters']);
 
@@ -41,10 +42,11 @@ final class AssetTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): Collection
     {
-        return Asset::query()->join('members', 'assets.member_id', '=', 'members.id')
-            ->select('assets.*', 'members.surname as member');
+        $data = Asset::query()->join('members', 'assets.member_id', '=', 'members.id')
+            ->select('assets.*', 'members.surname as member')->get();
+        return $data->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array

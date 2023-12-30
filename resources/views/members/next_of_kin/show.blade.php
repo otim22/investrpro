@@ -23,6 +23,7 @@
                                 / Next of kin / </span>{{ $member->nextOfKin->surname }} {{ $member->nextOfKin->given_name }}
                         </h5>
                     </div>
+                    @can('show next of kin actions')
                     <div>
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
@@ -43,6 +44,7 @@
                             </div>
                         </div>
                     </div>
+                    @endcan
                 </div>
                 <form action="{{ route('next-of-kin.delete', [$member, $member->nextOfKin]) }}" class="hidden"
                     id="delete-member-{{ $member->nextOfKin->id }}" method="POST">

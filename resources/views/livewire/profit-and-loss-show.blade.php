@@ -109,43 +109,49 @@
                         Available asset overview (UGX)
                     </div>
 
-                    <div class="d-flex justify-content-between">
-                        <div class="d-block text-capitalize mb-2 text-muted">Savings</div>
-                        @if($totalActSaving > 0)
-                            <div class="card-title mb-2">{{ number_format($totalActSaving) }}/-</div>
-                        @else
-                            <div class="card-title mb-2">0.00</div>
-                        @endif
-                    </div>
+                    @if ($actualAssetTotal > 0)
+                        <div class="d-flex justify-content-between">
+                            <div class="d-block text-capitalize mb-2 text-muted">Savings</div>
+                            @if($totalActSaving > 0)
+                                <div class="card-title mb-2">{{ number_format($totalActSaving) }}/-</div>
+                            @else
+                                <div class="card-title mb-2">0.00</div>
+                            @endif
+                        </div>
 
-                    <div class="d-flex justify-content-between">
-                        <span class="d-block text-capitalize mb-2 text-muted">Late remissions</span>
-                        @if($totalActLateRemission > 0)
-                            <div class="card-title mb-2">{{ number_format($totalActLateRemission) }}/-</div>
-                        @else
-                            <div class="card-title mb-2">0.00</div>
-                        @endif
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="d-block text-capitalize mb-2 text-muted">Late remissions</span>
+                            @if($totalActLateRemission > 0)
+                                <div class="card-title mb-2">{{ number_format($totalActLateRemission) }}/-</div>
+                            @else
+                                <div class="card-title mb-2">0.00</div>
+                            @endif
+                        </div>
 
-                    <div class="d-flex justify-content-between">
-                        <span class="d-block text-capitalize mb-2 text-muted">Missed meetings</span>
-                        @if($totalActMissedMeeting > 0)
-                            <div class="card-title mb-2">{{ number_format($totalActMissedMeeting) }}/-</div>
-                        @else
-                            <div class="card-title mb-2">0.00</div>
-                        @endif
-                    </div>
-                    
-                    <div><hr /></div>
+                        <div class="d-flex justify-content-between">
+                            <span class="d-block text-capitalize mb-2 text-muted">Missed meetings</span>
+                            @if($totalActMissedMeeting > 0)
+                                <div class="card-title mb-2">{{ number_format($totalActMissedMeeting) }}/-</div>
+                            @else
+                                <div class="card-title mb-2">0.00</div>
+                            @endif
+                        </div>
+                        
+                        <div><hr /></div>
 
-                    <div class="d-flex justify-content-between">
-                        <div class="d-block text-capitalize mb-2 text-muted">Total</div>
-                        @if($actualAssetTotal > 0)
-                            <div class="mb-2 fw-bold">{{ number_format($actualAssetTotal) }}/-</div>
-                        @else
-                            <div class="mb-2">0.00</div>
-                        @endif
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-block text-capitalize mb-2 text-muted">Total</div>
+                            @if($actualAssetTotal > 0)
+                                <div class="mb-2 fw-bold">{{ number_format($actualAssetTotal) }}/-</div>
+                            @else
+                                <div class="mb-2">0.00</div>
+                            @endif
+                        </div>
+                    @else
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0 text-center text-capitalize">No assets found</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -156,43 +162,49 @@
                         Expense overview (UGX)
                     </div>
                     
-                    <div class="d-flex justify-content-between">
-                        <span class="d-block text-capitalize mb-2 text-muted">Current expenses ({{ $totalCurrentExpenses }})</span>
-                        @if ($currentExpenses > 0)
-                            <div class="card-title mb-2">{{ number_format($currentExpenses) }}/-</div>
-                        @else
-                            <div class="card-title mb-2">0.00</div>
-                        @endif
-                    </div>
-                    
-                    <div class="d-flex justify-content-between">
-                        <span class="d-block text-capitalize mb-2 text-muted">Non Current expenses ({{ $totalNonCurrentExpenses }})</span>
-                        @if ($nonCurrentExpenses > 0)
-                            <div class="card-title mb-2">{{ number_format($nonCurrentExpenses) }}/-</div>
-                        @else
-                            <div class="card-title mb-2">0.00</div>
-                        @endif
-                    </div>
+                    @if ($totalExpensesValue > 0)
+                        <div class="d-flex justify-content-between">
+                            <span class="d-block text-capitalize mb-2 text-muted">Current expenses ({{ $totalCurrentExpenses }})</span>
+                            @if ($currentExpenses > 0)
+                                <div class="card-title mb-2">{{ number_format($currentExpenses) }}/-</div>
+                            @else
+                                <div class="card-title mb-2">0.00</div>
+                            @endif
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <span class="d-block text-capitalize mb-2 text-muted">Non Current expenses ({{ $totalNonCurrentExpenses }})</span>
+                            @if ($nonCurrentExpenses > 0)
+                                <div class="card-title mb-2">{{ number_format($nonCurrentExpenses) }}/-</div>
+                            @else
+                                <div class="card-title mb-2">0.00</div>
+                            @endif
+                        </div>
 
-                    <div class="d-flex justify-content-between">
-                        <span class="d-block text-capitalize mb-2 text-muted">Number of expenses</span>
-                        @if (count($expenses) > 0)
-                            <div class="card-title mb-2">{{ number_format(count($expenses)) }}</div>
-                        @else
-                            <div class="card-title mb-2">0</div>
-                        @endif
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="d-block text-capitalize mb-2 text-muted">Number of expenses</span>
+                            @if (count($expenses) > 0)
+                                <div class="card-title mb-2">{{ number_format(count($expenses)) }}</div>
+                            @else
+                                <div class="card-title mb-2">0</div>
+                            @endif
+                        </div>
 
-                    <div><hr /></div>
-                    
-                    <div class="d-flex justify-content-between">
-                        <div class="d-block text-capitalize mb-2 text-muted">Total</div>
-                        @if ($totalExpensesValue > 0)
-                            <div class="card-title fw-bold mb-2">{{ number_format($totalExpensesValue) }}/-</div>
-                        @else
-                            <div class="card-title mb-2">0.00</div>
-                        @endif
-                    </div>
+                        <div><hr /></div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <div class="d-block text-capitalize mb-2 text-muted">Total</div>
+                            @if ($totalExpensesValue > 0)
+                                <div class="card-title fw-bold mb-2">{{ number_format($totalExpensesValue) }}/-</div>
+                            @else
+                                <div class="card-title mb-2">0.00</div>
+                            @endif
+                        </div>
+                    @else
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0 text-center text-capitalize">No expenses found</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

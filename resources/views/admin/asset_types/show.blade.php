@@ -83,8 +83,8 @@
                             @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="basic-default-name">Company name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="basic-default-name">Company name</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="company_id" 
                                     class="form-select @error('company_id') is-invalid @enderror" 
@@ -107,8 +107,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset_type">Title</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="asset_type">Title</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="asset_type" 
@@ -120,8 +120,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="description">Description</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="description">Description</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <textarea
                                         type="text"

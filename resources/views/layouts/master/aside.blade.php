@@ -77,11 +77,13 @@
                         <div>Executive members</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('members') ? 'active' : '' }}">
-                    <a href="{{ route('members.index') }}" class="menu-link text-capitalize">
-                        <div>Registration</div>
-                    </a>
-                </li>
+                @can('add member')
+                    <li class="menu-item {{ Request::is('members') ? 'active' : '' }}">
+                        <a href="{{ route('members.index') }}" class="menu-link text-capitalize">
+                            <div>Registration</div>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </li>
         
@@ -124,13 +126,14 @@
         </li>
 
         <!-- Add user -->
-        <li class="menu-item added-active {{ Request::is('add-user') ? 'active' : '' }}">
-            <a href="{{ route('org.user.index') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-user-plus'></i>
-                <div>Users</div>
-            </a>
-        </li>
-
+        @can('add user')
+            <li class="menu-item added-active {{ Request::is('add-user') ? 'active' : '' }}">
+                <a href="{{ route('org.user.index') }}" class="menu-link text-capitalize">
+                    <i class='menu-icon bx bx-user-plus'></i>
+                    <div>Users</div>
+                </a>
+            </li>
+        @endcan
         <!-- Profile -->
         <li class="menu-item added-active {{ Request::is('profile') ? 'active' : '' }}">
             <a href="{{ route('profile') }}" class="menu-link text-capitalize">

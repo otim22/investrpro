@@ -9,25 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class ExecutiveMembersController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
+     * Show dashboard.
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
         $executiveMembers = [];
         if(Auth::user()->company) {
-            $executiveMembers = Member::where('company_id', Auth::user()->company->id)->role('Executive Member')->paginate(25);
+            $executiveMembers = Member::where('company_id', Auth::user()->company->id)->role('executive-member')->paginate(25);
         }
         return view('members.executive_members.index', compact('executiveMembers'));
     }

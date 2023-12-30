@@ -20,6 +20,7 @@
                 <div>
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">investments / <a href="{{ route('investments.index') }}">List of investments </a> / </span>{{ $investment->investment_type }}</h5>
                 </div>
+                @can('show investment actions')
                 <div>
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
@@ -39,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+                @endcan
             </div>
             <form action="{{ route('investments.destroy', $investment) }}" class="hidden" id="delete-month-{{ $investment->id }}"
                 method="POST">

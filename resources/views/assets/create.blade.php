@@ -30,8 +30,8 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="member_id">Member's name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="member_id">Member's name</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="member_id" 
                                     class="form-select @error('member_id') is-invalid @enderror" 
@@ -55,8 +55,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset">Asset name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="asset">Asset name</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="asset" 
                                     class="form-select @error('asset') is-invalid @enderror" 
@@ -80,8 +80,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="asset_type" 
                                     class="form-select @error('asset_type') is-invalid @enderror" 
@@ -105,8 +105,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <select 
                                         id="financial_year" 
@@ -131,8 +131,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="amount">Amount</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="number" 
                                     id="amount" 
@@ -149,8 +149,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="date"
@@ -170,8 +170,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="has_paid">Payment Status</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="has_paid">Payment Status</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <select 
                                         id="has_paid" 
@@ -192,8 +192,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <textarea
                                         type="text"
@@ -212,7 +212,7 @@
                             </div>
                         </div>
                         <div class="row justify-content-end">
-                            <div class="col-sm-10 mt-2">
+                            <div class="col-sm-9 mt-2">
                                 <button type="submit" class="btn btn-primary text-capitalize">Save asset</button>
                             </div>
                         </div>

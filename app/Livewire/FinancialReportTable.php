@@ -3,8 +3,9 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Str;
-use App\Models\FinancialReport;
 use Illuminate\Support\Carbon;
+use App\Models\FinancialReport;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -44,7 +45,7 @@ final class FinancialReportTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return FinancialReport::query();
+        return FinancialReport::query()->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array

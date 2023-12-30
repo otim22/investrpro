@@ -82,8 +82,8 @@
                             @method('patch')
 
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="member_id">Member's name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="member_id">Member's name</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="member_id" 
@@ -95,8 +95,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="charge">Asset name</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="charge">Asset name</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input 
                                         type="text" 
@@ -110,8 +110,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="asset_type">Asset type</label>
+                            <div class="col-sm-9">
                                 <select 
                                     id="asset_type" 
                                     class="form-select @error('asset_type') is-invalid @enderror" 
@@ -134,8 +134,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input
                                         type="text"
@@ -152,8 +152,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="charge">Charge being paid for</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="charge">Charge being paid for</label>
+                            <div class="col-sm-9">
                                 <div class="input-group input-group-merge">
                                     <input 
                                         type="text" 
@@ -167,8 +167,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="amount">Charge Amount</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="amount">Charge Amount</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="amount" 
@@ -180,8 +180,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="month">Month (Being paid for)</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="month">Month (Being paid for)</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="month" 
@@ -193,8 +193,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_paid">Date of payment</label>
+                            <div class="col-sm-9">
                                 <input 
                                     type="text" 
                                     id="date_paid" 
@@ -206,8 +206,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="comment">Comment</label>
+                            <div class="col-sm-9">
                                 <textarea 
                                     type="text" 
                                     id="comment" 

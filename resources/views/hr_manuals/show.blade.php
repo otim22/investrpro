@@ -17,6 +17,7 @@
                 <div>
                     <h5 class="fw-bold py-1 text-capitalize"><span class="text-muted fw-light">HR Manual / <a href="{{ route('hr-manuals.index') }}">List of HR Manuals</a> / </span>{{ $hrManual->title }}</h5>
                 </div>
+                @can('show hr manual actions')
                 <div>
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
@@ -36,6 +37,7 @@
                         </div>
                     </div>
                 </div>
+                @endcan
             </div>
             <form action="{{ route('hr-manuals.destroy', $hrManual) }}" class="hidden" id="delete-charge-{{ $hrManual->id }}"
                 method="POST">

@@ -38,8 +38,8 @@
                             @method('patch')
 
                             <div class="row">
-                                <label class="col-sm-2 col-form-label text-secondary camel-sent fs-6" for="name">Name</label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="name">Name</label>
+                                <div class="col-sm-9">
                                     <input type="text" id="name"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name', $permission->name) }}" required />

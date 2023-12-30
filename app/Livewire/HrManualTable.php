@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\HrManual;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -44,7 +45,7 @@ final class HrManualTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return HrManual::query();
+        return HrManual::query()->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array

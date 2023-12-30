@@ -22,6 +22,7 @@
                                 / </span>{{ $member->surname }} {{ $member->given_name }}
                         </h5>
                     </div>
+                    @can('show member actions')
                     <div>
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle"
@@ -45,6 +46,7 @@
                             </div>
                         </div>
                     </div>
+                    @endcan
                 </div>
                 <form action="{{ route('members.destroy', $member) }}" class="hidden" id="delete-member-{{ $member->id }}"
                     method="POST">

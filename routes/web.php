@@ -80,6 +80,7 @@ Route::middleware(['auth'])->group(function () {
 
     //  User management
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/home', [UserController::class, 'uploadProfilePic'])->name('upload.profile');
     Route::patch('/update-name', [UserController::class, 'updateName'])->name('update.name');
     Route::patch('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
     Route::get('/add-user', [OrgUserController::class, 'index'])->name('org.user.index');

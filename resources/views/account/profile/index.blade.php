@@ -22,9 +22,35 @@
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
                 <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0 text-capitalize">User details:</h5>
+                        <h5 class="mb-0 text-capitalize">Profile details:</h5>
                     </div>
                     <div class="card-body">
+                        <form action="{{route('upload.profile')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                <img
+                                    src="{{ $user->getFirstMediaUrl('profile_pic') }}"
+                                    alt="user-avatar"
+                                    class="d-block rounded"
+                                    height="100"
+                                    width="100"
+                                />
+                                <div class="col-lg-6">
+                                    <label for="profile_pic" class="form-label text-secondary camel-sent fs-6">Profile image</label>
+                                    <input type="file" name="profile_pic" class="form-control" id="profile_pic">
+                                    <div class="form-text">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn btn-primary">Upload new photo</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <hr class="my-0" />
+
+                    <div class="card-body mt-2">
                         <form method="POST" action="{{ route('update.name') }}" enctype="multipart/form-data">
                             @csrf
                             @method('patch')

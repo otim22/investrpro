@@ -38,7 +38,7 @@ class OrgUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]); 
-        $user->assignRole('Ordinary Member');
+        $user->assignRole('ordinary-member');
 
         $request->session()->flash('success', 'User created successfully');
         return redirect()->route('org.user.index');

@@ -4,7 +4,8 @@ namespace App\Livewire;
 
 use App\Models\FinancialMonth;
 use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -41,10 +42,11 @@ final class FinancialMonthsTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): Collection
     {
-        return FinancialMonth::query()->join('companies', 'financial_months.company_id', '=', 'companies.id')
-            ->select('financial_months.*', 'companies.company_name as company');
+        $data = FinancialMonth::query()->join('companies', 'financial_months.company_id', '=', 'companies.id')
+            ->select('financial_months.*', 'companies.company_name as company')->get();
+        return $data->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array

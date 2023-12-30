@@ -97,6 +97,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center mt-4">
+                            {!! $permissions->links() !!}
+                        </div>
                     @else
                         <p class="mb-0 text-center text-capitalize">No permissions found</p>
                     @endif

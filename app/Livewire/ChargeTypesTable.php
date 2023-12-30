@@ -4,7 +4,8 @@ namespace App\Livewire;
 
 use App\Models\ChargeSetting;
 use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -41,10 +42,11 @@ final class ChargeTypesTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): Builder
+    public function datasource(): Collection
     {
-        return ChargeSetting::query()->join('companies', 'charge_settings.company_id', '=', 'companies.id')
-            ->select('charge_settings.*', 'companies.company_name as company');
+        $data = ChargeSetting::query()->join('companies', 'charge_settings.company_id', '=', 'companies.id')
+            ->select('charge_settings.*', 'companies.company_name as company')->get();
+        return $data->where('company_id', Auth::user()->company->id);
     }
 
     public function relationSearch(): array
