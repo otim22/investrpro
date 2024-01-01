@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->renameColumn('start_date', 'start');
-            $table->renameColumn('end_date', 'end');
+        Schema::table('members', function (Blueprint $table) {
+            $table->string('code')->nullable()->default(null);
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->renameColumn('start', 'start_date');
-            $table->renameColumn('end', 'end_date');
+        Schema::table('members', function (Blueprint $table) {
+            $table->dropColumn('code');
         });
     }
 };

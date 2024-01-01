@@ -18,7 +18,7 @@ class RoleController extends Controller
      */
     public function index()
     {   
-        $roles = Role::latest()->paginate(20);
+        $roles = Role::orderBy('created_at', 'desc')->paginate(20);
         return view('admin.roles.index', compact('roles'));
     }
     
@@ -29,7 +29,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::get();
+        $permissions = Permission::orderBy('created_at', 'desc')->get();
         return view('admin.roles.create', compact('permissions'));
     }
     

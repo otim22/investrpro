@@ -34,7 +34,8 @@
                                 <tr>
                                     <th class="text-capitalize fs-6">Identification</th>
                                     <th class="text-capitalize fs-6">Address</th>
-                                    <th class="text-capitalize fs-6">Occupation</th>
+                                    <th class="text-capitalize fs-6">Contact</th>
+                                    <th class="text-capitalize fs-6">Next of Kin</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -46,37 +47,27 @@
                                                 <div>
                                                     {{ $member->surname }} {{ $member->given_name }} {{ $member->other_name }}
                                                 </div>
-                                            
-                                                <div>
-                                                    {{ $member->nin }}
-                                                </div>
-
-                                                <div>
-                                                    @if($member->passport_number)
-                                                        {{ $member->passport_number }}
-                                                    @endif
-                                                </div>
-                                                <div>
-                                                    {{ $member->date_of_birth }}
-                                                </div>
+                                                <div>{{ $member->date_of_birth }} </div>
+                                                <div>{{ $member->code }} </div>
                                             </a>
                                         </td>
                                         <td>
+                                            <div> {{ $member->nin }} </div>
                                             <div>
-                                                {{ $member->address }}
+                                                @if($member->passport_number)
+                                                    {{ $member->passport_number }}
+                                                @endif
                                             </div>
-                                            
-                                            <div>
-                                                {{ $member->email }}
-                                            </div>
-                                            <div>
-                                                {{ $member->telephone_number }}
-                                            </div>
+                                            <div>{{ $member->address }} </div>
+                                            <div>{{ $member->occupation }}
                                         </td>
                                         <td>
-                                            <div>
-                                                {{ $member->occupation }}
-                                            </div>
+                                            <div>{{ $member->email }} </div>
+                                            <div>{{ $member->telephone_number }}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{ $member->nextOfKin->surname }} </div>
+                                            <div>{{ $member->nextOfKin->relationship }} </div>
                                         </td>
                                         <td>
                                             <div class="dropdown">

@@ -134,7 +134,6 @@ class AssetIndex extends Component
                 $missedMeetingTotal += $missedMeeting->charge_amount;
             }
             $this->totalMissedMeeting = $missedMeetingTotal;
-
             $this->overallTotal = $this->totalMemberSaving + $this->totalLateRemission + $this->totalMissedMeeting;
         }
     }

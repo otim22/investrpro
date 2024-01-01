@@ -62,7 +62,6 @@
                                     class="form-select @error('asset') is-invalid @enderror" 
                                     name="asset"
                                     aria-label="Default select charge"
-                                    
                                     required
                                 >
                                     <option value="" selected>Select asset</option>
@@ -179,9 +178,9 @@
                                         name="has_paid"
                                         aria-label="Default select month"
                                     >
-                                        <option value="" selected>Select option</option>
-                                        <option value="0">No, Hasn't paid</option>
-                                        <option value="1">Yes, Has paid</option>
+                                        <option selected>Select option</option>
+                                        <option value="0">No, has not paid</option>
+                                        <option value="1">Yes, has paid</option>
                                 </select>
                                     @error('has_paid')
                                         <span class="invalid-feedback" role="alert">

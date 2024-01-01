@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Investment;
 use Illuminate\Http\Request;
+use App\Models\FinancialYear;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\InvestmentRequest;
 use App\Http\Requests\InvestmentUpdateRequest;
@@ -21,7 +22,11 @@ class InvestmentController extends Controller
 
     public function create()
     {
-        return view('investments.create');
+        $financialYears = [];
+        if(Auth::user()->company) {
+            $financialYears = FinancialYear::where('company_id', Auth::user()->company->id)->get();
+        }
+        return view('investments.create', compact('financialYears'));
     }
 
     public function store(InvestmentRequest $request)
@@ -34,6 +39,7 @@ class InvestmentController extends Controller
             'duration' => $request->duration,
             'interest_rate' => $request->interest_rate,
             'amount_invested' => $request->amount_invested,
+            'financial_year' => $request->financial_year,
             'date_of_maturity' => $request->date_of_maturity,
             'expected_tax' => $request->expected_tax,
             'expected_return_after_tax' => $request->expected_return_after_tax,

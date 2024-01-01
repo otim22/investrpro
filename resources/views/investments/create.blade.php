@@ -48,6 +48,32 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
+                            <div class="col-sm-9">
+                                <div class="input-group input-group-merge">
+                                    <select 
+                                        id="financial_year" 
+                                        class="form-select @error('financial_year') is-invalid @enderror" 
+                                        name="financial_year"
+                                        aria-label="Default select year"
+                                        required
+                                    >
+                                        <option value="" selected>Select year</option>
+                                        @if($financialYears)
+                                            @foreach($financialYears as $financialYear)
+                                                <option value="{{ $financialYear->title }}">{{ $financialYear->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    @error('financial_year')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_of_investment">Date of investment</label>
                             <div class="col-sm-9">
                                 <input 

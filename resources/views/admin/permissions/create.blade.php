@@ -32,7 +32,7 @@
                             @csrf
 
                             <div class="row">
-                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="name">Name</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="name">Permission Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="name"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
@@ -45,9 +45,8 @@
                                 </div>
                             </div>
                             <div class="row justify-content-end">
-                                <div class="col-sm-10 mt-4">
-                                    <button type="submit" class="btn btn-primary text-capitalize">Create
-                                        permission</button>
+                                <div class="col-sm-9 mt-4">
+                                    <button type="submit" class="btn btn-primary text-capitalize">Create permission</button>
                                 </div>
                             </div>
                         </form>

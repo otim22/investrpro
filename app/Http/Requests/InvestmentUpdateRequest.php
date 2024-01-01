@@ -29,6 +29,7 @@ class InvestmentUpdateRequest extends FormRequest
             'duration' => ['required', 'string'],
             'interest_rate' => ['required', 'string'],
             'amount_invested' => ['required', 'string'],
+            'financial_year' => ['required', 'string'],
             'date_of_maturity' => ['required', 'date'],
             'expected_tax' => ['required', 'string'],
             'expected_return_after_tax' => ['nullable', 'string'],

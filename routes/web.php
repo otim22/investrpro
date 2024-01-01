@@ -20,6 +20,10 @@ use App\Http\Controllers\GeneralReportController;
 use App\Http\Controllers\HrManualController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\LoanServiceController;
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\IndividualAccountController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AssetTypeController;
 use App\Http\Controllers\Admin\ExpenseTypeController;
@@ -48,6 +52,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/individual-account', [IndividualAccountController::class, 'index'])->name('individual-account');
     Route::get('/all-members', [AllMembersController::class, 'index'])->name('all-members');
     Route::get('/executive-members', [ExecutiveMembersController::class, 'index'])->name('executive-members');
     Route::resource('/members', MemberController::class);
@@ -60,6 +65,15 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/members/{member}/next-of-kins/{nextOfKin}/destroy', [NextOfKinController::class, 'destroy'])->name('next-of-kin.delete');
     Route::resource('/expenses', ExpenseController::class);
     Route::resource('/assets', AssetController::class);
+    Route::get('/loan-service', [LoanServiceController::class, 'index'])->name('loan-service');
+    Route::resource('/meetings', MeetingController::class);
+    Route::get('/meetings/{meeting}/attendances/create', [AttendanceController::class, 'create'])->name('attendances.create');
+    Route::get('/meetings/{meeting}/attendances/{attendance}/show', [AttendanceController::class, 'show'])->name('attendances.show');
+    Route::get('/meetings/{meeting}/attendances/index', [AttendanceController::class, 'index'])->name('attendances.index');
+    Route::post('/meetings/{meeting}/attendances/store', [AttendanceController::class, 'store'])->name('attendances.store');
+    Route::get('/meetings/{meeting}/attendances/{attendance}/edit', [AttendanceController::class, 'edit'])->name('attendances.edit');
+    Route::patch('/meetings/{meeting}/attendances/{attendance}/update', [AttendanceController::class, 'update'])->name('attendances.update');
+    Route::delete('/meetings/{meeting}/attendances/{attendance}/destroy', [AttendanceController::class, 'destroy'])->name('attendances.destroy');
     Route::resource('/charges', ChargeController::class);
     Route::get('/calendar/index', [CalendarController::class, 'index'])->name('calendar.index');
     Route::post('/calendar', [CalendarController::class, 'store'])->name('calendar.store');

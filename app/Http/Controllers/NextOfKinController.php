@@ -12,6 +12,7 @@ class NextOfKinController extends Controller
 {
     public function index(Member $member)
     {   
+        // dd($member->nextOfKin);
         return view('members.next_of_kin.index', compact('member'));
     }
 

@@ -98,6 +98,23 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="financial_year">Financial year</label>
+                            <div class="col-sm-9">
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="text"
+                                        id="financial_year"
+                                        name="financial_year"
+                                        class="form-control @error('financial_year') is-invalid @enderror"
+                                        placeholder="FY22/23"
+                                        aria-describedby="financial_year"
+                                        value="{{ old('financial_year', $investment->financial_year) }}"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_of_investment">Date of investment</label>
                             <div class="col-sm-9">
                                 <input 

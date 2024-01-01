@@ -45,6 +45,7 @@ class MemberController extends Controller
             'surname' => $request->surname,
             'given_name' => $request->given_name,
             'other_name' => $request->other_name,
+            'code' => $request->code,
             'date_of_birth' => $request->date_of_birth,
             'telephone_number' => $request->telephone_number,
             'email' => $request->email,

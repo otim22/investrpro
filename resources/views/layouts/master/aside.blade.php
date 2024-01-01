@@ -21,11 +21,31 @@
         </li>
         
         <!-- Investments -->
-        <li class="menu-item added-active {{ Request::is('calendar/index') ? 'active' : '' }}">
-            <a href="{{ route('calendar.index') }}" class="menu-link text-capitalize">
-                <i class='menu-icon bx bx-calendar'></i>
-                <div>Calendar</div>
+        <li class="menu-item added-active {{ Request::is('individual-account') ? 'active' : '' }}">
+            <a href="{{ route('individual-account') }}" class="menu-link text-capitalize">
+                <i class='menu-icon bx bxs-user-account'></i>
+                <div>Individual Account</div>
             </a>
+        </li>
+
+        <!-- Meeting -->
+        <li class="menu-item added-active {{ Request::is(['calendar/index', 'meetings']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
+                <i class='menu-icon bx bx-calendar'></i>
+                <div>Meetings<span class="badge bg-white bg-primary ms-3">10</span></div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('calendar/index') ? 'active' : '' }}">
+                    <a href="{{ route('calendar.index') }}" class="menu-link text-capitalize">
+                        <div>Calendar</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('meetings') ? 'active' : '' }}">
+                    <a href="{{ route('meetings.index') }}" class="menu-link text-capitalize">
+                        <div>Meetings</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <!-- Investments -->
@@ -37,13 +57,25 @@
         </li>
         
         <!-- Assets -->
-        <li class="menu-item added-active {{ Request::is('assets') ? 'active' : '' }}">
-            <a href="{{ route('assets.index') }}" class="menu-link text-capitalize">
+        <li class="menu-item added-active {{ Request::is(['assets', 'loan-service']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+            <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-money'></i>
-                <div>Assets</div>
+                <div>Fund</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ Request::is('assets') ? 'active' : '' }}">
+                    <a href="{{ route('assets.index') }}" class="menu-link text-capitalize">
+                        <div>Assets</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('loan-service') ? 'active' : '' }}">
+                    <a href="{{ route('loan-service') }}" class="menu-link text-capitalize">
+                        <div>Loan service</div>
+                    </a>
+                </li>
+            </ul>
         </li>
-        
+
         <!-- Expenses -->
         <li class="menu-item added-active {{ Request::is('expenses') ? 'active' : '' }}">
             <a href="{{ route('expenses.index') }}" class="menu-link text-capitalize">

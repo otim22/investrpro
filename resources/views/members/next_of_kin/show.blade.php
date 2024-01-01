@@ -20,7 +20,7 @@
                         <h5 class="fw-bold py-1 text-capitalize">
                             <span class="text-muted fw-light">Members / <a
                                     href="{{ route('members.show', $member) }}">{{ $member->surname }} {{ $member->given_name }}</a>
-                                / Next of kin / </span>{{ $member->nextOfKin->surname }} {{ $member->nextOfKin->given_name }}
+                                / <a href="{{ route('next-of-kin.index', $member) }}">Next of kin</a> / </span>{{ $member->nextOfKin->surname }} {{ $member->nextOfKin->given_name }}
                         </h5>
                     </div>
                     @can('show next of kin actions')

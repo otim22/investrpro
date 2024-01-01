@@ -45,7 +45,7 @@ final class AssetTable extends PowerGridComponent
     public function datasource(): Collection
     {
         $data = Asset::query()->join('members', 'assets.member_id', '=', 'members.id')
-            ->select('assets.*', 'members.surname as member')->get();
+            ->select('assets.*', 'members.code as code')->get();
         return $data->where('company_id', Auth::user()->company->id);
     }
 
@@ -57,7 +57,7 @@ final class AssetTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
-            ->addColumn('member')
+            ->addColumn('code')
             ->addColumn('asset')
             ->addColumn('amount', function (Asset $model) { 
                 return number_format($model->amount);
@@ -77,7 +77,7 @@ final class AssetTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make("Member", 'member')
+            Column::make("Member Code", 'code')
                 ->sortable()
                 ->headerAttribute('text-capitalize fs-6')
                 ->searchable(),

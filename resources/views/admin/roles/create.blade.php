@@ -32,7 +32,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="name">Name</label>
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="name">Role name</label>
                                 <div class="col-sm-9">
                                     <input type="text" id="name"
                                         class="form-control @error('name') is-invalid @enderror" name="name"

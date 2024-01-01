@@ -107,6 +107,13 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="code">Member's code</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="code" class="form-control" name="code"
+                                    value="{{ $member->code }}" disabled />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_of_birth">Date of birth</label>
                             <div class="col-sm-9">
                                 <input type="date" id="date_of_birth" class="form-control" name="date_of_birth"
@@ -160,6 +167,14 @@
                                 </div>
                             </div>
                         @endif
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6">Next of kin</label>
+                            <div class="col-sm-9">
+                                <a href="{{ route('next-of-kin.index', $member) }}">
+                                    {{ $member->nextOfKin->surname }} {{ $member->nextOfKin->given_name }}
+                                </a>
+                            </div>
+                        </div>
                         <div class="row">
                             <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="passport_number">Attachment document</label>
                             <div class="col-sm-9">

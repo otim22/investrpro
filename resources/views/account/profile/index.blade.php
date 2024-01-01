@@ -42,7 +42,7 @@
                                     <div class="form-text">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <button type="submit" class="btn btn-primary">Upload new photo</button>
+                                    <button type="submit" class="btn btn-outline-primary text-capitalize">Upload new photo</button>
                                 </div>
                             </div>
                         </form>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="row justify-content-end">
                                 <div class="col-sm-9 mt-2">
-                                    <button type="submit" class="btn btn-primary text-capitalize">Update profile</button>
+                                    <button type="submit" class="btn btn-outline-primary text-capitalize">Update profile</button>
                                 </div>
                             </div>
                         </form>
@@ -171,7 +171,7 @@
                             </div>
                             <div class="row justify-content-end">
                                 <div class="col-sm-9 mt-2">
-                                    <button type="submit" class="btn btn-primary text-capitalize">Update password</button>
+                                    <button type="submit" class="btn btn-outline-primary text-capitalize">Update password</button>
                                 </div>
                             </div>
                         </form>

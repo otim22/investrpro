@@ -83,6 +83,22 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="code">Member's code</label>
+                                <div class="col-sm-9">
+                                    <input 
+                                        type="text" 
+                                        id="code"
+                                        class="form-control @error('code') is-invalid @enderror" name="code"
+                                        value="{{ old('code', $member->code) }}" 
+                                    />
+                                    @error('code')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="date_of_birth">Date of birth</label>
                                 <div class="col-sm-9">
                                     <input 

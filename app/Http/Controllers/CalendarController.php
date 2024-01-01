@@ -2,73 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\MeetingRequest;
 
 class CalendarController extends Controller
 {
     public function index()
     {
-        $events = [];
-        $dbEvents = Event::where(['company_id' => Auth::user()->company->id])->get();
-        foreach ($dbEvents as $event) {
-            $events[] = [
-                'id' => $event->id, 
-                'title' => $event->title,
-                'start' => $event->start->toDateTimeString(),
-                'end' => $event->end->toDateTimeString()
+        $meetings = [];
+        $dbMeetings = Meeting::where(['company_id' => Auth::user()->company->id])->get();
+        foreach ($dbMeetings as $dbMeeting) {
+            $meetings[] = [
+                'id' => $dbMeeting->id, 
+                'title' => $dbMeeting->title,
+                'start' => $dbMeeting->start->toDateTimeString(),
+                'end' => $dbMeeting->end->toDateTimeString()
             ];
         }
-        
-        return view('calendar.index', compact('events'));
+        return view('calendar.index', compact('meetings'));
     }
 
-    public function store(Request $request) 
+    public function store(MeetingRequest $request) 
     {
         $request->validate([
             'title' => 'required|string',
             'start' => 'required',
             'end' => 'required',
         ]);
-
-        $event = Event::create([
+        $meeting = Meeting::create([
             'id' => $request->id,
             'title' => $request->title,
             'start' => $request->start,
             'end' => $request->end,
             'company_id' => Auth::user()->company->id,
         ]);
-
-        return response()->json($event);
+        return response()->json($meeting);
     }
     
     public function update(Request $request, $id) 
     {
-        $event = Event::findOrFail($id);
-        if (!$event) {
+        $meeting = Meeting::findOrFail($id);
+        if (!$meeting) {
             return response()->json([
-                'error' => 'Unable to locate event',
+                'error' => 'Unable to locate meeting',
             ], 404);
         }
-
-        $event->update([
+        $meeting->update([
             'start' => $request->start,
             'end' => $request->end
         ]);
-        
-        return response()->json('Event updated');
+        return response()->json('Meeting updated');
     }
 
     public function destroy($id)
     {
-        $event = Event::findOrFail($id);
-        if (!$event) {
+        $meeting = Meeting::findOrFail($id);
+        if (!$meeting) {
             return response()->json([
-                'error' => 'Unable to locate event',
+                'error' => 'Unable to locate meeting',
             ], 404);
         }
-        $event->delete();
+        $meeting->delete();
         return $id;
     }
 }

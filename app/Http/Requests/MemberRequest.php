@@ -27,6 +27,7 @@ class MemberRequest extends FormRequest
             'surname' => ['required', 'string'],
             'given_name' => ['required', 'string'],
             'other_name' => ['nullable', 'string'],
+            'code' => ['nullable', 'string'],
             'date_of_birth' => ['required', 'date'],
             'telephone_number' => ['required', 'numeric', 'min:10'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],

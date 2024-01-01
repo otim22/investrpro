@@ -28,14 +28,14 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
-                    @if (count($member->nextOfKin) > 0)
+                    @if ($member->nextOfKin)
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-capitalize fs-6">Full Names</th>
-                                    <th class="text-capitalize fs-6">Address</th>
-                                    <th class="text-capitalize fs-6">Relationship</th>
                                     <th class="text-capitalize fs-6">Identification</th>
+                                    <th class="text-capitalize fs-6">Address</th>
+                                    <th class="text-capitalize fs-6">Contact</th>
+                                    <th class="text-capitalize fs-6">Relationship</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -43,22 +43,24 @@
                                 <tr>
                                     <td>
                                         <a href="{{ route('next-of-kin.show', [$member, $member->nextOfKin]) }}">
-                                            {{ $member->nextOfKin->surname }}<br/>
-                                            {{ $member->nextOfKin->given_name }}<br/>
-                                            {{ $member->nextOfKin->other_name }}
+                                            <div>
+                                                {{ $member->nextOfKin->surname }}
+                                                {{ $member->nextOfKin->given_name }}
+                                                {{ $member->nextOfKin->other_name }}
+                                            </div>
+                                            <div>{{ $member->nextOfKin->nin }}</div>
+                                            <div>{{ $member->nextOfKin->passport_number }}</div>
                                         </a>
                                     </td>
                                     <td>
-                                        {{ $member->nextOfKin->address }}<br/>
-                                        {{ $member->nextOfKin->email }}<br/>
-                                        {{ $member->nextOfKin->telephone_number }}
+                                        <div>{{ $member->nextOfKin->address }}</div>
                                     </td>
                                     <td>
-                                        {{ $member->nextOfKin->relationship }}<br/>
+                                        <div>{{ $member->nextOfKin->email }}</div>
+                                        <div>{{ $member->nextOfKin->telephone_number }}</div>
                                     </td>
                                     <td>
-                                        {{ $member->nextOfKin->nin }}<br/>
-                                        {{ $member->nextOfKin->passport_number }}
+                                        <div>{{ $member->nextOfKin->relationship }}</div>
                                     </td>
                                     <td>
                                         <div class="dropdown">

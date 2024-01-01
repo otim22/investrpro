@@ -56,6 +56,7 @@ final class InvestmentTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('investment_type')
+            ->addColumn('financial_year')
             ->addColumn('date_of_investment_formatted', function (Investment $model) { 
                 return Carbon::parse($model->date_of_investment)->format('d/m/Y');
             })
@@ -76,6 +77,11 @@ final class InvestmentTable extends PowerGridComponent
     {
         return [
             Column::make('Investment type', 'investment_type')
+                ->headerAttribute('text-capitalize fs-6')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Financial Year', 'financial_year')
                 ->headerAttribute('text-capitalize fs-6')
                 ->sortable()
                 ->searchable(),
@@ -127,6 +133,7 @@ final class InvestmentTable extends PowerGridComponent
     {
         return [
             Filter::inputText('investment_type')->operators(['contains']),
+            Filter::inputText('financial_year')->operators(['contains']),
             Filter::inputText('duration')->operators(['contains']),
             Filter::inputText('interest_rate')->operators(['contains']),
             Filter::inputText('amount_invested')->operators(['contains']),

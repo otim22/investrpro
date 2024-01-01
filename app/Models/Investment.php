@@ -19,6 +19,7 @@ class Investment extends Model
         'duration',
         'interest_rate',
         'amount_invested',
+        'financial_year',
         'date_of_maturity',
         'expected_tax',
         'expected_return_after_tax',

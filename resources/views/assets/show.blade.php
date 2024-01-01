@@ -155,9 +155,8 @@
                                         name="financial_year"
                                         class="form-control @error('financial_year') is-invalid @enderror"
                                         placeholder="FY22/23"
-                                        aria-label="FY22/23"
                                         aria-describedby="financial_year"
-                                        value="{{ old('type', $asset->financial_year) }}"
+                                        value="{{ old('financial_year', $asset->financial_year) }}"
                                         disabled
                                     />
                                 </div>
