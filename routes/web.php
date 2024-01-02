@@ -12,6 +12,8 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ChargeController;
 use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\ProcedureController;
+use App\Http\Controllers\LoanApplicationController;
 use App\Http\Controllers\LiabilityController;
 use App\Http\Controllers\ProfitAndLossController;
 use App\Http\Controllers\AuditReportController;
@@ -65,6 +67,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/members/{member}/next-of-kins/{nextOfKin}/destroy', [NextOfKinController::class, 'destroy'])->name('next-of-kin.delete');
     Route::resource('/expenses', ExpenseController::class);
     Route::resource('/assets', AssetController::class);
+    Route::resource('/procedures', ProcedureController::class);
+    Route::get('/procedures/download/{id}', [ProcedureController::class, 'download'])->name('procedures.download');
+    Route::resource('/loan-application', LoanApplicationController::class);
     Route::get('/loan-service', [LoanServiceController::class, 'index'])->name('loan-service');
     Route::resource('/meetings', MeetingController::class);
     Route::get('/meetings/{meeting}/attendances/create', [AttendanceController::class, 'create'])->name('attendances.create');

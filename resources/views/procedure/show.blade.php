@@ -39,7 +39,7 @@
                 </div>
                 @endcan
             </div>
-            <form action="{{ route('hr-manuals.destroy', $hrManual) }}" class="hidden" id="delete-hr-manual-{{ $hrManual->id }}"
+            <form action="{{ route('hr-manuals.destroy', $hrManual) }}" class="hidden" id="delete-charge-{{ $hrManual->id }}"
                 method="POST">
                 @csrf
                 @method('delete')
@@ -65,7 +65,7 @@
                                 Close
                             </button>
                             <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault(); document.getElementById('delete-hr-manual-{{ $hrManual->id }}').submit();">Delete</button>
+                                onclick="event.preventDefault(); document.getElementById('delete-charge-{{ $hrManual->id }}').submit();">Delete</button>
                         </div>
                     </div>
                 </div>

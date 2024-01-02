@@ -9,14 +9,14 @@
 @endpush
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <div class="row">
+    <div class="row mb-2">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">HR Manual / <a href="{{ route('hr-manuals.index') }}">List of HR Manuals</a> / </span>{{ $hrManual->title }}</h5>
+                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / <a href="{{ route('procedures.index') }}">Procedure</a> / </span>New form</h5>
                 <div>
-                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('hr-manuals.index') }}" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('procedures.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>
-                        Back to manuals
+                        Back to procedure
                     </a>
                 </div>
             </div>
@@ -26,9 +26,8 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('hr-manuals.update', $hrManual) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('procedures.store') }}" enctype="multipart/form-data">
                         @csrf
-                        @method('patch')
 
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="title">Title</label>
@@ -38,9 +37,10 @@
                                     id="title" 
                                     class="form-control @error('title') is-invalid @enderror" 
                                     name="title"
-                                    value="{{ old('title', $hrManual->title) }}"
-                                    placeholder="January" 
+                                    value="{{ old('title') }}"
+                                    placeholder="Procedure" 
                                     autofocus
+                                    required
                                 />
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                         id="description"
                                         name="description"
                                         class="form-control"
-                                    >{{ old('description', $hrManual->description) }} </textarea>
+                                    >{{ old('description') }} </textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -68,27 +68,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="amount">Attach document</label>
+                            <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="doc_attachement">Attach document</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="file" 
                                         class="form-control" 
+                                        id="doc_attachement"
                                         name="doc_attachement" 
-                                        accept=".doc,.docx,.pdf" 
-                                        id="doc_attachement" 
-                                    />
+                                        accept=".pdf" 
+                                        required
+                                        />
                                     <label class="input-group-text" for="doc_attachement">Upload</label>
-                                </div>
-                                <div class="mt-2">
-                                    @if($hrManual->getFirstMediaUrl("doc_attachement"))
-                                        <label for="doc_attachement"><small class="text-warning">Current form (* Uploading a form overrides current one)</small> </label><br />
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-short pb-1" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                            </svg>                                         
-                                            {{ $hrManual->getFirstMedia("doc_attachement")->name }}
-                                        </div>
-                                    @endif
                                 </div>
                                 @error('doc_attachement')
                                     <span class="invalid-feedback" role="alert">
@@ -99,7 +89,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-9 mt-2">
-                                <button type="submit" class="btn btn-primary text-capitalize">Update manual</button>
+                                <button type="submit" class="btn btn-primary text-capitalize">Create procedure</button>
                             </div>
                         </div>
                     </form>
