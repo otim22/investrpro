@@ -3,7 +3,7 @@
         <div class="row my-2 border-bottom">
             <div class="col-sm-12 col-md-6 mb-3">
                 <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
-                    <h3>SentePesa</h3>
+                    <h3>PesaShield</h3>
                 </a>
             </div>
 

@@ -175,7 +175,7 @@
                                     placeholder="John doore" 
                                     required
                                 />
-                                <small class="text-muted">Entering your name you agree to terms & conditions</small>
+                                <small class="text-muted">By entering your name you agree to the terms & conditions.</small>
                                 @error('signature')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

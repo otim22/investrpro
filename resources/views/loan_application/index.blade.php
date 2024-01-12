@@ -25,18 +25,16 @@
         <div class="row">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="card p-3">
-                    @if (isset($loanApplications))
+                    @if (count($loanApplications) > 0)
                         <div style="overflow-x: auto">
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th class="text-capitalize text-nowrap fs-6" scope="col">member's name</th>
                                         <th class="text-capitalize text-nowrap fs-6" scope="col">Credit type</th>
-                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Credit Purpose</th>
-                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Amount requested</th>
+                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Purpose</th>
+                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Amount</th>
                                         <th class="text-capitalize text-nowrap fs-6" scope="col">Repayment plan</th>
-                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Signature</th>
-                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Financial year</th>
                                         <th class="text-capitalize text-nowrap fs-6" scope="col">Status</th>
                                         {{-- @can('show meeting actions') --}}
                                             <th class="text-capitalize text-nowrap fs-6" scope="col">Actions</th>
@@ -51,10 +49,12 @@
                                             <td class="text-nowrap">{{ $loanApplication->shortenSentence($loanApplication->credit_purpose) }}</td>
                                             <td class="text-nowrap">{{ number_format($loanApplication->amount_requested) }}/-</td>
                                             <td class="text-nowrap">{{ $loanApplication->repayment_plan }}</td>
-                                            <td class="text-nowrap">{{ $loanApplication->signature }}</td>
-                                            <td class="text-nowrap">{{ $loanApplication->financial_year }}</td>
-                                            @if ($loanApplication->approved_by_chairperson && $loanApplication->approved_by_treasurer)
-                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary">Approved</button></td>
+                                            @if ($loanApplication->approved_by_one && $loanApplication->approved_by_two)
+                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-success">Approved</button></td>
+                                            @elseif ($loanApplication->approved_by_one || $loanApplication->approved_by_two)
+                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary px-3">Pending</button></td>
+                                            @elseif($loanApplication->comment)
+                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-danger">Cancelled</button></td>
                                             @else
                                                 <td class="text-nowrap"><button class="btn btn-sm btn-outline-warning">Unapproved</button></td>
                                             @endif

@@ -89,6 +89,7 @@
                                         class="form-select @error('credit_type') is-invalid @enderror" 
                                         name="credit_type"
                                         aria-label="Default select month"
+                                        required
                                     >
                                         <option selected>Select option</option>
                                         <option value="new loan">New Loan</option>
@@ -112,6 +113,7 @@
                                     rows="2"
                                     class="form-control @error('credit_purpose') is-invalid @enderror"
                                     aria-describedby="credit_purpose"
+                                    required
                                 >{{ old('credit_purpose')}}</textarea>
                                 @error('credit_purpose')
                                     <span class="invalid-feedback" role="alert">
@@ -148,6 +150,7 @@
                                         class="form-select @error('repayment_plan') is-invalid @enderror" 
                                         name="repayment_plan"
                                         aria-label="Default select month"
+                                        required
                                     >
                                         <option selected>Select option</option>
                                         <option value="< 30 days">< 30 days</option>
@@ -174,7 +177,7 @@
                                     placeholder="John doore" 
                                     required
                                 />
-                                <small class="text-muted">Entering your name you agree to terms & conditions</small>
+                                <small class="text-muted">By entering your name you agree to the terms & conditions.</small>
                                 @error('signature')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

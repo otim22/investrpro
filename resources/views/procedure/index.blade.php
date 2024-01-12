@@ -7,7 +7,7 @@
                 @include('messages.flash')
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
                 <div class="d-flex justify-content-between">
                     <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / Procedure </span> @if(isset($procedure))/ {{ $procedure->title }}@endif</h5>

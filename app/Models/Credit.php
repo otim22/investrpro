@@ -10,37 +10,29 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class LoanApplication extends Model
+class Credit extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
-        'credit_type',
-        'credit_purpose',
-        'amount_requested',
-        'repayment_plan',
-        'signature',
-        'financial_year',
-        'approved_by_one',
-        'date_one_signed',
-        'approved_by_two',
-        'date_two_signed',
-        'is_approved',
-        'is_rejected',
+        'amount_taken',
+        'amount_paid',
+        'date_paid',
         'comment',
+        'is_active',
         'member_id',
         'company_id',
+        'loan_application_id',
     ];
 
     protected $casts = [
-        "date_one_signed" => "datetime:d/m/Y",
-        "date_two_signed" => "datetime:d/m/Y"
+        "date_paid" => "datetime:d/m/Y",
     ];
 
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['credit_type', 'member_id'])
+            ->generateSlugsFrom(['credit_taken', 'member_id'])
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
     }
@@ -68,5 +60,10 @@ class LoanApplication extends Model
     public function member(): BelongsTo
     {
         return $this->belongsTo(Member::class);
+    }
+    
+    public function loanApplication(): BelongsTo
+    {
+        return $this->belongsTo(LoanAdvance::class);
     }
 }

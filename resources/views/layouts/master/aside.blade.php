@@ -1,7 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #010d23 !important;">
     <div class="app-brand demo">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
-            <h3 class="fw-bold" style="color: #ffffff;">SenteShield</h3>
+            <h3 class="fw-bold" style="color: #ffffff;">PesaShield</h3>
         </a>
 
         {{-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -65,7 +65,7 @@
         </li>
         
         <!-- Assets -->
-        <li class="menu-item added-active {{ Request::is(['procedures', 'loan-application', 'loan-service']) ? 'active' : '' }}" onclick="addActiveClass(this)">
+        <li class="menu-item added-active {{ Request::is(['procedures', 'loan-application', 'credit-advanced', 'loan-approval', 'manage-loans']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bxs-bank'></i>
                 <div>Loan service</div>
@@ -81,14 +81,19 @@
                         <div>Loan application</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('loan-service') ? 'active' : '' }}">
-                    <a href="{{ route('loan-service') }}" class="menu-link text-capitalize">
-                        <div>Credit advancement</div>
+                <li class="menu-item {{ Request::is('credit-advanced') ? 'active' : '' }}">
+                    <a href="{{ route('credit-advanced') }}" class="menu-link text-capitalize">
+                        <div>Credit advanced</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('loan-service') ? 'active' : '' }}">
-                    <a href="{{ route('loan-service') }}" class="menu-link text-capitalize">
-                        <div>Approvals</div>
+                <li class="menu-item {{ Request::is('loan-approval') ? 'active' : '' }}">
+                    <a href="{{ route('loan-approval.index') }}" class="menu-link text-capitalize">
+                        <div>Loan approvals</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('manage-loans') ? 'active' : '' }}">
+                    <a href="{{ route('manage-loans.index') }}" class="menu-link text-capitalize">
+                        <div>manage loans</div>
                     </a>
                 </li>
             </ul>

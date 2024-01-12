@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use Illuminate\Http\Request;
 use App\Models\FinancialYear;
 use App\Models\LoanApplication;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoanApplicationRequest;
 use App\Http\Requests\LoanApplicationUpdateRequest;

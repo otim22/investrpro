@@ -1,7 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bs-class="bg-menu-theme" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color: #010d23 !important;">
     <div class="app-brand demo">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
-            <h3 class="fw-bolder ms-2" style="color: #ffffff;">SenteShield</h3>
+            <h3 class="fw-bolder ms-2" style="color: #ffffff;">PesaShield</h3>
         </a>
     </div>
 
