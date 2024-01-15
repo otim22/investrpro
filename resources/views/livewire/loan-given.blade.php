@@ -22,8 +22,8 @@
                             <thead>
                                 <tr>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Credit taken</th>
-                                    <th class="text-capitalize text-nowrap fs-6" scope="col">Amount paid</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Date paid</th>
+                                    <th class="text-capitalize text-nowrap fs-6" scope="col">Amount paid</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Comment</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Balance</th>
                                 </tr>
@@ -32,22 +32,22 @@
                                 @foreach ($credits as $advancedCredit)
                                     <tr>
                                         <td class="text-nowrap">{{ number_format($advancedCredit->amount_taken) }}/-</td>
-                                        @if($advancedCredit->amount_paid)
-                                            <td class="text-nowrap">{{ number_format($advancedCredit->amount_paid) }}/-</td>
-                                        @else
-                                            <td class="text-nowrap">0.00</td>
-                                        @endif
                                         @if($advancedCredit->date_paid)
                                             <td class="text-nowrap">{{ $advancedCredit->date_paid->format('d/m/Y') }}</td>
                                         @else
                                             <td class="text-nowrap">--</td>
+                                        @endif
+                                        @if($advancedCredit->amount_paid)
+                                            <td class="text-nowrap">{{ number_format($advancedCredit->amount_paid) }}/-</td>
+                                        @else
+                                            <td class="text-nowrap">0.00</td>
                                         @endif
                                         @if($advancedCredit->comment)
                                             <td class="text-nowrap">{{ $advancedCredit->comment }}</td>
                                         @else
                                             <td class="text-nowrap">--</td>
                                         @endif
-                                        <td class="text-nowrap">{{ number_format($advancedCredit->amount_taken - $advancedCredit->amount_paid) }}/-</td>
+                                        <td class="text-nowrap">{{ number_format($advancedCredit->balance) }}/-</td>
                                     </tr>
                                 @endforeach
                             </tbody>

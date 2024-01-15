@@ -10,4 +10,9 @@ class ManageLoanController extends Controller
     {
         return view('manage_loan.index');
     }
+    
+    public function show($id)
+    {
+        return view('manage_loan.show', compact('id'));
+    }
 }

@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('credits', function (Blueprint $table) {
+        Schema::create('loan_histories', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
+            $table->string('ref')->nullable();
             $table->integer('amount_taken');
             $table->integer('amount_paid')->nullable();
+            $table->integer('balance')->nullable();
             $table->dateTime('date_paid')->nullable();
             $table->longText('comment')->nullable();
+            $table->boolean('has_paid')->nullable()->default(0);
             $table->boolean('is_active')->nullable()->default(0);
             $table->foreignId('member_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('loan_application_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('credits');
+        Schema::dropIfExists('loan_histories');
     }
 };

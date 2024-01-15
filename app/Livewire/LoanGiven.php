@@ -3,12 +3,12 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Credit;
+use App\Models\LoanHistory;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class CreditGiven extends Component
+class LoanGiven extends Component
 {
     use WithPagination;
     
@@ -27,13 +27,13 @@ class CreditGiven extends Component
     public function render()
     {
         if ($this->currentActive) {
-            $credit = $this->advancedCredit($status = 1);
+            $credit = $this->advancedCredit($status = true);
         } else if ($this->currentInActive) {
-            $credit = $this->advancedCredit($status = 0);
+            $credit = $this->advancedCredit($status = false);
         } else if ($this->currentloanHistory) {
             $credit = $this->loanHistory();
         }
-        return view('livewire.credit-given', ['credits' => $credit]);
+        return view('livewire.loan-given', ['credits' => $credit]);
     }
 
     public function activeLoans()
@@ -60,16 +60,16 @@ class CreditGiven extends Component
     
     public function allAdvancedCredit()
     {
-        return Credit::where([
+        return LoanHistory::where([
             'company_id' => Auth::user()->company->id
-        ])->orderBy('created_at','desc')->paginate(25);
+        ])->orderBy('date_paid','desc')->paginate(25);
     }
 
     public function advancedCredit($status)
     {
-        return Credit::where([
+        return LoanHistory::where([
             'company_id' => Auth::user()->company->id,
             'is_active' => $status,
-        ])->orderBy('created_at','desc')->paginate(25);
+        ])->orderBy('date_paid','desc')->paginate(25);
     }
 }

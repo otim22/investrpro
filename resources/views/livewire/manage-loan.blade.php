@@ -14,7 +14,89 @@
     <div class="row">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="card p-3">
-                <p>Test</p>
+                @if (count($activeLoans) > 0)
+                    <div style="overflow-x: auto">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-capitalize text-nowrap fs-6" scope="col">member's name</th>
+                                    <th class="text-capitalize text-nowrap fs-6" scope="col">Credit type</th>
+                                    <th class="text-capitalize text-nowrap fs-6" scope="col">Amount</th>
+                                    <th class="text-capitalize text-nowrap fs-6" scope="col">Repayment plan</th>
+                                    <th class="text-capitalize text-nowrap fs-6" scope="col">Status</th>
+                                    {{-- @can('show meeting actions') --}}
+                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Actions</th>
+                                    {{-- @endcan --}}
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                @foreach ($activeLoans as $activeLoan)
+                                    <tr>
+                                        <td class="text-nowrap"><a href="{{ route('loan-application.show', $activeLoan) }}">{{ $activeLoan->member->surname }} {{ $activeLoan->member->given_name }}</a></td>
+                                        <td class="text-nowrap">{{ $activeLoan->credit_type }}</td>
+                                        <td class="text-nowrap">{{ number_format($activeLoan->amount_requested) }}/-</td>
+                                        <td class="text-nowrap">{{ $activeLoan->repayment_plan }}</td>
+                                        @if ($activeLoan->approved_by_one && $activeLoan->approved_by_two)
+                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-success">Approved</button></td>
+                                        @elseif ($activeLoan->approved_by_one || $activeLoan->approved_by_two)
+                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary px-3">Pending</button></td>
+                                        @elseif($activeLoan->comment)
+                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-danger">Cancelled</button></td>
+                                        @else
+                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-warning">Unapproved</button></td>
+                                        @endif
+                                        {{-- @can('show meeting actions') --}}
+                                            <td>
+                                                <a class="btn btn-sm btn-outline-primary text-capitalize" href="{{ route('settlements.show', $activeLoan->id)}}">View more</a>
+                                            </td>
+                                        {{-- @endcan --}}
+                                    </tr>
+                                    <form action="{{ route('loan-application.destroy', $activeLoan) }}" class="hidden"
+                                        id="delete-loan-app-{{ $activeLoan->id }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                    </form>
+                                    <div class="modal fade" id="confirmLoanAppDeletion{{ $activeLoan->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" meeting="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmLoanAppDeletion{{ $activeLoan->id }}">
+                                                        {{ $activeLoan->credit_type }}
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row g-2">
+                                                        <div class="col mb-0">
+                                                            Are you sure deleting {{ $activeLoan->credit_type }}?
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="event.preventDefault(); document.getElementById('delete-loan-app-{{ $activeLoan->id }}').submit();">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-4">
+                        {!! $activeLoans->links() !!}
+                    </div>
+                @else
+                    <p class="mb-0 text-center text-capitalize">No loan applications found</p>
+                    
+                @endif
             </div>
         </div>
     </div>

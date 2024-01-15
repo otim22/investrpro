@@ -1,5 +1,5 @@
 @extends('layouts.master.app')
 
 @section('content')
-    <livewire:credit-given />
+    <livewire:loan-given />
 @endsection

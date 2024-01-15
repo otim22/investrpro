@@ -10,15 +10,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Credit extends Model
+class LoanHistory extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
+        'ref_code',
         'amount_taken',
         'amount_paid',
+        'balance',
         'date_paid',
         'comment',
+        'has_paid',
         'is_active',
         'member_id',
         'company_id',
@@ -32,7 +35,7 @@ class Credit extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['credit_taken', 'member_id'])
+            ->generateSlugsFrom('ref_code')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
     }
