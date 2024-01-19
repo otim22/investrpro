@@ -32,7 +32,7 @@
         <li class="menu-item added-active {{ Request::is(['calendar/index', 'meetings']) ? 'active' : '' }}" onclick="addActiveClass(this)">
             <a href="javascript:void(0);" class="menu-link menu-toggle text-capitalize">
                 <i class='menu-icon bx bx-calendar'></i>
-                <div>Meetings<span class="badge bg-white bg-primary ms-3">10</span></div>
+                <div>Meetings<span class="badge badge-center rounded-pill bg-danger ms-3">{{ \App\Models\Meeting::all()->count() }}</span></div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item {{ Request::is('calendar/index') ? 'active' : '' }}">

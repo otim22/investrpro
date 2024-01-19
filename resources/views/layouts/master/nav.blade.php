@@ -69,12 +69,12 @@
                             <span class="align-middle">Profile</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="dropdown-item" href="{{ route('billing') }}">
                             <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
                             <span class="align-middle">Billing</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
