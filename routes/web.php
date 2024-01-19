@@ -75,9 +75,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/loan-approval', [LoanApprovalController::class, 'index'])->name('loan-approval.index');
     Route::get('/loan-approval/{loanApplication}/show', [LoanApprovalController::class, 'show'])->name('loan-approval.show');
     Route::get('/loan-history', [LoanHistoryController::class, 'index'])->name('loan-history');
-    // Route::get('/loan-history/create', [LoanHistoryController::class, 'create'])->name('loan-history.create');
     Route::get('/settlements', [ManageLoanController::class, 'index'])->name('settlements.index');
     Route::get('/settlements/{settlement}/show', [ManageLoanController::class, 'show'])->name('settlements.show');
+    Route::get('/settlements/{settlement}/edit', [ManageLoanController::class, 'edit'])->name('settlements.edit');
+    Route::patch('/settlements/{settlement}/update', [ManageLoanController::class, 'update'])->name('settlements.update');
     Route::resource('/meetings', MeetingController::class);
     Route::get('/meetings/{meeting}/attendances/create', [AttendanceController::class, 'create'])->name('attendances.create');
     Route::get('/meetings/{meeting}/attendances/{attendance}/show', [AttendanceController::class, 'show'])->name('attendances.show');

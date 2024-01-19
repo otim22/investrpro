@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('loan_applications', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
+            $table->string('ref_code');
             $table->string('credit_type');
             $table->string('credit_purpose');
             $table->integer('amount_requested');

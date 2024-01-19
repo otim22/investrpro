@@ -22,6 +22,7 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
+                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Ref code</th>
                                         <th class="text-capitalize text-nowrap fs-6" scope="col">member's name</th>
                                         <th class="text-capitalize text-nowrap fs-6" scope="col">Credit type</th>
                                         <th class="text-capitalize text-nowrap fs-6" scope="col">Credit Purpose</th>
@@ -33,19 +34,20 @@
                                 <tbody class="table-border-bottom-0">
                                     @foreach ($loanApplications as $loanApplication)
                                         <tr>
-                                            <td class="text-nowrap"><a href="{{ route('loan-approval.show', $loanApplication) }}">{{ $loanApplication->member->surname }} {{ $loanApplication->member->given_name }}</a></td>
+                                            <td class="text-nowrap"><a href="{{ route('loan-approval.show', $loanApplication) }}">{{ $loanApplication->ref_code }}</a></td>
+                                            <td class="text-nowrap">{{ $loanApplication->member->surname }} {{ $loanApplication->member->given_name }}</td>
                                             <td class="text-nowrap">{{ $loanApplication->credit_type }}</td>
                                             <td class="text-nowrap">{{ $loanApplication->shortenSentence($loanApplication->credit_purpose) }}</td>
                                             <td class="text-nowrap">{{ number_format($loanApplication->amount_requested) }}/-</td>
                                             <td class="text-nowrap">{{ $loanApplication->repayment_plan }}</td>
                                             @if ($loanApplication->approved_by_one && $loanApplication->approved_by_two)
-                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-success">Approved</button></td>
+                                                <td class="text-nowrap"><span class="badge bg-label-success text-capitalize">Approved</span></td>
                                             @elseif ($loanApplication->approved_by_one || $loanApplication->approved_by_two)
-                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary px-3">Pending</button></td>
+                                                <td class="text-nowrap"><span class="badge bg-label-secondary text-capitalize px-3">Pending</span></td>
                                             @elseif($loanApplication->comment)
-                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-danger">Cancelled</button></td>
-                                            @else
-                                                <td class="text-nowrap"><button class="btn btn-sm btn-outline-warning">Unapproved</button></td>
+                                                <td class="text-nowrap"><span class="badge bg-label-danger text-capitalize">Cancelled</span></td>
+                                            @else 
+                                                <td class="text-nowrap"><span class="badge bg-label-warning text-capitalize">Unapproved</span></td>
                                             @endif
                                         </tr>
                                     @endforeach
@@ -56,7 +58,7 @@
                         {!! $loanApplications->links() !!}
                     </div>
                     @else
-                        <p class="mb-0 text-center text-capitalize">No loan applications found</p>
+                        <p class="mb-0 text-center text-capitalize">No loan approval requests found</p>
                         
                     @endif
                 </div>

@@ -16,8 +16,19 @@
     <div class="row mb-2">
         <div class="col-lg-12 col-md-12 col-12">
             <div class="d-flex justify-content-between">
-                <div>
-                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / <a href="{{ route('loan-application.index') }}">List of loan applications</a> / </span>{{ $loanApplication->credit_type }}</h5>
+                <div class="d-flex">
+                    <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / <a href="{{ route('loan-application.index') }}">List of loan applications / </a></span>{{ $loanApplication->ref_code }}</h5>
+                    <div class="ps-3">
+                        @if ($loanApplication->approved_by_one && $loanApplication->approved_by_two)
+                            <span class="badge bg-label-success text-capitalize">Approved</span>
+                        @elseif ($loanApplication->approved_by_one || $loanApplication->approved_by_two)
+                            <span class="badge bg-label-secondary text-capitalize">Pending</span>
+                        @elseif($loanApplication->comment)
+                            <span class="badge bg-label-danger text-capitalize">Cancelled</span>
+                        @else
+                            <span class="badge bg-label-warning text-capitalize">Unapproved</span>
+                        @endif
+                    </div>
                 </div>
                 {{-- @can('show hr manual actions') --}}
                 <div>
@@ -78,6 +89,19 @@
         <div class="col-xxl">
             <div class="card p-3">
                 <div class="card-body">
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="ref_code">Ref code</label>
+                        <div class="col-sm-9">
+                            <input 
+                                type="text" 
+                                id="ref_code" 
+                                class="form-control @error('ref_code') is-invalid @enderror" 
+                                name="ref_code"
+                                value="{{ old('ref_code', $loanApplication->ref_code) }}"
+                                disabled
+                            />
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-form-label text-secondary camel-sent fs-6" for="member_id">Member's name</label>
                         <div class="col-sm-9">

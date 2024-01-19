@@ -5,9 +5,9 @@
                 <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / </span> {{ $authUser }} credit</h5>
                 <div>
                     <div class="btn-group rounded" role="group">
+                        <button wire:click="loanHistory"  type="button" class="btn btn-sm btn-outline-primary {{ $currentloanHistory ? 'active' : '' }}">All</button>
                         <button wire:click="activeLoans"  type="button" class="btn btn-sm btn-outline-primary {{ $currentActive ? 'active' : '' }}">Running</button>
                         <button wire:click="inActiveLoans" type="button" class="btn btn-sm btn-outline-primary {{ $currentInActive ? 'active' : '' }}">Ended</button>
-                        <button wire:click="loanHistory"  type="button" class="btn btn-sm btn-outline-primary {{ $currentloanHistory ? 'active' : '' }}">History</button>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                         {!! $credits->links() !!}
                     </div>
                 @else
-                    <p class="mb-0 text-center text-capitalize">No credit found</p>
+                    <p class="mb-0 text-center text-capitalize">No loan found</p>
                 @endif
             </div>
         </div>

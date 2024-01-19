@@ -15,6 +15,7 @@ class LoanApplication extends Model
     use HasFactory, HasSlug;
 
     protected $fillable = [
+        'ref_code',
         'credit_type',
         'credit_purpose',
         'amount_requested',
@@ -40,7 +41,7 @@ class LoanApplication extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['credit_type', 'member_id'])
+            ->generateSlugsFrom('ref_code')
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
     }

@@ -10,7 +10,7 @@
                     @csrf
     
                     <div class="d-flex justify-content-center">
-                        <h4 class="fw-bold text-capitalize mb-3">Welcome back!</h4>
+                        <h4 class="text-capitalize mb-3">Welcome back!</h4>
                     </div>
     
                     <div class="mb-3">
@@ -44,14 +44,14 @@
                     </div>
     
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary text-capitalize fw-bold rounded rounded-5 mt-2">
+                        <button type="submit" class="btn btn-primary text-capitalize rounded rounded-2 mt-2">
                             Login
                         </button>
                     </div>
 
                     <div class="d-flex justify-content-center pt-3">
                         <a href="{{ route('password.request') }}" class="d-flex align-items-center text-decoration-none">
-                            <span class="fw-bold">Forgot your password?</span>
+                            Forgot your password?
                         </a>
                     </div>
     
@@ -61,7 +61,7 @@
                         </div>
                         <div>
                             <a href="{{ route('register') }}" class="d-flex align-items-center text-decoration-none">
-                                <span class="fw-bold"> Register here!</span>
+                                Register here!
                             </a>
                         </div>
                     </div>

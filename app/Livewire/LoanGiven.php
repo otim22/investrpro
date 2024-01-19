@@ -14,9 +14,9 @@ class LoanGiven extends Component
     
     public $advancedCredits;
     public $authUser = null;
-    public $currentActive = true;
+    public $currentActive = false;
     public $currentInActive = false;
-    public $currentloanHistory = false;
+    public $currentloanHistory = true;
     protected $paginationTheme = 'bootstrap';
 
     public function mount()

@@ -12,7 +12,7 @@
     <div class="row mb-2">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / <a href="{{ route('loan-application.index') }}">List of loan applications</a> / </span>{{ $loanApplication->credit_type }}</h5>
+                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / <a href="{{ route('loan-application.index') }}">List of loan applications</a> / </span>{{ $loanApplication->ref_code }}</h5>
                 <div>
                     <a class="btn btn-sm btn-outline-primary text-capitalize" type="button" href="{{ route('loan-application.index') }}" aria-haspopup="true" aria-expanded="false">
                         <i class='me-2 bx bx-arrow-back'></i>

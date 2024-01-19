@@ -7,7 +7,7 @@
     <div class="row mb-2">
         <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2">
             <div class="d-flex justify-content-between">
-                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / </span> Manage loan</h5>
+                <h5 class="fw-bold text-capitalize"><span class="text-muted fw-light">Loan service / </span> Manage loans</h5>
             </div>
         </div>
     </div>
@@ -19,37 +19,33 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th class="text-capitalize text-nowrap fs-6" scope="col">Ref code</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">member's name</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Credit type</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Amount</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Repayment plan</th>
                                     <th class="text-capitalize text-nowrap fs-6" scope="col">Status</th>
-                                    {{-- @can('show meeting actions') --}}
-                                        <th class="text-capitalize text-nowrap fs-6" scope="col">Actions</th>
-                                    {{-- @endcan --}}
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
                                 @foreach ($activeLoans as $activeLoan)
                                     <tr>
-                                        <td class="text-nowrap"><a href="{{ route('loan-application.show', $activeLoan) }}">{{ $activeLoan->member->surname }} {{ $activeLoan->member->given_name }}</a></td>
+                                        {{-- @can('show meeting actions') --}}
+                                            <td class="text-nowrap"><a href="{{ route('settlements.show', $activeLoan->id)}}">{{ $activeLoan->ref_code }}</a></td>
+                                        {{-- @endcan --}}
+                                        <td class="text-nowrap">{{ $activeLoan->member->surname }} {{ $activeLoan->member->given_name }}</td>
                                         <td class="text-nowrap">{{ $activeLoan->credit_type }}</td>
                                         <td class="text-nowrap">{{ number_format($activeLoan->amount_requested) }}/-</td>
                                         <td class="text-nowrap">{{ $activeLoan->repayment_plan }}</td>
                                         @if ($activeLoan->approved_by_one && $activeLoan->approved_by_two)
-                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-success">Approved</button></td>
+                                            <td class="text-nowrap"><span class="badge bg-label-success text-capitalize">Approved</span></td>
                                         @elseif ($activeLoan->approved_by_one || $activeLoan->approved_by_two)
-                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-secondary px-3">Pending</button></td>
+                                            <td class="text-nowrap"><span class="badge bg-label-secondary text-capitalize px-3">Pending</span></td>
                                         @elseif($activeLoan->comment)
-                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-danger">Cancelled</button></td>
+                                            <td class="text-nowrap"><span class="badge bg-label-danger text-capitalize">Cancelled</span></td>
                                         @else
-                                            <td class="text-nowrap"><button class="btn btn-sm btn-outline-warning">Unapproved</button></td>
+                                            <td class="text-nowrap"><span class="badge bg-label-warning text-capitalize">Unapproved</span></td>
                                         @endif
-                                        {{-- @can('show meeting actions') --}}
-                                            <td>
-                                                <a class="btn btn-sm btn-outline-primary text-capitalize" href="{{ route('settlements.show', $activeLoan->id)}}">View more</a>
-                                            </td>
-                                        {{-- @endcan --}}
                                     </tr>
                                     <form action="{{ route('loan-application.destroy', $activeLoan) }}" class="hidden"
                                         id="delete-loan-app-{{ $activeLoan->id }}" method="POST">
@@ -94,7 +90,7 @@
                         {!! $activeLoans->links() !!}
                     </div>
                 @else
-                    <p class="mb-0 text-center text-capitalize">No loan applications found</p>
+                    <p class="mb-0 text-center text-capitalize">No approved loans found</p>
                     
                 @endif
             </div>

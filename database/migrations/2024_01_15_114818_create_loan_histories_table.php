@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('loan_histories', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
-            $table->string('ref')->nullable();
+            $table->string('ref_code');
             $table->integer('amount_taken');
             $table->integer('amount_paid')->nullable();
             $table->integer('balance')->nullable();

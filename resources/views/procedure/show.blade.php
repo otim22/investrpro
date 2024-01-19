@@ -125,7 +125,7 @@
         let pdfRendering = false;
 
         function getPdf() {
-            let url = {{ Js::from($hrManualUrl) }};
+            let url = {{ Js::from($procedureUrl) }};
             if (url) {
                 return {
                     url

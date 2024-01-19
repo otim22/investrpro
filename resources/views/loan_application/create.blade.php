@@ -92,8 +92,8 @@
                                         required
                                     >
                                         <option selected>Select option</option>
-                                        <option value="new loan">New Loan</option>
-                                        <option value="top up">Top Up</option>
+                                        <option value="New loan">New Loan</option>
+                                        <option value="Top up">Top Up</option>
                                 </select>
                                     @error('credit_type')
                                         <span class="invalid-feedback" role="alert">
